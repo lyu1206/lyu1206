@@ -30,8 +30,8 @@ public class TestMain : MonoBehaviour
         var modelscript = new EosScript { scriptname = "EngageLogic" };
         npcmodel.AddChild(modelscript);
 
-        //modelscript = new EosScript { scriptname = "HostileNPC" };
-        //npcmodel.AddChild(modelscript);
+        modelscript = new EosScript { scriptname = "HostileNPC" };
+        npcmodel.AddChild(modelscript);
 
 
 
@@ -151,5 +151,18 @@ public class TestMain : MonoBehaviour
         tool.AddChild(weaponmesh);
         playermodel.AddChild(tool);
 
+
+        //eplayer.Scheduler.Schedule(() =>
+        //{
+        //    Debug.Log("forever update..");
+        //});
+        //eplayer.Scheduler.ScheduleOnce(() =>
+        //{
+        //    Debug.Log("EXEcute once");
+        //});
+        //eplayer.Scheduler.ScheduleDetail(() =>
+        //{
+        //    Debug.Log("ScheduleDetail 4 time");
+        //}, 2f,4);
     }
 }

@@ -30,7 +30,8 @@ namespace Eos.Script
         }
         private void OnBeginDrag(object sender, PointerEventData data)
         {
-
+            _playerfsm.SetFsmValue("move", true);
+            _playerfsm.FsmTransition("FSMTransit");
         }
         private void OnDragging(object sender, PointerEventData data)
         {
@@ -46,13 +47,7 @@ namespace Eos.Script
             direction.Normalize();
 
             _padtrans.anchoredPosition = _orgposition + delta * deltadistance;
-
-//            _playerhumanoid.SetupAttackRange(_playerhumanoid.Radius*1.2f);
-
-            _playerfsm.SetFsmValue("move", true);
             _playerfsm.SetFsmValue("movedirection", direction);
-            _playerfsm.FsmTransition("FSMTransit");
-            
         }
         private void OnEndDragging(object sender, PointerEventData data)
         {

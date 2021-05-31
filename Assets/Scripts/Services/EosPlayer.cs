@@ -78,11 +78,15 @@ namespace EosPlayer
     public class EosPlayer : MonoBehaviour
     {
         private Solution _solution;
+        private ObjectManager _objectmanager = new ObjectManager();
+        private ScriptPlayer _scriptPlayer = new ScriptPlayer();
+        private Scheduler _scheduler = new Scheduler();
         private static EosPlayer _instance;
-        public ObjectManager ObjectManager = new ObjectManager();
+        public ObjectManager ObjectManager =>_objectmanager;
         public Solution Solution => _solution;
         public CoroutineManager Coroutine = null;
-        public ScriptPlayer ScriptPlayer => new ScriptPlayer();
+        public ScriptPlayer ScriptPlayer => _scriptPlayer;
+        public Scheduler Scheduler => _scheduler;
 
         public static EosPlayer Instance
         {
@@ -104,6 +108,7 @@ namespace EosPlayer
         void Update()
         {
             ObjectManager.Update(Time.deltaTime);
+            Scheduler.Update(Time.deltaTime);
         }
         public static void ShutDown()
         {

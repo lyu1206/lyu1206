@@ -55,13 +55,18 @@ namespace Eos.Objects
             {
                 if (_navagent != null)
                 {
-                    _transform.localPosition = _humanoidroot.LocalPosition;
+                    UpdateHumanoidPosition();
                     _transform.forward = value;
                     OnMoveStateChanged?.Invoke(this,true);
                     _navagent.isStopped = false;
                     _navagent.SetDestination(_navagent.transform.localPosition + value*_radius*2);
                 }
             }
+        }
+        private void UpdateHumanoidPosition()
+        {
+            _transform.localPosition = _humanoidroot.LocalPosition;
+            _transform.forward = _humanoidroot.Transform.forward;
         }
         public bool IsStop => (!_navagent.pathPending && _navagent.remainingDistance == 0);
         public const string humanoidroot = "HumanoidRoot";
@@ -105,18 +110,21 @@ namespace Eos.Objects
         }
         public void SetPosition(Vector3 to)
         {
+            UpdateHumanoidPosition();
             _navagent.enabled = false;
             _humanoidroot.Transform.position = to;
             _navagent.enabled = true;
         }
         public void MoveTo(Vector3 dest)
         {
+            UpdateHumanoidPosition();
             OnMoveStateChanged?.Invoke(this, true);
             _navagent.isStopped = false;
             _navagent.SetDestination(dest);
         }
         public void Stop()
         {
+            UpdateHumanoidPosition();
             OnMoveStateChanged?.Invoke(this, false);
             _navagent.ResetPath();
             _navagent.isStopped = true;
