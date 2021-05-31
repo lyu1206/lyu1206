@@ -1,0 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+namespace Eos.Objects
+{
+    using Ore;
+    public class EosTool : EosObjectBase
+    {
+        private bool _isattached;
+        public string GripBone = "Bip001 R Hand";
+        public Vector3 GripPos = new Vector3(-1,0.6f,0);
+        public Vector3 GripRot = new Vector3(0,-90,90);
+        public override void OnCopyTo(EosObjectBase target)
+        {
+            if (!(target is EosTool targettool))
+                return;
+            targettool.GripBone = GripBone;
+            targettool.GripPos = GripPos;
+            targettool.GripRot = GripRot;
+            base.OnCopyTo(target);
+        }
+        private void Attach(EosPawnActor topart)
+        {
+            if (_isattached)
+                return;
+            
+            var part = FindChild<EosMeshObject>();
+            var totransform = topart.Transform.FindDeepChild(GripBone);
+            _isattached = true;
+            part.Transform.parent = totransform;
+            part.Transform.localPosition = GripPos;
+            part.Transform.localRotation = Quaternion.Euler(GripRot);
+        }
+        private void Detach()
+        {
+            if (!_isattached)
+                return;
+            _isattached = false;
+        }
+        public override void OnAncestryChanged()
+        {
+            var topart = _parent.FindChild<EosPawnActor>();
+            if (topart==null)
+                return;
+            Attach(topart);
+        }
+    }
+}
