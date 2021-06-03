@@ -119,6 +119,8 @@ namespace Eos.Objects
             var income = other.GetComponent<eosColliderAdaptor>();
             if (income == null || income._colider.DetectType == DetectType.Other)
                 return;
+            if (_colider.FindInParent<EosModel>() == income._colider.FindInParent<EosModel>())
+                return;
             _colider.OnTriggerEnter?.Invoke(income._actor, other);
         }
         private void OnTriggerExit(Collider other)

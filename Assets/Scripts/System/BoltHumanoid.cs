@@ -61,6 +61,29 @@ namespace Eos.Ore
             var accesspoint = dest.Ref.Solution.AIService.GetAccesPoint(_humanoid, dest);
             MoveTo(accesspoint);
         }
+        private int lookatupdator = -1;
+        public void LookAt(EosHumanoid dest)
+        {
+            if (lookatupdator != -1)
+                _humanoid.Ref.Scheduler.UnSchedule(lookatupdator);
+            float factor = 0;
+            var target = dest.Humanoidroot.LocalPosition;
+            var startrot = _humanoid.Humanoidroot.Transform.localRotation;
+            var direction = target - _humanoid.LocalPosition;
+            var targetrot = Quaternion.LookRotation(direction.normalized);
+            _humanoid.Ref.Scheduler.ScheduleOnCondition(() =>
+            {
+                factor += Time.deltaTime * 5;
+                var destrot = Quaternion.Lerp(startrot, targetrot, factor);
+                _humanoid.Humanoidroot.Transform.localRotation = destrot;
+                factor = Mathf.Min(1, factor);
+                _humanoid.UpdateHumanoidPosition();
+            },
+            () =>
+            {
+                return factor >= 1;
+            });
+        }
         public void Stop()
         {
             _humanoid?.Stop();

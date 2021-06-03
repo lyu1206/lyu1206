@@ -63,7 +63,7 @@ namespace Eos.Script
         }
         private IEnumerator AttackProc(EosHumanoid humanoid)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(10);
             humanoid.AttackRange.Enable = true;
             humanoid.TraceRange.Enable = true;
             yield return 0;
