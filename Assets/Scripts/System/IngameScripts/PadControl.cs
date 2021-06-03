@@ -45,7 +45,15 @@ namespace Eos.Script
             var direction = EosCamera.Main.CameraspaceDirection(new Vector3(delta.x, 0, delta.y));
             direction.y = 0;
             direction.Normalize();
-
+            var curdirection = _playerhumanoid.Humanoidroot.Transform.forward;
+            float dot = Vector3.Dot(curdirection , direction);
+            if (dot<0)
+            {
+                _playerfsm.SetFsmValue("attack", false);
+                _playerfsm.SetFsmValue("stopattack", true);
+                _playerfsm.FsmTransition("FSMTransit");
+                _playerfsm.SetFsmValue("stopattack", false);
+            }
             _padtrans.anchoredPosition = _orgposition + delta * deltadistance;
             _playerfsm.SetFsmValue("movedirection", direction);
         }

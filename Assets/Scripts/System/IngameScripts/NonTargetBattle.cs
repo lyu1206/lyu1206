@@ -19,7 +19,29 @@ namespace Eos.Script
             }
             
         }
-
+        private void testkeyinput()
+        {
+            var model = script.Parent.FindInParent<EosModel>();
+            var humanoid = model.FindDeepChild<EosHumanoid>();
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                var root = humanoid.Humanoidroot;
+                var target = root.LocalPosition + new Vector3(1, 0, 1);
+                var direction = target - root.LocalPosition;
+                var rot = Quaternion.LookRotation(direction.normalized);
+                var startrot = root.Transform.localRotation;
+                var factor = 0f;
+                humanoid.Ref.Scheduler.ScheduleOnCondition(() =>
+                {
+                    var torot = Quaternion.Lerp(startrot, rot, factor);
+                    factor += Time.deltaTime ;
+                    factor = Mathf.Min(1, factor);
+                    humanoid.NavAgent.updateRotation = false;
+                    root.Transform.localRotation = torot;
+                    humanoid.NavAgent.updateRotation = true;
+                },()=> factor>=1);
+            }
+        }
         public IEnumerator Body()
         {
             var hostilelayer = LayerMask.NameToLayer("Hostile");
@@ -28,6 +50,9 @@ namespace Eos.Script
             humanoid.Speed = 30;
 
             yield return new WaitCondition(() => humanoid.Humanoidroot != null);
+
+            script.Ref.Scheduler.Schedule(testkeyinput);
+
             humanoid.AIStart();
             var attackrange = _attackrange = humanoid.SetupAttackRange(humanoid.Radius,3);
             var fsm = _fsm = humanoid.FSM;

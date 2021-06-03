@@ -8,11 +8,12 @@ namespace Eos.Service
     using Objects;
     public class Timer
     {
-        public Timer(float interval,int repeatcount,Action func)
+        public Timer(float interval,int repeatcount,Action func,Func<bool> condition)
         {
             _interval = interval;
             _repeatcount = repeatcount;
             _schedule_func = func;
+            _condition = condition;
             if (_repeatcount == 0)
                 _runforever = true;
         }
@@ -23,11 +24,13 @@ namespace Eos.Service
         private bool _paused;
         private Action _schedule_func;
         private bool _unschedule;
+        private Func<bool> _condition;
         public bool Paused { get => _paused; set => _paused = value; }
         public float Elapse { get => _elspase; set => _elspase = value; }
         public float Interval => _interval;
         public bool Runforever => _runforever;
         public Action Func => _schedule_func;
+        public Func<bool> Condition => _condition;
         public int RepeatCount { get => _repeatcount; set => _repeatcount = value; }
         public bool Unschedule { get => _unschedule; set => _unschedule = value; }
     }
@@ -42,14 +45,14 @@ namespace Eos.Service
             _keyindex++;
             return _keyindex;
         }
-        private Timer InnerMakeTimer(Action func,float interval,int repeatcount)
+        private Timer InnerMakeTimer(Action func,float interval,int repeatcount,Func<bool> condition)
         {
-            var timer = new Timer(interval,repeatcount,func);
+            var timer = new Timer(interval,repeatcount,func, condition);
             return timer;
         }
-        private void InnterScheduler(Action func,float interval,int repeatcount)
+        private void InnterScheduler(Action func,float interval,int repeatcount, Func<bool> condition)
         {
-            var v = InnerMakeTimer(func, interval, repeatcount);
+            var v = InnerMakeTimer(func, interval, repeatcount, condition);
             var key = InnerKeyMaker();
             _willscheduletimers.Add(key, v);
         }
@@ -73,28 +76,42 @@ namespace Eos.Service
         {
             if (_timers.ContainsKey(key))
                 _timers[key].Unschedule = true;
+            _umscheduletimers.Remove(key);
+            _willscheduletimers.Remove(key);
         }
         private void InnerCancelCheckTimner(int key,Timer timer)
         {
             if (!timer.Runforever)
+            {
                 if (timer.RepeatCount <= 0)
                     InnerUnSchedule(key);
+            }
+            if (timer.Condition?.Invoke() == true)
+                InnerUnSchedule(key);
+        }
+        public void UnSchedule(int key)
+        {
+            InnerUnSchedule(key);
         }
         public void Schedule(Action func)
         {
-            InnterScheduler(func, 0.0f, 0);
+            InnterScheduler(func, 0.0f, 0, null);
+        }
+        public void ScheduleOnCondition(Action func,Func<bool> condition)
+        {
+            InnterScheduler(func, 0.0f, 0, condition);
         }
         public void ScheduleOnce(Action func)
         {
-            InnterScheduler(func, 0.0f, 1);
+            InnterScheduler(func, 0.0f, 1,null);
         }
         public void ScheduleInterval(Action func,float interval)
         {
-            InnterScheduler(func, interval, 0);
+            InnterScheduler(func, interval, 0,null);
         }
         public void ScheduleDetail(Action func,float interval,int repeat)
         {
-            InnterScheduler(func, interval, repeat);
+            InnterScheduler(func, interval, repeat,null);
         }
         public void Update(float delta)
         {

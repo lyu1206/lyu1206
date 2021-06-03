@@ -63,7 +63,7 @@ namespace Eos.Objects
                 }
             }
         }
-        private void UpdateHumanoidPosition()
+        public void UpdateHumanoidPosition()
         {
             _transform.localPosition = _humanoidroot.LocalPosition;
             _transform.forward = _humanoidroot.Transform.forward;
