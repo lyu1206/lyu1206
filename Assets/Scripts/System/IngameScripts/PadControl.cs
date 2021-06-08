@@ -31,7 +31,7 @@ namespace Eos.Script
         private void OnBeginDrag(object sender, PointerEventData data)
         {
             _playerfsm.SetFsmValue("move", true);
-            _playerfsm.FsmTransition("FSMTransit");
+            _playerfsm.FsmTransition("Move");
         }
         private void OnDragging(object sender, PointerEventData data)
         {
@@ -50,8 +50,9 @@ namespace Eos.Script
             if (dot<0)
             {
                 _playerfsm.SetFsmValue("attack", false);
+                _playerfsm.SetFsmValue("damage", false);
                 _playerfsm.SetFsmValue("stopattack", true);
-                _playerfsm.FsmTransition("FSMTransit");
+                _playerfsm.FsmTransition("Move");
                 _playerfsm.SetFsmValue("stopattack", false);
             }
             _padtrans.anchoredPosition = _orgposition + delta * deltadistance;
@@ -64,7 +65,7 @@ namespace Eos.Script
             _playerfsm.SetFsmValue("move", false);
             _playerfsm.SetFsmValue("attack", false);
             _playerfsm.SetFsmValue("stopattack", true);
-            _playerfsm.FsmTransition("FSMTransit");
+            _playerfsm.FsmTransition("Idle");
             _playerfsm.SetFsmValue("stopattack", false);
         }
         public IEnumerator Body()

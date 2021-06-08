@@ -67,7 +67,7 @@ namespace Eos.Script
                 fsm.SetFsmValue("attack", true);
                 fsm.SetFsmValue("trace", false);
                 fsm.SetFsmValue("attacktarget", collidehumanoid);
-                fsm.FsmTransition("FSMTransit");
+                fsm.FsmTransition("Attack");
                 attackrange.Enable = false;
             };
             humanoid.OnAIEvent += AttackFinish;

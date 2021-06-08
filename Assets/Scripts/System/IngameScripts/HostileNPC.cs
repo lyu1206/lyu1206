@@ -41,7 +41,7 @@ namespace Eos.Script
                 fsm.SetFsmValue("attack", true);
                 fsm.SetFsmValue("trace", false);
                 fsm.SetFsmValue("attacktarget", humanoid.TraceTarget);
-                fsm.FsmTransition("FSMTransit");
+                fsm.FsmTransition("Attack");
                 attackrange.Enable = false;
             };
 
@@ -63,7 +63,7 @@ namespace Eos.Script
         }
         private IEnumerator AttackProc(EosHumanoid humanoid)
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(3);
             humanoid.AttackRange.Enable = true;
             humanoid.TraceRange.Enable = true;
             yield return 0;

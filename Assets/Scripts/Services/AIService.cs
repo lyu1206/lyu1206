@@ -171,7 +171,7 @@ namespace Eos.Service.AI
             fsm.SetFsmValue("trace", true);
 //            fsm.SetFsmValue("tracetarget", finaltarget.Humanoidroot.Transform);
             fsm.SetFsmValue("tracetarget", finaltarget);
-            fsm.FsmTransition("FSMTransit");
+            fsm.FsmTransition("Trace");
             _owner.TraceTarget = finaltarget;
             if (_owner.AttackRange!=null)
                 _owner.AttackRange.Enable = true;
