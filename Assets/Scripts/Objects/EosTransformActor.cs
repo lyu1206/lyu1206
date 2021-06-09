@@ -80,9 +80,14 @@ namespace Eos.Objects
                 return;
             var lp = LocalPosition;
             var lr = LocalRotation;
-            _transform.parent = transactor.Transform;
-            LocalPosition = lp;
-            LocalRotation = lr;
+            _transform.SetParent(transactor.Transform);
+//            LocalPosition = lp;
+//            LocalRotation = lr;
+        }
+        public override void OnDestroy()
+        {
+            if (_transform != null)
+                GameObject.Destroy(_transform.gameObject);
         }
         public override void Update(float delta)
         {

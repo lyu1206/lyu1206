@@ -21,5 +21,13 @@ namespace Eos.Objects
             targetui._uisource = _uisource;
             base.OnCopyTo(target);
         }
+        public override void OnAncestryChanged()
+        {
+            var lp = LocalPosition;
+            var lr = LocalRotation;
+            base.OnAncestryChanged();
+                        LocalPosition = lp;
+                        LocalRotation = lr;
+        }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Eos.Script
 {
+    using Objects.UI;
+
     [InGameScript]
     public class EngageLogic : Eos.Script.IScript
     {
@@ -34,8 +36,17 @@ namespace Eos.Script
             {
                 if ((string)parameter.args[0] == "hit")
                 {
+                    var damage = Random.Range(10, 30);
                     _owner.FSM.SetFsmValue("damage", true);
-                    _owner.FSM.FsmTransition("FSMTransit");
+                    _owner.FSM.FsmTransition("Damage");
+                    var damagepopup = new EosTextMesh("daamge");
+                    damagepopup.Text = damage.ToString();
+                    var popupscript = new EosScript();
+                    popupscript.scriptname = "DamagePopup";
+                    damagepopup.AddChild(popupscript);
+                    _owner.Humanoidroot.AddChild(damagepopup);
+                    damagepopup.LocalPosition = Vector3.up * 30;
+                    damagepopup.Activate(true);
                 }
             }
         }

@@ -50,11 +50,12 @@ namespace Eos.Service
             var timer = new Timer(interval,repeatcount,func, condition);
             return timer;
         }
-        private void InnterScheduler(Action func,float interval,int repeatcount, Func<bool> condition)
+        private int InnterScheduler(Action func,float interval,int repeatcount, Func<bool> condition)
         {
             var v = InnerMakeTimer(func, interval, repeatcount, condition);
             var key = InnerKeyMaker();
             _willscheduletimers.Add(key, v);
+            return key;
         }
         private void InnterRunTimer(Timer timer,float dt)
         {
@@ -93,25 +94,25 @@ namespace Eos.Service
         {
             InnerUnSchedule(key);
         }
-        public void Schedule(Action func)
+        public int Schedule(Action func)
         {
-            InnterScheduler(func, 0.0f, 0, null);
+            return InnterScheduler(func, 0.0f, 0, null);
         }
-        public void ScheduleOnCondition(Action func,Func<bool> condition)
+        public int ScheduleOnCondition(Action func,Func<bool> condition)
         {
-            InnterScheduler(func, 0.0f, 0, condition);
+            return InnterScheduler(func, 0.0f, 0, condition);
         }
-        public void ScheduleOnce(Action func)
+        public int ScheduleOnce(Action func)
         {
-            InnterScheduler(func, 0.0f, 1,null);
+            return InnterScheduler(func, 0.0f, 1,null);
         }
-        public void ScheduleInterval(Action func,float interval)
+        public int ScheduleInterval(Action func,float interval)
         {
-            InnterScheduler(func, interval, 0,null);
+            return InnterScheduler(func, interval, 0,null);
         }
-        public void ScheduleDetail(Action func,float interval,int repeat)
+        public int ScheduleDetail(Action func,float interval,int repeat)
         {
-            InnterScheduler(func, interval, repeat,null);
+            return InnterScheduler(func, interval, repeat,null);
         }
         public void Update(float delta)
         {
@@ -122,8 +123,11 @@ namespace Eos.Service
             _willscheduletimers.Clear();
             foreach (var timer in _timers)
             {
-                InnterRunTimer(timer.Value, delta);
-                InnerCancelCheckTimner(timer.Key, timer.Value);
+                if (!timer.Value.Unschedule)
+                {
+                    InnterRunTimer(timer.Value, delta);
+                    InnerCancelCheckTimner(timer.Key, timer.Value);
+                }
                 if (timer.Value.Unschedule)
                     _umscheduletimers.Add(timer.Key, timer.Value);
             }

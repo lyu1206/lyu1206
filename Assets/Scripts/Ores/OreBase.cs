@@ -15,7 +15,7 @@ namespace Eos.Ore
         public Transform Instantiate(Transform parent)
         {
             var oreobj = GameObject.Instantiate(gameObject) as GameObject;
-            oreobj.transform.parent = parent;
+            oreobj.transform.SetParent(parent);
             oreobj.transform.localPosition = gameObject.transform.localPosition;
             oreobj.transform.localRotation = gameObject.transform.localRotation;
             return oreobj.transform;

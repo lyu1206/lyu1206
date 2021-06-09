@@ -65,7 +65,7 @@ namespace Eos.Script
             _playerfsm.SetFsmValue("move", false);
             _playerfsm.SetFsmValue("attack", false);
             _playerfsm.SetFsmValue("stopattack", true);
-            _playerfsm.FsmTransition("Idle");
+            _playerfsm.FsmTransition("StopMove");
             _playerfsm.SetFsmValue("stopattack", false);
         }
         public IEnumerator Body()

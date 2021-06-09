@@ -71,7 +71,7 @@ namespace Eos.Ore
             var startrot = _humanoid.Humanoidroot.Transform.localRotation;
             var direction = target - _humanoid.LocalPosition;
             var targetrot = Quaternion.LookRotation(direction.normalized);
-            _humanoid.Ref.Scheduler.ScheduleOnCondition(() =>
+            lookatupdator = _humanoid.Ref.Scheduler.ScheduleOnCondition(() =>
             {
                 factor += Time.deltaTime * 5;
                 var destrot = Quaternion.Lerp(startrot, targetrot, factor);

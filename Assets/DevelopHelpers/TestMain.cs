@@ -5,6 +5,8 @@ using Eos.Service.AI;
 using System.Collections;
 using UnityEngine;
 
+using Eos.Objects.UI;
+
 public class TestMain : MonoBehaviour
 {
     [SerializeField]
@@ -84,6 +86,10 @@ public class TestMain : MonoBehaviour
         var pawn = new EosPawnActor();
         pawn.Name = EosHumanoid.humanoidroot;
         pawn.Body = _bodyore;
+
+        var textmesh = new EosTextMesh("headname");
+        pawn.AddChild(textmesh);
+
         playermodel.AddChild(pawn);
         var pawncollider = new EosCollider();pawncollider.ColliderType = ColliderType.Capsule;
         pawn.AddChild(pawncollider);
