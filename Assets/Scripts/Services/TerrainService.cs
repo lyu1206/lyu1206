@@ -12,7 +12,7 @@ namespace Eos.Service
         public TerrainService()
         {
             Name = "Terrain";
-            _transform = new GameObject(Name).transform;
+            _transform = ObjectFactory.CreateUnityInstance(Name);
         }
         public PVMOre _pvmOre;
         protected override void OnActivate(bool active)

@@ -14,12 +14,12 @@ namespace Eos.Service
         public Transform Transform => _guiroot;
         public GUIService()
         {
-            var root = new GameObject("GUIRoot");
+            var root = ObjectFactory.CreateUnityInstance("GUIRoot").gameObject;
             _canvas = root.AddComponent<Canvas>();
             _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             root.AddComponent<CanvasScaler>();
             root.AddComponent<GraphicRaycaster>();
-            var eventsystem = new GameObject("EventSystem", typeof( EventSystem), typeof(StandaloneInputModule));
+            var eventsystem = ObjectFactory.CreateUnityInstance("EventSystem", typeof( EventSystem), typeof(StandaloneInputModule)).gameObject;
             eventsystem.transform.parent = root.transform;
             _guiroot = root.transform;
         }

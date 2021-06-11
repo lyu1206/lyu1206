@@ -1,13 +1,13 @@
-using Eos.Objects;
 using System;
-using System.Reflection;
-
+using UnityEngine;
+using Eos.Objects;
 
 
 public enum ObjectType : uint
 {
     Normal = 0,
     RunTime = 1,
+    Editor = 2
 }
 
 public static class ObjectFactory
@@ -34,5 +34,14 @@ public static class ObjectFactory
     {
         return (ObjectType)(obj.ObjectID >> 24);
     }
-
+    public static Transform CreateUnityInstance(string name = null)
+    {
+        var obj = new GameObject(name);
+        return obj.transform;
+    }
+    public static Transform CreateUnityInstance(string name,params Type[] components)
+    {
+        var obj = new GameObject(name,components);
+        return obj.transform;
+    }
 }

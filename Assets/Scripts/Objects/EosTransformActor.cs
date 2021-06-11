@@ -44,8 +44,7 @@ namespace Eos.Objects
         }
         public EosTransformActor()
         {
-            var trans = new GameObject(Name);
-            _transform = trans.transform;
+            _transform = ObjectFactory.CreateUnityInstance(Name);
         }
         public override void OnCopyTo(EosObjectBase target)
         {

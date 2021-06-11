@@ -18,7 +18,7 @@ namespace Eos.Service.AI
             if (!(_parent is EosHumanoid humanoid))
                 return;
             _humanoid = humanoid;
-            var plate = new GameObject("AccesPlate");
+            var plate = ObjectFactory.CreateUnityInstance("AccesPlate").gameObject;
             _transform = plate.transform;
         }
         protected override void OnStartPlay()

@@ -16,7 +16,7 @@ namespace Eos.Service
         public Workspace()
         {
             Name = "Workspace";
-            _workspace = new GameObject(Name);
+            _workspace = ObjectFactory.CreateUnityInstance(Name).gameObject;
         }
     }
 }

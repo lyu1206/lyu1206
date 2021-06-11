@@ -21,7 +21,7 @@ namespace Eos.Objects
             var orgmesh = Part.GetComponentInChildren<SkinnedMeshRenderer>();
             if (orgmesh != null)
             {
-                var part = new GameObject(orgmesh.name);// GameObject.Instantiate(orgmesh.gameObject);
+                var part = ObjectFactory.CreateUnityInstance(orgmesh.name).gameObject;// GameObject.Instantiate(orgmesh.gameObject);
                 var skinmeshrender = part.AddComponent<SkinnedMeshRenderer>();
                 //                Debug.Log($"skinnedmesh:{Part.name}");
                 part.transform.parent = pawn.Transform;

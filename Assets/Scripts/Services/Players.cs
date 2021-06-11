@@ -28,8 +28,7 @@ namespace Eos.Service
         public Transform Transform => _transform;
         public Player()
         {
-            var trans = new GameObject(Name);
-            _transform = trans.transform;
+            _transform = ObjectFactory.CreateUnityInstance(Name);
         }
         public override void OnAncestryChanged()
         {
@@ -72,8 +71,7 @@ namespace Eos.Service
         {
             Name = "Players";
 #if UNITY_EDITOR
-            var trans = new GameObject(Name);
-            _transform = trans.transform;
+            _transform = ObjectFactory.CreateUnityInstance(Name);
 #endif
         }
         private Player CreatePlayer(ulong sid)

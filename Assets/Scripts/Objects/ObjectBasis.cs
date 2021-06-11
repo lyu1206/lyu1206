@@ -15,7 +15,7 @@ namespace Eos.Objects
         public EosModel()
         {
 #if UNITY_EDITOR
-            var trans = new GameObject(Name);
+            var trans = ObjectFactory.CreateUnityInstance(Name).gameObject;
             _transform = trans.transform;
 #endif
         }
@@ -64,11 +64,12 @@ namespace Eos.Objects
     [Union(9, typeof(EosPawnActor))]
     [Union(10, typeof(EosScript))]
     [Union(11, typeof(EosTool))]
-    public class EosObjectBase : ReferPlayer
+    public partial class EosObjectBase : ReferPlayer
     {
         public uint ObjectID;
         private string _name;
         private bool _active = true;
+        [Inspector("Name")]
         [Key(1)]public virtual string Name{get=>_name;set=>_name = value;}
         [Key(2)]public bool Active 
         { 

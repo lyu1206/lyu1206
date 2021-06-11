@@ -20,8 +20,7 @@ namespace Eos.Objects
         public EventHandler<Collider> OnTriggerExit;
         public EosCollider()
         {
-            var trans = new GameObject();
-            _transform = trans.transform;
+            _transform = ObjectFactory.CreateUnityInstance();
         }
         public ColliderType ColliderType
         {

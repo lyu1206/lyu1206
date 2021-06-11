@@ -11,7 +11,7 @@ namespace Eos.Service
     {
 
     }
-    public class Solution : EosService
+    public partial class Solution : EosService
     {
         private Workspace _workspace;
         private TerrainService _terrainservice;

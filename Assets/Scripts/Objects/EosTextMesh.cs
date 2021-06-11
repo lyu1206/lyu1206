@@ -14,7 +14,7 @@ namespace Eos.Objects.UI
         public EosTextMesh(string name)
         {
             
-            var textobj = new GameObject("textmesh");
+            var textobj = ObjectFactory.CreateUnityInstance("textmesh").gameObject;
             textobj.name = name;
             var textpro = _textmesh = textobj.AddComponent<TextMeshPro>();
             textpro.text = "Hello";

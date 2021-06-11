@@ -94,7 +94,7 @@ namespace EosPlayer
             {
                 if (_instance ==null)
                 {
-                    var unityadapter = new GameObject("EosPlayer");
+                    var unityadapter = ObjectFactory.CreateUnityInstance("EosPlayer").gameObject;
                     _instance = unityadapter.AddComponent<EosPlayer>();
                     _instance.Coroutine = new CoroutineManager(_instance);
                 }
