@@ -6,6 +6,7 @@ namespace Eos.Service.AI
 {
     using Objects;
 
+    [NoCreated]
     public class AIObject : EosObjectBase
     {
 
@@ -61,6 +62,7 @@ namespace Eos.Service.AI
             return leveldelta + 1;
         }
     }
+    [NoCreated]
     public class AIEngageObject : AIObject , ITransform
     {
         private EosHumanoid _owner;
@@ -177,6 +179,7 @@ namespace Eos.Service.AI
                 _owner.AttackRange.Enable = true;
         }
     }
+    [NoCreated]
     public class AIService : EosService
     {
         private Dictionary<uint, AIEngageObject> _enageobjects = new Dictionary<uint, AIEngageObject>();

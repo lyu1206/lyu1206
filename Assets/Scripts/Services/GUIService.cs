@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using MessagePack;
 
 namespace Eos.Service
 {
     using EosPlayer;
+    [NoCreated]
     public class GUIService : EosService , ITransform
     {
         private Transform _guiroot;
         private Canvas _canvas;
-        public Transform Transform => _guiroot;
+        [IgnoreMember]public Transform Transform => _guiroot;
         public GUIService()
         {
             var root = ObjectFactory.CreateUnityInstance("GUIRoot").gameObject;

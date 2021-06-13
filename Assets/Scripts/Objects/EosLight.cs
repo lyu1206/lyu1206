@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MessagePack;
 
 namespace Eos.Objects
 {
     using Ore;
     public class EosLight : EosTransformActor
     {
-        public OreBase Light;
-        public LightController _lightcontroller;
+        [IgnoreMember]public OreBase Light;
+        [IgnoreMember]public LightController _lightcontroller;
         protected override void OnActivate(bool active)
         {
             var light = Light.Instantiate();

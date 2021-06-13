@@ -6,6 +6,7 @@ using UnityEngine.AI;
 namespace Eos.Service.AI
 {
     using Objects;
+    [NoCreated]
     public class AccessPlate : EosObjectBase , ITransform
     {
         private EosHumanoid _humanoid;

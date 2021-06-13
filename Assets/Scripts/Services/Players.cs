@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Eos.Service
 {
     using Objects;
+    [NoCreated]
     public class Player : EosObjectBase 
     #if UNITY_EDITOR
     , ITransform
@@ -61,6 +62,7 @@ namespace Eos.Service
             // humanoidroot.Transform.rotation = spainplayer.rotation;
         }
     }
+    [NoCreated]
     public class Players : EosService , ITransform
     {
         private Transform _transform;

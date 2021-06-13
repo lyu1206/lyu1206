@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MessagePack;
 
 namespace Eos.Objects
 {
@@ -15,12 +16,12 @@ namespace Eos.Objects
         private EosFsm _fsm;
         private EosCollider _attackrange;
         private EosCollider _tracerange;
-        public EosFsm FSM => _fsm = _fsm ?? FindChild<EosFsm>();
-        public EosCollider AttackRange => _attackrange;
-        public EosCollider TraceRange => _tracerange;
-        public EosHumanoid TraceTarget { get; set; }
-        public EventHandler<AIEventParameter> OnAIEvent { get; set; }
-        public EventHandler<bool> OnMoveStateChanged { get; set; }
+        [IgnoreMember]public EosFsm FSM => _fsm = _fsm ?? FindChild<EosFsm>();
+        [IgnoreMember] public EosCollider AttackRange => _attackrange;
+        [IgnoreMember] public EosCollider TraceRange => _tracerange;
+        [IgnoreMember] public EosHumanoid TraceTarget { get; set; }
+        [IgnoreMember] public EventHandler<AIEventParameter> OnAIEvent { get; set; }
+        [IgnoreMember] public EventHandler<bool> OnMoveStateChanged { get; set; }
         public void AIStart()
         {
             _humanoidroot.OnAnimationEvent += (sender, name) =>

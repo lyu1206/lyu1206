@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MessagePack;
 
 namespace Eos.Service
 {
     using AI;
     using Objects;
 
-    public class EosService : EosObjectBase
+    [NoCreated]
+    [MessagePackObject]
+    public abstract class EosService : EosObjectBase
     {
 
     }
+    [NoCreated]
+    [MessagePackObject]
     public partial class Solution : EosService
     {
         private Workspace _workspace;
@@ -18,13 +23,13 @@ namespace Eos.Service
         private Players _players;
         private GUIService _guiservice;
         private AIService _aiservice;
-        public Workspace Workspace =>_workspace;
-        public TerrainService Terrain => _terrainservice;
-        public GUIService GUIService => _guiservice;
-        public AIService AIService => _aiservice;
+        [IgnoreMember] public Workspace Workspace { get => _workspace; set => _workspace = value; }
+        [IgnoreMember] public TerrainService Terrain { get => _terrainservice; set => _terrainservice = value; }
+        [IgnoreMember] public GUIService GUIService { get => _guiservice; set => _guiservice = value; }
+        [IgnoreMember]public AIService AIService => _aiservice;
 
 
-        public Players Players => _players;
+        [IgnoreMember] public Players Players => _players;
 
         public void StartGame()
         {

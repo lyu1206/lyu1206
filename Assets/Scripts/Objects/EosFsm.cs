@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MessagePack;
 
 namespace Eos.Objects
 {
@@ -9,7 +10,7 @@ namespace Eos.Objects
     using Ore;
     public class EosFsm : EosObjectBase
     {
-        public OreBase FSMore;
+        [IgnoreMember]public OreBase FSMore;
         private VariableDeclarations _values;
         private GameObject _boltobject;
         public override void OnCopyTo(EosObjectBase target)

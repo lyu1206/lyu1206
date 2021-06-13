@@ -4,6 +4,7 @@ using Eos.Service;
 using Eos.Service.AI;
 using System.Collections;
 using UnityEngine;
+using MessagePack;
 
 using Eos.Objects.UI;
 
@@ -146,6 +147,7 @@ public class TestMain : MonoBehaviour
         //slimeclone.Name = "Slime1";
         //workspace.AddChild(slimeclone);
 
+        var msgpackData = MessagePack.MessagePackSerializer.Serialize(solution);
 
         //        CreateNPC(workspace);
 

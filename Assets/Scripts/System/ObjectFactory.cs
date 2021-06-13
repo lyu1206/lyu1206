@@ -12,7 +12,8 @@ public enum ObjectType : uint
 
 public static class ObjectFactory
 {
-
+    private static Transform _unityInstaceRoot;
+    public static Transform UnityInstanceRoot{ set => _unityInstaceRoot = value; }
     public static T CreateInstance<T>(ObjectType type = ObjectType.RunTime) where T : EosObjectBase
     {
         var instance = Activator.CreateInstance<T>();
@@ -23,6 +24,10 @@ public static class ObjectFactory
     public static EosObjectBase CreateInstance(Type type)
     {
         return Activator.CreateInstance(type) as EosObjectBase;
+    }
+    public static EosObjectBase CreateInstance(string typename)
+    {
+        return Activator.CreateInstance(Type.GetType(typename)) as EosObjectBase;
     }
     public static EosObjectBase CopyObject(EosObjectBase src)
     {
@@ -37,11 +42,13 @@ public static class ObjectFactory
     public static Transform CreateUnityInstance(string name = null)
     {
         var obj = new GameObject(name);
+        obj.transform.SetParent(_unityInstaceRoot, false);
         return obj.transform;
     }
     public static Transform CreateUnityInstance(string name,params Type[] components)
     {
         var obj = new GameObject(name,components);
+        obj.transform.SetParent(_unityInstaceRoot, false);
         return obj.transform;
     }
 }

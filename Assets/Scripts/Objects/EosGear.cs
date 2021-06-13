@@ -14,6 +14,22 @@ namespace Eos.Objects
             targetgear.Part = Part;
             base.OnCopyTo(target);
         }
+        public static void Gear(GameObject gearpart,Transform parenttrans,EosSkeleton skeleton)
+        {
+            var orgmesh = gearpart.GetComponentInChildren<SkinnedMeshRenderer>();
+            if (orgmesh != null)
+            {
+                var part = ObjectFactory.CreateUnityInstance(orgmesh.name).gameObject;// GameObject.Instantiate(orgmesh.gameObject);
+                var skinmeshrender = part.AddComponent<SkinnedMeshRenderer>();
+                //                Debug.Log($"skinnedmesh:{Part.name}");
+                part.transform.parent = parenttrans;
+                //                part.name = Part.name;
+                part.transform.localPosition = orgmesh.transform.localPosition;
+                part.transform.localRotation = orgmesh.transform.localRotation;
+                part.transform.localScale = orgmesh.transform.localScale;
+                skeleton.SkinedMeshSetup(orgmesh, skinmeshrender);
+            }
+        }
         protected override void OnActivate(bool active)
         {
             if (!(_parent is EosPawnActor pawn))

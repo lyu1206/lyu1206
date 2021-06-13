@@ -4,13 +4,13 @@ using UnityEngine;
 namespace Eos.Objects
 {
     using MessagePack;
-    public class EosTransformActor : EosObjectBase , ITransform
+    public partial class EosTransformActor : EosObjectBase , ITransform
     {
         protected Transform _transform;
         private EventHandler<float> _components;
-        public virtual Transform Transform => _transform;
-        public int Layer;
-        public int LayerMask => 1 << Layer;
+        [IgnoreMember] public virtual Transform Transform => _transform;
+        [Key(21)]public int Layer;
+        [IgnoreMember]public int LayerMask => 1 << Layer;
         public override string Name 
         { 
             get => base.Name; 
@@ -20,6 +20,7 @@ namespace Eos.Objects
                 _transform.name = value;
             } 
         }
+        [Key(22)]
         public Vector3 LocalPosition
         {
             get
@@ -31,6 +32,7 @@ namespace Eos.Objects
                 _transform.localPosition = value;
             }
         }
+        [Key(23)]
         public Vector3 LocalRotation
         {
             get

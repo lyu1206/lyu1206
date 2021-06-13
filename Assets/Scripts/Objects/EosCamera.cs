@@ -4,12 +4,13 @@ namespace Eos.Objects
 {
     using MessagePack;
     [Serializable]
+    [MessagePackObject]
     public class EosCamera : EosTransformActor
     {
         private EosTransformActor _target;
         private Camera _camera;
-        public static EosCamera Main;
-        public EosTransformActor Target
+        [IgnoreMember]public static EosCamera Main;
+        [IgnoreMember]public EosTransformActor Target
         {
             get=>_target;
             set

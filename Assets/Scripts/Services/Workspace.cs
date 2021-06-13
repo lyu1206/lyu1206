@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MessagePack;
 
 public interface ITransform
 {
@@ -9,10 +10,11 @@ public interface ITransform
 
 namespace Eos.Service
 {
+    [NoCreated]
     public class Workspace : EosService , ITransform
     {
         private GameObject _workspace;
-        public Transform Transform => _workspace.transform;
+        [IgnoreMember]public Transform Transform => _workspace.transform;
         public Workspace()
         {
             Name = "Workspace";

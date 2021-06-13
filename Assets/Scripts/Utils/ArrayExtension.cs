@@ -23,6 +23,22 @@ public static class ArrayExtention
 		}
 		return default(T);
 	}
+	public static int FindIndex<T>(this T[] array, Predicate<T> p)
+	{
+		for (int i=0;i<array.Length;i++)
+		{
+			if (p(array[i]) == true) return i;
+		}
+		return -1;
+	}
+	public static int FindIndex<T>(this T[] array, T item)
+	{
+		for (int i = 0; i < array.Length; i++)
+		{
+			if (array[i].Equals(item)) return i;
+		}
+		return -1;
+	}
 
 	public static void ForEach<T>(this T[] array, Action<T> rhs)
 	{

@@ -10,12 +10,12 @@ namespace Eos.Objects
     [MessagePackObject]
     public partial class EosHumanoid : EosTransformActor// EosObjectBase ,ITransform
     {
-        public int Level = 1;
+        [IgnoreMember]public int Level = 1;
 
         private float _angularspeed = 1000;
         private float _speed = 35;
         private float _accelation = 1000;
-        [Key(1)]
+        [Key(31)]
         public float Angularspeed 
         {
             get=>_angularspeed;
@@ -26,7 +26,7 @@ namespace Eos.Objects
                     _navagent.angularSpeed = value;
             }
         }
-        [Key(2)]
+        [Key(32)]
         public float Speed
         {
             get =>_speed;
@@ -37,7 +37,7 @@ namespace Eos.Objects
                     _navagent.speed = value;
             }
         }
-        [Key(3)]
+        [Key(33)]
         public float Accelation
         {
             get=>_accelation;
@@ -48,8 +48,8 @@ namespace Eos.Objects
                     _navagent.acceleration = value;
             }
         }
-        public float StopDistance { set => _navagent.stoppingDistance = value; }
-        public Vector3 MoveDirection
+        [IgnoreMember]public float StopDistance { set => _navagent.stoppingDistance = value; }
+        [IgnoreMember]public Vector3 MoveDirection
         {
             set
             {
@@ -68,16 +68,16 @@ namespace Eos.Objects
             _transform.localPosition = _humanoidroot.LocalPosition;
             _transform.forward = _humanoidroot.Transform.forward;
         }
-        public bool IsStop => (!_navagent.pathPending && _navagent.remainingDistance == 0);
-        public const string humanoidroot = "HumanoidRoot";
-        private float _radius;
+        [IgnoreMember] public bool IsStop => (!_navagent.pathPending && _navagent.remainingDistance == 0);
+        [IgnoreMember] public const string humanoidroot = "HumanoidRoot";
+        [Key(332)]public float _radius;
         private NavMeshAgent _navagent;
         private EosPawnActor _humanoidroot;
         private AccessPlate _accesplate;
-        public NavMeshAgent NavAgent => _navagent;
-        public EosPawnActor Humanoidroot => _humanoidroot;
-        public AccessPlate AccesPlate => _accesplate;
-        public float Radius => _radius;
+        [IgnoreMember]public NavMeshAgent NavAgent => _navagent;
+        [IgnoreMember] public EosPawnActor Humanoidroot => _humanoidroot;
+        [IgnoreMember] public AccessPlate AccesPlate => _accesplate;
+        [IgnoreMember] public float Radius => _radius;
         public override void OnCopyTo(EosObjectBase target)
         {
             if (!(target is EosHumanoid targethumanoid))
@@ -143,16 +143,6 @@ namespace Eos.Objects
         {
             if (child is AccessPlate plate)
                 _accesplate = null;
-        }
-
-        public override string Name 
-        { 
-            get => base.Name; 
-            set
-            {
-                base.Name = value;
-                _transform.name = value;
-            }
         }
         public override void OnAncestryChanged()
         {

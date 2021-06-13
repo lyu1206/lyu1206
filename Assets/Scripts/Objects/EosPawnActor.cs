@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Eos.Objects
 {
     using Ore;
+    using MessagePack;
     public  class  EosSkeleton 
     {
         private Transform[] _bones;
@@ -119,16 +120,19 @@ namespace Eos.Objects
     }
     public partial class EosPawnActor : EosTransformActor
     {
-        public BodyOre Body;
-        public EosSkeleton Skeleton => _skeleton;
+        [IgnoreMember]public BodyOre Body { get; set; }// will be deleted..
+        [RequireMold("BodyMolds")]
+        [Inspector("Ore", "Body")]
+        [Key(331)] public OreReference BodyOre { get; set; } = new OreReference();
+        [IgnoreMember] public EosSkeleton Skeleton => _skeleton;
         private EosSkeleton _skeleton;
         private Animator _animator;
         private Rigidbody _rigidbody;
         private AnimationController _controller;
-        public Rigidbody Rigidbody => _rigidbody;
-        public List<EosCollider> Collders = new List<EosCollider>();
-        public EventHandler<string> OnAnimationEvent;
-        public EventHandler<string> OnAnimationStopped;
+        [IgnoreMember] public Rigidbody Rigidbody => _rigidbody;
+        [IgnoreMember] public List<EosCollider> Collders = new List<EosCollider>();
+        [IgnoreMember] public EventHandler<string> OnAnimationEvent;
+        [IgnoreMember] public EventHandler<string> OnAnimationStopped;
         public override void OnCopyTo(EosObjectBase target)
         {
             if (!(target is EosPawnActor targetpawn))

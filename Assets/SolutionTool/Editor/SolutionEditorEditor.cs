@@ -7,9 +7,11 @@ using UnityEngine;
 using Eos.Objects;
 using UnityEditor.Experimental;
 using UnityEditor.SceneManagement;
+using UnityEngine.AI;
 using Object = UnityEngine.Object;
 
 using Eos.Service;
+using Eos.Editor;
 
 public class SolutionEditorEditor : EditorWindow
 {
@@ -43,17 +45,17 @@ public class SolutionEditorEditor : EditorWindow
     private void OnEnable()
     {
         _window = this; // set singleton.
-        //if (_eosobjecttypenames!=null)
-        //    return;
-        //var types = AttributeCaches.GetTypeNames<EosObjectBase>();
+        if (_eosobjecttypenames != null)
+            return;
+        var types = AttributeCaches.GetAvailableTypeNames<EosObjectBase>(null);
 
-        //_eosobjecttypenames = new string[types.Length];
-        //_eosobjecttypefullnames = new Type[types.Length];
-        //for (var i = 0; i < types.Length; i++)
-        //{
-        //    _eosobjecttypenames[i] = types[i].Name;
-        //    _eosobjecttypefullnames[i] = types[i];
-        //}
+        _eosobjecttypenames = new string[types.Length];
+        _eosobjecttypefullnames = new Type[types.Length];
+        for (var i = 0; i < types.Length; i++)
+        {
+            _eosobjecttypenames[i] = types[i].Name;
+            _eosobjecttypefullnames[i] = types[i];
+        }
 
         //var eosNpcTable = Resources.Load<EosNPCTable>("Tables/NpcTable");
         //eosNpcTable.InitTable();
@@ -62,13 +64,18 @@ public class SolutionEditorEditor : EditorWindow
         //var characterTable = Resources.Load<CharacterTable>("Tables/CharacterTable");
         //characterTable.InitTable();
     }
-
+    private void SetEditorviewRoot()
+    {
+        var root = new GameObject("SolutionView");
+        ObjectFactory.UnityInstanceRoot = root.transform;
+    }
     private void OnGUI()
     {
         if (GUILayout.Button("Tool Scene"))
         {
             EditorSceneManager.OpenScene("Assets/SolutionTool/SolutionEditor.unity");
-            Solution.CreateEditorImpl();
+            SetEditorviewRoot();
+            SolutionEditor.CreateSolution();
         }
         if (GUILayout.Button("Game Scene"))
         {
@@ -76,8 +83,13 @@ public class SolutionEditorEditor : EditorWindow
         }
         if (GUILayout.Button("Open Solution"))
         {
-            //var path = _currentloadpath = EditorUtility.OpenFilePanel("Solution", $"{Application.streamingAssetsPath}/Solutions", "solution");
-            //SolutionEditor.OpenSolution(path);
+            var path = _currentloadpath = EditorUtility.OpenFilePanel("Solution", $"{Application.streamingAssetsPath}/Solutions", "solution");
+            if (string.IsNullOrEmpty(path))
+                return;
+            EditorSceneManager.OpenScene("Assets/SolutionTool/SolutionEditor.unity");
+            SetEditorviewRoot();
+            SolutionEditor.OpenSolution(path);
+
             //_solution = SolutionEditor.Solution.Object as Solution;
             //_name = SolutionEditor.Solution.name;
         }
@@ -85,8 +97,8 @@ public class SolutionEditorEditor : EditorWindow
         _name = GUILayout.TextField(_name);
         if (GUILayout.Button("Save Solution"))
         {
-            //var path = EditorUtility.SaveFilePanel("Solution", $"{Application.streamingAssetsPath}/Solutions", _name,"solution");
-            //SolutionEditor.SaveSolution(path);
+            var path = EditorUtility.SaveFilePanel("Solution", $"{Application.streamingAssetsPath}/Solutions", _name,"solution");
+            SolutionEditor.SaveSolution(path);
         }
         GUILayout.EndHorizontal();
         GUILayout.BeginHorizontal();
@@ -101,6 +113,14 @@ public class SolutionEditorEditor : EditorWindow
         GUILayout.EndHorizontal();
         if (GUILayout.Button("UI Solution"))
         {
+            var scenecam = SceneView.lastActiveSceneView.camera.transform;
+            NavMeshHit hit;
+            var succ = NavMesh.Raycast(scenecam.position, scenecam.position + scenecam.forward * 1000,out hit, NavMesh.AllAreas);
+            var testobj = new GameObject("TestObject");
+            Debug.DrawRay(scenecam.position, scenecam.forward);
+            testobj.transform.position = scenecam.position + scenecam.forward * 100;
+            if (succ)
+                Debug.Log("Succ");
             //_name = SolutionEditor.SetupUI().Name;            
         }
         if (!_ispreview && GUILayout.Button("Preview Solution"))
@@ -142,8 +162,9 @@ public class SolutionEditorEditor : EditorWindow
             //AssetDatabase.CreateAsset(table , path);
             //AssetDatabase.Refresh();
         }
-        if (GUILayout.Button("Object Count"))
+        if (GUILayout.Button("Create Mold"))
         {
+            GuCore.Editors.GEditorUtil.CreateAsset<Eos.Assets.Mold>("Assets/Mold.asset");
             //Debug.Log(EoPlayer.ObjectManager.ObjectCount);
         }
     }

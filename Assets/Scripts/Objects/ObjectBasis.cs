@@ -10,8 +10,8 @@ namespace Eos.Objects
     public class EosModel : EosObjectBase , ITransform
     {
         private Transform _transform;
-        public Transform Transform =>_transform;
-        public EosTransformActor PrimaryActor;
+        [IgnoreMember]public Transform Transform =>_transform;
+        [IgnoreMember] public EosTransformActor PrimaryActor;
         public EosModel()
         {
 #if UNITY_EDITOR
@@ -47,31 +47,39 @@ namespace Eos.Objects
     }
     public class ReferPlayer
     {
-        public EosPlayer.EosPlayer Ref => EosPlayer.EosPlayer.Instance;
+        [IgnoreMember]public EosPlayer.EosPlayer Ref => EosPlayer.EosPlayer.Instance;
     }
 
-    [Serializable]
     [MessagePackObject]
-    [Union(0,typeof(EosCamera))]
-    [Union(1,typeof(EosTransformActor))]
-    [Union(2,typeof(EosHumanoid))]
-    [Union(3,typeof(GUIService))]
-    [Union(4, typeof(Solution))]
-    [Union(5, typeof(Workspace))]
-    [Union(6, typeof(EosFsm))]
-    [Union(7, typeof(EosLight))]
-    [Union(8, typeof(EosMeshObject))]
-    [Union(9, typeof(EosPawnActor))]
-    [Union(10, typeof(EosScript))]
-    [Union(11, typeof(EosTool))]
-    public partial class EosObjectBase : ReferPlayer
+    [Union(0, typeof(EosCamera))]
+    [Union(1, typeof(EosTransformActor))]
+    [Union(2, typeof(EosHumanoid))]
+    [Union(3, typeof(GUIService))]
+    [Union(4, typeof(EosService))]
+    [Union(5, typeof(Solution))]
+    [Union(6, typeof(Workspace))]
+    [Union(7, typeof(EosFsm))]
+    [Union(8, typeof(EosLight))]
+    [Union(9, typeof(EosMeshObject))]
+    [Union(10, typeof(EosPawnActor))]
+    [Union(11, typeof(EosScript))]
+    [Union(12, typeof(EosTool))]
+    [Union(13, typeof(EosModel))]
+    [Union(14, typeof(TerrainService))]
+    [Union(15, typeof(EosTerrain))]
+    public abstract partial class EosObjectBase : ReferPlayer
     {
-        public uint ObjectID;
-        private string _name;
+        public EosObjectBase()
+        {
+        }
+        [IgnoreMember]public uint ObjectID;
+        [Key(2)] public string _name;
         private bool _active = true;
-        [Inspector("Name")]
-        [Key(1)]public virtual string Name{get=>_name;set=>_name = value;}
-        [Key(2)]public bool Active 
+        [Key(1)] public List<EosObjectBase> _childrens  = new List<EosObjectBase>();
+        [Inspector("Basic","Name")]
+        [IgnoreMember]public virtual string Name{get=>_name;set=>_name = value;}
+        [Inspector("Basic", "Active")]
+        [Key(3)]public bool Active 
         { 
             get => _active;
             set
@@ -81,8 +89,10 @@ namespace Eos.Objects
                 Activate(value);
             }
         }
+
+        [IgnoreMember] protected EosObjectBase _parent;
+
         [IgnoreMember]
-        protected EosObjectBase _parent;
         public EosObjectBase Parent
         {
             get=>_parent;
@@ -91,7 +101,6 @@ namespace Eos.Objects
                 value.AddChild(this);
             }
         }
-        protected List<EosObjectBase> _childrens = new List<EosObjectBase>();
         public void AddChild(EosObjectBase obj)
         {
             if (obj.ObjectID==0)

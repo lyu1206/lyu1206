@@ -16,3 +16,22 @@ public class InspectorAttribute : Attribute
         Name = name;
     }
 }
+public class RequireMoldAttribute : Attribute
+{
+    public string MoldName;
+    public RequireMoldAttribute(string moldname)
+    {
+        MoldName = moldname;
+    }
+}
+public abstract class CreationAttribute : Attribute
+{
+    public abstract bool CanCreate();
+}
+public class NoCreated : CreationAttribute
+{
+    public override bool CanCreate()
+    {
+        return false;
+    }
+}

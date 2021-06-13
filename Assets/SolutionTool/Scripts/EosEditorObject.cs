@@ -7,16 +7,28 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace Eos.Objects.Editor
 {
+    [ExecuteInEditMode]
     public class EosEditorObject : MonoBehaviour
     {
         private void Reset() { Ensure_EditorTag(); }
         private void OnEnable() { Ensure_EditorTag(); }
         private void Awake() { Ensure_EditorTag(); }
         private EosObjectBase _owner;
+        private void Ensure_EditorTag()
+        {
+            if (gameObject.tag != "EditorOnly")
+            {
+                UnityEditor.EditorUtility.SetDirty(gameObject);//applies changes, preventing unity-deserializing old data when we exit gameplay mode, etc
+            }
+            //a special tag, that will ensure that an object won't be included in build
+            gameObject.tag = "EditorOnly";
+        }
+        public EosObjectBase Owner => _owner;
         public static EosEditorObject Create(EosObjectBase ownerobj)
         {
             var obj = new GameObject(ownerobj.Name);
             var eosobj = obj.AddComponent<EosEditorObject>();
+            eosobj._owner = ownerobj;
             return eosobj;
         }
         public void AddChild(EosEditorObject obj)
@@ -25,14 +37,30 @@ namespace Eos.Objects.Editor
             obj.transform.localPosition = Vector3.zero;
             obj.transform.localRotation = Quaternion.identity;
         }
-        void Ensure_EditorTag()
+        public void ApplyRelations(EosEditorObject parent)
         {
-            if (gameObject.tag != "EditorOnly")
+            _owner.ClearRelationa();
+            if (parent != null)
+                parent._owner.AddChildEditorImpl(_owner);
+            for (int i=0;i<transform.childCount;i++)
             {
-                UnityEditor.EditorUtility.SetDirty(gameObject);//applies changes, preventing unity-deserializing old data when we exit gameplay mode, etc
+                var child = transform.GetChild(i).GetComponent<EosEditorObject>();
+                if (child == null)
+                    continue;
+                child.ApplyRelations(this);
             }
-            //a special tag, that will ensure that an object won't be included in build
-            gameObject.tag = "EditorOnly";
+        }
+        private void Update()
+        {
+            if (transform.hasChanged)
+            {
+                Debug.Log("transform changed");
+                if (_owner is ITransform transactor)
+                {
+
+                }
+                transform.hasChanged = false;
+            }
         }
         //public static List<GameObject> IgnoreSaveObjects { get; set; } = new List<GameObject>();
         //public EosObjectBase Object
