@@ -60,7 +60,17 @@ public class TestMain : MonoBehaviour
     }
     IEnumerator Start()
     {
+
         var solution = new Solution();
+
+        void Save()
+        {
+            var msgpackData = MessagePack.MessagePackSerializer.Serialize(solution);
+            var path = $"{Application.streamingAssetsPath}/Solutions/map001.solution";
+            System.IO.File.WriteAllBytes(path, msgpackData);
+            UnityEditor.AssetDatabase.Refresh();
+        }
+
 
         var aiservice = new AIService();
         solution.AddChild(aiservice);
@@ -147,7 +157,6 @@ public class TestMain : MonoBehaviour
         //slimeclone.Name = "Slime1";
         //workspace.AddChild(slimeclone);
 
-        var msgpackData = MessagePack.MessagePackSerializer.Serialize(solution);
 
         //        CreateNPC(workspace);
 
@@ -158,6 +167,7 @@ public class TestMain : MonoBehaviour
         weaponmesh.Activate(true);
         tool.AddChild(weaponmesh);
         playermodel.AddChild(tool);
+
 
 
         //eplayer.Scheduler.Schedule(() =>

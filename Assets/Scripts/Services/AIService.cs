@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MessagePack;
 
 namespace Eos.Service.AI
 {
@@ -180,6 +181,7 @@ namespace Eos.Service.AI
         }
     }
     [NoCreated]
+    [MessagePackObject]
     public class AIService : EosService
     {
         private Dictionary<uint, AIEngageObject> _enageobjects = new Dictionary<uint, AIEngageObject>();

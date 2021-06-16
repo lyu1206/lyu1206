@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace Eos.Objects
 {
     using Service;
+    using Service.AI;
     using MessagePack;
 
     public class EosModel : EosObjectBase , ITransform
@@ -52,10 +53,10 @@ namespace Eos.Objects
 
     [MessagePackObject]
     [Union(0, typeof(EosCamera))]
-    [Union(1, typeof(EosTransformActor))]
+//    [Union(1, typeof(EosTransformActor))]
     [Union(2, typeof(EosHumanoid))]
     [Union(3, typeof(GUIService))]
-    [Union(4, typeof(EosService))]
+    [Union(4, typeof(AIService))]
     [Union(5, typeof(Solution))]
     [Union(6, typeof(Workspace))]
     [Union(7, typeof(EosFsm))]
@@ -67,7 +68,7 @@ namespace Eos.Objects
     [Union(13, typeof(EosModel))]
     [Union(14, typeof(TerrainService))]
     [Union(15, typeof(EosTerrain))]
-    public abstract partial class EosObjectBase : ReferPlayer
+    public abstract partial class EosObjectBase : ReferPlayer, IMessagePackSerializationCallbackReceiver
     {
         public EosObjectBase()
         {
@@ -237,6 +238,16 @@ namespace Eos.Objects
                 copy.AddChild(childclone);
             }
             return copy;
+        }
+
+        public void OnBeforeSerialize()
+        {
+//            throw new NotImplementedException();
+        }
+
+        public void OnAfterDeserialize()
+        {
+//            throw new NotImplementedException();
         }
     }
 }
