@@ -4,8 +4,8 @@ using Eos.Service;
 using Eos.Service.AI;
 using System.Collections;
 using UnityEngine;
-using MessagePack;
-
+//using MessagePack;
+//using Eos.Objects;
 using Eos.Objects.UI;
 
 public class TestMain : MonoBehaviour
@@ -30,10 +30,10 @@ public class TestMain : MonoBehaviour
         var npcmodel = new EosModel(); npcmodel.Name = $"Slime{0}";
         workspace.AddChild(npcmodel);
 
-        var modelscript = new EosScript { scriptname = "EngageLogic" };
+        var modelscript = new EosScript { scriptname = "EngageLogic",Name = "EngageLogic" };
         npcmodel.AddChild(modelscript);
 
-        modelscript = new EosScript { scriptname = "HostileNPC" };
+        modelscript = new EosScript { scriptname = "HostileNPC" , Name = "HostileNPC" };
         npcmodel.AddChild(modelscript);
 
 
@@ -44,14 +44,14 @@ public class TestMain : MonoBehaviour
         pawn.Body = _slimebody as BodyOre;
         npcmodel.AddChild(pawn);
 
-        var pawncollider = new EosCollider(); pawncollider.ColliderType = ColliderType.Capsule;
+        var pawncollider = new EosCollider {Name = "Body" }; pawncollider.ColliderType = ColliderType.Capsule;
         pawn.AddChild(pawncollider);
         pawncollider.Collider.Center = new Vector3(0, 5, 0);
         ((eosCapsuleCollider)pawncollider.Collider).Radius = 8;
 
         var humanoid = new EosHumanoid(); humanoid.Name = "Humanoid"; humanoid.Level = 1;
 
-        var humanoidfsm = new EosFsm(); humanoidfsm.FSMore = _pcfsm;
+        var humanoidfsm = new EosFsm {Name = "humanoidFSM" }; humanoidfsm.FSM = _pcfsm;
         humanoid.AddChild(humanoidfsm);
 
         npcmodel.AddChild(humanoid);
@@ -61,36 +61,42 @@ public class TestMain : MonoBehaviour
     IEnumerator Start()
     {
 
-        var solution = new Solution();
+         EosObjectBase solution = new Solution {Name = "Solution" };
 
         void Save()
         {
             var msgpackData = MessagePack.MessagePackSerializer.Serialize(solution);
             var path = $"{Application.streamingAssetsPath}/Solutions/map001.solution";
             System.IO.File.WriteAllBytes(path, msgpackData);
+
+//            var decodetest = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData);
+
             UnityEditor.AssetDatabase.Refresh();
         }
 
 
-        var aiservice = new AIService();
+        var aiservice = new AIService {Name = "AIService" };
         solution.AddChild(aiservice);
 
-        var workspace = new Workspace();
+        var workspace = new Workspace { Name = "Workspace"};
         solution.AddChild(workspace);
         
-        var terrainservice = new TerrainService{_pvmOre = pvmore};
+        var terrainservice = new TerrainService{Name = "TerrainService" , _pvmOre = pvmore};
         solution.AddChild(terrainservice);
 
-
-        var playerservice = new Players();
+        
+        var playerservice = new Players {Name = "Players" };
         solution.AddChild(playerservice);
-        playerservice.OnConnectPlayer(1);
+        /*
         var player = playerservice.FindChild<Player>();
+        */
+        var starterplayer = new StarterPlayer { Name = "StarterPlayer" };
+        solution.AddChild(starterplayer);
 
-        var playermodel = new EosModel();playermodel.Name = $"{player.Name} - model";
-        player.AddChild(playermodel);
+        var playermodel = new EosModel();playermodel.Name = $"Player - model";
+        starterplayer.AddChild(playermodel);
 
-        var modelscript = new EosScript{ scriptname = "EngageLogic" };
+        var modelscript = new EosScript{ scriptname = "EngageLogic",Name = "EngageLogic" };
         playermodel.AddChild(modelscript);
 
 
@@ -99,6 +105,7 @@ public class TestMain : MonoBehaviour
         pawn.Body = _bodyore;
 
         var textmesh = new EosTextMesh("headname");
+        textmesh.Text = "Hello";
         pawn.AddChild(textmesh);
 
         playermodel.AddChild(pawn);
@@ -107,13 +114,23 @@ public class TestMain : MonoBehaviour
         ((eosCapsuleCollider)pawncollider.Collider).Radius = 8;
 
         var humanoid = new EosHumanoid();humanoid.Name = "Humanoid";humanoid.Level = 1;
-        var humanoidfsm = new EosFsm();humanoidfsm.FSMore = _pcfsm;
+        var humanoidfsm = new EosFsm { Name = "FSM"};humanoidfsm.FSM = _pcfsm;
         humanoid.AddChild(humanoidfsm);
-        var battlescript = new EosScript { scriptname = "NonTargetBattle" };
+        var battlescript = new EosScript { scriptname = "NonTargetBattle",Name = "NonTargetBattle" };
         humanoid.AddChild(battlescript);
 
         playermodel.AddChild(humanoid);
 
+
+        var starterpack = new StarterPack {Name = "StarterPack" };
+        solution.AddChild(starterpack);
+
+        var tool = new EosTool();tool.Name = "Weapon";
+        var weaponmesh = new EosMeshObject();weaponmesh.Name = "Sword";
+        weaponmesh.Mesh = _weapon;
+        tool.AddChild(weaponmesh);
+        playermodel.AddChild(tool);
+        starterpack.AddChild(tool);
 
 
         var camera = new EosCamera();camera.Name = "Cam";
@@ -125,12 +142,12 @@ public class TestMain : MonoBehaviour
         light.Light = _lightore;
         workspace.AddChild(light);
 
-        var guiservice = new GUIService();
+        var guiservice = new GUIService {Name = "GUIService" };
         solution.AddChild(guiservice);
         var uiobj = new EosUIObject(); uiobj.Name = "PAD";
         uiobj._uisource = _padui;
         guiservice.AddChild(uiobj);
-        var script = new EosScript { scriptname = "PadControl" };
+        var script = new EosScript { scriptname = "PadControl",Name = "PadControl" };
         uiobj.AddChild(script);
 
 
@@ -138,8 +155,14 @@ public class TestMain : MonoBehaviour
         var slimecc = CreateNPC(workspace);
 
 
-        EosPlayer.EosPlayer.Instance.SetSolution(solution);
-        solution.StartGame();
+        Save();
+
+
+        EosPlayer.EosPlayer.Instance.SetSolution(solution as Solution);
+
+
+        solution.IterChilds((child) => child.OnCreate(), true);
+        ((Solution)solution).StartGame();
 
         yield return new WaitForEndOfFrame();
 
@@ -161,12 +184,6 @@ public class TestMain : MonoBehaviour
         //        CreateNPC(workspace);
 
         // equip weapon test
-        var tool = new EosTool();tool.Name = "Weapon";
-        var weaponmesh = new EosMeshObject();weaponmesh.Name = "Sword";
-        weaponmesh.MeshOre = _weapon;
-        weaponmesh.Activate(true);
-        tool.AddChild(weaponmesh);
-        playermodel.AddChild(tool);
 
 
 

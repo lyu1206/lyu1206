@@ -39,7 +39,7 @@ namespace Eos.Script
                     var damage = Random.Range(10, 30);
                     _owner.FSM.SetFsmValue("damage", true);
                     _owner.FSM.FsmTransition("Damage");
-                    var damagepopup = new EosTextMesh("daamge");
+                    var damagepopup = new EosTextMesh("daamge");damagepopup.OnCreate();
                     damagepopup.Text = damage.ToString();
                     var popupscript = new EosScript();
                     popupscript.scriptname = "DamagePopup";

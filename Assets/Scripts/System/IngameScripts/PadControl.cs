@@ -72,6 +72,7 @@ namespace Eos.Script
         {
             if (!(script.Parent is EosTransformActor uiobj))
                 yield break;
+            yield return new WaitCondition(() => script.Ref.Solution.Players.LocalPlayer != null);
             yield return new WaitCondition(() => script.Ref.Solution.Players.LocalPlayer.Humanoid != null);
             _playerhumanoid = script.Ref.Solution.Players.LocalPlayer.Humanoid;
             var player =  script.Ref.Solution.Players.FindChild<Player>();

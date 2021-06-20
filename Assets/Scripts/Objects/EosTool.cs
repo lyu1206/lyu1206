@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MessagePack;
+
 namespace Eos.Objects
 {
     using Ore;
     public class EosTool : EosObjectBase
     {
         private bool _isattached;
-        public string GripBone = "Bip001 R Hand";
-        public Vector3 GripPos = new Vector3(-1,0.6f,0);
-        public Vector3 GripRot = new Vector3(0,-90,90);
+        [Inspector("Grip","Bone")]
+        [Key(331)] public string GripBone { get; set; } = "Bip001 R Hand";
+        [Inspector("Grip", "Pos")]
+        [Key(332)] public Vector3 GripPos { get; set; } = new Vector3(-1, 0.6f, 0);
+        [Inspector("Grip", "Rot")]
+        [Key(333)] public Vector3 GripRot { get; set; } = new Vector3(0, -90, 90);
         public override void OnCopyTo(EosObjectBase target)
         {
             if (!(target is EosTool targettool))

@@ -37,7 +37,7 @@ namespace Eos.Objects.Editor
             obj.transform.localPosition = Vector3.zero;
             obj.transform.localRotation = Quaternion.identity;
         }
-        public void ApplyRelations(EosEditorObject parent)
+        public void ApplyObject(EosEditorObject parent)
         {
             _owner.ClearRelationa();
             if (parent != null)
@@ -47,7 +47,7 @@ namespace Eos.Objects.Editor
                 var child = transform.GetChild(i).GetComponent<EosEditorObject>();
                 if (child == null)
                     continue;
-                child.ApplyRelations(this);
+                child.ApplyObject(this);
             }
         }
         private void Update()

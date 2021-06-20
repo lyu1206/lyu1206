@@ -10,19 +10,22 @@ namespace Eos.Objects
     using Ore;
     public class EosFsm : EosObjectBase
     {
-        [IgnoreMember]public OreBase FSMore;
+        [IgnoreMember]public OreBase FSM;
+        [RequireMold("FsmMold")]
+        [Inspector("Ore","Fsm")]
+        [Key(331)]public OreReference FSMOre { get; set; }
         private VariableDeclarations _values;
         private GameObject _boltobject;
         public override void OnCopyTo(EosObjectBase target)
         {
             if (!(target is EosFsm targetfsm))
                 return;
-            targetfsm.FSMore = FSMore;
+            targetfsm.FSM = FSM;
             base.OnCopyTo(target);
         }
         protected override void OnActivate(bool active)
         {
-            var fsm = FSMore.Instantiate();
+            var fsm = FSM.Instantiate();
             var boltlink = fsm.GetComponent<BoltLinkOre>();
             _values = ObjectVariables.Declarations(boltlink.gameObject, false, false);
             _boltobject = boltlink.gameObject;

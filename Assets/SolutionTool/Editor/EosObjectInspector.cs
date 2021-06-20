@@ -18,10 +18,12 @@ namespace Eos.Objects.Editor
     public class EosObjectInspector : UnityEditor.Editor
     {
         private InspectorComponent _addchildcomponent;
+        private EosObjectBase _targeteosobject;
         private Dictionary<string, List<InspectorComponent.InspectorSet>> _inspectors;
         public override VisualElement CreateInspectorGUI()
         {
             var edittarget = target as EosEditorObject;
+            _targeteosobject = edittarget.Owner;
             _inspectors = InspectorComponent.GetInspectors(edittarget);
             _addchildcomponent = _addchildcomponent ?? new AddChildCompoent();
             _addchildcomponent.Init(edittarget,null,null);
@@ -29,7 +31,8 @@ namespace Eos.Objects.Editor
         }
         public override void OnInspectorGUI()
         {
-            foreach(var inspector in _inspectors)
+            GUILayout.Label(_targeteosobject.GetType().Name);
+            foreach (var inspector in _inspectors)
             {
                 GUILayout.Label($"[ {inspector.Key} ]");
                 GUILayout.Space(5);
@@ -42,7 +45,7 @@ namespace Eos.Objects.Editor
     }
     public abstract class InspectorComponent
     {
-        private static Dictionary<Type, InspectorComponent> _inspectorcomponentsDic = new Dictionary<Type, InspectorComponent>();
+        private static Dictionary<Type, Type> _inspectorcomponentsDic = new Dictionary<Type, Type>();
         protected EosEditorObject _target;
         protected EosObjectBase _edittarget;
         protected EosObjectBase _edittargetparent;
@@ -56,16 +59,20 @@ namespace Eos.Objects.Editor
                 Component.OnInspectorGUI(Info,PropertyInfo);
             }
         }
+        protected void ApplyProperty(PropertyInfo prop,object value)
+        {
+            prop.SetValue(_edittarget, value);
+        }
         public static Dictionary<string, List<InspectorSet>> GetInspectors(EosEditorObject target)
         {
             _inspectorcomponentsDic.Clear();
-            _inspectorcomponentsDic.Add(typeof(string), new StringComponent());
-            _inspectorcomponentsDic.Add(typeof(OreReference), new OreReferenceComponent());
-            _inspectorcomponentsDic.Add(typeof(int), new NotImpl());
-            _inspectorcomponentsDic.Add(typeof(float), new NotImpl());
-            _inspectorcomponentsDic.Add(typeof(bool), new BoolComponent());
-            _inspectorcomponentsDic.Add(typeof(Vector2), new NotImpl());
-            _inspectorcomponentsDic.Add(typeof(Vector3), new NotImpl());
+            _inspectorcomponentsDic.Add(typeof(string), typeof(StringComponent));
+            _inspectorcomponentsDic.Add(typeof(OreReference), typeof(OreReferenceComponent));
+            _inspectorcomponentsDic.Add(typeof(int), typeof(NotImpl));
+            _inspectorcomponentsDic.Add(typeof(float), typeof(NotImpl));
+            _inspectorcomponentsDic.Add(typeof(bool), typeof(BoolComponent));
+            _inspectorcomponentsDic.Add(typeof(Vector2), typeof(NotImpl));
+            _inspectorcomponentsDic.Add(typeof(Vector3), typeof(Vector3Component));
 
             var bindflag = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
             var edittarget = target.Owner;
@@ -88,7 +95,8 @@ namespace Eos.Objects.Editor
                     {
                         var ret = new InspectorSet { Info = info.Item2, PropertyInfo = info.Item1 };
                         var component = _inspectorcomponentsDic.Keys.Where(key => key.IsAssignableFrom(info.Item1.PropertyType));
-                        ret.Component = _inspectorcomponentsDic[component.First<Type>()];
+                        var tt = _inspectorcomponentsDic[component.First<Type>()];
+                        ret.Component = Activator.CreateInstance(tt) as InspectorComponent;
                         if (!inspectorsets.ContainsKey(ret.Info.Category))
                             inspectorsets.Add(ret.Info.Category, new List<InspectorSet>());
                         inspectorsets[ret.Info.Category].Add(ret);
@@ -123,6 +131,28 @@ namespace Eos.Objects.Editor
         {
         }
     }
+    public class Vector3Component : InspectorComponent
+    {
+        private Vector3 _value;
+        public override void Init(EosEditorObject target, PropertyInfo property, EosObjectBase parent)
+        {
+            base.Init(target, property, parent);
+            _value = (Vector3)property.GetValue(_edittarget);
+        }
+        public override void OnInspectorGUI(InspectorAttribute info, PropertyInfo property)
+        {
+            GUILayout.BeginHorizontal();
+            GUI.changed = false;
+            _value = EditorGUILayout.Vector3Field(info.Name, _value);
+            if (GUI.changed)
+            {
+                ApplyProperty(property, _value);
+                _target.Owner.PropertyChanged(_edittargetparent);
+            }
+            GUILayout.EndHorizontal();
+        }
+
+    }
     public class BoolComponent : InspectorComponent
     {
         private bool _value;
@@ -138,7 +168,10 @@ namespace Eos.Objects.Editor
             GUI.changed = false;
             _value = GUILayout.Toggle(_value, string.Empty);
             if (GUI.changed)
+            {
+                ApplyProperty(property, _value);
                 _target.Owner.PropertyChanged(_edittargetparent);
+            }
             GUILayout.EndHorizontal();
         }
     }
@@ -157,7 +190,10 @@ namespace Eos.Objects.Editor
             GUI.changed = false;
             _value = GUILayout.TextField(_value);
             if (GUI.changed)
+            {
+                ApplyProperty(property, _value);
                 _target.Owner.PropertyChanged(_edittargetparent);
+            }
 
             GUILayout.EndHorizontal();
         }
@@ -201,7 +237,8 @@ namespace Eos.Objects.Editor
             if (GUI.changed)
             {
                 _value.OreID = _mold.GetOreID(_oreindexinmold);
-                property.SetValue(_target.Owner, _value);
+                ApplyProperty(property, _value);
+//                property.SetValue(_target.Owner, _value);
                 _target.Owner.PropertyChanged(_edittargetparent);
             }
             GUILayout.EndHorizontal();

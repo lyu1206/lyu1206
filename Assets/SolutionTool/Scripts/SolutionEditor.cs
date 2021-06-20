@@ -95,7 +95,7 @@ namespace Eos.Editor
         public static void OpenSolution(string path)
         {
             var msgpackData = File.ReadAllBytes(path);
-            var desolution = MessagePack.MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
+            var desolution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
             _solution = desolution.CreateForEditor(null);
 
             //if (_solution != null)
@@ -118,7 +118,7 @@ namespace Eos.Editor
         {
             if (string.IsNullOrEmpty(path))
                 return;
-            _solution.ApplyRelations(null);
+            _solution.ApplyObject(null);
             var msgpackData = MessagePack.MessagePackSerializer.Serialize(_solution.Owner);
             File.WriteAllBytes(path, msgpackData);
             AssetDatabase.Refresh();

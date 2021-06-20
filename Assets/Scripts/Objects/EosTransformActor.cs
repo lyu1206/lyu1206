@@ -11,12 +11,15 @@ namespace Eos.Objects
         [IgnoreMember] public virtual Transform Transform => _transform;
         [Key(21)]public int Layer;
         [IgnoreMember]public int LayerMask => 1 << Layer;
+        [IgnoreMember]
         public override string Name 
         { 
             get => base.Name; 
             set
             {
                 base.Name = value;
+                if (_transform == null)
+                    return;
                 _transform.name = value;
             } 
         }

@@ -16,6 +16,7 @@ namespace Eos.Service
         public ulong SID;
 
 #if UNITY_EDITOR
+        [MessagePack.IgnoreMember]
         public override string Name 
         { 
             get => base.Name; 
@@ -87,6 +88,15 @@ namespace Eos.Service
             var player = CreatePlayer(sid);
             _localplayer = player;
             AddChild(player);
+            Ref.Solution.StarterPlayer.IterChilds((child) =>
+            {
+                player.AddChild(child.Clone());
+            });
+            player.Activate(true);
+        }
+        protected override void OnStartPlay()
+        {
+            OnConnectPlayer(1);
         }
     }
 }

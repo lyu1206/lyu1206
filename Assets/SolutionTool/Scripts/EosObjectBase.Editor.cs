@@ -31,7 +31,7 @@ namespace Eos.Objects
             if (parent != null)
                 parent.AddChild(ret);
             foreach (var child in _childrens)
-                child.CreateForEditor(ret);
+                child?.CreateForEditor(ret);
             return ret;
         }
     }

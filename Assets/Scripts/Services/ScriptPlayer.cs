@@ -16,6 +16,8 @@ namespace Eos.Service
         }
         public void RegistScript(IScript script)
         {
+            if (script == null)
+                return;
             if (_runningscriptlist.Contains(script))
                 return;
             Ref.Coroutine.OnCoroutineStart(ScriptRunning(script));
@@ -24,6 +26,8 @@ namespace Eos.Service
         }
         public void UnRegistScript(IScript script)
         {
+            if (script == null)
+                return;
             script.Finish();
             foreach(var it in _runningscripts)
             {

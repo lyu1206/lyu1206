@@ -16,7 +16,16 @@ namespace Eos.Objects
             set
             {
                 _target = value;
+                UnRegistComponent(update);
+                if (_target != null)
+                    RegistComponent(update);
             }
+        }
+        private void update(object sender,float delta)
+        {
+            var targetpos = _target.LocalPosition + new Vector3(-100, 100, 0);
+            LocalPosition = targetpos;
+            _transform.LookAt(_target.Transform, Vector3.up);
         }
         protected override void OnActivate(bool active)
         {
@@ -29,18 +38,6 @@ namespace Eos.Objects
             camera.enabled = true;
 
             Main = this;
-        }
-        protected override void OnStartPlay()
-        {
-            base.OnStartPlay();
-            if (_target!=null)
-                Ref.ObjectManager.RegistUpdateObject(this);
-        }
-        public override void Update(float delta)
-        {
-            var targetpos = _target.LocalPosition + new Vector3(-100,100,0);
-            LocalPosition = targetpos;
-            _transform.LookAt(_target.Transform,Vector3.up);
         }
         public Vector3 CameraspaceDirection(Vector3 vec)
         {

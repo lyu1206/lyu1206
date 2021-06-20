@@ -33,7 +33,7 @@ namespace Eos.Objects
         }
         public override void OnDestroy()
         {
-            _script.Stop();
+            _script?.Stop();
             Ref.ScriptPlayer.UnRegistScript(_script);
         }
     }

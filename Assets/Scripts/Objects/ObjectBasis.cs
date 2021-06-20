@@ -25,12 +25,15 @@ namespace Eos.Objects
             PrimaryActor = FindChild<EosTransformActor>();
         }
 #if UNITY_EDITOR
+        [MessagePack.IgnoreMember]
         public override string Name 
         { 
             get => base.Name; 
             set
             {
                 base.Name = value;
+                if (_transform == null)
+                    return;
                 _transform.name = value;
             }
         }
@@ -68,17 +71,20 @@ namespace Eos.Objects
     [Union(13, typeof(EosModel))]
     [Union(14, typeof(TerrainService))]
     [Union(15, typeof(EosTerrain))]
+    [Union(16, typeof(StarterPlayer))]
+    [Union(17, typeof(StarterPack))]
+    [Union(18, typeof(EosUIObject))]
     public abstract partial class EosObjectBase : ReferPlayer, IMessagePackSerializationCallbackReceiver
     {
         public EosObjectBase()
         {
         }
         [IgnoreMember]public uint ObjectID;
-        [Key(2)] public string _name;
+        private string _name;
         private bool _active = true;
         [Key(1)] public List<EosObjectBase> _childrens  = new List<EosObjectBase>();
         [Inspector("Basic","Name")]
-        [IgnoreMember]public virtual string Name{get=>_name;set=>_name = value;}
+        [Key(2)]public virtual string Name{get=>_name;set=>_name = value;}
         [Inspector("Basic", "Active")]
         [Key(3)]public bool Active 
         { 
@@ -90,7 +96,16 @@ namespace Eos.Objects
                 Activate(value);
             }
         }
-
+        [IgnoreMember]
+        public bool ActiveInHierachy
+        {
+            get
+            {
+                if (!Active) return false;
+                if (Parent == null) return Active;
+                return Active && Parent.ActiveInHierachy;
+            }
+        }
         [IgnoreMember] protected EosObjectBase _parent;
 
         [IgnoreMember]
@@ -119,7 +134,10 @@ namespace Eos.Objects
                 Ref.ObjectManager.RegistObject(target);
             target.Name = Name;
         }
-        public void Activate(bool active,bool recursivechild = true)
+        public virtual void OnCreate()
+        {
+        }
+        public virtual void Activate(bool active,bool recursivechild = true)
         {
             OnActivate(active);
             if (recursivechild)
@@ -140,7 +158,7 @@ namespace Eos.Objects
         public virtual void OnDestroy()
         {
         }
-        public void StartPlay()
+        public virtual void StartPlay()
         {
             OnStartPlay();
             foreach(var child in _childrens)
@@ -167,6 +185,15 @@ namespace Eos.Objects
             OnAncestryChanged();
             foreach(var child in _childrens)
                 child.AncestryChanged();
+        }
+        public void IterChilds(Action<EosObjectBase> action,bool isrecursive = false)
+        {
+            _childrens.ForEach(it =>
+            {
+                action(it);
+                if (isrecursive)
+                    it.IterChilds(action);
+            });
         }
         public T FindDeepChild<T>() where T : EosObjectBase
         {
@@ -229,6 +256,7 @@ namespace Eos.Objects
             if (type == ObjectType.RunTime)
                 return null;
             var copy = ObjectFactory.CreateInstance(this.GetType());
+            copy.OnCreate();
             OnCopyTo(copy);
             foreach (var child in _childrens)
             {
@@ -240,12 +268,13 @@ namespace Eos.Objects
             return copy;
         }
 
-        public void OnBeforeSerialize()
+        public virtual void OnBeforeSerialize()
         {
+            OnCreate();
 //            throw new NotImplementedException();
         }
 
-        public void OnAfterDeserialize()
+        public virtual void OnAfterDeserialize()
         {
 //            throw new NotImplementedException();
         }

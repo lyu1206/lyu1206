@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MessagePack;
 
 namespace Eos.Objects
 {
     using Ore;
     public class EosUIObject : EosTransformActor
     {
-        public OreBase _uisource;
+        [IgnoreMember]public OreBase _uisource;
+        [RequireMold("UIMold")]
+        [Inspector("Ore","UIOre")]
+        [Key(331)]
+        public OreReference UIOre { get; set; }
         protected override void OnActivate(bool active)
         {
             if (_uisource == null)
