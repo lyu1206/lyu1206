@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,23 +7,26 @@ using MessagePack;
 
 namespace Eos.Service
 {
+    using Eos.Objects;
     using EosPlayer;
+    [Serializable]
     [NoCreated]
     public class GUIService : EosService , ITransform
     {
-        private Transform _guiroot;
+        private EosTransform  _guiroot;
         private Canvas _canvas;
-        [IgnoreMember]public Transform Transform => _guiroot;
+        [IgnoreMember]public EosTransform Transform => _guiroot;
         public GUIService()
         {
-            var root = ObjectFactory.CreateUnityInstance("GUIRoot").gameObject;
+            _guiroot = ObjectFactory.CreateInstance<EosTransform>();
+            var root = new GameObject("GUIRoot");//  _guiroot.Create("GUIRoot").gameObject;
             _canvas = root.AddComponent<Canvas>();
             _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             root.AddComponent<CanvasScaler>();
             root.AddComponent<GraphicRaycaster>();
             var eventsystem = ObjectFactory.CreateUnityInstance("EventSystem", typeof( EventSystem), typeof(StandaloneInputModule)).gameObject;
             eventsystem.transform.parent = root.transform;
-            _guiroot = root.transform;
+            _guiroot.Transform = root.transform;
         }
         public static Canvas Canvas;
         public UGUIEvents RegistUIEvent(Transform eventobject,object reciever)
@@ -38,7 +41,7 @@ namespace Eos.Service
         }
         public override void OnDestroy()
         {
-            GameObject.Destroy(_guiroot.gameObject);
+            _guiroot?.Destroy();
         }
     }
 }

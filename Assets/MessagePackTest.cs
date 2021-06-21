@@ -40,9 +40,17 @@ public class PARENTclass : MMBase
     public int C;
 
 }
-
+[System.Serializable]
+public class SSSSClass
+{
+    public int A;
+}
 public class MessagePackTest : MonoBehaviour
 {
+    [SerializeField]
+    SSSSClass GGG;
+    [SerializeField]
+    Eos.Objects.EosObjectBase ter = new Eos.Objects.EosTerrain();
     // Start is called before the first frame update
     void Start()
     {

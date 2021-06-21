@@ -14,6 +14,7 @@ namespace Eos.Service
     {
 
     }
+    [System.Serializable]
     [NoCreated]
     [MessagePackObject]
     public partial class Solution : EosService 

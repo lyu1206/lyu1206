@@ -13,7 +13,8 @@ namespace Eos.Objects.Editor
         private void Reset() { Ensure_EditorTag(); }
         private void OnEnable() { Ensure_EditorTag(); }
         private void Awake() { Ensure_EditorTag(); }
-        private EosObjectBase _owner;
+        [SerializeField]
+        public EosObjectBase _owner;
         private void Ensure_EditorTag()
         {
             if (gameObject.tag != "EditorOnly")
@@ -55,9 +56,10 @@ namespace Eos.Objects.Editor
             if (transform.hasChanged)
             {
                 Debug.Log("transform changed");
-                if (_owner is ITransform transactor)
+                if (_owner is EosTransformActor transactor)
                 {
-
+                    transactor.LocalPosition = transform.localPosition;
+                    transactor.LocalRotation = transform.localRotation.eulerAngles;
                 }
                 transform.hasChanged = false;
             }

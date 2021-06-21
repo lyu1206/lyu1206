@@ -6,6 +6,7 @@ using MessagePack;
 namespace Eos.Objects
 {
     using Ore;
+    [System.Serializable]
     public class EosTool : EosObjectBase
     {
         private bool _isattached;
@@ -30,11 +31,11 @@ namespace Eos.Objects
                 return;
             
             var part = FindChild<EosMeshObject>();
-            var totransform = topart.Transform.FindDeepChild(GripBone);
+            var totransform = topart.Transform.Transform.FindDeepChild(GripBone);
             _isattached = true;
-            part.Transform.parent = totransform;
-            part.Transform.localPosition = GripPos;
-            part.Transform.localRotation = Quaternion.Euler(GripRot);
+            part.Transform.Transform.SetParent(totransform);
+            part.Transform.LocalPosition = GripPos;
+            part.Transform.LocalRotation = GripRot;
         }
         private void Detach()
         {

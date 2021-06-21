@@ -14,6 +14,11 @@ public static class ObjectFactory
 {
     private static Transform _unityInstaceRoot;
     public static Transform UnityInstanceRoot{ set => _unityInstaceRoot = value; }
+    public static T CreateInstance<T>() where T : class
+    {
+        var instance = Activator.CreateInstance<T>();
+        return instance;
+    }
     public static T CreateInstance<T>(ObjectType type = ObjectType.RunTime) where T : EosObjectBase
     {
         var instance = Activator.CreateInstance<T>();
@@ -42,7 +47,8 @@ public static class ObjectFactory
     public static Transform CreateUnityInstance(string name = null)
     {
         var obj = new GameObject(name);
-        obj.transform.SetParent(_unityInstaceRoot, false);
+        if (_unityInstaceRoot!=null)
+            obj.transform.SetParent(_unityInstaceRoot, false);
         return obj.transform;
     }
     public static Transform CreateUnityInstance(string name,params Type[] components)

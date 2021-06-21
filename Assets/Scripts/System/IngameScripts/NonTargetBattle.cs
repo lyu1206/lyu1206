@@ -29,7 +29,7 @@ namespace Eos.Script
                 var target = root.LocalPosition + new Vector3(1, 0, 1);
                 var direction = target - root.LocalPosition;
                 var rot = Quaternion.LookRotation(direction.normalized);
-                var startrot = root.Transform.localRotation;
+                var startrot = root.Transform.Transform.localRotation;
                 var factor = 0f;
                 humanoid.Ref.Scheduler.ScheduleOnCondition(() =>
                 {
@@ -37,7 +37,7 @@ namespace Eos.Script
                     factor += Time.deltaTime ;
                     factor = Mathf.Min(1, factor);
                     humanoid.NavAgent.updateRotation = false;
-                    root.Transform.localRotation = torot;
+                    root.Transform.Transform.localRotation = torot;
                     humanoid.NavAgent.updateRotation = true;
                 },()=> factor>=1);
             }

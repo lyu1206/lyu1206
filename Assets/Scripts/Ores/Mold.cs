@@ -11,7 +11,7 @@ namespace Eos.Assets
     {
         public const string MoldPath = "Molds";
         [SerializeField]
-        private GameObject[] _sources;
+        private Object[] _sources;
         public static Mold GetMold(string name)
         {
             var path = Path.Combine(MoldPath, name);
@@ -28,7 +28,12 @@ namespace Eos.Assets
         }
         public GameObject GetOre(int instanceID)
         {
-            return _sources.Find<GameObject>(it => it.GetInstanceID() == instanceID);
+            var ret = _sources.Find<Object>(it => it.GetInstanceID() == instanceID);
+            return ret as GameObject;
+        }
+        public Object GetScriptOre(int instanceID)
+        {
+            return _sources.Find<Object>(it => it.GetInstanceID() == instanceID);
         }
     }
 }

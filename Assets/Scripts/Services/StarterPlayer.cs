@@ -11,12 +11,12 @@ namespace Eos.Service
     [MessagePackObject]
     public class TypeService : EosService, ITransform
     {
-        protected Transform _transform;
-        [IgnoreMember] public Transform Transform => _transform;
+        protected EosTransform _transform;
+        [IgnoreMember] public EosTransform Transform => _transform;
         public TypeService()
         {
-            _transform = ObjectFactory.CreateUnityInstance();
-            _transform.gameObject.SetActive(false);
+            _transform = ObjectFactory.CreateInstance<EosTransform>();
+            _transform.Create(Name).gameObject.SetActive(false);
         }
 
         public override void OnCreate()
@@ -31,22 +31,24 @@ namespace Eos.Service
         }
     }
 
+    [System.Serializable]
     [NoCreated]
     [MessagePackObject]
     public class StarterPlayer : TypeService
     {
         public StarterPlayer()
         {
-            _transform.name = "StarterPlayer";
+            _transform.Name = "StarterPlayer";
         }
     }
+    [System.Serializable]
     [NoCreated]
     [MessagePackObject]
     public class StarterPack : TypeService
     {
         public StarterPack()
         {
-            _transform.name = "StarterPack";
+            _transform.Name = "StarterPack";
         }
     }
 }

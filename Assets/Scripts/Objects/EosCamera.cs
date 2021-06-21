@@ -9,6 +9,28 @@ namespace Eos.Objects
     {
         private EosTransformActor _target;
         private Camera _camera;
+        [Key(330)]public override Vector3 LocalPosition 
+        { 
+            get => base.LocalPosition;
+            set
+            {
+                _camera = Camera.main;
+                _camera = _camera ?? Camera.allCameras[0];
+                _camera.transform.localPosition = value;
+                base.LocalPosition = value;
+            }
+        }
+        [Key(331)]public override Vector3 LocalRotation 
+        { 
+            get => base.LocalRotation;
+            set
+            {
+                _camera = Camera.main;
+                _camera = _camera ?? Camera.allCameras[0];
+                _camera.transform.localRotation = Quaternion.Euler(value);
+                base.LocalRotation = value;
+            }
+        }
         [IgnoreMember]public static EosCamera Main;
         [IgnoreMember]public EosTransformActor Target
         {
@@ -25,12 +47,12 @@ namespace Eos.Objects
         {
             var targetpos = _target.LocalPosition + new Vector3(-100, 100, 0);
             LocalPosition = targetpos;
-            _transform.LookAt(_target.Transform, Vector3.up);
+            _transform.Transform.LookAt(_target.Transform.Transform, Vector3.up);
         }
         protected override void OnActivate(bool active)
         {
             base.OnActivate(active);
-            var camera = _camera = _transform.gameObject.AddComponent<Camera>();
+            var camera = _camera = _transform.Transform.gameObject.AddComponent<Camera>();
             camera.name = Name;
             camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = Color.black;

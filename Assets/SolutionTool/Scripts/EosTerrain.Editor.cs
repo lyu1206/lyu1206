@@ -23,9 +23,9 @@ namespace Eos.Objects
             if (!(parent is TerrainService ts))
                 return;
             _terrainobj = TerrainOre.Instantiate();
-            _terrainobj.transform.SetParent(ts.Transform, true);
+            _terrainobj.transform.SetParent(ts.Transform.Transform, true);
             var pvm = _terrainobj.GetComponent<PVMOre>();
-            var terrain = pvm.Instantiate(ts.Transform);
+            var terrain = pvm.Instantiate(ts.Transform.Transform);
             Camera.allCameras[0].transform.localPosition = terrain.transform.localPosition;
         }
     }

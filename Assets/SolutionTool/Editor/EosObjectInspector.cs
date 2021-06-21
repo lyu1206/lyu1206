@@ -25,6 +25,8 @@ namespace Eos.Objects.Editor
             var edittarget = target as EosEditorObject;
             _targeteosobject = edittarget.Owner;
             _inspectors = InspectorComponent.GetInspectors(edittarget);
+            if (_inspectors == null)
+                return base.CreateInspectorGUI();
             _addchildcomponent = _addchildcomponent ?? new AddChildCompoent();
             _addchildcomponent.Init(edittarget,null,null);
             return base.CreateInspectorGUI();
@@ -76,6 +78,8 @@ namespace Eos.Objects.Editor
 
             var bindflag = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
             var edittarget = target.Owner;
+            if (edittarget == null)
+                return null;
             var properties = edittarget.GetType().GetProperties(bindflag);
             var inspectorsets = new Dictionary<string, List<InspectorSet>>();
             var inspectproperties = properties.Select((property, index) => new Tuple<PropertyInfo, InspectorAttribute>(property, property.GetCustomAttribute<InspectorAttribute>()))

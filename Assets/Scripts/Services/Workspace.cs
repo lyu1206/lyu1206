@@ -5,20 +5,23 @@ using MessagePack;
 
 public interface ITransform
 {
-    Transform Transform {get;}
+    Eos.Objects.EosTransform  Transform {get;}
 }
 
 namespace Eos.Service
 {
+    using Eos.Objects;
+    [System.Serializable]
     [NoCreated]
     public class Workspace : EosService , ITransform
     {
-        private GameObject _workspace;
-        [IgnoreMember]public Transform Transform => _workspace.transform;
+        private EosTransform _workspace;
+        [IgnoreMember]public  EosTransform Transform => _workspace;
         public Workspace()
         {
             Name = "Workspace";
-            _workspace = ObjectFactory.CreateUnityInstance(Name).gameObject;
+            _workspace = ObjectFactory.CreateInstance<EosTransform>();
+            _workspace.Create(Name);
         }
     }
 }

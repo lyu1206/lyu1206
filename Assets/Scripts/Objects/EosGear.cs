@@ -40,7 +40,7 @@ namespace Eos.Objects
                 var part = ObjectFactory.CreateUnityInstance(orgmesh.name).gameObject;// GameObject.Instantiate(orgmesh.gameObject);
                 var skinmeshrender = part.AddComponent<SkinnedMeshRenderer>();
                 //                Debug.Log($"skinnedmesh:{Part.name}");
-                part.transform.parent = pawn.Transform;
+                part.transform.SetParent(pawn.Transform.Transform);
                 //                part.name = Part.name;
                 part.transform.localPosition = orgmesh.transform.localPosition;
                 part.transform.localRotation = orgmesh.transform.localRotation;

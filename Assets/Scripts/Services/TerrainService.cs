@@ -6,25 +6,28 @@ using MessagePack;
 namespace Eos.Service
 {
     using Ore;
+    using Eos.Objects;
     [NoCreated]
+    [System.Serializable]
     public class TerrainService : EosService , ITransform
     {
-        private Transform _transform;
-        [IgnoreMember] public Transform Transform=>_transform;
+        private EosTransform _transform;
+        [IgnoreMember] public EosTransform Transform=>_transform;
         public TerrainService()
         {
             Name = "Terrain";
-            _transform = ObjectFactory.CreateUnityInstance(Name);
+            _transform = ObjectFactory.CreateInstance<EosTransform>();
+            _transform.Create(Name);
         }
         [IgnoreMember] public PVMOre _pvmOre;
         protected override void OnActivate(bool active)
         {
             base.OnActivate(active);
-            _pvmOre?.Instantiate(_transform);
+            _pvmOre?.Instantiate(_transform.Transform);
         } 
         public Transform FindNode(string name)
         {
-            return _transform.FindDeepChild(name);
+            return _transform.Transform.FindDeepChild(name);
         }
     }
 }

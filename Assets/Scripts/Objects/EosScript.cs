@@ -2,11 +2,15 @@ using MessagePack;
 
 namespace Eos.Objects
 {
+    using Ore;
     using Script;
+    [System.Serializable]
     public class EosScript : EosObjectBase
     {
-        [Key(1000)]
-        public string scriptname;
+        [IgnoreMember]public string scriptname;
+        [RequireMold("ScriptMold")]
+        [Inspector("Ore","Script")]
+        [Key(1000)] public OreReference ScriptOre { get; set; }
         private IScript _script;
         private int _scriptcoroutineid;
         protected override void OnActivate(bool active)

@@ -45,7 +45,7 @@ namespace Eos.Script
             var direction = EosCamera.Main.CameraspaceDirection(new Vector3(delta.x, 0, delta.y));
             direction.y = 0;
             direction.Normalize();
-            var curdirection = _playerhumanoid.Humanoidroot.Transform.forward;
+            var curdirection = _playerhumanoid.Humanoidroot.Transform.Transform.forward;
             float dot = Vector3.Dot(curdirection , direction);
             if (dot<0)
             {
@@ -78,7 +78,7 @@ namespace Eos.Script
             var player =  script.Ref.Solution.Players.FindChild<Player>();
             _playerfsm = player.FindDeepChild<EosFsm>();
 
-            var controll = uiobj.Transform.FindDeepChild("PadControl");
+            var controll = uiobj.Transform.Transform.FindDeepChild("PadControl");
             _padtrans = controll.GetComponent<RectTransform>();
             var uguievent = _uguievent = script.Ref.Solution.GUIService.RegistUIEvent(controll, this);
             uguievent.RegistOnBeginDrag(OnBeginDrag);

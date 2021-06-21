@@ -8,16 +8,17 @@ namespace Eos.Objects
     using Service.AI;
     using MessagePack;
 
+    [System.Serializable]
     public class EosModel : EosObjectBase , ITransform
     {
-        private Transform _transform;
-        [IgnoreMember]public Transform Transform =>_transform;
+        private EosTransform _transform;
+        [IgnoreMember]public EosTransform Transform =>_transform;
         [IgnoreMember] public EosTransformActor PrimaryActor;
         public EosModel()
         {
 #if UNITY_EDITOR
-            var trans = ObjectFactory.CreateUnityInstance(Name).gameObject;
-            _transform = trans.transform;
+            _transform = ObjectFactory.CreateInstance<EosTransform>();
+            _transform.Create(Name);
 #endif
         }
         protected override void OnActivate(bool active)
@@ -34,7 +35,7 @@ namespace Eos.Objects
                 base.Name = value;
                 if (_transform == null)
                     return;
-                _transform.name = value;
+                _transform.Name = value;
             }
         }
         public override void OnAncestryChanged()
@@ -42,9 +43,7 @@ namespace Eos.Objects
             base.OnAncestryChanged();
             if (!(_parent is ITransform transactor))
                 return;
-            _transform.parent = transactor.Transform;
-            _transform.localPosition = Vector3.zero;
-            _transform.localRotation = Quaternion.identity;
+            _transform.SetParent(transactor.Transform);
         }
 
 #endif
@@ -53,7 +52,7 @@ namespace Eos.Objects
     {
         [IgnoreMember]public EosPlayer.EosPlayer Ref => EosPlayer.EosPlayer.Instance;
     }
-
+    [Serializable]
     [MessagePackObject]
     [Union(0, typeof(EosCamera))]
 //    [Union(1, typeof(EosTransformActor))]

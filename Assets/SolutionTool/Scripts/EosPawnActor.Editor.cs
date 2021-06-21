@@ -20,20 +20,20 @@ namespace Eos.Objects
             _oldterrainOre = BodyOre;
             if (_bodyobj != null)
                 GameObject.DestroyImmediate(_bodyobj);
-            if (!(parent is Workspace ws))
+            if (!(parent is ITransform ws))
                 return;
             var bodyore = BodyOre.GetOre().GetComponent<BodyOre>();
             var body = bodyore.GetBody();
             _skeleton = new EosSkeleton();
             _animator = body.GetComponent<Animator>();
             _controller = new AnimationController(this, _animator);
-            body.transform.parent = ws.Transform;
+            body.transform.SetParent(Transform.Transform);
             body.transform.localPosition = Vector3.zero;
             body.transform.localRotation = Quaternion.identity;
 
             _bodyobj = body;
 
-            _skeleton.SetupSkeleton(Transform, body.transform);
+            _skeleton.SetupSkeleton(Transform.Transform, body.transform);
 
             var initialparts = bodyore.GetInitialParts();
             //            var gears = FindChilds<EosGear>();

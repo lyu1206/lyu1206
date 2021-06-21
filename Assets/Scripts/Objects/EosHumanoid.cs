@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -56,7 +56,7 @@ namespace Eos.Objects
                 if (_navagent != null)
                 {
                     UpdateHumanoidPosition();
-                    _transform.forward = value;
+                    _transform.Transform.forward = value;
                     OnMoveStateChanged?.Invoke(this,true);
                     _navagent.isStopped = false;
                     _navagent.SetDestination(_navagent.transform.localPosition + value*_radius*2);
@@ -65,8 +65,8 @@ namespace Eos.Objects
         }
         public void UpdateHumanoidPosition()
         {
-            _transform.localPosition = _humanoidroot.LocalPosition;
-            _transform.forward = _humanoidroot.Transform.forward;
+            _transform.LocalPosition = _humanoidroot.LocalPosition;
+            _transform.Transform.forward = _humanoidroot.Transform.Transform.forward;
         }
         [IgnoreMember] public bool IsStop => (!_navagent.pathPending && _navagent.remainingDistance == 0);
         [IgnoreMember] public const string humanoidroot = "HumanoidRoot";
@@ -95,7 +95,7 @@ namespace Eos.Objects
             var root = _parent.FindChild<EosPawnActor>(humanoidroot);
             if (root==null)
                 return;
-            var rootobject = root.Transform.gameObject;
+            var rootobject = root.Transform.Transform.gameObject;
             _humanoidroot = root;
 
             _radius = (_humanoidroot.FindChild<EosCollider>().Collider as eosCapsuleCollider).Radius;
@@ -112,7 +112,7 @@ namespace Eos.Objects
         {
             UpdateHumanoidPosition();
             _navagent.enabled = false;
-            _humanoidroot.Transform.position = to;
+            _humanoidroot.Transform.Transform.position = to;
             _navagent.enabled = true;
         }
         public void MoveTo(Vector3 dest)
@@ -135,7 +135,7 @@ namespace Eos.Objects
                 _accesplate = plate;
             if (child is EosCollider collider)
             {
-                var rigidbody = Transform.gameObject.AddComponent<Rigidbody>();
+                var rigidbody = Transform.Transform.gameObject.AddComponent<Rigidbody>();
                 rigidbody.isKinematic = true;
             }
         }
@@ -149,9 +149,7 @@ namespace Eos.Objects
             base.OnAncestryChanged();
             if (!(_parent is ITransform transactor))
                 return;
-            _transform.parent = transactor.Transform;
-            _transform.localPosition = Vector3.zero;
-            _transform.localRotation = Quaternion.identity;
+            _transform.SetParent(transactor.Transform);
         }
         public override string ToString()
         {

@@ -4,11 +4,73 @@ using UnityEngine;
 namespace Eos.Objects
 {
     using MessagePack;
-    public partial class EosTransformActor : EosObjectBase , ITransform
+    [MessagePackObject]
+    public class EosTransform
     {
         protected Transform _transform;
+        [IgnoreMember] public Transform Transform { get => _transform; set => _transform = value; }
+        public string Name
+        {
+            set
+            {
+                if (_transform == null)
+                    return;
+                _transform.name = value;
+            }
+        }
+        public Transform Create(string name)
+        {
+            
+            var obj = ObjectFactory.CreateUnityInstance(name);
+            _transform = obj.transform;
+            _transform.localPosition = Vector3.zero;
+            _transform.localRotation = Quaternion.identity;
+            _transform.localScale = Vector3.one;
+            return _transform;
+        }
+        [Key(1)]
+        public Vector3 LocalPosition
+        {
+            set
+            {
+                _transform.localPosition = value;
+            }
+            get => _transform.localPosition;
+        }
+        [Key(2)]
+        public Vector3 LocalRotation
+        {
+            set
+            {
+                _transform.localRotation = Quaternion.Euler(value);
+            }
+            get => _transform.localRotation.eulerAngles;
+        }
+        [Key(3)]
+        public Vector3 LocalScale
+        {
+            set
+            {
+                _transform.localScale = value;
+            }
+            get => _transform.localScale;
+        }
+        public void SetParent(EosTransform parent)
+        {
+            Transform.SetParent(parent.Transform);
+            Transform.localPosition = Vector3.zero;
+            Transform.localRotation = Quaternion.identity;
+        }
+        public void Destroy()
+        {
+            GameObject.Destroy(_transform.gameObject);
+        }
+    }
+    public partial class EosTransformActor : EosObjectBase , ITransform
+    {
+        protected EosTransform _transform;
         private EventHandler<float> _components;
-        [IgnoreMember] public virtual Transform Transform => _transform;
+        [IgnoreMember] public virtual EosTransform Transform => _transform;
         [Key(21)]public int Layer;
         [IgnoreMember]public int LayerMask => 1 << Layer;
         [IgnoreMember]
@@ -20,36 +82,37 @@ namespace Eos.Objects
                 base.Name = value;
                 if (_transform == null)
                     return;
-                _transform.name = value;
+                _transform.Name = value;
             } 
         }
         [Key(22)]
-        public Vector3 LocalPosition
+        public virtual Vector3 LocalPosition
         {
             get
             {
-                return _transform.localPosition;
+                return _transform.LocalPosition;
             }
             set
             {
-                _transform.localPosition = value;
+                _transform.LocalPosition = value;
             }
         }
         [Key(23)]
-        public Vector3 LocalRotation
+        public virtual Vector3 LocalRotation
         {
             get
             {
-                return _transform.localRotation.eulerAngles;
+                return _transform.LocalRotation;
             }
             set
             {
-                _transform.localRotation = Quaternion.Euler(value);
+                _transform.LocalRotation = value;
             }
         }
         public EosTransformActor()
         {
-            _transform = ObjectFactory.CreateUnityInstance(Name);
+            _transform = ObjectFactory.CreateInstance<EosTransform>();
+            _transform.Create(Name);
         }
         public override void OnCopyTo(EosObjectBase target)
         {
@@ -90,8 +153,7 @@ namespace Eos.Objects
         }
         public override void OnDestroy()
         {
-            if (_transform != null)
-                GameObject.Destroy(_transform.gameObject);
+            _transform?.Destroy();
         }
         public override void Update(float delta)
         {

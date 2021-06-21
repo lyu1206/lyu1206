@@ -10,23 +10,21 @@ namespace Eos.Service.AI
     public class AccessPlate : EosObjectBase , ITransform
     {
         private EosHumanoid _humanoid;
-        private Transform _transform;
+        private EosTransform _transform;
         private List<AIEngageObject> _requestobject = new List<AIEngageObject>();
-        public Transform Transform => _transform;
+        public EosTransform Transform => _transform;
 
         public override void OnAncestryChanged()
         {
             if (!(_parent is EosHumanoid humanoid))
                 return;
             _humanoid = humanoid;
-            var plate = ObjectFactory.CreateUnityInstance("AccesPlate").gameObject;
-            _transform = plate.transform;
+            _transform = ObjectFactory.CreateInstance<EosTransform>();
+            _transform.Create("AccesPlate");
         }
         protected override void OnStartPlay()
         {
-            _transform.parent = _humanoid.Humanoidroot.Transform;
-            _transform.localPosition = Vector3.zero;
-            _transform.localRotation = Quaternion.identity;
+            _transform.SetParent(_humanoid.Humanoidroot.Transform);
             _humanoid.OnMoveStateChanged += OwnerMoveStateChaged;
         }
         private void OwnerMoveStateChaged(object sender,bool state)

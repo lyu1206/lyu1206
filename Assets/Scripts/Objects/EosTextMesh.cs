@@ -37,7 +37,7 @@ namespace Eos.Objects.UI
             base.OnCopyTo(target);
             textmesh.Name = Name;
             textmesh.Text = Text;
-            textmesh.Transform.localPosition = Vector3.up * 30;
+            textmesh.Transform.LocalPosition = Vector3.up * 30;
         }
         public override void OnCreate()
         {
@@ -49,15 +49,15 @@ namespace Eos.Objects.UI
             textpro.text = "Hello";
             textpro.alignment = TextAlignmentOptions.Center;
             textpro.fontSize = 50;
-            GameObject.Destroy(_transform.gameObject);
-            _transform = textobj.transform;
-            _transform.localPosition = Vector3.up * 30;
+            _transform?.Destroy();
+            _transform.Transform = textobj.transform;
+            _transform.LocalPosition = Vector3.up * 30;
         }
         protected override void OnActivate(bool active)
         {
             _updaterid = Ref.Scheduler.Schedule(() =>
             {
-                _transform.rotation = EosCamera.Main.Transform.rotation;
+                _transform.Transform.rotation = EosCamera.Main.Transform.Transform.rotation;
             });
         }
         public override void OnDestroy()

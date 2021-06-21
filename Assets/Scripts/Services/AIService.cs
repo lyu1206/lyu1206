@@ -68,12 +68,12 @@ namespace Eos.Service.AI
     {
         private EosHumanoid _owner;
         private List<AIEngageObject> _targets = new List<AIEngageObject>();
-        private Transform _transform;
+        private EosTransform _transform;
         private bool _haveaccespoint;
         private Vector3 _accespoint;
         public EosHumanoid Owner => _owner;
 
-        public Transform Transform => _transform;
+        public EosTransform Transform => _transform;
 
         public AIEngageObject(EosHumanoid owner)
         {
@@ -181,6 +181,7 @@ namespace Eos.Service.AI
         }
     }
     [NoCreated]
+    [System.Serializable]
     [MessagePackObject]
     public class AIService : EosService
     {

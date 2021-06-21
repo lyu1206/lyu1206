@@ -23,23 +23,22 @@ namespace Eos.Service
             set
             {
                 base.Name = value;
-                _transform.name = value;
+                _transform.Name = value;
             }
         }
-        private Transform _transform;
-        public Transform Transform => _transform;
+        private EosTransform _transform;
+        public EosTransform Transform => _transform;
         public Player()
         {
-            _transform = ObjectFactory.CreateUnityInstance(Name);
+            _transform = ObjectFactory.CreateInstance<EosTransform>();
+            _transform.Create(Name);
         }
         public override void OnAncestryChanged()
         {
             base.OnAncestryChanged();
             if (!(_parent is ITransform transactor))
                 return;
-            _transform.parent = transactor.Transform;
-            _transform.localPosition = Vector3.zero;
-            _transform.localRotation = Quaternion.identity;
+            _transform.SetParent(transactor.Transform);
         }
 #endif
         protected override void OnActivate(bool active)
@@ -66,15 +65,16 @@ namespace Eos.Service
     [NoCreated]
     public class Players : EosService , ITransform
     {
-        private Transform _transform;
-        public Transform Transform => _transform;
+        private EosTransform _transform;
+        public EosTransform Transform => _transform;
         private Player _localplayer;
         public Player LocalPlayer => _localplayer;
         public Players()
         {
             Name = "Players";
 #if UNITY_EDITOR
-            _transform = ObjectFactory.CreateUnityInstance(Name);
+            _transform = ObjectFactory.CreateInstance<EosTransform>();
+            _transform.Create(Name);
 #endif
         }
         private Player CreatePlayer(ulong sid)

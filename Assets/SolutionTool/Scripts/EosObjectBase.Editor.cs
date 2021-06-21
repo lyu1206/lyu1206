@@ -29,7 +29,12 @@ namespace Eos.Objects
         {
             var ret = EosEditorObject.Create(this);
             if (parent != null)
+            {
+                _parent = parent.Owner;
+                OnAncestryChanged();
+                PropertyChanged(_parent);
                 parent.AddChild(ret);
+            }
             foreach (var child in _childrens)
                 child?.CreateForEditor(ret);
             return ret;

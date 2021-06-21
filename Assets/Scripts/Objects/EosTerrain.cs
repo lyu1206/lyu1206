@@ -8,6 +8,7 @@ namespace Eos.Objects
 {
     using Ore;
     using Service;
+    [System.Serializable]
     public partial class EosTerrain : EosObjectBase
     {
         [RequireMold("TerrainMold")]
@@ -18,7 +19,9 @@ namespace Eos.Objects
             if (!(_parent is TerrainService ts))
                 return;
             var terrain = TerrainOre.Instantiate();
-            terrain.transform.SetParent(ts.Transform, true);
+            if (terrain == null)
+                return;
+            terrain.transform.SetParent(ts.Transform.Transform, true);
         }
     }
 }

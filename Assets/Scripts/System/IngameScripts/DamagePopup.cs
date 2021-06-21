@@ -22,11 +22,11 @@ namespace Eos.Script
         {
             var eostrans = script.Parent as EosTransformActor;
             eostrans.Parent = script.Ref.Solution.Workspace;
-            eostrans.Transform.localScale = Vector3.one * 3;
-            while(eostrans.Transform.localScale.x>0)
+            eostrans.Transform.LocalScale = Vector3.one * 3;
+            while(eostrans.Transform.LocalScale.x>0)
             {
                 eostrans.LocalPosition += Vector3.up * Time.deltaTime * 20.5f;
-                eostrans.Transform.localScale -= Vector3.one * Time.deltaTime * 8;
+                eostrans.Transform.LocalScale -= Vector3.one * Time.deltaTime * 8;
                 yield return new WaitForEndOfFrame();
             }
             eostrans.Destroy();

@@ -6,6 +6,7 @@ using MessagePack;
 namespace Eos.Objects
 {
     using Ore;
+    [System.Serializable]
     public class EosMeshObject : EosTransformActor
     {
         [IgnoreMember]public MeshOre Mesh;
@@ -26,13 +27,13 @@ namespace Eos.Objects
             var mesh = Mesh?.Instantiate();
             if (_transform!=null)
             {
-                mesh.parent = _transform.parent;
-                mesh.localPosition = _transform.localPosition;
-                mesh.localRotation = _transform.localRotation;
-                GameObject.Destroy(_transform.gameObject);
+                mesh.parent = _transform.Transform.parent;
+                mesh.localPosition = _transform.LocalPosition;
+                mesh.localRotation = _transform.Transform.localRotation;
+                GameObject.Destroy(_transform.Transform.gameObject);
             }
             mesh.name = Name;
-            _transform = mesh;
+            _transform.Transform = mesh;
         }
     }
 }

@@ -150,11 +150,11 @@ namespace Eos.Objects
             _controller = new AnimationController(this, _animator);
             var anievent = body.AddComponent<AnimationAdapter>();
             anievent.SetActor(this);
-            body.transform.parent = Transform;
+            body.transform.SetParent(Transform.Transform);
             body.transform.localPosition = Vector3.zero;
             body.transform.localRotation = Quaternion.identity;
 
-            _skeleton.SetupSkeleton(Transform, body.transform);
+            _skeleton.SetupSkeleton(Transform.Transform, body.transform);
 
             var initialparts = Body.GetInitialParts();
 //            var gears = FindChilds<EosGear>();
@@ -178,7 +178,7 @@ namespace Eos.Objects
                 Collders.Add(collider);
                 if (_rigidbody == null)
                 {
-                    _rigidbody = Transform.gameObject.AddComponent<Rigidbody>();
+                    _rigidbody = Transform.Transform.gameObject.AddComponent<Rigidbody>();
                     _rigidbody.isKinematic = true;
                 }
             }

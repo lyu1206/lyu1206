@@ -83,6 +83,8 @@ public class TestMain : MonoBehaviour
         
         var terrainservice = new TerrainService{Name = "TerrainService" , _pvmOre = pvmore};
         solution.AddChild(terrainservice);
+        var terrain = new EosTerrain { Name = "Terrain" };
+        terrainservice.AddChild(terrain);
 
         
         var playerservice = new Players {Name = "Players" };

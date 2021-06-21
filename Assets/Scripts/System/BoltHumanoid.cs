@@ -20,18 +20,18 @@ namespace Eos.Ore
         }
         public Vector3 Position
         {
-            get=>_humanoidroot.Transform.localPosition;
+            get=>_humanoidroot.Transform.LocalPosition;
             set
             {
-                _humanoidroot.Transform.localPosition = value;
+                _humanoidroot.Transform.LocalPosition = value;
             }
         }
         public Vector3 Rotation
         {
-            get=>_humanoidroot.Transform.localRotation.eulerAngles;
+            get=>_humanoidroot.Transform.LocalRotation;
             set
             {
-                _humanoidroot.Transform.localRotation  = Quaternion.Euler(value);
+                _humanoidroot.Transform.LocalRotation = value;
             }
         }
         public Vector3 MoveDirection
@@ -68,14 +68,14 @@ namespace Eos.Ore
                 _humanoid.Ref.Scheduler.UnSchedule(lookatupdator);
             float factor = 0;
             var target = dest.Humanoidroot.LocalPosition;
-            var startrot = _humanoid.Humanoidroot.Transform.localRotation;
+            var startrot = _humanoid.Humanoidroot.Transform.Transform.localRotation;
             var direction = target - _humanoid.LocalPosition;
             var targetrot = Quaternion.LookRotation(direction.normalized);
             lookatupdator = _humanoid.Ref.Scheduler.ScheduleOnCondition(() =>
             {
                 factor += Time.deltaTime * 5;
                 var destrot = Quaternion.Lerp(startrot, targetrot, factor);
-                _humanoid.Humanoidroot.Transform.localRotation = destrot;
+                _humanoid.Humanoidroot.Transform.Transform.localRotation = destrot;
                 factor = Mathf.Min(1, factor);
                 _humanoid.UpdateHumanoidPosition();
             },

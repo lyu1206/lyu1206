@@ -6,6 +6,7 @@ using MessagePack;
 namespace Eos.Objects
 {
     using Ore;
+    [System.Serializable]
     public class EosUIObject : EosTransformActor
     {
         [IgnoreMember]public OreBase _uisource;
@@ -17,7 +18,7 @@ namespace Eos.Objects
         {
             if (_uisource == null)
                 return;
-            _uisource.Instantiate(_transform);
+            _uisource.Instantiate(_transform.Transform);
         }
         public override void OnCopyTo(EosObjectBase target)
         {

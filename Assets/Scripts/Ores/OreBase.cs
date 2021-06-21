@@ -19,6 +19,8 @@ namespace Eos.Ore
         }
         public GameObject Instantiate()
         {
+            if (OreID == 0)
+                return null;
             var mold = Assets.Mold.GetMold(Mold);
             var src = mold.GetOre(OreID);
             var obj = GameObject.Instantiate(src);

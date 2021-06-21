@@ -6,6 +6,7 @@ using MessagePack;
 namespace Eos.Objects
 {
     using Ore;
+    [System.Serializable]
     public class EosLight : EosTransformActor
     {
         [IgnoreMember]public OreBase Light;

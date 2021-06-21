@@ -32,7 +32,7 @@ namespace Eos.Objects
             boltlink.SetObject(_parent);
 #if UNITY_EDITOR
             if (_parent is ITransform trans)
-                fsm.transform.parent = trans.Transform;
+                fsm.transform.SetParent(trans.Transform.Transform);
 #endif
         }
         public void SetFsmValue(string name,object value)

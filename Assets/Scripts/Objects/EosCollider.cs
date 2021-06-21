@@ -6,21 +6,22 @@ namespace Eos.Objects
 {
     public class EosCollider : EosObjectBase , ITransform
     {
-        private Transform _transform;
+        private EosTransform _transform;
         private ColliderType _colliderType;
         private eosCollider _collider;
         private eosColliderAdaptor _collideradapter;
         private bool _istrigger;
         private bool _enable = true;
         public DetectType DetectType { get; set; } = DetectType.All;
-        public Transform Transform => _transform;
+        public EosTransform Transform => _transform;
         public EventHandler<Collision> OnCollisionEnter;
         public EventHandler<Collision> OnCollisionExit;
         public EventHandler<Collider> OnTriggerEnter;
         public EventHandler<Collider> OnTriggerExit;
         public EosCollider()
         {
-            _transform = ObjectFactory.CreateUnityInstance(Name);
+            _transform = ObjectFactory.CreateInstance<EosTransform>();
+            _transform.Create(Name);
         }
         public ColliderType ColliderType
         {
@@ -63,9 +64,7 @@ namespace Eos.Objects
         }
         public override void OnAncestryChanged()
         {
-            _transform.parent = (Parent as ITransform).Transform;
-            _transform.localPosition = Vector3.zero;
-            _transform.localRotation = Quaternion.identity;
+            _transform.SetParent((Parent as ITransform).Transform);
             AttachCollider();
         }
         private void AttachCollider()
@@ -106,9 +105,9 @@ namespace Eos.Objects
         public static eosColliderAdaptor RegistCollisionEvent(EosTransformActor actor,EosCollider collider)
         {
             var collidertrans = collider as ITransform;
-            var adapter = collidertrans.Transform.gameObject.GetComponent<eosColliderAdaptor>();
+            var adapter = collidertrans.Transform.Transform.gameObject.GetComponent<eosColliderAdaptor>();
             if (adapter==null)
-                adapter = collidertrans.Transform.gameObject.AddComponent<eosColliderAdaptor>();
+                adapter = collidertrans.Transform.Transform.gameObject.AddComponent<eosColliderAdaptor>();
             adapter._colider = collider;
             adapter._actor = actor;
             return adapter;
@@ -196,7 +195,7 @@ namespace Eos.Objects
         }
         public override void Attach(ITransform actor)
         {
-            var actorobject = actor.Transform.gameObject;
+            var actorobject = actor.Transform.Transform.gameObject;
             var collider = actorobject.AddComponent<BoxCollider>();
             collider.size = _size;
             collider.center = _center;
@@ -243,7 +242,7 @@ namespace Eos.Objects
         }
         public override void Attach(ITransform actor)
         {
-            var actorobject = actor.Transform.gameObject;
+            var actorobject = actor.Transform.Transform.gameObject;
             var collider = actorobject.AddComponent<CapsuleCollider>();
             collider.radius = _radius;
             collider.height = _height;
@@ -273,7 +272,7 @@ namespace Eos.Objects
         }
         public override void Attach(ITransform actor)
         {
-            var actorobject = actor.Transform.gameObject;
+            var actorobject = actor.Transform.Transform.gameObject;
             var collider = actorobject.AddComponent<SphereCollider>();
             collider.radius = _radius;
             collider.center = _center;
