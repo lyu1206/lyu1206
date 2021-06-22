@@ -43,14 +43,11 @@ namespace Eos.Objects.UI
         {
             if (!ActiveInHierachy)
                 return;
-            var textobj = ObjectFactory.CreateUnityInstance("textmesh").gameObject;
-            textobj.name = Name;
-            var textpro = _textmesh = textobj.AddComponent<TextMeshPro>();
+            _transform.Name = "textmesh";
+            var textpro = _textmesh = _transform.AddComponent<TextMeshPro>();
             textpro.text = "Hello";
             textpro.alignment = TextAlignmentOptions.Center;
             textpro.fontSize = 50;
-            _transform?.Destroy();
-            _transform.Transform = textobj.transform;
             _transform.LocalPosition = Vector3.up * 30;
         }
         protected override void OnActivate(bool active)

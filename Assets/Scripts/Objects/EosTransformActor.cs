@@ -7,6 +7,7 @@ namespace Eos.Objects
     [MessagePackObject]
     public class EosTransform
     {
+        private GameObject _unityobject;
         protected Transform _transform;
         [IgnoreMember] public Transform Transform { get => _transform; set => _transform = value; }
         public string Name
@@ -21,7 +22,7 @@ namespace Eos.Objects
         public Transform Create(string name)
         {
             
-            var obj = ObjectFactory.CreateUnityInstance(name);
+            var obj = _unityobject = ObjectFactory.CreateUnityInstance(name).gameObject;
             _transform = obj.transform;
             _transform.localPosition = Vector3.zero;
             _transform.localRotation = Quaternion.identity;
@@ -65,6 +66,13 @@ namespace Eos.Objects
         {
             GameObject.Destroy(_transform.gameObject);
         }
+        public T AddComponent<T>() where T : Component
+        {
+            var comp = _unityobject.AddComponent<T>();
+            _transform = _unityobject.transform;
+            return comp;
+        }
+
     }
     public partial class EosTransformActor : EosObjectBase , ITransform
     {
