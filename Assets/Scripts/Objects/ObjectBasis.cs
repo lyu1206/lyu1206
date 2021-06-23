@@ -249,7 +249,7 @@ namespace Eos.Objects
         public virtual void OnAncestryChanged()
         {
         }
-        public EosObjectBase Clone()
+        public EosObjectBase Clone(EosObjectBase parent)
         {
             var type = ObjectFactory.GetRegistType(this);
             if (type == ObjectType.RunTime)
@@ -257,12 +257,12 @@ namespace Eos.Objects
             var copy = ObjectFactory.CreateInstance(this.GetType());
             copy.OnCreate();
             OnCopyTo(copy);
+            parent?.AddChild(copy);
             foreach (var child in _childrens)
             {
-                var childclone = child.Clone();
+                var childclone = child.Clone(copy);
                 if (childclone == null)
                     continue;
-                copy.AddChild(childclone);
             }
             return copy;
         }

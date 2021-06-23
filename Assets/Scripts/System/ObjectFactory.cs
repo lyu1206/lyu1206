@@ -34,9 +34,9 @@ public static class ObjectFactory
     {
         return Activator.CreateInstance(Type.GetType(typename)) as EosObjectBase;
     }
-    public static EosObjectBase CopyObject(EosObjectBase src)
+    public static EosObjectBase CopyObject(EosObjectBase parent,EosObjectBase src)
     {
-        var clone = src.Clone();
+        var clone = src.Clone(parent);
         clone.Activate(src.Active);
         return clone;
     }

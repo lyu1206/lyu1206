@@ -178,7 +178,7 @@ namespace Eos.Objects
                 Collders.Add(collider);
                 if (_rigidbody == null)
                 {
-                    _rigidbody = Transform.Transform.gameObject.AddComponent<Rigidbody>();
+                    _rigidbody = Transform.AddComponent<Rigidbody>();
                     _rigidbody.isKinematic = true;
                 }
             }

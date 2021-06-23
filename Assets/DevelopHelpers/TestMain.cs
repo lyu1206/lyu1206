@@ -108,6 +108,7 @@ public class TestMain : MonoBehaviour
 
         var textmesh = new EosTextMesh("headname");
         textmesh.Text = "Hello";
+        textmesh.LocalPosition = new Vector3(0,30,0);
         pawn.AddChild(textmesh);
 
         playermodel.AddChild(pawn);

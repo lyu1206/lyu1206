@@ -22,8 +22,8 @@ namespace Eos.Objects
         public Transform Create(string name)
         {
             
-            var obj = _unityobject = ObjectFactory.CreateUnityInstance(name).gameObject;
-            _transform = obj.transform;
+            _unityobject = _unityobject??ObjectFactory.CreateUnityInstance(name).gameObject;
+            _transform = _unityobject.transform;
             _transform.localPosition = Vector3.zero;
             _transform.localRotation = Quaternion.identity;
             _transform.localScale = Vector3.one;
@@ -58,9 +58,11 @@ namespace Eos.Objects
         }
         public void SetParent(EosTransform parent)
         {
+            var lp = LocalPosition;
+            var lr = LocalRotation;
             Transform.SetParent(parent.Transform);
-            Transform.localPosition = Vector3.zero;
-            Transform.localRotation = Quaternion.identity;
+            Transform.localPosition = lp;
+            Transform.localRotation = Quaternion.Euler(lr);
         }
         public void Destroy()
         {
@@ -71,6 +73,14 @@ namespace Eos.Objects
             var comp = _unityobject.AddComponent<T>();
             _transform = _unityobject.transform;
             return comp;
+        }
+
+        public void CopyTo(EosTransform target)
+        {
+            target.Create(_transform.name);
+            target.LocalPosition = LocalPosition;
+            target.LocalRotation = LocalRotation;
+            target.LocalScale = LocalScale;
         }
 
     }
@@ -126,8 +136,7 @@ namespace Eos.Objects
         {
             if (!(target is EosTransformActor targetactor))
                 return;
-            targetactor.LocalPosition = LocalPosition;
-            targetactor.LocalRotation = LocalRotation;
+            Transform.CopyTo(targetactor.Transform);
             targetactor.Layer = Layer;
             base.OnCopyTo(target);
         }
@@ -153,11 +162,7 @@ namespace Eos.Objects
             base.OnAncestryChanged();
             if (!(_parent is ITransform transactor))
                 return;
-            var lp = LocalPosition;
-            var lr = LocalRotation;
             _transform.SetParent(transactor.Transform);
-//            LocalPosition = lp;
-//            LocalRotation = lr;
         }
         public override void OnDestroy()
         {

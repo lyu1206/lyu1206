@@ -90,7 +90,7 @@ namespace Eos.Service
             AddChild(player);
             Ref.Solution.StarterPlayer.IterChilds((child) =>
             {
-                player.AddChild(child.Clone());
+                child.Clone(player);
             });
             player.Activate(true);
         }
