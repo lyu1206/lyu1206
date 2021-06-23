@@ -7,10 +7,14 @@ namespace Eos.Objects
     [MessagePackObject]
     public class EosTransform
     {
+        [Key(1)]private Vector3 _localposition;
+        [Key(2)]private Vector3 _localrotation;
+        [Key(3)] private Vector3 _localscale;
+
         private GameObject _unityobject;
         protected Transform _transform;
         [IgnoreMember] public Transform Transform { get => _transform; set => _transform = value; }
-        public string Name
+        [IgnoreMember]public string Name
         {
             set
             {
@@ -29,40 +33,57 @@ namespace Eos.Objects
             _transform.localScale = Vector3.one;
             return _transform;
         }
-        [Key(1)]
+        [IgnoreMember]
         public Vector3 LocalPosition
         {
             set
             {
-                _transform.localPosition = value;
+                _localposition = value;
+                if (_transform!=null)
+                    _transform.localPosition = value;
             }
-            get => _transform.localPosition;
+            get
+            {
+                if (_transform!=null)
+                    return _transform.localPosition;
+                return _localposition;
+            }
         }
-        [Key(2)]
+        [IgnoreMember]
         public Vector3 LocalRotation
         {
             set
             {
-                _transform.localRotation = Quaternion.Euler(value);
+                _localrotation = value;
+                if (_transform!=null)
+                    _transform.localRotation = Quaternion.Euler(value);
             }
-            get => _transform.localRotation.eulerAngles;
+            get
+            {
+                if (_transform!=null)
+                    return _transform.localRotation.eulerAngles;
+                return _localrotation;
+            }
         }
-        [Key(3)]
+        [IgnoreMember]
         public Vector3 LocalScale
         {
             set
             {
-                _transform.localScale = value;
+                _localscale = value;
+                if (_transform!=null)
+                    _transform.localScale = value;
             }
-            get => _transform.localScale;
+            get
+            {
+                if (_transform!=null)
+                    return _transform.localScale;
+                return _localscale;
+            }
         }
         public void SetParent(EosTransform parent)
         {
-            var lp = LocalPosition;
-            var lr = LocalRotation;
-            Transform.SetParent(parent.Transform);
-            Transform.localPosition = lp;
-            Transform.localRotation = Quaternion.Euler(lr);
+            Transform.SetParent(parent.Transform,true);
         }
         public void Destroy()
         {
@@ -88,7 +109,7 @@ namespace Eos.Objects
     {
         protected EosTransform _transform;
         private EventHandler<float> _components;
-        [IgnoreMember] public virtual EosTransform Transform => _transform;
+        [Key(20)] public virtual EosTransform Transform => _transform;
         [Key(21)]public int Layer;
         [IgnoreMember]public int LayerMask => 1 << Layer;
         [IgnoreMember]

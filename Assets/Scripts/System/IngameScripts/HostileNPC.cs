@@ -46,6 +46,7 @@ namespace Eos.Script
             };
 
             humanoid.SetupTraceRange(1100);
+//            humanoid.SetupTraceRange(10);
 
             humanoid.OnAIEvent += AttackFinish;
 

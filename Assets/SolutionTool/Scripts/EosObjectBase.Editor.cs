@@ -25,6 +25,10 @@ namespace Eos.Objects
             _parent = null;
             _childrens.Clear();
         }
+        public virtual void CreatedEditor(EosEditorObject obj)
+        {
+
+        }
         public EosEditorObject CreateForEditor(EosEditorObject parent)
         {
             var ret = EosEditorObject.Create(this);

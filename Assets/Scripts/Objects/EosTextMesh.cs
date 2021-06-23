@@ -12,7 +12,7 @@ namespace Eos.Objects.UI
     {
         [Key(221)]
         private string _text;
-        public string Text 
+        [IgnoreMember]public string Text 
         {
             set
             {

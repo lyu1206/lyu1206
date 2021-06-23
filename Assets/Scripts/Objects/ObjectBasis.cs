@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace Eos.Objects
 {
+    using UI;
     using Service;
     using Service.AI;
     using MessagePack;
@@ -73,6 +74,7 @@ namespace Eos.Objects
     [Union(16, typeof(StarterPlayer))]
     [Union(17, typeof(StarterPack))]
     [Union(18, typeof(EosUIObject))]
+    [Union(19, typeof(EosTextMesh))]
     public abstract partial class EosObjectBase : ReferPlayer, IMessagePackSerializationCallbackReceiver
     {
         public EosObjectBase()

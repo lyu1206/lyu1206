@@ -22,6 +22,7 @@ namespace Eos.Service
                 return;
             Ref.Coroutine.OnCoroutineStart(ScriptRunning(script));
             var runid = Ref.Coroutine.NowID;
+            _runningscriptlist.Add(script);
             _runningscripts.Add(runid, script);
         }
         public void UnRegistScript(IScript script)
@@ -29,11 +30,13 @@ namespace Eos.Service
             if (script == null)
                 return;
             script.Finish();
+            var removeids = new List<int>();
             foreach(var it in _runningscripts)
             {
                 if (it.Value == script)
                 {
                     Ref.Coroutine.OnStopCoroutine(it.Key);
+                    _runningscripts.Remove(it.Key);
                     break;
                 }
             }

@@ -30,6 +30,7 @@ namespace Eos.Objects.Editor
             var obj = new GameObject(ownerobj.Name);
             var eosobj = obj.AddComponent<EosEditorObject>();
             eosobj._owner = ownerobj;
+            ownerobj.CreatedEditor(eosobj);
             return eosobj;
         }
         public void AddChild(EosEditorObject obj)
