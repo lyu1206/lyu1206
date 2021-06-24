@@ -56,7 +56,7 @@ namespace Eos.Objects
     [Serializable]
     [MessagePackObject]
     [Union(0, typeof(EosCamera))]
-//    [Union(1, typeof(EosTransformActor))]
+    [Union(1, typeof(EosTransformActor))]
     [Union(2, typeof(EosHumanoid))]
     [Union(3, typeof(GUIService))]
     [Union(4, typeof(AIService))]
