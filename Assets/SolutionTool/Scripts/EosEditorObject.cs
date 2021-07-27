@@ -36,8 +36,6 @@ namespace Eos.Objects.Editor
         public void AddChild(EosEditorObject obj)
         {
             obj.transform.parent = transform;
-            obj.transform.localPosition = Vector3.zero;
-            obj.transform.localRotation = Quaternion.identity;
         }
         public void ApplyObject(EosEditorObject parent)
         {
