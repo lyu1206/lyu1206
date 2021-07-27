@@ -33,6 +33,9 @@ namespace Eos.Objects.Editor
         }
         public override void OnInspectorGUI()
         {
+            base.OnInspectorGUI();
+
+
             GUILayout.Label(_targeteosobject.GetType().Name);
             foreach (var inspector in _inspectors)
             {

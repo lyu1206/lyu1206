@@ -60,6 +60,8 @@ public class MessagePackTest : MonoBehaviour
         var msgpackData = MessagePackSerializer.Serialize(mmbase);
         var decodetest = MessagePackSerializer.Deserialize<MBase>(msgpackData);
 
+        var testobj = gameObject.AddComponent<Eos.Objects.Editor.EosTransformActorEditor>();
+        testobj._transformactor = new Eos.Objects.EosTransformActor(true);
     }
 
     // Update is called once per frame

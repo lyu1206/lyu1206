@@ -254,8 +254,8 @@ namespace Eos.Objects
         public EosObjectBase Clone(EosObjectBase parent)
         {
             var type = ObjectFactory.GetRegistType(this);
-            if (type == ObjectType.RunTime)
-                return null;
+            //if (type == ObjectType.RunTime)
+            //    return null;
             var copy = ObjectFactory.CreateInstance(this.GetType());
             copy.OnCreate();
             OnCopyTo(copy);
@@ -271,13 +271,13 @@ namespace Eos.Objects
 
         public virtual void OnBeforeSerialize()
         {
-            OnCreate();
 //            throw new NotImplementedException();
         }
 
         public virtual void OnAfterDeserialize()
         {
-//            throw new NotImplementedException();
+            OnCreate();
+            //            throw new NotImplementedException();
         }
     }
 }

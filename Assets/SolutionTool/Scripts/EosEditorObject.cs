@@ -24,7 +24,7 @@ namespace Eos.Objects.Editor
             //a special tag, that will ensure that an object won't be included in build
             gameObject.tag = "EditorOnly";
         }
-        public EosObjectBase Owner => _owner;
+        public virtual EosObjectBase Owner => _owner;
         public static EosEditorObject Create(EosObjectBase ownerobj)
         {
             var obj = new GameObject(ownerobj.Name);

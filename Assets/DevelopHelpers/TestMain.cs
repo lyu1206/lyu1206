@@ -27,31 +27,31 @@ public class TestMain : MonoBehaviour
     OreBase _padui;
     private EosModel CreateNPC(Workspace workspace)
     {
-        var npcmodel = new EosModel(); npcmodel.Name = $"Slime{0}";
+        var npcmodel = ObjectFactory.CreateEosObject<EosModel>() /*new EosModel()*/; npcmodel.Name = $"Slime{0}";
         workspace.AddChild(npcmodel);
 
-        var modelscript = new EosScript { scriptname = "EngageLogic",Name = "EngageLogic" };
+        var modelscript = ObjectFactory.CreateEosObject<EosScript>(); modelscript.scriptname = "EngageLogic";modelscript.Name = "EngageLogic";
         npcmodel.AddChild(modelscript);
 
-        modelscript = new EosScript { scriptname = "HostileNPC" , Name = "HostileNPC" };
+        modelscript = ObjectFactory.CreateEosObject<EosScript>(); modelscript.scriptname = "HostileNPC"; modelscript.Name = "HostileNPC";
         npcmodel.AddChild(modelscript);
 
 
 
-        var pawn = new EosPawnActor();
+        var pawn = ObjectFactory.CreateEosObject<EosPawnActor>();
         pawn.Layer = LayerMask.NameToLayer("Hostile");
         pawn.Name = EosHumanoid.humanoidroot;
         pawn.Body = _slimebody as BodyOre;
         npcmodel.AddChild(pawn);
 
-        var pawncollider = new EosCollider {Name = "Body" }; pawncollider.ColliderType = ColliderType.Capsule;
+        var pawncollider = ObjectFactory.CreateEosObject<EosCollider>(); pawncollider.Name = "Body"; pawncollider.ColliderType = ColliderType.Capsule;
         pawn.AddChild(pawncollider);
         pawncollider.Collider.Center = new Vector3(0, 5, 0);
         ((eosCapsuleCollider)pawncollider.Collider).Radius = 8;
 
-        var humanoid = new EosHumanoid(); humanoid.Name = "Humanoid"; humanoid.Level = 1;
+        var humanoid = ObjectFactory.CreateEosObject<EosHumanoid>(); humanoid.Name = "Humanoid"; humanoid.Level = 1;
 
-        var humanoidfsm = new EosFsm {Name = "humanoidFSM" }; humanoidfsm.FSM = _pcfsm;
+        var humanoidfsm = ObjectFactory.CreateEosObject<EosFsm>(); humanoidfsm.Name = "humanoidFSM"; humanoidfsm.FSM = _pcfsm;
         humanoid.AddChild(humanoidfsm);
 
         npcmodel.AddChild(humanoid);
@@ -61,7 +61,7 @@ public class TestMain : MonoBehaviour
     IEnumerator Start()
     {
 
-         EosObjectBase solution = new Solution {Name = "Solution" };
+        EosObjectBase solution = ObjectFactory.CreateEosObject<Solution>();solution.Name = "Solution";
 
         void Save()
         {
@@ -75,82 +75,82 @@ public class TestMain : MonoBehaviour
         }
 
 
-        var aiservice = new AIService {Name = "AIService" };
+        var aiservice = ObjectFactory.CreateEosObject<AIService>();aiservice.Name = "AIService";
         solution.AddChild(aiservice);
 
-        var workspace = new Workspace { Name = "Workspace"};
+        var workspace = ObjectFactory.CreateEosObject<Workspace>();workspace.Name = "Workspace";
         solution.AddChild(workspace);
-        
-        var terrainservice = new TerrainService{Name = "TerrainService" , _pvmOre = pvmore};
+
+        var terrainservice = ObjectFactory.CreateEosObject<TerrainService>();terrainservice.Name = "TerrainService";terrainservice._pvmOre = pvmore;
         solution.AddChild(terrainservice);
-        var terrain = new EosTerrain { Name = "Terrain" };
+        var terrain = ObjectFactory.CreateEosObject<EosTerrain>();terrain.Name = "Terrain";
         terrainservice.AddChild(terrain);
 
-        
-        var playerservice = new Players {Name = "Players" };
+
+        var playerservice = ObjectFactory.CreateEosObject<Players>();playerservice.Name = "Players";
         solution.AddChild(playerservice);
         /*
         var player = playerservice.FindChild<Player>();
         */
-        var starterplayer = new StarterPlayer { Name = "StarterPlayer" };
+        var starterplayer = ObjectFactory.CreateEosObject<StarterPlayer>();starterplayer.Name = "StarterPlayer";
         solution.AddChild(starterplayer);
 
-        var playermodel = new EosModel();playermodel.Name = $"Player - model";
+        var playermodel = ObjectFactory.CreateEosObject<EosModel>(); playermodel.Name = $"Player - model";
         starterplayer.AddChild(playermodel);
 
-        var modelscript = new EosScript{ scriptname = "EngageLogic",Name = "EngageLogic" };
+        var modelscript = ObjectFactory.CreateEosObject<EosScript>();modelscript.scriptname = "EngageLogic";modelscript.Name = "EngageLogic";
         playermodel.AddChild(modelscript);
 
 
-        var pawn = new EosPawnActor();
+        var pawn = ObjectFactory.CreateEosObject<EosPawnActor>();
         pawn.Name = EosHumanoid.humanoidroot;
         pawn.Body = _bodyore;
 
-        var textmesh = new EosTextMesh("headname");
+        var textmesh = ObjectFactory.CreateEosObject<EosTextMesh>("headname");
         textmesh.Text = "Hello";
         textmesh.LocalPosition = new Vector3(0,30,0);
         pawn.AddChild(textmesh);
 
         playermodel.AddChild(pawn);
-        var pawncollider = new EosCollider();pawncollider.ColliderType = ColliderType.Capsule;
+        var pawncollider = ObjectFactory.CreateEosObject<EosCollider>(); pawncollider.ColliderType = ColliderType.Capsule;
         pawn.AddChild(pawncollider);
         ((eosCapsuleCollider)pawncollider.Collider).Radius = 8;
 
-        var humanoid = new EosHumanoid();humanoid.Name = "Humanoid";humanoid.Level = 1;
-        var humanoidfsm = new EosFsm { Name = "FSM"};humanoidfsm.FSM = _pcfsm;
+        var humanoid = ObjectFactory.CreateEosObject<EosHumanoid>();humanoid.Name = "Humanoid";humanoid.Level = 1;
+        var humanoidfsm = ObjectFactory.CreateEosObject<EosFsm>();humanoidfsm.Name = "FSM";humanoidfsm.FSM = _pcfsm;
         humanoid.AddChild(humanoidfsm);
-        var battlescript = new EosScript { scriptname = "NonTargetBattle",Name = "NonTargetBattle" };
+        var battlescript = ObjectFactory.CreateEosObject<EosScript>();battlescript.scriptname = "NonTargetBattle";battlescript.Name = "NonTargetBattle";
         humanoid.AddChild(battlescript);
 
         playermodel.AddChild(humanoid);
 
 
-        var starterpack = new StarterPack {Name = "StarterPack" };
+        var starterpack = ObjectFactory.CreateEosObject<StarterPack>();starterpack.Name = "StarterPack";
         solution.AddChild(starterpack);
 
-        var tool = new EosTool();tool.Name = "Weapon";
-        var weaponmesh = new EosMeshObject();weaponmesh.Name = "Sword";
+        var tool = ObjectFactory.CreateEosObject <EosTool>();tool.Name = "Weapon";
+        var weaponmesh = ObjectFactory.CreateEosObject < EosMeshObject>();weaponmesh.Name = "Sword";
         weaponmesh.Mesh = _weapon;
         tool.AddChild(weaponmesh);
         playermodel.AddChild(tool);
         starterpack.AddChild(tool);
 
 
-        var camera = new EosCamera();camera.Name = "Cam";
+        var camera = ObjectFactory.CreateEosObject<EosCamera>(); camera.Name = "Cam";
         workspace.AddChild(camera);
         camera.LocalPosition = new Vector3(0,60,100);
         camera.LocalRotation = new Vector3(26,180,0);
 
-        var light = new EosLight();light.Name = "Light";
+        var light = ObjectFactory.CreateEosObject <EosLight>();light.Name = "Light";
         light.Light = _lightore;
         workspace.AddChild(light);
 
-        var guiservice = new GUIService {Name = "GUIService" };
+        var guiservice = ObjectFactory.CreateEosObject<GUIService>();guiservice.Name = "GUIService";
         solution.AddChild(guiservice);
-        var uiobj = new EosUIObject(); uiobj.Name = "PAD";
+        var uiobj = ObjectFactory.CreateEosObject<EosUIObject>(); uiobj.Name = "PAD";
         uiobj._uisource = _padui;
         guiservice.AddChild(uiobj);
-        var script = new EosScript { scriptname = "PadControl",Name = "PadControl" };
+        var script = ObjectFactory.CreateEosObject<EosScript>();script.scriptname = "PadControl";script.Name = "PadControl";
         uiobj.AddChild(script);
 
 

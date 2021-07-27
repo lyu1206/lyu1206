@@ -40,6 +40,7 @@ namespace Eos.Objects.UI
         }
         public override void OnCreate()
         {
+            base.OnCreate();
             if (!ActiveInHierachy)
                 return;
             var textpro = _textmesh = _transform.AddComponent<TextMeshPro>();

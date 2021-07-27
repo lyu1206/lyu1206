@@ -79,7 +79,7 @@ namespace Eos.Service
         }
         private Player CreatePlayer(ulong sid)
         {
-            var player = new Player();
+            var player = ObjectFactory.CreateEosObject<Player>();
             player.Name = $"player{sid}";
             return player;
         }

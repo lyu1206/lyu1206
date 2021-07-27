@@ -14,6 +14,14 @@ public static class ObjectFactory
 {
     private static Transform _unityInstaceRoot;
     public static Transform UnityInstanceRoot{ set => _unityInstaceRoot = value; }
+    public static T CreateEosObject<T>(params object[]args) where T : EosObjectBase
+    {
+        var instance = Activator.CreateInstance(typeof(T),args) as T;
+        instance.OnCreate();
+        instance.Ref.ObjectManager.RegistObject(instance);
+        instance.ObjectID |= ((uint)ObjectType.RunTime) << 24;
+        return instance;
+    }
     public static T CreateInstance<T>() where T : class
     {
         var instance = Activator.CreateInstance<T>();
@@ -22,6 +30,7 @@ public static class ObjectFactory
     public static T CreateInstance<T>(ObjectType type = ObjectType.RunTime) where T : EosObjectBase
     {
         var instance = Activator.CreateInstance<T>();
+        instance.OnCreate();
         instance.Ref.ObjectManager.RegistObject(instance);
         instance.ObjectID |= ((uint)type) << 24;
         return instance;

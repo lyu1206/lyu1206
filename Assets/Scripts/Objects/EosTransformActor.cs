@@ -25,7 +25,8 @@ namespace Eos.Objects
         }
         public Transform Create(string name)
         {
-            
+            if (_transform != null)
+                return _transform;
             _unityobject = _unityobject??ObjectFactory.CreateUnityInstance(name).gameObject;
             _transform = _unityobject.transform;
             _transform.localPosition = Vector3.zero;
@@ -151,6 +152,11 @@ namespace Eos.Objects
         public EosTransformActor()
         {
             _transform = ObjectFactory.CreateInstance<EosTransform>();
+//            _transform.Create(Name);
+        }
+        public override void OnCreate()
+        {
+            base.OnCreate();
             _transform.Create(Name);
         }
         public override void OnCopyTo(EosObjectBase target)
