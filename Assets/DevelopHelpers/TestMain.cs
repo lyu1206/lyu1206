@@ -83,7 +83,7 @@ public class TestMain : MonoBehaviour
 
         var terrainservice = ObjectFactory.CreateEosObject<TerrainService>();terrainservice.Name = "TerrainService";terrainservice._pvmOre = pvmore;
         solution.AddChild(terrainservice);
-        var terrain = ObjectFactory.CreateEosObject<EosTerrain>();terrain.Name = "Terrain";
+        var terrain = ObjectFactory.CreateEosObject<EosTerrain>();terrain.Name = "Terrain";terrain.TerrainOre = new OreReference { Mold = "TerrainMold", OreID = Eos.Assets.Mold.GetMold("TerrainMold").GetOreID(0) };
         terrainservice.AddChild(terrain);
 
 

@@ -98,7 +98,7 @@ namespace Eos.Editor
         {
             var msgpackData = File.ReadAllBytes(path);
             var desolution = _eossolution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
-            _solution = desolution.CreateForEditor(null);
+            //_solution = desolution.CreateForEditor(null);
 
             //if (_solution != null)
             //    GameObject.DestroyImmediate(_solution.gameObject);

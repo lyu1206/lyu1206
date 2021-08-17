@@ -79,7 +79,7 @@ public class EosObjectTreeView : TreeView
             if (child != null)
             {
                 allItems.Add(new ObjectTreeviewItem(child));
-                child.Activate(child.ActiveInHierachy);
+                child.CreatedOnEditor();
             }
         },true);
 

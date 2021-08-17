@@ -66,6 +66,10 @@ namespace Eos.Objects
                 child?.CreateForEditor(ret);
             return ret;
         }
+        public virtual void CreatedOnEditor()
+        {
+
+        }
     }
 }
 #endif
