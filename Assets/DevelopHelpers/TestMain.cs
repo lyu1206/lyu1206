@@ -42,6 +42,7 @@ public class TestMain : MonoBehaviour
         pawn.Layer = LayerMask.NameToLayer("Hostile");
         pawn.Name = EosHumanoid.humanoidroot;
         pawn.Body = _slimebody as BodyOre;
+        pawn.BodyOre = new OreReference { Mold = "BodyMolds", OreID = Eos.Assets.Mold.GetMold("BodyMolds").GetOreID(1) };
         npcmodel.AddChild(pawn);
 
         var pawncollider = ObjectFactory.CreateEosObject<EosCollider>(); pawncollider.Name = "Body"; pawncollider.ColliderType = ColliderType.Capsule;
@@ -138,8 +139,8 @@ public class TestMain : MonoBehaviour
 
         var camera = ObjectFactory.CreateEosObject<EosCamera>(); camera.Name = "Cam";
         workspace.AddChild(camera);
-        camera.LocalPosition = new Vector3(0,60,100);
-        camera.LocalRotation = new Vector3(26,180,0);
+        camera.LocalPosition = new Vector3(-80,106,-80);
+        camera.LocalRotation = new Vector3(60,-180,0);
 
         var light = ObjectFactory.CreateEosObject <EosLight>();light.Name = "Light";
         light.Light = _lightore;

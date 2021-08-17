@@ -44,6 +44,11 @@ namespace Eos.Objects
                 EosGear.Gear(part,_bodyobj.transform,_skeleton);
             }
         }
+        public override void CreatedOnEditor()
+        {
+            base.CreatedOnEditor();
+            PropertyChanged(Parent);
+        }
     }
 }
 #endif

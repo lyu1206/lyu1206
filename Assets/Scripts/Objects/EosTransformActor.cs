@@ -152,12 +152,12 @@ namespace Eos.Objects
         public EosTransformActor()
         {
             _transform = ObjectFactory.CreateInstance<EosTransform>();
-//            _transform.Create(Name);
+            _transform.Create(Name);
         }
         public override void OnCreate()
         {
             base.OnCreate();
-            _transform.Create(Name);
+//            _transform.Create(Name);
         }
         public override void OnCopyTo(EosObjectBase target)
         {
