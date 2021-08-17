@@ -164,10 +164,9 @@ public class TestMain : MonoBehaviour
         EosPlayer.EosPlayer.Instance.SetSolution(solution as Solution);
 
 
-        solution.IterChilds((child) => child.OnCreate(), true);
+//        solution.IterChilds((child) => child.OnCreate(), true);
         ((Solution)solution).StartGame();
-
-        yield return new WaitForEndOfFrame();
+       yield return new WaitForEndOfFrame();
 
         //        playermodel.FindChild<EosPawnActor>().PlayNode("idle");
 

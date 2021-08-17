@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Eos.Objects.Editor;
 
 public class ObjectHierachy : EditorWindow
 {
@@ -24,7 +25,6 @@ public class ObjectHierachy : EditorWindow
     {
         // Check whether there is already a serialized view state (state 
         // that survived assembly reloading)
-
         if (_eosObjectTreeViewState == null)
             _eosObjectTreeViewState = new TreeViewState ();
 
@@ -43,8 +43,8 @@ public class ObjectHierachy : EditorWindow
     void OnGUI ()
     {
         GUI.changed = false;
-        _eosObjectTreeView.OnGUI(new Rect(0, 0, position.width, position.height));
-        var rows = _eosObjectTreeView.GetRows().ToArray();
+        _eosObjectTreeView?.OnGUI(new Rect(0, 0, position.width, position.height));
+        //var rows = _eosObjectTreeView.GetRows().ToArray();
         //if (GUI.changed)
         //    _eosObjectTreeView.Repaint();
     }
@@ -71,12 +71,26 @@ public class EosObjectTreeView : TreeView
 
     protected override TreeViewItem BuildRoot()
     {
+        var solution = Eos.Editor.SolutionEditor.EosSolution;
+        var root = new  ObjectTreeviewItem(solution);
+        var allItems = new List<TreeViewItem>();
+        solution.IterChilds((child) =>
+        {
+            if (child != null)
+            {
+                allItems.Add(new ObjectTreeviewItem(child));
+                child.Activate(child.ActiveInHierachy);
+            }
+        },true);
+
         // BuildRoot is called every time Reload is called to ensure that TreeViewItems 
         // are created from data. Here we create a fixed set of items. In a real world example,
         // a data model should be passed into the TreeView and the items created from the model.
 
         // This section illustrates that IDs should be unique. The root item is required to 
         // have a depth of -1, and the rest of the items increment from that.
+
+        /*
         var root = new TreeViewItem {id = 0, depth = -1, displayName = "Root"};
         var allItems = new List<TreeViewItem>
         {
@@ -90,6 +104,7 @@ public class EosObjectTreeView : TreeView
             new TreeViewItem {id = 8, depth = 2, displayName = "Crocodile"},
             new TreeViewItem {id = 9, depth = 2, displayName = "Lizard"},
         };
+        */
         // Utility method that initializes the TreeViewItem.children and .parent for all items.
         SetupParentsAndChildrenFromDepths(root, allItems);
 
@@ -187,11 +202,22 @@ public class EosObjectTreeView : TreeView
     protected override void RowGUI(RowGUIArgs args)
     {
         var rect = args.rowRect;
-        
-        rect.x += this.foldoutWidth * (args.item.depth+1);
-        GUI.
+       
+        rect.x += this.depthIndentWidth * (args.item.depth+1);
         GUI.Label(rect, args.item.displayName,_skin.GetStyle("thumb"));
-
+        if (args.focused)
+        {
+            rect.x += 200;
+            rect.width = 16;
+            if (GUI.Button(rect, "+"))
+            {
+                var gm = new GenericMenu();
+                gm.AddItem(new GUIContent("Test menu"), false, () =>
+                {
+                });
+                gm.ShowAsContext();
+            }
+        }
         //        base.RowGUI(args);
         //var rect = args.rowRect;
         //rect.x = args.rowRect.x + args.rowRect.width;

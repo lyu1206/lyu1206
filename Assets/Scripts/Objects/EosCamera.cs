@@ -14,7 +14,6 @@ namespace Eos.Objects
             get => base.LocalPosition;
             set
             {
-                _camera = Camera.main;
                 _camera = _camera ?? Camera.allCameras[0];
                 _camera.transform.localPosition = value;
                 base.LocalPosition = value;
@@ -56,7 +55,7 @@ namespace Eos.Objects
             camera.name = Name;
             camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = Color.black;
-            Camera.main.enabled = false;
+//            Camera.main.enabled = false;
             camera.enabled = true;
 
             Main = this;

@@ -89,6 +89,9 @@ public class SolutionEditorEditor : EditorWindow
             EditorSceneManager.OpenScene("Assets/SolutionTool/SolutionEditor.unity");
             SetEditorviewRoot();
             SolutionEditor.OpenSolution(path);
+            var we = EditorWindow.GetWindow<ObjectHierachy>();
+            we.Show();
+
 
             //_solution = SolutionEditor.Solution.Object as Solution;
             //_name = SolutionEditor.Solution.name;

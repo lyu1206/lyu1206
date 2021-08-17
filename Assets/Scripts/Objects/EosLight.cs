@@ -13,6 +13,8 @@ namespace Eos.Objects
         [IgnoreMember]public LightController _lightcontroller;
         protected override void OnActivate(bool active)
         {
+            if (Light == null)
+                return;
             var light = Light.Instantiate();
             _lightcontroller = light.GetComponent<LightController>();
         }

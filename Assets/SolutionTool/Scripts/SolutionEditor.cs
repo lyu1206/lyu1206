@@ -19,6 +19,8 @@ namespace Eos.Editor
     public class SolutionEditor : MonoBehaviour
     {
         private static EosEditorObject _solution;
+        private static EosObjectBase _eossolution;
+        public static EosObjectBase EosSolution => _eossolution;
         [SerializeField]
         private Camera _editorcamera;
         public static SolutionEditor Instance;
@@ -95,7 +97,7 @@ namespace Eos.Editor
         public static void OpenSolution(string path)
         {
             var msgpackData = File.ReadAllBytes(path);
-            var desolution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
+            var desolution = _eossolution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
             _solution = desolution.CreateForEditor(null);
 
             //if (_solution != null)

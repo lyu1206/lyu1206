@@ -65,7 +65,8 @@ namespace Eos.Objects
                 _lateaddupdateobjectlist.ForEach(obj => _updateobjectlist.Add(obj));
             if (_latedeleteupdateobjectlist.Count>0)
                 _latedeleteupdateobjectlist.ForEach(obj => _updateobjectlist.Remove(obj));
-            _updateobjectlist.ForEach(obj => obj.Update(delta));
+            foreach (var it in _updateobjectlist)
+                it.Update(delta);
         }
     }
 }

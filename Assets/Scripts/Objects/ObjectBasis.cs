@@ -137,6 +137,8 @@ namespace Eos.Objects
         }
         public virtual void OnCreate()
         {
+            if (ObjectID == 0)
+                Ref.ObjectManager.RegistObject(this);
         }
         public virtual void Activate(bool active,bool recursivechild = true)
         {
@@ -192,8 +194,8 @@ namespace Eos.Objects
             _childrens.ForEach(it =>
             {
                 action(it);
-                if (isrecursive)
-                    it.IterChilds(action);
+                if (isrecursive && it!=null)
+                    it.IterChilds(action,isrecursive);
             });
         }
         public T FindDeepChild<T>() where T : EosObjectBase
@@ -277,6 +279,16 @@ namespace Eos.Objects
         public virtual void OnAfterDeserialize()
         {
             OnCreate();
+            if (_childrens == null)
+                return;
+            var childrens = new List<EosObjectBase>(_childrens);
+            _childrens.Clear();
+            foreach (var it in childrens)
+            {
+                if (it == null)
+                    continue;
+                AddChild(it);
+            }
             //            throw new NotImplementedException();
         }
     }
