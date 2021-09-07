@@ -138,12 +138,16 @@ namespace Eos.Objects
             if (!(target is EosPawnActor targetpawn))
                 return;
             targetpawn.Body = Body;
+            targetpawn.BodyOre = BodyOre;
             base.OnCopyTo(target);
         }
 
         protected override void OnActivate(bool active)
         {
             base.OnActivate(active);
+            var bodyore = BodyOre.GetOre();
+            if (bodyore != null)
+                Body = bodyore.GetComponent<BodyOre>();
             var body = Body.GetBody();
             _skeleton = new EosSkeleton();
             _animator = body.GetComponent<Animator>();

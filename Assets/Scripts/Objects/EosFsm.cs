@@ -21,10 +21,14 @@ namespace Eos.Objects
             if (!(target is EosFsm targetfsm))
                 return;
             targetfsm.FSM = FSM;
+            targetfsm.FSMOre = FSMOre;
             base.OnCopyTo(target);
         }
         protected override void OnActivate(bool active)
         {
+            var fsmore = FSMOre.GetOre();
+            if (fsmore != null)
+                FSM = fsmore.GetComponent<OreBase>();
             var fsm = FSM.Instantiate();
             var boltlink = fsm.GetComponent<BoltLinkOre>();
             _values = ObjectVariables.Declarations(boltlink.gameObject, false, false);

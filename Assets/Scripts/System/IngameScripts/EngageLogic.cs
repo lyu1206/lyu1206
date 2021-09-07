@@ -43,6 +43,7 @@ namespace Eos.Script
                     damagepopup.Text = damage.ToString();
                     var popupscript = new EosScript();
                     popupscript.scriptname = "DamagePopup";
+                    popupscript.ScriptOre = new Ore.OreReference { Mold = "ScriptMold", OreID = 1 };
                     damagepopup.AddChild(popupscript);
                     _owner.Humanoidroot.AddChild(damagepopup);
                     damagepopup.LocalPosition = Vector3.up * 30;

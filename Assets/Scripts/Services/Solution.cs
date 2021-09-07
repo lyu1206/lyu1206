@@ -39,7 +39,10 @@ namespace Eos.Service
             _aiservice = new AIService();
             _workspace = FindChild<Workspace>();
             _terrainservice = FindChild<TerrainService>();
-            _players = FindChild<Players>();
+
+            _players = ObjectFactory.CreateEosObject<Players>();
+            AddChild(_players);
+
             _guiservice = FindChild<GUIService>();
             _starterplayer = FindChild<StarterPlayer>();
             _starterpack = FindChild<StarterPack>();

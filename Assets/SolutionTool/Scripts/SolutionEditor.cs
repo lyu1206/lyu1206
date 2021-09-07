@@ -15,11 +15,11 @@ namespace Eos.Editor
     using Objects.Editor;
     using EosPlayer;
     using Objects;
-    [ExecuteInEditMode]
     public class SolutionEditor : MonoBehaviour
     {
         private static EosEditorObject _solution;
         private static EosObjectBase _eossolution;
+        private static Solution _previewsolution;
         public static EosObjectBase EosSolution => _eossolution;
         [SerializeField]
         private Camera _editorcamera;
@@ -33,6 +33,18 @@ namespace Eos.Editor
         private void OnEnable()
         {
             SceneView.duringSceneGui += OnSceneGUI;
+        }
+        private void Start()
+        {
+            var temppath = $"{Application.persistentDataPath}/preview.solution";
+            var msgpackData = File.ReadAllBytes(temppath);
+            var solution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
+            _previewsolution = solution as Solution;
+            if (_previewsolution != null)
+            {
+                EosPlayer.Instance.SetSolution(_previewsolution as Solution);
+                _previewsolution?.StartGame();
+            }
         }
         void OnSceneGUI(SceneView view)
         {
@@ -116,17 +128,19 @@ namespace Eos.Editor
 
             //// _objectlist.ForEach(o => o.Object.EditorCreate(o));
         }
-        public static void SaveSolution(string path)
+        public static void SaveSolution(string path,bool refresh = true)
         {
             if (string.IsNullOrEmpty(path))
                 return;
-            _solution.ApplyObject(null);
-            var msgpackData = MessagePack.MessagePackSerializer.Serialize(_solution.Owner);
+            var msgpackData = MessagePack.MessagePackSerializer.Serialize(_eossolution);
             File.WriteAllBytes(path, msgpackData);
-            AssetDatabase.Refresh();
+            if (refresh)
+                AssetDatabase.Refresh();
         }
-        public void Preview()
+        public void Preview(Solution solution)
         {
+            _previewsolution = solution;
+
             //_objectlist.ForEach(o =>
             //{
             //    o.Object.ClearRelation();

@@ -11,11 +11,18 @@ namespace Eos.Objects
     {
         [IgnoreMember]public OreBase Light;
         [IgnoreMember]public LightController _lightcontroller;
+        [RequireMold("LightMold")]
+        [Inspector("Ore", "Light")]
+        [Key(101)] public OreReference LightOre { get; set; }
         protected override void OnActivate(bool active)
         {
+            var lightore = LightOre.GetOre();
+            Light = lightore.GetComponent<OreBase>();
             if (Light == null)
                 return;
             var light = Light.Instantiate();
+            light.transform.parent = _transform.Transform;
+            light.gameObject.active = true;
             _lightcontroller = light.GetComponent<LightController>();
         }
         public override void OnCopyTo(EosObjectBase target)

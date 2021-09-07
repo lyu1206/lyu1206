@@ -17,3 +17,12 @@ MonoBehaviour:
   - {fileID: 1473875184433860, guid: 5236ec67f3aef434c9628c675985a112, type: 3}
   - {fileID: 1127852920903314, guid: 8542cc128e0309442979ec6d0d24b7b4, type: 3}
   - {fileID: 1125344489761564, guid: 966a9cbf92a1f46479b8023976641cfc, type: 3}
+  _items:
+  - _id: 1
+    _item: {fileID: 1432569972402790, guid: a85343f9f1e933549b2c884134691f9d, type: 3}
+  - _id: 2
+    _item: {fileID: 1473875184433860, guid: 5236ec67f3aef434c9628c675985a112, type: 3}
+  - _id: 3
+    _item: {fileID: 1127852920903314, guid: 8542cc128e0309442979ec6d0d24b7b4, type: 3}
+  - _id: 0
+    _item: {fileID: 1125344489761564, guid: 966a9cbf92a1f46479b8023976641cfc, type: 3}

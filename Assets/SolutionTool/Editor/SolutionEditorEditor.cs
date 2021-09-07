@@ -41,9 +41,19 @@ public class SolutionEditorEditor : EditorWindow
 
         GetWindow<SolutionEditorEditor>("Solution Editor").Show();
     }
-
+    static private void OnQuit()
+    {
+        var wnd = GetWindow<SolutionEditorEditor>("Solution Editor");
+        wnd.StopPreview();
+        wnd.Repaint();
+    }
+    private void OnDisable()
+    {
+        Application.quitting -= OnQuit;
+    }
     private void OnEnable()
     {
+        Application.quitting += OnQuit;
         _window = this; // set singleton.
         if (_eosobjecttypenames != null)
             return;
@@ -68,6 +78,11 @@ public class SolutionEditorEditor : EditorWindow
     {
         var root = new GameObject("SolutionView");
         ObjectFactory.UnityInstanceRoot = root.transform;
+    }
+    void StopPreview()
+    {
+        _ispreview = false;
+        SolutionEditor.OpenSolution(_currentloadpath);
     }
     private void OnGUI()
     {
@@ -128,23 +143,17 @@ public class SolutionEditorEditor : EditorWindow
         }
         if (!_ispreview && GUILayout.Button("Preview Solution"))
         {
-            //var temppath = $"{Application.persistentDataPath}/preview.solution";
-            //SolutionEditor.SaveSolution(temppath);
-            //_solutiongameobject = SolutionEditor.Solution.gameObject;
-            //GameObject.DestroyImmediate(_solutiongameobject);
-            //EditorApplication.ExecuteMenuItem("Edit/Play");
-            //_ispreview = true;
+            var temppath = $"{Application.persistentDataPath}/preview.solution";
+            SolutionEditor.SaveSolution(temppath,false);
+            if (ObjectFactory.UnityInstanceRoot != null)
+                GameObject.DestroyImmediate(ObjectFactory.UnityInstanceRoot.gameObject);
+            EditorApplication.ExecuteMenuItem("Edit/Play");
+            _ispreview = true;
         }
         else if (_ispreview && GUILayout.Button("Stop Preview"))
         {
-            //EditorApplication.ExecuteMenuItem("Edit/Play");
-            //EosEditorPlayer.Stop();
-            //_onStopAction = () =>
-            //{
-            //    SolutionEditor.OpenSolution(_currentloadpath);
-            //    _ispreview = false;
-            //};
-            //// SolutionEditor.Instance.StopPreview();
+            EditorApplication.ExecuteMenuItem("Edit/Play");
+            // SolutionEditor.Instance.StopPreview();
         }
         if (_onStopAction!=null && _ispreview && !EditorApplication.isPlaying)
         {

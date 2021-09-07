@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MessagePack;
 namespace Eos.Objects
 {
     public class EosCollider : EosObjectBase , ITransform
@@ -12,17 +13,20 @@ namespace Eos.Objects
         private eosColliderAdaptor _collideradapter;
         private bool _istrigger;
         private bool _enable = true;
-        public DetectType DetectType { get; set; } = DetectType.All;
-        public EosTransform Transform => _transform;
-        public EventHandler<Collision> OnCollisionEnter;
-        public EventHandler<Collision> OnCollisionExit;
-        public EventHandler<Collider> OnTriggerEnter;
-        public EventHandler<Collider> OnTriggerExit;
+        [Inspector("Basic", "DetectType")]
+        [Key(101)]public DetectType DetectType { get; set; } = DetectType.All;
+        [IgnoreMember]public EosTransform Transform => _transform;
+        [IgnoreMember] public EventHandler<Collision> OnCollisionEnter;
+        [IgnoreMember] public EventHandler<Collision> OnCollisionExit;
+        [IgnoreMember] public EventHandler<Collider> OnTriggerEnter;
+        [IgnoreMember] public EventHandler<Collider> OnTriggerExit;
         public EosCollider()
         {
             _transform = ObjectFactory.CreateInstance<EosTransform>();
             _transform.Create(Name);
         }
+        [Key(102)]
+        [Inspector("Basic", "ColliderType")]
         public ColliderType ColliderType
         {
             set
@@ -35,7 +39,9 @@ namespace Eos.Objects
                 _colliderType = value;
                 _collider = eosCollider.Create(_colliderType);
             }
+            get => _colliderType;
         }
+        [Key(103)]
         public bool Enable
         {
             set
@@ -46,8 +52,18 @@ namespace Eos.Objects
             }
             get =>_enable;
         }
-        public bool IsTrigger { set => _collider.IsTrigger = _istrigger = value; }
-        public eosCollider Collider => _collider;
+        [Key(104)]
+        public bool IsTrigger 
+        { 
+            set => _collider.IsTrigger = _istrigger = value;
+            get => _istrigger;
+        }
+        [Key(105)]
+        public eosCollider Collider
+        {
+            get=> _collider;
+            set => _collider = value;
+        }
         public override void OnCopyTo(EosObjectBase target)
         {
             if (!(target is EosCollider targetcollider))
@@ -137,14 +153,21 @@ namespace Eos.Objects
             _colider.OnCollisionExit?.Invoke(income._actor, collision);
         }
     }
+    [MessagePackObject]
+    [Union(101, typeof(eosBoxCollider))]
+    [Union(102, typeof(eosCapsuleCollider))]
+    [Union(103, typeof(eosSphereCollider))]
     public abstract class eosCollider
     {
+        protected int _layer;
         protected Collider _collider;
         protected Vector3 _center = new Vector3(0, 17, 0);
         protected bool _istrigger = false;
+        [Key(301)]
         public ColliderType ColiderType;
-        public abstract Vector3 Center { set; }
-        public Collider Collider => _collider;
+        [Key(302)]public abstract Vector3 Center { set; get; }
+        [IgnoreMember] public Collider Collider => _collider;
+        [Key(303)]
         public bool IsTrigger 
         {
             set
@@ -152,11 +175,24 @@ namespace Eos.Objects
                 if (_collider == null)
                     return;
                 _collider.isTrigger = value;
+                _istrigger = value;
             }
+            get => _istrigger;
         }
 
         public abstract void Attach(ITransform actor);
-        public int Layer { set => _collider.gameObject.layer = value; }
+        [Key(304)]
+        public int Layer
+        {
+            set
+            {
+                _layer = value;
+                if (_collider == null)
+                    return;
+                _collider.gameObject.layer = value;
+            }
+            get => _layer;
+        }
         public virtual void CopyTo(eosCollider targetcollider) 
         {
             targetcollider._center = _center;
@@ -165,7 +201,10 @@ namespace Eos.Objects
         }
         public void Destroy()
         {
-            GameObject.Destroy(_collider);
+            if (Application.isPlaying)
+                GameObject.Destroy(_collider);
+            else
+                GameObject.DestroyImmediate(_collider);
         }
         public static eosCollider Create(ColliderType type)
         {
@@ -184,8 +223,9 @@ namespace Eos.Objects
     public class eosBoxCollider : eosCollider
     {
         private Vector3 _size = new Vector3(30, 2, 30);
+        [Key(401)]
         public Vector3 Size { set { ((BoxCollider)_collider).size = value;_size = value; } }
-        public override Vector3 Center { set { ((BoxCollider)_collider).center = value;_center = value; } }
+        public override Vector3 Center { set { ((BoxCollider)_collider).center = value; _center = value; } get => _center; }
         public override void CopyTo(eosCollider targetcollider)
         {
             if (!(targetcollider is eosBoxCollider target))
@@ -215,30 +255,41 @@ namespace Eos.Objects
             target._height = _height;
             base.CopyTo(targetcollider);
         }
+        [Key(401)]
         public float Radius
         {
             get => _radius;
             set
             {
                 _radius = value;
+                if (_collider == null)
+                    return;
                 ((CapsuleCollider)_collider).radius = value;
             }
         }
+        [Key(402)]
         public float Height
         {
             set
             {
                 _height = value;
+                if (_collider == null)
+                    return;
                 ((CapsuleCollider)_collider).height = value;
             }
+            get => _height;
         }
-        public override  Vector3 Center
+        [Key(403)]
+        public override Vector3 Center
         {
             set
             {
                 _center = value;
+                if (_collider == null)
+                    return;
                 ((CapsuleCollider)_collider).center = value;
             }
+            get => _center;
         }
         public override void Attach(ITransform actor)
         {
@@ -254,6 +305,7 @@ namespace Eos.Objects
     public class eosSphereCollider : eosCollider
     {
         private float _radius = 30;
+        [Key(401)]
         public float Radius
         {
             set
@@ -261,8 +313,10 @@ namespace Eos.Objects
                 _radius = value;
                 ((SphereCollider)_collider).radius = value;
             }
+            get => _radius;
         }
-        public override Vector3 Center { set { ((SphereCollider)_collider).center = value;_center = value; } }
+        [Key(402)]
+        public override Vector3 Center { set { ((SphereCollider)_collider).center = value; _center = value; } get => _center; }
         public override void CopyTo(eosCollider targetcollider)
         {
             if (!(targetcollider is eosSphereCollider target))

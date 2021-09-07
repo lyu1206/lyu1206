@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b5daab3bc7cc704aa2ef683305e90ce, type: 3}
-  m_Name: BodyMolds
+  m_Name: UIMold
   m_EditorClassIdentifier: 
   _sources:
-  - {fileID: 5400575746117814941, guid: 81a718a1deccbd249bf3f3714b2c359e, type: 3}
-  - {fileID: 5400575746117814941, guid: 07c7f0f3dae687a47bbd447ee3b91a26, type: 3}
+  - {fileID: 3236362930498522869, guid: 8c83c1a63add9524b940d8cfd40d5a2b, type: 3}
   _items:
   - _id: 1
-    _item: {fileID: 5400575746117814941, guid: 81a718a1deccbd249bf3f3714b2c359e, type: 3}
-  - _id: 2
-    _item: {fileID: 5400575746117814941, guid: 07c7f0f3dae687a47bbd447ee3b91a26, type: 3}
+    _item: {fileID: 3236362930498522869, guid: 8c83c1a63add9524b940d8cfd40d5a2b, type: 3}

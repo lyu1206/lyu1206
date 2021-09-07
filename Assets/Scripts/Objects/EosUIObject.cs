@@ -16,6 +16,8 @@ namespace Eos.Objects
         public OreReference UIOre { get; set; }
         protected override void OnActivate(bool active)
         {
+            var ui = UIOre.GetOre();
+            _uisource = ui.GetComponent<OreBase>();
             if (_uisource == null)
                 return;
             _uisource.Instantiate(_transform.Transform);

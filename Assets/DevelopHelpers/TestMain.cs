@@ -31,9 +31,11 @@ public class TestMain : MonoBehaviour
         workspace.AddChild(npcmodel);
 
         var modelscript = ObjectFactory.CreateEosObject<EosScript>(); modelscript.scriptname = "EngageLogic";modelscript.Name = "EngageLogic";
+        modelscript.ScriptOre = new OreReference { Mold = "ScriptMold", OreID = 2 };
         npcmodel.AddChild(modelscript);
 
         modelscript = ObjectFactory.CreateEosObject<EosScript>(); modelscript.scriptname = "HostileNPC"; modelscript.Name = "HostileNPC";
+        modelscript.ScriptOre = new OreReference { Mold = "ScriptMold", OreID = 3 };
         npcmodel.AddChild(modelscript);
 
 
@@ -53,6 +55,7 @@ public class TestMain : MonoBehaviour
         var humanoid = ObjectFactory.CreateEosObject<EosHumanoid>(); humanoid.Name = "Humanoid"; humanoid.Level = 1;
 
         var humanoidfsm = ObjectFactory.CreateEosObject<EosFsm>(); humanoidfsm.Name = "humanoidFSM"; humanoidfsm.FSM = _pcfsm;
+        humanoidfsm.FSMOre = new OreReference { Mold = "FsmMold", OreID = 1 };
         humanoid.AddChild(humanoidfsm);
 
         npcmodel.AddChild(humanoid);
@@ -88,8 +91,8 @@ public class TestMain : MonoBehaviour
         terrainservice.AddChild(terrain);
 
 
-        var playerservice = ObjectFactory.CreateEosObject<Players>();playerservice.Name = "Players";
-        solution.AddChild(playerservice);
+        //var playerservice = ObjectFactory.CreateEosObject<Players>();playerservice.Name = "Players";
+        //solution.AddChild(playerservice);
         /*
         var player = playerservice.FindChild<Player>();
         */
@@ -100,12 +103,15 @@ public class TestMain : MonoBehaviour
         starterplayer.AddChild(playermodel);
 
         var modelscript = ObjectFactory.CreateEosObject<EosScript>();modelscript.scriptname = "EngageLogic";modelscript.Name = "EngageLogic";
+        modelscript.ScriptOre = new OreReference { Mold = "ScriptMold", OreID = 2 };
         playermodel.AddChild(modelscript);
 
 
         var pawn = ObjectFactory.CreateEosObject<EosPawnActor>();
         pawn.Name = EosHumanoid.humanoidroot;
         pawn.Body = _bodyore;
+        pawn.BodyOre = new OreReference { Mold = "BodyMolds", OreID = 1 };
+
 
         var textmesh = ObjectFactory.CreateEosObject<EosTextMesh>("headname");
         textmesh.Text = "Hello";
@@ -119,8 +125,11 @@ public class TestMain : MonoBehaviour
 
         var humanoid = ObjectFactory.CreateEosObject<EosHumanoid>();humanoid.Name = "Humanoid";humanoid.Level = 1;
         var humanoidfsm = ObjectFactory.CreateEosObject<EosFsm>();humanoidfsm.Name = "FSM";humanoidfsm.FSM = _pcfsm;
+        humanoidfsm.FSMOre = new OreReference { Mold = "FsmMold", OreID = 1 };
+
         humanoid.AddChild(humanoidfsm);
         var battlescript = ObjectFactory.CreateEosObject<EosScript>();battlescript.scriptname = "NonTargetBattle";battlescript.Name = "NonTargetBattle";
+        battlescript.ScriptOre = new OreReference { Mold = "ScriptMold", OreID = 5 };
         humanoid.AddChild(battlescript);
 
         playermodel.AddChild(humanoid);
@@ -144,14 +153,17 @@ public class TestMain : MonoBehaviour
 
         var light = ObjectFactory.CreateEosObject <EosLight>();light.Name = "Light";
         light.Light = _lightore;
+        light.LightOre = new OreReference { Mold = "LightMold", OreID = 1 };
         workspace.AddChild(light);
 
         var guiservice = ObjectFactory.CreateEosObject<GUIService>();guiservice.Name = "GUIService";
         solution.AddChild(guiservice);
         var uiobj = ObjectFactory.CreateEosObject<EosUIObject>(); uiobj.Name = "PAD";
         uiobj._uisource = _padui;
+        uiobj.UIOre = new OreReference { Mold = "UIMold", OreID = 1 };
         guiservice.AddChild(uiobj);
         var script = ObjectFactory.CreateEosObject<EosScript>();script.scriptname = "PadControl";script.Name = "PadControl";
+        script.ScriptOre = new OreReference { Mold = "ScriptMold", OreID = 6 };
         uiobj.AddChild(script);
 
 
@@ -159,17 +171,9 @@ public class TestMain : MonoBehaviour
         var slimecc = CreateNPC(workspace);
 
 
-        Save();
-
 
         EosPlayer.EosPlayer.Instance.SetSolution(solution as Solution);
-
-
-//        solution.IterChilds((child) => child.OnCreate(), true);
         ((Solution)solution).StartGame();
-       yield return new WaitForEndOfFrame();
-
-        //        playermodel.FindChild<EosPawnActor>().PlayNode("idle");
 
         var eplayer = EosPlayer.EosPlayer.Instance;
         var ws = eplayer.Solution.Workspace;
@@ -177,6 +181,15 @@ public class TestMain : MonoBehaviour
         var slime = eplayer.Solution.Workspace.FindChild<EosModel>("Slime0");
         var slimehumanoidroot = slime.FindChild<EosPawnActor>();
         slimehumanoidroot.LocalPosition = temppos.position;
+
+        Save();
+
+
+//        solution.IterChilds((child) => child.OnCreate(), true);
+       yield return new WaitForEndOfFrame();
+
+        //        playermodel.FindChild<EosPawnActor>().PlayNode("idle");
+
 
         //var slimeclone = ObjectFactory.CopyObject(slimecc) as EosModel;
         //slimeclone.FindChild<EosHumanoid>().SetPosition(slimeclone.PrimaryActor.LocalPosition - new Vector3(40, 0, 40));

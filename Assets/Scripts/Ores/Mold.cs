@@ -9,9 +9,22 @@ namespace Eos.Assets
     using GuAsset;
     public partial class Mold : ScriptableObject
     {
+        [System.Serializable]
+        public class MoldItem
+        {
+            [SerializeField]
+            private int _id;
+            [SerializeField]
+            private Object _item;
+            public int ID => _id;
+            public Object Item => _item;
+        }
+
         public const string MoldPath = "Molds";
         [SerializeField]
         private Object[] _sources;
+        [SerializeField]
+        private MoldItem[] _items;
         public static Mold GetMold(string name)
         {
             var path = Path.Combine(MoldPath, name);
@@ -20,20 +33,18 @@ namespace Eos.Assets
         }
         public int GetIndexInMold(OreReference ore)
         {
-            return _sources.FindIndex(it => it.GetInstanceID() == ore.OreID);
+            return _items.FindIndex(it => it.ID == ore.OreID);
         }
         public int GetOreID(int index)
         {
-            return _sources[index].GetInstanceID();
+            return _items[index].ID;
         }
-        public GameObject GetOre(int instanceID)
+        public T GetOre<T>(int id) where T : Object
         {
-            var ret = _sources.Find<Object>(it => it.GetInstanceID() == instanceID);
-            return ret as GameObject;
-        }
-        public Object GetScriptOre(int instanceID)
-        {
-            return _sources.Find<Object>(it => it.GetInstanceID() == instanceID);
+            var item = _items.Find(it => it.ID == id);
+            if (item == null)
+                return default(T);
+            return item.Item as T;
         }
     }
 }

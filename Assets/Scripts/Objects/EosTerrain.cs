@@ -22,6 +22,8 @@ namespace Eos.Objects
             if (terrain == null)
                 return;
             terrain.transform.SetParent(ts.Transform.Transform, true);
+            var pvm = terrain.GetComponent<PVMOre>();
+            pvm.Instantiate(ts.Transform.Transform);
         }
     }
 }

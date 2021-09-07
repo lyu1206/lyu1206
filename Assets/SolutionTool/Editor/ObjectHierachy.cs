@@ -1,12 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using Eos.Objects.Editor;
 
 public class ObjectHierachy : EditorWindow
@@ -68,7 +64,17 @@ public class EosObjectTreeView : TreeView
     {
         Reload();
     }
-
+    protected override void SelectionChanged(IList<int> selectedIds)
+    {
+        base.SelectionChanged(selectedIds);
+        if (selectedIds.Count==1)
+        {
+            var wp = EditorWindow.GetWindow<ObjectInspector>();
+            wp.SetTarget(selectedIds[0]);
+            var wnd = EditorWindow.GetWindow<ObjectHierachy>();
+            GUI.FocusWindow(wnd.GetInstanceID());
+        }
+    }
     protected override TreeViewItem BuildRoot()
     {
         var solution = Eos.Editor.SolutionEditor.EosSolution;
@@ -212,9 +218,13 @@ public class EosObjectTreeView : TreeView
             if (GUI.Button(rect, "+"))
             {
                 var gm = new GenericMenu();
-                gm.AddItem(new GUIContent("Test menu"), false, () =>
+                var typenames = SolutionEditorEditor.EosObjectNames;
+                foreach (var tname in typenames)
                 {
-                });
+                    gm.AddItem(new GUIContent(tname), false, () =>
+                    {
+                    });
+                }
                 gm.ShowAsContext();
             }
         }

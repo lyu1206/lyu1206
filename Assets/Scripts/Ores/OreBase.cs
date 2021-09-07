@@ -15,14 +15,19 @@ namespace Eos.Ore
         public GameObject GetOre()
         {
             var mold = Assets.Mold.GetMold(Mold);
-            return mold.GetOre(OreID);
+            return mold.GetOre<GameObject>(OreID);
+        }
+        public Object GetOreObject()
+        {
+            var mold = Assets.Mold.GetMold(Mold);
+            return mold.GetOre<Object>(OreID);
         }
         public GameObject Instantiate()
         {
             if (OreID == 0)
                 return null;
             var mold = Assets.Mold.GetMold(Mold);
-            var src = mold.GetOre(OreID);
+            var src = mold.GetOre<GameObject>(OreID);
             var obj = GameObject.Instantiate(src);
             obj.name = src.name;
             return obj;

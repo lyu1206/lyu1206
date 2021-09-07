@@ -13,7 +13,7 @@ public enum ObjectType : uint
 public static class ObjectFactory
 {
     private static Transform _unityInstaceRoot;
-    public static Transform UnityInstanceRoot{ set => _unityInstaceRoot = value; }
+    public static Transform UnityInstanceRoot{ set => _unityInstaceRoot = value; get => _unityInstaceRoot; }
     public static T CreateEosObject<T>(params object[]args) where T : EosObjectBase
     {
         var instance = Activator.CreateInstance(typeof(T),args) as T;
