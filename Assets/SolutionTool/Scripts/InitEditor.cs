@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Battlehub.RTCommon
 {
     [DefaultExecutionOrder(-100)]
-    public class CreateEditor : MonoBehaviour, IRTEState
+    public class InitEditor : MonoBehaviour, IRTEState
     {
         public event Action<object> Created;
         public event Action<object> Destroyed;
@@ -15,6 +15,8 @@ namespace Battlehub.RTCommon
             get { return m_editor != null; }
         }
 
+        [SerializeField]
+        private Button m_createEditorButton = null;
         [SerializeField]
         private RTEBase m_editorPrefab = null;
         [SerializeField]
@@ -34,11 +36,19 @@ namespace Battlehub.RTCommon
                     gameObject.SetActive(false);
                 }
             }
+            //m_createEditorButton.onClick.AddListener(OnOpen);
         }
-
+        private void Start()
+        {
+            OnOpen();
+        }
         private void OnDestroy()
         {
             IOC.UnregisterFallback<IRTEState>(this);
+            if (m_createEditorButton != null)
+            {
+                m_createEditorButton.onClick.RemoveListener(OnOpen);
+            }
             if (m_editor != null)
             {
                 m_editor.IsOpenedChanged -= OnIsOpenedChanged;
@@ -95,4 +105,3 @@ namespace Battlehub.RTCommon
         }
     }
 }
-
