@@ -16,8 +16,6 @@ namespace Battlehub.RTCommon
         }
 
         [SerializeField]
-        private Button m_createEditorButton = null;
-        [SerializeField]
         private RTEBase m_editorPrefab = null;
         [SerializeField]
         private Splash m_splashPrefab = null;
@@ -36,7 +34,6 @@ namespace Battlehub.RTCommon
                     gameObject.SetActive(false);
                 }
             }
-            //m_createEditorButton.onClick.AddListener(OnOpen);
         }
         private void Start()
         {
@@ -45,10 +42,6 @@ namespace Battlehub.RTCommon
         private void OnDestroy()
         {
             IOC.UnregisterFallback<IRTEState>(this);
-            if (m_createEditorButton != null)
-            {
-                m_createEditorButton.onClick.RemoveListener(OnOpen);
-            }
             if (m_editor != null)
             {
                 m_editor.IsOpenedChanged -= OnIsOpenedChanged;
@@ -70,7 +63,8 @@ namespace Battlehub.RTCommon
 
         private void InstantiateRuntimeEditor()
         {
-            m_editor = Instantiate(m_editorPrefab);
+            m_editorPrefab.gameObject.SetActive(true);
+            m_editor = m_editorPrefab;// Instantiate(m_editorPrefab);
             m_editor.name = "RuntimeEditor";
             m_editor.IsOpenedChanged += OnIsOpenedChanged;
             m_editor.transform.SetAsFirstSibling();

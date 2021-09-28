@@ -185,7 +185,7 @@ namespace Battlehub.RTEditor
     }
 
     [DefaultExecutionOrder(-89)]
-    public class WindowManager : MonoBehaviour, IWindowManager
+    public partial class WindowManager : MonoBehaviour, IWindowManager
     {
         public event Action<IWindowManager> AfterLayout;
         public event Action<Transform> WindowCreated;

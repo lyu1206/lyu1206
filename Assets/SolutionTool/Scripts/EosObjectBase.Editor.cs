@@ -29,6 +29,9 @@ namespace Eos.Objects.Editor
 namespace Eos.Objects
 {
     using Editor;
+    using Battlehub.RTEditor;
+    using Battlehub.RTCommon;
+    using Battlehub.RTHandles;
     public partial class EosObjectBase
     {
         public virtual EosEditorObject CreatedEditorImpl()
@@ -69,6 +72,23 @@ namespace Eos.Objects
         public virtual void CreatedOnEditor()
         {
 
+        }
+        protected ExposeToEditor _rteditObject;
+        public virtual void RTEOnCreated(IRTE editor)
+        {
+            var go = new GameObject(Name);
+            _rteditObject = go.AddComponent<ExposeToEditor>();
+            if (Parent != null && Parent._rteditObject!=null)
+                _rteditObject.transform.SetParent(Parent._rteditObject.transform);
+        }
+    }
+    public partial class EosModel
+    {
+        public override void RTEOnCreated(IRTE editor)
+        {
+            base.RTEOnCreated(editor);
+            _transform.Transform.gameObject.AddComponent<ExposeToEditor>();
+            editor.RegisterCreatedObjects(new[] { _transform.Transform.gameObject });
         }
     }
 }

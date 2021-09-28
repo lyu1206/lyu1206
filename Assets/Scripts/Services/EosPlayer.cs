@@ -113,7 +113,7 @@ namespace EosPlayer
         }
         public static void ShutDown()
         {
-            _instance.Solution.Destroy();
+            _instance?.Solution?.Destroy();
             _instance = null;
             
         }

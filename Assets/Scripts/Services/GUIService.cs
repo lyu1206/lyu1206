@@ -24,13 +24,17 @@ namespace Eos.Service
             _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             _guiroot.AddComponent<CanvasScaler>();
             _guiroot.AddComponent<GraphicRaycaster>();
-            var eventsystem = ObjectFactory.CreateUnityInstance("EventSystem", typeof( EventSystem), typeof(StandaloneInputModule)).gameObject;
-            eventsystem.transform.parent = root.transform;
+            if (EventSystem.current == null)
+            {
+                var eventsystem = ObjectFactory.CreateUnityInstance("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule)).gameObject;
+                eventsystem.transform.parent = root.transform;
+            }
 //            _guiroot.Transform = root.transform;
         }
         public static Canvas Canvas;
         public UGUIEvents RegistUIEvent(Transform eventobject,object reciever)
         {
+            
             var uguievent = eventobject.gameObject.AddComponent<UGUIEvents>();
             return uguievent;
         }

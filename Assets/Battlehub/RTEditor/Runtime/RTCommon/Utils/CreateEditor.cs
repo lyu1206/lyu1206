@@ -16,6 +16,8 @@ namespace Battlehub.RTCommon
         }
 
         [SerializeField]
+        private Button m_createEditorButton = null;
+        [SerializeField]
         private RTEBase m_editorPrefab = null;
         [SerializeField]
         private Splash m_splashPrefab = null;
@@ -34,11 +36,16 @@ namespace Battlehub.RTCommon
                     gameObject.SetActive(false);
                 }
             }
+            m_createEditorButton.onClick.AddListener(OnOpen);
         }
 
         private void OnDestroy()
         {
             IOC.UnregisterFallback<IRTEState>(this);
+            if (m_createEditorButton != null)
+            {
+                m_createEditorButton.onClick.RemoveListener(OnOpen);
+            }
             if (m_editor != null)
             {
                 m_editor.IsOpenedChanged -= OnIsOpenedChanged;

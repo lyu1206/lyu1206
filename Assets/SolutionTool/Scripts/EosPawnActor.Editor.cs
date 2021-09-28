@@ -7,6 +7,7 @@ using MessagePack;
 
 namespace Eos.Objects
 {
+    using Battlehub.RTCommon;
     using Ore;
     using Service;
     public partial class EosPawnActor 

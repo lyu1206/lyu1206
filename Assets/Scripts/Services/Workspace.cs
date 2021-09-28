@@ -13,7 +13,7 @@ namespace Eos.Service
     using Eos.Objects;
     [System.Serializable]
     [NoCreated]
-    public class Workspace : EosService , ITransform
+    public partial class Workspace : EosService , ITransform
     {
         private EosTransform _workspace;
         [IgnoreMember]public  EosTransform Transform => _workspace;

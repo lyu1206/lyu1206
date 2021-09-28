@@ -10,7 +10,7 @@ namespace Eos.Objects
     using MessagePack;
 
     [System.Serializable]
-    public class EosModel : EosObjectBase , ITransform
+    public partial class EosModel : EosObjectBase , ITransform
     {
         private EosTransform _transform;
         [IgnoreMember]public EosTransform Transform =>_transform;

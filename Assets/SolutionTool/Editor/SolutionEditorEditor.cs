@@ -43,9 +43,9 @@ public class SolutionEditorEditor : EditorWindow
     }
     static private void OnQuit()
     {
-        var wnd = GetWindow<SolutionEditorEditor>("Solution Editor");
-        wnd.StopPreview();
-        wnd.Repaint();
+        //var wnd = GetWindow<SolutionEditorEditor>("Solution Editor");
+        //wnd.StopPreview();
+        //wnd.Repaint();
     }
     private void OnDisable()
     {
