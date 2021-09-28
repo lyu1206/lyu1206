@@ -7,7 +7,7 @@ namespace Eos.Objects
 {
     using Ore;
     [System.Serializable]
-    public class EosLight : EosTransformActor
+    public partial class EosLight : EosTransformActor
     {
         [IgnoreMember]public OreBase Light;
         [IgnoreMember]public LightController _lightcontroller;
@@ -16,13 +16,19 @@ namespace Eos.Objects
         [Key(101)] public OreReference LightOre { get; set; }
         protected override void OnActivate(bool active)
         {
+            if (!ActiveInHierachy)
+                return;
+            BuildLight();
+        }
+        private void BuildLight()
+        {
             var lightore = LightOre.GetOre();
             Light = lightore.GetComponent<OreBase>();
             if (Light == null)
                 return;
             var light = Light.Instantiate();
             light.transform.parent = _transform.Transform;
-            light.gameObject.active = true;
+            light.gameObject.SetActive(true);
             _lightcontroller = light.GetComponent<LightController>();
         }
         public override void OnCopyTo(EosObjectBase target)

@@ -16,15 +16,16 @@ namespace Eos.Service
         public TypeService()
         {
             _transform = ObjectFactory.CreateInstance<EosTransform>();
-            _transform.Create(Name).gameObject.SetActive(false);
         }
 
         public override void OnCreate()
         {
-            Active = false;
+            _transform.Create(Name);
+            _active = false;
         }
         public override void Activate(bool active, bool recursivechild = true)
         {
+            _transform.Transform.gameObject.SetActive(false);
         }
         public override void StartPlay()
         {

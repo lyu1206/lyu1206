@@ -11,7 +11,7 @@ namespace Eos.Service
     using EosPlayer;
     [Serializable]
     [NoCreated]
-    public class GUIService : EosService , ITransform
+    public partial class GUIService : EosService , ITransform
     {
         private EosTransform  _guiroot;
         private Canvas _canvas;

@@ -48,6 +48,8 @@ namespace Eos.Objects
         public override void CreatedOnEditor()
         {
             base.CreatedOnEditor();
+            if (!ActiveInHierachy)
+                return;
             PropertyChanged(Parent);
         }
     }

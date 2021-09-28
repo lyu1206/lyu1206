@@ -72,10 +72,8 @@ namespace Eos.Service
         public Players()
         {
             Name = "Players";
-#if UNITY_EDITOR
             _transform = ObjectFactory.CreateInstance<EosTransform>();
             _transform.Create(Name);
-#endif
         }
         private Player CreatePlayer(ulong sid)
         {

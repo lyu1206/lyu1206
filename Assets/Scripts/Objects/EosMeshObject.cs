@@ -7,7 +7,7 @@ namespace Eos.Objects
 {
     using Ore;
     [System.Serializable]
-    public class EosMeshObject : EosTransformActor
+    public partial class EosMeshObject : EosTransformActor
     {
         [IgnoreMember]public MeshOre Mesh;
         [RequireMold("MeshMold")]

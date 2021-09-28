@@ -5,8 +5,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.IMGUI.Controls;
 
+namespace Eos.Service
+{
+    using Battlehub.RTCommon;
+    public partial class GUIService
+    {
+        public override Transform EditorTrasnform => _guiroot.Transform;
+        public override void RTEOnCreated(Battlehub.RTCommon.IRTE editor)
+        {
+            _guiroot.AddComponent<ExposeToEditor>();
+        }
+    }
+}
 namespace Eos.Objects.Editor
 {
+    using Service;
     public class ObjectTreeviewItem : TreeViewItem
     {
         private EosObjectBase _owner;
@@ -29,6 +42,7 @@ namespace Eos.Objects.Editor
 namespace Eos.Objects
 {
     using Editor;
+    using Service;
     using Battlehub.RTEditor;
     using Battlehub.RTCommon;
     using Battlehub.RTHandles;
@@ -71,25 +85,118 @@ namespace Eos.Objects
         }
         public virtual void CreatedOnEditor()
         {
-
+            OnAncestryChanged();
+            foreach (var child in _childrens)
+                child?.CreatedOnEditor();
         }
         protected ExposeToEditor _rteditObject;
+        [MessagePack.IgnoreMember]
+        public virtual Transform EditorTrasnform
+        {
+            get
+            {
+                if (this is ITransform trans)
+                {
+                    return trans.Transform.Transform;
+                }
+                else if (Parent == null)
+                    return null;
+                else if (_rteditObject != null)
+                    return _rteditObject.transform;
+                var go = new GameObject(Name);
+                return go.transform;
+            }
+        }
         public virtual void RTEOnCreated(IRTE editor)
         {
-            var go = new GameObject(Name);
-            _rteditObject = go.AddComponent<ExposeToEditor>();
-            if (Parent != null && Parent._rteditObject!=null)
-                _rteditObject.transform.SetParent(Parent._rteditObject.transform);
+            var trans = EditorTrasnform;
+            _rteditObject = trans.gameObject.AddComponent<ExposeToEditor>();
+            editor.RegisterCreatedObjects(new[] { _rteditObject.gameObject }, true);
+            if (Parent != null)
+            {
+                _rteditObject.transform.SetParent(Parent.EditorTrasnform);
+                //_rteditObject.transform.localPosition = Vector3.zero;
+                //_rteditObject.transform.localRotation = Quaternion.identity;
+                //_rteditObject.transform.localScale = Vector3.one;
+            }
+
+            /*
+            if (this is ITransform transform)
+            {
+//                _rteditObject = transform.Transform.AddComponent<ExposeToEditor>();
+                if (Parent != null)
+                {
+                    trans.SetParent(Parent.EditorTrasnform);
+                    trans.localPosition = Vector3.zero;
+                    trans.localRotation = Quaternion.identity;
+                    trans.localScale = Vector3.one;
+                }
+            }
+            else
+            {
+                //var go = new GameObject(Name);
+                //_rteditObject = go.AddComponent<ExposeToEditor>();
+                if (Parent != null)
+                {
+                    //if (Parent is ITransform parenttrans)
+                    //{
+                    //    _rteditObject.transform.SetParent(parenttrans.Transform.Transform);
+                    //}
+                    //else
+                    {
+                        _rteditObject.transform.SetParent(Parent.EditorTrasnform);
+                    }
+                }
+                _rteditObject.transform.localPosition = Vector3.zero;
+                _rteditObject.transform.localRotation = Quaternion.identity;
+                _rteditObject.transform.localScale = Vector3.one;
+                editor.RegisterCreatedObjects(new[] { _rteditObject.gameObject }, true);
+            }
+            */
+            if (this is EosService)
+                _rteditObject.CanTransform = false;
         }
     }
     public partial class EosModel
     {
         public override void RTEOnCreated(IRTE editor)
         {
-            base.RTEOnCreated(editor);
-            _transform.Transform.gameObject.AddComponent<ExposeToEditor>();
-            editor.RegisterCreatedObjects(new[] { _transform.Transform.gameObject });
+            //base.RTEOnCreated(editor);
+            var ed = _transform.Transform.gameObject.AddComponent<ExposeToEditor>();
+            ed.CanTransform = false;
+            editor.RegisterCreatedObjects(new[] { _transform.Transform.gameObject },false);
+            if (Parent != null)
+            {
+                if (Parent is ITransform parenttrans)
+                {
+                    _transform.SetParent(parenttrans.Transform);
+                }
+                else
+                {
+                    _transform.Transform.SetParent(Parent.EditorTrasnform);
+                }
+            }
+            _transform.LocalPosition = Vector3.zero;
+            _transform.Transform.localRotation = Quaternion.identity;
+            _transform.LocalScale = Vector3.one;
         }
     }
+    public partial class EosLight
+    {
+        public override void CreatedOnEditor()
+        {
+            base.CreatedOnEditor();
+            BuildLight();
+        }
+    }
+    public partial class EosMeshObject
+    {
+        public override void RTEOnCreated(IRTE editor)
+        {
+            base.RTEOnCreated(editor);
+        }
+    }
+
+
 }
 #endif

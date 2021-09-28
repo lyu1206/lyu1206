@@ -23,7 +23,6 @@ namespace Eos.Objects
         public EosCollider()
         {
             _transform = ObjectFactory.CreateInstance<EosTransform>();
-            _transform.Create(Name);
         }
         [Key(102)]
         [Inspector("Basic", "ColliderType")]
@@ -63,6 +62,11 @@ namespace Eos.Objects
         {
             get=> _collider;
             set => _collider = value;
+        }
+        public override void OnCreate()
+        {
+            base.OnCreate();
+            _transform.Create(Name);
         }
         public override void OnCopyTo(EosObjectBase target)
         {

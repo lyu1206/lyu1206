@@ -15,7 +15,7 @@ namespace Eos.Service
         [IgnoreMember] public EosTransform Transform=>_transform;
         public TerrainService()
         {
-            Name = "Terrain";
+            Name = "TerrainService";
             _transform = ObjectFactory.CreateInstance<EosTransform>();
             _transform.Create(Name);
         }

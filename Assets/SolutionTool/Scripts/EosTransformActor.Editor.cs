@@ -27,21 +27,31 @@ namespace Eos.Objects
             //obj.transform.localRotation = Quaternion.Euler(Transform.LocalRotation);
             //obj.transform.localScale = Transform.LocalScale;
         }
+        public override Transform EditorTrasnform => _transform.Transform;
         public override void RTEOnCreated(IRTE editor)
         {
             base.RTEOnCreated(editor);
             _rteditObject.transform.localPosition = Transform.LocalPosition;
-            _rteditObject.transform.localRotation = Quaternion.Euler(Transform.LocalRotation);
             _rteditObject.transform.localScale = Transform.LocalScale;
-            _transform.Transform.SetParent(_rteditObject.transform, false);
-            _transform.Transform.localPosition = Vector3.zero;
-            _transform.Transform.localScale = Vector3.one;
-            _transform.Transform.localRotation = Quaternion.identity;
-
-            editor.RegisterCreatedObjects(new[] { _rteditObject.gameObject }, true);
-
-            //_transform.AddComponent<ExposeToEditor>();
-            //editor.RegisterCreatedObjects(new[] { _transform.Transform.gameObject }, true);
+            _rteditObject.transform.localRotation = Quaternion.Euler(Transform.LocalRotation);
+            /*
+            _transform.AddComponent<ExposeToEditor>();
+            if (Parent!=null)
+            {
+                if (Parent is ITransform trans)
+                {
+                    _transform.SetParent(trans.Transform);
+                }
+                else
+                {
+                    _transform.Transform.SetParent(Parent.EditorTrasnform);
+                }
+            }
+            _transform.Transform.localPosition = Transform.LocalPosition;
+            _transform.Transform.localScale = Transform.LocalScale;
+            _transform.Transform.localRotation = Quaternion.Euler(Transform.LocalRotation);
+            editor.RegisterCreatedObjects(new[] { _transform.Transform.gameObject }, true);
+            */
         }
     }
 }

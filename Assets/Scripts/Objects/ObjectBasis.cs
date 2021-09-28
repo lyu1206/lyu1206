@@ -83,7 +83,7 @@ namespace Eos.Objects
         }
         [IgnoreMember]public uint ObjectID;
         private string _name;
-        private bool _active = true;
+        protected bool _active = true;
         [Key(1)] public List<EosObjectBase> _childrens  = new List<EosObjectBase>();
         [Inspector("Basic","Name")]
         [Key(2)]public virtual string Name{get=>_name;set=>_name = value;}

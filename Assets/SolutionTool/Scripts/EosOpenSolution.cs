@@ -17,12 +17,13 @@ namespace Battlehub.RTEditor
             if (!string.IsNullOrEmpty(Path))
             {
                 Debug.Log($"Load solution:{Path}");
-                SetEditorviewRoot();
+                //SetEditorviewRoot();
                 var msgpackData = File.ReadAllBytes(Path);
                 var desolution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
+                desolution.CreatedOnEditor();
                 desolution.IterChilds((child) =>
                 {
-                    child.CreatedOnEditor();
+//                    child.CreatedOnEditor();
                     child.RTEOnCreated(Editor);
                 }, true);
             }
