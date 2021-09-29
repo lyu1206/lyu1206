@@ -18,8 +18,8 @@ MonoBehaviour:
     m_ID: 0
     m_Name: Root
     m_Depth: -1
-    Identity: 4
-    FolderIdentity: 4
+    Identity: 8
+    FolderIdentity: 5
     Folders:
     - m_ID: 0
       m_Name: Root
@@ -31,3 +31,31 @@ MonoBehaviour:
       m_Depth: 0
       Assets: []
       IsEnabled: 1
+    - m_ID: 4
+      m_Name: TestPrefab
+      m_Depth: 1
+      Assets:
+      - m_ID: 4
+        m_Name: PlayerBody
+        m_Depth: 0
+        Object: {fileID: 5400575746117814941, guid: 81a718a1deccbd249bf3f3714b2c359e,
+          type: 3}
+        IsEnabled: 0
+        PrefabParts:
+        - ParentPersistentID: -1
+          PersistentID: 5
+          Object: {fileID: 2458298027922788849, guid: 81a718a1deccbd249bf3f3714b2c359e,
+            type: 3}
+          Depth: 0
+        - ParentPersistentID: -1
+          PersistentID: 6
+          Object: {fileID: 9066999705332509876, guid: 81a718a1deccbd249bf3f3714b2c359e,
+            type: 3}
+          Depth: 0
+      - m_ID: 7
+        m_Name: apple
+        m_Depth: 0
+        Object: {fileID: 4300002, guid: 4a5b9eefdd78b4f188c08ac389914d04, type: 3}
+        IsEnabled: 0
+        PrefabParts: []
+      IsEnabled: 0

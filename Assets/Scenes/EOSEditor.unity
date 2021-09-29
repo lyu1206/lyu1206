@@ -2837,7 +2837,7 @@ MonoBehaviour:
   m_hierarchyWindow:
     Icon: {fileID: 21300000, guid: 598ffc666bd444c4dac6b492130f5578, type: 3}
     Header: ID_RTEditor_WM_Header_Hierarchy
-    ContentPrefab: {fileID: 3710511170453618499, guid: 5745ca656c25c944f858b713e21b7406,
+    ContentPrefab: {fileID: 3710511170453618499, guid: 9ad4611e6525b2b4289e169735ddca0c,
       type: 3}
     MaxWindows: 1
     Created: 0

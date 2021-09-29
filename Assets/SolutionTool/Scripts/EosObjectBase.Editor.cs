@@ -111,48 +111,12 @@ namespace Eos.Objects
         {
             var trans = EditorTrasnform;
             _rteditObject = trans.gameObject.AddComponent<ExposeToEditor>();
-            editor.RegisterCreatedObjects(new[] { _rteditObject.gameObject }, true);
+            //if (this is EosTransformActor)
+            //    editor.RegisterCreatedObjects(new[] { _rteditObject.gameObject }, true);
             if (Parent != null)
             {
                 _rteditObject.transform.SetParent(Parent.EditorTrasnform);
-                //_rteditObject.transform.localPosition = Vector3.zero;
-                //_rteditObject.transform.localRotation = Quaternion.identity;
-                //_rteditObject.transform.localScale = Vector3.one;
             }
-
-            /*
-            if (this is ITransform transform)
-            {
-//                _rteditObject = transform.Transform.AddComponent<ExposeToEditor>();
-                if (Parent != null)
-                {
-                    trans.SetParent(Parent.EditorTrasnform);
-                    trans.localPosition = Vector3.zero;
-                    trans.localRotation = Quaternion.identity;
-                    trans.localScale = Vector3.one;
-                }
-            }
-            else
-            {
-                //var go = new GameObject(Name);
-                //_rteditObject = go.AddComponent<ExposeToEditor>();
-                if (Parent != null)
-                {
-                    //if (Parent is ITransform parenttrans)
-                    //{
-                    //    _rteditObject.transform.SetParent(parenttrans.Transform.Transform);
-                    //}
-                    //else
-                    {
-                        _rteditObject.transform.SetParent(Parent.EditorTrasnform);
-                    }
-                }
-                _rteditObject.transform.localPosition = Vector3.zero;
-                _rteditObject.transform.localRotation = Quaternion.identity;
-                _rteditObject.transform.localScale = Vector3.one;
-                editor.RegisterCreatedObjects(new[] { _rteditObject.gameObject }, true);
-            }
-            */
             if (this is EosService)
                 _rteditObject.CanTransform = false;
         }
@@ -161,21 +125,7 @@ namespace Eos.Objects
     {
         public override void RTEOnCreated(IRTE editor)
         {
-            //base.RTEOnCreated(editor);
-            var ed = _transform.Transform.gameObject.AddComponent<ExposeToEditor>();
-            ed.CanTransform = false;
-            editor.RegisterCreatedObjects(new[] { _transform.Transform.gameObject },false);
-            if (Parent != null)
-            {
-                if (Parent is ITransform parenttrans)
-                {
-                    _transform.SetParent(parenttrans.Transform);
-                }
-                else
-                {
-                    _transform.Transform.SetParent(Parent.EditorTrasnform);
-                }
-            }
+            base.RTEOnCreated(editor);
             _transform.LocalPosition = Vector3.zero;
             _transform.Transform.localRotation = Quaternion.identity;
             _transform.LocalScale = Vector3.one;

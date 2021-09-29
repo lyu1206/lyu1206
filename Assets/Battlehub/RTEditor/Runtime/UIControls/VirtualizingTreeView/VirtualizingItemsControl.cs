@@ -1310,6 +1310,7 @@ namespace Battlehub.UIControls
         {
             if (!CanHandleEvent(sender))
             {
+                //sender.IsSelected = true;
                 return;
             }
 
@@ -1345,6 +1346,7 @@ namespace Battlehub.UIControls
         {
             if (!CanHandleEvent(sender))
             {
+                //sender.IsSelected = true;
                 return;
             }
             m_dropTarget = null;
