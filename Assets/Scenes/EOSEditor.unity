@@ -2726,6 +2726,7 @@ GameObject:
   - component: {fileID: 6692502946049646467}
   - component: {fileID: 3557365203099053686}
   - component: {fileID: 2708278422746111103}
+  - component: {fileID: 4601838793567419444}
   m_Layer: 0
   m_Name: EOSRuntimeEditor
   m_TagString: Untagged
@@ -2753,6 +2754,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4601838793567419444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601838793567419442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489fef62de29cc24898cbfdf73c23196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4601838793567419448
 MonoBehaviour:
   m_ObjectHideFlags: 0
