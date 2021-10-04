@@ -51,7 +51,7 @@ namespace Eos.Ore
         {
             return (GameObject.Instantiate(gameObject) as GameObject).transform;
         }
-        public Transform Instantiate(Transform parent)
+        public virtual Transform Instantiate(Transform parent)
         {
             var oreobj = GameObject.Instantiate(gameObject) as GameObject;
             oreobj.transform.SetParent(parent);

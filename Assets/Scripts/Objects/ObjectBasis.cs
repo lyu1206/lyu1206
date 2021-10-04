@@ -84,7 +84,9 @@ namespace Eos.Objects
         [IgnoreMember]public uint ObjectID;
         private string _name;
         protected bool _active = true;
-        [Key(1)] public List<EosObjectBase> _childrens  = new List<EosObjectBase>();
+        [Key(1)] public List<EosObjectBase> _children  = new List<EosObjectBase>();
+        [IgnoreMember] public int ChildCount => _children.Count;
+        [IgnoreMember] public List<EosObjectBase> Children => _children;
         [Inspector("Basic","Name")]
         [Key(2)]public virtual string Name{get=>_name;set=>_name = value;}
         [Inspector("Basic", "Active")]
@@ -127,7 +129,7 @@ namespace Eos.Objects
                 obj._parent.RemoveChild(obj);
             obj._parent = this;
             obj.AncestryChanged();
-            _childrens.Add(obj);
+            _children.Add(obj);
             OnChildAdded(obj);
         }
         public virtual void OnCopyTo(EosObjectBase target)
@@ -146,7 +148,7 @@ namespace Eos.Objects
             OnActivate(active);
             if (recursivechild)
             {
-                foreach (var child in _childrens)
+                foreach (var child in _children)
                     child.Activate(active, recursivechild);
             }
         }
@@ -156,7 +158,7 @@ namespace Eos.Objects
                 _parent.RemoveChild(this);
             Ref.ObjectManager.UnRegistObject(this);
             OnDestroy();
-            foreach (var child in _childrens)
+            foreach (var child in _children)
                 child.Destroy(false);
         }
         public virtual void OnDestroy()
@@ -165,7 +167,7 @@ namespace Eos.Objects
         public virtual void StartPlay()
         {
             OnStartPlay();
-            foreach(var child in _childrens)
+            foreach(var child in _children)
                 child.StartPlay();
         }
         protected virtual void OnActivate(bool active){}
@@ -173,7 +175,7 @@ namespace Eos.Objects
         public virtual void Update(float delta){}
         public void RemoveChild(EosObjectBase obj)
         {
-            _childrens.Remove(obj);
+            _children.Remove(obj);
             OnChildRemoved(obj);
         }
         public virtual void OnChildAdded(EosObjectBase child)
@@ -187,12 +189,12 @@ namespace Eos.Objects
         public void AncestryChanged()
         {
             OnAncestryChanged();
-            foreach(var child in _childrens)
+            foreach(var child in _children)
                 child.AncestryChanged();
         }
         public void IterChilds(Action<EosObjectBase> action,bool isrecursive = false)
         {
-            _childrens.ForEach(it =>
+            _children.ForEach(it =>
             {
                 action(it);
                 if (isrecursive && it!=null)
@@ -204,7 +206,7 @@ namespace Eos.Objects
             var find = FindChild<T>();
             if (find != null)
                 return find;
-            foreach (var child in _childrens)
+            foreach (var child in _children)
             {
                 find = child.FindDeepChild<T>();
                 if (find != null)
@@ -214,7 +216,7 @@ namespace Eos.Objects
         }
         public T FindChild<T>() where T : EosObjectBase
         {
-            foreach(var child in _childrens)
+            foreach(var child in _children)
             {
                 if (child is T)
                     return (T)child;
@@ -224,7 +226,7 @@ namespace Eos.Objects
         public List<T> FindChilds<T>() where T : EosObjectBase
         {
             var retlist = new List<T>();
-            foreach (var child in _childrens)
+            foreach (var child in _children)
             {
                 if (child is T)
                     retlist.Add(child as T);
@@ -233,7 +235,7 @@ namespace Eos.Objects
         }
         public T FindChild<T>(string name) where T :EosObjectBase
         {
-            foreach(var child in _childrens)
+            foreach(var child in _children)
             {
                 if (child is T && child.Name == name)
                     return (T)child;
@@ -263,7 +265,7 @@ namespace Eos.Objects
             copy.OnCreate();
             OnCopyTo(copy);
             parent?.AddChild(copy);
-            foreach (var child in _childrens)
+            foreach (var child in _children)
             {
                 var childclone = child.Clone(copy);
                 if (childclone == null)
@@ -280,10 +282,10 @@ namespace Eos.Objects
         public virtual void OnAfterDeserialize()
         {
             OnCreate();
-            if (_childrens == null)
+            if (_children == null)
                 return;
-            var childrens = new List<EosObjectBase>(_childrens);
-            _childrens.Clear();
+            var childrens = new List<EosObjectBase>(_children);
+            _children.Clear();
             foreach (var it in childrens)
             {
                 if (it == null)

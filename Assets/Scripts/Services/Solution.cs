@@ -47,8 +47,8 @@ namespace Eos.Service
             _starterplayer = FindChild<StarterPlayer>();
             _starterpack = FindChild<StarterPack>();
 
-            _childrens.ForEach(child => child.Activate(true));
-            _childrens.ForEach(child => child.StartPlay());
+            _children.ForEach(child => child.Activate(true));
+            _children.ForEach(child => child.StartPlay());
         }
     }
 }

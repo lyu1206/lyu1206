@@ -11,7 +11,7 @@ namespace Eos.Ore
         private GameObject _background;
         [SerializeField]
         private Object _navmeshdata;
-        public Transform Instantiate(Transform root)
+        public override Transform Instantiate(Transform root)
         {
             var map = GameObject.Instantiate(_background) as GameObject;
             map.transform.parent = root;

@@ -15,17 +15,18 @@ namespace Battlehub.UIControls
         private UnityEngine.UI.Toggle _hovertoggle;
         [SerializeField]
         private UnityEngine.UI.Toggle _plustoggle;
-        public static event EosHierachItemEventHandler HierachButton;
+        public static event EosHierachItemEventHandler HierachyButton;
         public override bool IsSelected
         {
             get => base.IsSelected;
             set
             {
                 base.IsSelected = value;
-                if (value)
+                if (!value)
                 {
-                    _hovertoggle.isOn = false;
-                    _plustoggle.isOn = false;
+                    isHover = false;
+                    //_hovertoggle.isOn = false;
+                    //_plustoggle.isOn = false;
                 }
             }
         }
@@ -55,7 +56,7 @@ namespace Battlehub.UIControls
         {
             IsSelected = true;
             isHover = true;
-            HierachButton?.Invoke(this);
+            HierachyButton?.Invoke(this);
         }
     }
 }

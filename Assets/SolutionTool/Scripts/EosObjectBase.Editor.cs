@@ -58,12 +58,12 @@ namespace Eos.Objects
         public void AddChildEditorImpl(EosObjectBase obj)
         {
             obj._parent = this;
-            _childrens.Add(obj);
+            _children.Add(obj);
         }
         public void ClearRelationa()
         {
             _parent = null;
-            _childrens.Clear();
+            _children.Clear();
         }
         public virtual void CreatedEditor(EosEditorObject obj)
         {
@@ -79,14 +79,14 @@ namespace Eos.Objects
                 PropertyChanged(_parent);
                 parent.AddChild(ret);
             }
-            foreach (var child in _childrens)
+            foreach (var child in _children)
                 child?.CreateForEditor(ret);
             return ret;
         }
         public virtual void CreatedOnEditor()
         {
             OnAncestryChanged();
-            foreach (var child in _childrens)
+            foreach (var child in _children)
                 child?.CreatedOnEditor();
         }
         protected ExposeToEditor _rteditObject;

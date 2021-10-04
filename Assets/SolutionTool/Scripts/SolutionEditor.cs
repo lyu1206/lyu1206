@@ -61,7 +61,7 @@ namespace Eos.Editor
         }
         public static void CreateSolution()
         {
-            _solution = Service.Solution.CreateEditorImpl();
+//            _solution = Service.Solution.CreateEditorImpl();
         }
         //public static EosObjectBase SetupMap(GameObject mapobj)
         //{
