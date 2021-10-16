@@ -29,6 +29,7 @@ namespace Battlehub.RTCommon
         SaveFile = 70,
         OpenFile = 72,
         OpenSolution = 73,
+        SaveSolution = 74,
 
         SelectObject = 101,
         SelectColor = 102,

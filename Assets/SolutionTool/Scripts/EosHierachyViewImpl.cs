@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +17,7 @@ namespace Battlehub.RTEditor
         private EosVirtualizingTreeViewItem _hoveritem;
         private EosObjectBase _solution;
         private EosObjectBase _currentSelect;
+        private EosVirtualizingTreeViewItem _currentSelectItem;
         private bool _focused;
         private Dictionary<int, EosObjectBase> _objecttoExpose = new Dictionary<int, EosObjectBase>();
         protected override void Awake()
@@ -73,20 +76,21 @@ namespace Battlehub.RTEditor
         }
         private void AddObjectContextMenuCmd(string arg)
         {
-            //            base.RenameContextMenuCmd(arg);
             if (_currentSelect == null)
                 return;
             var newobject = ObjectFactory.CreateInstance($"Eos.Objects.{arg}");
             newobject.Name = arg;
             _currentSelect.AddChildEditorImpl(newobject);
-            TreeView.AddChild(_currentSelect, newobject);
-            TreeView.Expand(_currentSelect);
-            TreeView.GetTreeViewItem(newobject).IsSelected = true;
+            _objecttoExpose[newobject.EditorTrasnform.GetHashCode()] = newobject;
+            newobject.RTEOnCreated(Editor);
+            _hoveritem.isHover = false;
+            TreeView.Expand(_currentSelect.RTEditObject);
+            TreeView.GetTreeViewItem(newobject.RTEditObject).IsSelected = true;
+
         }
         private void AddObjectValidateContextMenuCmd(MenuItemValidationArgs args)
         {
             args.IsValid = true;
-            //            base.RenameValidateContextMenuCmd(args);
         }
 
         protected override void OnContextMenu(List<MenuItemInfo> menuItems)
@@ -113,6 +117,10 @@ namespace Battlehub.RTEditor
             //rename.Validate.AddListener(RenameValidateContextMenuCmd);
             //menuItems.Add(rename);
         }
+        protected override void OnTreeViewPointerEnter(object sender, PointerEventArgs e)
+        {
+            base.OnTreeViewPointerEnter(sender, e);
+        }
         private void OnPointerEnter(VirtualizingItemContainer sender, PointerEventData eventData)
         {
             _hoveritem = sender as EosVirtualizingTreeViewItem;
@@ -131,18 +139,12 @@ namespace Battlehub.RTEditor
             VirtualizingItemContainer.PointerExit -= OnPointerExit;
             EosVirtualizingTreeViewItem.HierachyButton -= HierachyItemButton;
         }
-        protected override void RenameContextMenuCmd(string arg)
-        {
-//            base.RenameContextMenuCmd(arg);
-        }
-        protected override void RenameValidateContextMenuCmd(MenuItemValidationArgs args)
-        {
-//            base.RenameValidateContextMenuCmd(args);
-        }
         protected override void OnSelectionChanged(object sender, SelectionChangedArgs e)
         {
             base.OnSelectionChanged(sender, e);
+
             _currentSelect = GetObjectWithTreeviewItem(e.NewItem);
+            _currentSelectItem = TreeView.GetItemContainer(e.NewItem) as EosVirtualizingTreeViewItem;
         }
         protected override void OnItemBeginEdit(object sender, VirtualizingTreeViewItemDataBindingArgs e)
         {
@@ -150,6 +152,28 @@ namespace Battlehub.RTEditor
             TMP_InputField inputField = e.EditorPresenter.GetComponentInChildren<TMP_InputField>(true);
             inputField.onEndEdit.AddListener(OnEndEditName);
         }
+        protected override void OnItemsRemoved(object sender, ItemsRemovedArgs e)
+        {
+            base.OnItemsRemoved(sender, e);
+            foreach (var it in e.Items)
+            {
+                var item = it as ExposeToEditor;
+                var obj = GetObjectWithTreeviewItem(it);
+                _objecttoExpose.Remove(item.transform.GetHashCode());
+                obj?.Destroy();
+            }
+        }
+        //protected override void OnItemRemoving(object sender, ItemsCancelArgs e)
+        //{
+        //    base.OnItemRemoving(sender, e);
+        //    foreach (var it in e.Items)
+        //    {
+        //        var item = it as ExposeToEditor;
+        //        var obj = GetObjectWithTreeviewItem(it);
+        //        _objecttoExpose.Remove(item.transform.GetHashCode());
+        //        obj?.Destroy();
+        //    }
+        //}
         private void OnEndEditName(string name)
         {
             _currentSelect.Name = name;
@@ -157,7 +181,7 @@ namespace Battlehub.RTEditor
         protected override void OnNameChanged(ExposeToEditor obj)
         {
             base.OnNameChanged(obj);
-            _currentSelect.Name = obj.name;
+            OnEndEditName(obj.name);
         }
         protected override void OnParentChanged(ExposeToEditor obj, ExposeToEditor oldParent, ExposeToEditor newParent)
         {

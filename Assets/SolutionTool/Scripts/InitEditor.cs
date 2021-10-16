@@ -1,9 +1,13 @@
 using System;
+using System.Reflection;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Battlehub.RTCommon
 {
+    using RTEditor;
+
     [DefaultExecutionOrder(-100)]
     public class InitEditor : MonoBehaviour, IRTEState
     {
@@ -25,6 +29,8 @@ namespace Battlehub.RTCommon
         private void Awake()
         {
             IOC.RegisterFallback<IRTEState>(this);
+//            IOC.Register<IEditorsMapCreator>(new EosEditorsMapCreator());
+
             m_editor = (RTEBase)FindObjectOfType(m_editorPrefab.GetType());
             if (m_editor != null)
             {

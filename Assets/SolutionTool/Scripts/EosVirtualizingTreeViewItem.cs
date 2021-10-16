@@ -30,6 +30,13 @@ namespace Battlehub.UIControls
                 }
             }
         }
+        private void SetPlusToggle(bool value)
+        {
+            var but = _plustoggle.graphic.GetComponent<UnityEngine.UI.Button>();
+            but.enabled = value;
+
+            _plustoggle.isOn = value;
+        }
         public bool isHover
         {
             set
@@ -38,17 +45,17 @@ namespace Battlehub.UIControls
                 if (value)
                 {
                     if (IsSelected)
-                        _plustoggle.isOn = value;
+                        SetPlusToggle(value);
                     else
                     {
                         _hovertoggle.isOn = value;
-                        _plustoggle.isOn = value;
+                        SetPlusToggle(value);
                     }
                 }
                 else
                 {
                     _hovertoggle.isOn = value;
-                    _plustoggle.isOn = value;
+                    SetPlusToggle(value);
                 }
             }
         }

@@ -91,6 +91,8 @@ namespace Eos.Objects
         }
         protected ExposeToEditor _rteditObject;
         [MessagePack.IgnoreMember]
+        public ExposeToEditor RTEditObject => _rteditObject;
+        [MessagePack.IgnoreMember]
         public virtual Transform EditorTrasnform
         {
             get
@@ -111,6 +113,7 @@ namespace Eos.Objects
         {
             var trans = EditorTrasnform;
             _rteditObject = trans.gameObject.AddComponent<ExposeToEditor>();
+            var inspect = trans.gameObject.AddComponent<EosObjectInspector>();
             //if (this is EosTransformActor)
             //    editor.RegisterCreatedObjects(new[] { _rteditObject.gameObject }, true);
             if (Parent != null)

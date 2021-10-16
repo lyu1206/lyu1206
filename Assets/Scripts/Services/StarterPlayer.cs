@@ -21,11 +21,12 @@ namespace Eos.Service
         public override void OnCreate()
         {
             _transform.Create(Name);
+            _transform.Transform.gameObject.SetActive(false);
             _active = false;
         }
         public override void Activate(bool active, bool recursivechild = true)
         {
-            _transform.Transform.gameObject.SetActive(false);
+            _transform.Transform?.gameObject.SetActive(false);
         }
         public override void StartPlay()
         {

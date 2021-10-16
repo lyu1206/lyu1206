@@ -24,9 +24,23 @@ namespace Battlehub.RTEditor
         }
         public void OpenSolution()
         {
-            IOC.Resolve<IWindowManager>().CreateDialogWindow("OpenSolution", "ddd", OnOk);
+            IOC.Resolve<IWindowManager>().CreateDialogWindow("OpenSolution", "Open Solution", OnOpenOk);
         }
-        private void OnOk(Dialog dialog_, DialogCancelArgs arg)
+        public void SaveAsSolution()
+        {
+            IOC.Resolve<IWindowManager>().CreateDialogWindow("SaveSolution", "Save Solution", OnSaveOk);
+        }
+        private void OnSaveOk(Dialog dialog_, DialogCancelArgs arg)
+        {
+            if (arg.Cancel)
+                return;
+            var dialog = dialog_.Content.GetComponent<SaveFileDialog>();
+            var path = dialog.Path;
+            var msgpackData = MessagePack.MessagePackSerializer.Serialize(_solution);
+            File.WriteAllBytes(path, msgpackData);
+            Debug.Log($"save done..");
+        }
+        private void OnOpenOk(Dialog dialog_, DialogCancelArgs arg)
         {
             if (arg.Cancel)
                 return;
@@ -34,9 +48,16 @@ namespace Battlehub.RTEditor
             var editor = IOC.Resolve<IRTE>();
             var dialog = dialog_.Content.GetComponent<OpenFileDialog>();
             var msgpackData = File.ReadAllBytes(dialog.Path);
-            var desolution = _solution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
-//            var desolution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
-            SolutionChanged?.Invoke(desolution);
+            try
+            {
+                var desolution = _solution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
+                //            var desolution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
+                SolutionChanged?.Invoke(desolution);
+            }
+            catch(System.Exception ex)
+            {
+
+            }
         }
     }
 }

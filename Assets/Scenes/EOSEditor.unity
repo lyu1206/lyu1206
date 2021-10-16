@@ -2977,6 +2977,15 @@ MonoBehaviour:
     Descriptor:
       Icon: {fileID: 21300000, guid: 89a4e12e4493f6341928b4e2f80ec665, type: 3}
       Header: ID_RTEditor_WM_Header_OpenSolution
+      ContentPrefab: {fileID: 1000010003848526, guid: af0d16c4119ddc54abe8c573448d4261,
+        type: 3}
+      MaxWindows: 1
+      Created: 0
+  - TypeName: savesolution
+    IsDialog: 1
+    Descriptor:
+      Icon: {fileID: 21300000, guid: 89a4e12e4493f6341928b4e2f80ec665, type: 3}
+      Header: ID_RTEditor_WM_Header_SaveSolution
       ContentPrefab: {fileID: 1000010003848526, guid: ddbd721f6f8d0b546bb703cd52abee40,
         type: 3}
       MaxWindows: 1
@@ -6803,17 +6812,17 @@ MonoBehaviour:
         m_Calls: []
     IsVisible: 1
     IsOn: 0
-  - Path: Save Scene As...
-    Text: Save Scene As...
+  - Path: Save Solution As...
+    Text: Save Solution As...
     Icon: {fileID: 21300000, guid: e5a00995c2633e046bcc7a83ad24c42e, type: 3}
-    Command: SaveScene
+    Command: SaveSolution
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: CreateOrActivateWindow
-          m_Mode: 0
+        - m_Target: {fileID: 1501437596}
+          m_TargetAssemblyTypeName: Battlehub.RTEditor.EosWorkspace, Assembly-CSharp
+          m_MethodName: SaveAsSolution
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
