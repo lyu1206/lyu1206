@@ -12,6 +12,7 @@ namespace Battlehub.RTEditor
     using UIControls.Dialogs;
     public class EosWorkspace : MonoBehaviour
     {
+        private IRTE _editor;
         public delegate void EosWorkspaceEventHandler(EosObjectBase solution);
         public static event EosWorkspaceEventHandler SolutionChanged;
         [System.NonSerialized]
@@ -25,6 +26,14 @@ namespace Battlehub.RTEditor
         public void OpenSolution()
         {
             IOC.Resolve<IWindowManager>().CreateDialogWindow("OpenSolution", "Open Solution", OnOpenOk);
+            _editor = IOC.Resolve<IRTE>();
+            _editor.PlaymodeStateChanged += OnPlaymodeStateChanged;
+        }
+        private void OnPlaymodeStateChanged()
+        {
+            Debug.Log($"Player state changed:{_editor.IsPlaying}");
+            EosPlayer.EosPlayer.Instance.SetSolution(_solution as Solution);
+            EosPlayer.EosPlayer.Instance.Play();
         }
         public void SaveAsSolution()
         {

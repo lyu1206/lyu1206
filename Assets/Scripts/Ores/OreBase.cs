@@ -20,6 +20,8 @@ namespace Eos.Ore
         public Object GetOreObject()
         {
             var mold = Assets.Mold.GetMold(Mold);
+            if (mold == null)
+                return null;
             return mold.GetOre<Object>(OreID);
         }
         public GameObject Instantiate()

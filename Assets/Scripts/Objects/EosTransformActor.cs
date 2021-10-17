@@ -126,6 +126,7 @@ namespace Eos.Objects
             } 
         }
         [Key(22)]
+        [Inspector("Basic", "LocalPosition")]
         public virtual Vector3 LocalPosition
         {
             get
@@ -138,6 +139,7 @@ namespace Eos.Objects
             }
         }
         [Key(23)]
+        [Inspector("Basic", "LocalRotation")]
         public virtual Vector3 LocalRotation
         {
             get

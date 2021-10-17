@@ -228,7 +228,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
@@ -2844,7 +2844,7 @@ MonoBehaviour:
   m_inspectorWindow:
     Icon: {fileID: 21300000, guid: f7581d993ea6f4942b835e5f922cdef6, type: 3}
     Header: ID_RTEditor_WM_Header_Inspector
-    ContentPrefab: {fileID: 5186639825075379583, guid: 8a05de4897cf04045af395318d6cfd0d,
+    ContentPrefab: {fileID: 5186639825075379583, guid: eac341388221db4429e0cbe3859943bb,
       type: 3}
     MaxWindows: 1
     Created: 0

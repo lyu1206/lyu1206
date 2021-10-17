@@ -63,8 +63,8 @@ namespace Battlehub.RTEditor
 			map.AddMapping(typeof(UnityEngine.SpringJoint), 24, true, false);
 			map.AddMapping(typeof(UnityEngine.Transform), 27, false, false);
 			map.AddMapping(typeof(UnityEngine.UI.VerticalLayoutGroup), 24, true, false);
+			map.AddMapping(typeof(RTCommon.ExposeToEosEditor), 28, true, false);
 			map.AddMapping(typeof(RuntimeAnimation), 24, true, false);
-			map.AddMapping(typeof(EosObjectInspector), 25, true, false);
 		}
 	}
 }

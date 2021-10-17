@@ -15,11 +15,12 @@ namespace Eos.Objects
         private int _scriptcoroutineid;
         protected override void OnActivate(bool active)
         {
+            if (!Ref.IsPlaying)
+                return;
             var ore = ScriptOre.GetOreObject();
-            if (ore != null)
-            {
-                scriptname = ore.name;
-            }
+            if (ore == null)
+                return;
+            scriptname = ore.name;
             _script = _script??IngameScriptContainer.GetScript(scriptname, this);
             if (active)
             {

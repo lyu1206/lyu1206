@@ -9,7 +9,7 @@ namespace Eos.Service
 
     [NoCreated]
     [MessagePackObject]
-    public class TypeService : EosService, ITransform
+    public partial class TypeService : EosService, ITransform
     {
         protected EosTransform _transform;
         [IgnoreMember] public EosTransform Transform => _transform;
@@ -21,11 +21,11 @@ namespace Eos.Service
         public override void OnCreate()
         {
             _transform.Create(Name);
-            _transform.Transform.gameObject.SetActive(false);
-            _active = false;
         }
         public override void Activate(bool active, bool recursivechild = true)
         {
+            if (!Ref.IsPlaying)
+                return;
             _transform.Transform?.gameObject.SetActive(false);
         }
         public override void StartPlay()

@@ -112,8 +112,10 @@ namespace Eos.Objects
         public virtual void RTEOnCreated(IRTE editor)
         {
             var trans = EditorTrasnform;
-            _rteditObject = trans.gameObject.AddComponent<ExposeToEditor>();
-            var inspect = trans.gameObject.AddComponent<EosObjectInspector>();
+            var rteditorobject = trans.gameObject.AddComponent<ExposeToEosEditor>();
+            rteditorobject.Owner = this;
+            _rteditObject = rteditorobject;
+            //var inspect = trans.gameObject.AddComponent<EosObjectInspector>();
             //if (this is EosTransformActor)
             //    editor.RegisterCreatedObjects(new[] { _rteditObject.gameObject }, true);
             if (Parent != null)

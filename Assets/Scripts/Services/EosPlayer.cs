@@ -82,12 +82,14 @@ namespace EosPlayer
         private ObjectManager _objectmanager = new ObjectManager();
         private ScriptPlayer _scriptPlayer = new ScriptPlayer();
         private Scheduler _scheduler = new Scheduler();
+        private bool _isplaying;
         private static EosPlayer _instance;
         public ObjectManager ObjectManager =>_objectmanager;
         public Solution Solution => _solution;
         public CoroutineManager Coroutine = null;
         public ScriptPlayer ScriptPlayer => _scriptPlayer;
         public Scheduler Scheduler => _scheduler;
+        public bool IsPlaying => _isplaying;
 
         public static EosPlayer Instance
         {
@@ -110,6 +112,15 @@ namespace EosPlayer
         {
             ObjectManager.Update(Time.deltaTime);
             Scheduler.Update(Time.deltaTime);
+        }
+        public void Play()
+        {
+            _isplaying = true;
+            _instance.Solution?.StartGame();
+        }
+        public void Stop()
+        {
+            _isplaying = false;
         }
         public static void ShutDown()
         {

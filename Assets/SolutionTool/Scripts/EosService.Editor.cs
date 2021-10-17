@@ -14,4 +14,12 @@ namespace Eos.Service
         //    _workspace.AddComponent<ExposeToEditor>();
         //}
     }
+    public partial class TypeService
+    {
+        public override void RTEOnCreated(IRTE editor)
+        {
+            base.RTEOnCreated(editor);
+            _rteditObject.gameObject.SetActive(false);
+        }
+    }
 }

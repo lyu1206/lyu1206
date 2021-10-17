@@ -87,7 +87,7 @@ namespace Eos.Objects
         [Key(1)] public List<EosObjectBase> _children  = new List<EosObjectBase>();
         [IgnoreMember] public int ChildCount => _children.Count;
         [IgnoreMember] public List<EosObjectBase> Children => _children;
-        [Inspector("Basic","Name")]
+        //[Inspector("Basic","Name")]
         [Key(2)]public virtual string Name{get=>_name;set=>_name = value;}
         [Inspector("Basic", "Active")]
         [Key(3)]public bool Active 
@@ -97,6 +97,7 @@ namespace Eos.Objects
             {
                 if (_active == value)
                     return;
+                _active = value;
                 Activate(value);
             }
         }
