@@ -173,7 +173,8 @@ public class TestMain : MonoBehaviour
 
 
         EosPlayer.EosPlayer.Instance.SetSolution(solution as Solution);
-        ((Solution)solution).StartGame();
+        EosPlayer.EosPlayer.Instance.Play();
+//        ((Solution)solution).StartGame();
 
         var eplayer = EosPlayer.EosPlayer.Instance;
         var ws = eplayer.Solution.Workspace;
