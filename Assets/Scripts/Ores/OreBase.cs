@@ -57,8 +57,8 @@ namespace Eos.Ore
         {
             var oreobj = GameObject.Instantiate(gameObject) as GameObject;
             oreobj.transform.SetParent(parent);
-            oreobj.transform.localPosition = gameObject.transform.localPosition;
-            oreobj.transform.localRotation = gameObject.transform.localRotation;
+            oreobj.transform.localPosition = Vector3.zero;// gameObject.transform.localPosition;
+            oreobj.transform.localRotation = Quaternion.identity;// gameObject.transform.localRotation;
             return oreobj.transform;
         }
     }

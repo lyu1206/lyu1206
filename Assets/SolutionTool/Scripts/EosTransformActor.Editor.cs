@@ -27,7 +27,19 @@ namespace Eos.Objects
             //obj.transform.localRotation = Quaternion.Euler(Transform.LocalRotation);
             //obj.transform.localScale = Transform.LocalScale;
         }
-        public override Transform EditorTrasnform => _transform.Transform;
+        public override EosTransform EditorTrasnform => _transform;
+        //public override EosObjectBase CreateCloneObjectForEditor(ExposeToEosEditor editorobject)
+        //{
+        //    var copy =  base.CreateCloneObjectForEditor(editorobject) as EosTransformActor;
+        //    copy._transform.Transform = editorobject.transform;
+        //    editorobject.Owner = copy;
+        //    return copy;
+        //}
+        public override void SetExposeToEditor(ExposeToEosEditor editorobject)
+        {
+            _rteditObject = editorobject;
+            _transform.Transform = editorobject.transform;
+        }
         public override void RTEOnCreated(IRTE editor)
         {
             base.RTEOnCreated(editor);

@@ -5,19 +5,18 @@ namespace Eos.Objects
     using MessagePack;
     [Serializable]
     [MessagePackObject]
-    public class EosCamera : EosTransformActor
+    public partial class EosCamera : EosTransformActor
     {
         private EosTransformActor _target;
         private Camera _camera;
         public EosCamera()
         {
-            if (_camera == null)
-            {
-                _camera = _transform.Transform.gameObject.AddComponent<Camera>();
-                Camera.SetupCurrent(_camera);
-            }
         }
-        [Key(330)]public override Vector3 LocalPosition 
+        public override void OnCreate()
+        {
+            base.OnCreate();
+        }
+        public override Vector3 LocalPosition 
         { 
             get => base.LocalPosition;
             set
@@ -26,7 +25,7 @@ namespace Eos.Objects
                 base.LocalPosition = value;
             }
         }
-        [Key(331)]public override Vector3 LocalRotation 
+        public override Vector3 LocalRotation 
         { 
             get => base.LocalRotation;
             set
@@ -34,7 +33,17 @@ namespace Eos.Objects
                 base.LocalRotation = value;
             }
         }
-        [IgnoreMember]public static EosCamera Main;
+        private static EosCamera _main;
+        public static Action<Camera> OnChangedMainCamera;
+        [IgnoreMember]public static EosCamera Main
+        {
+            set
+            {
+                _main = value;
+                OnChangedMainCamera?.Invoke(_main._camera);
+            }
+            get => _main;
+        }
         [IgnoreMember]public EosTransformActor Target
         {
             get=>_target;
@@ -55,6 +64,12 @@ namespace Eos.Objects
         protected override void OnActivate(bool active)
         {
             base.OnActivate(active);
+            _camera = _transform.GetComponent<Camera>();
+            if (_camera == null)
+            {
+                _camera = _transform.Transform.gameObject.AddComponent<Camera>();
+                Camera.SetupCurrent(_camera);
+            }
             var camera = _camera;// = _transform.Transform.gameObject.AddComponent<Camera>();
             camera.name = Name;
             camera.clearFlags = CameraClearFlags.SolidColor;

@@ -5,9 +5,15 @@ using UnityEngine;
 
 namespace Eos.Service
 {
+
+    using Objects;
     public partial class Workspace 
     {
-        public override Transform EditorTrasnform => _workspace.Transform;
+        public override  EosTransform EditorTrasnform => _workspace;
+        public override void SetExposeToEditor(ExposeToEosEditor editorobject)
+        {
+            _workspace.Transform = editorobject.transform;
+        }
         //public override void RTEOnCreated(IRTE editor)
         //{
         //    //base.RTEOnCreated(editor);
@@ -20,6 +26,22 @@ namespace Eos.Service
         {
             base.RTEOnCreated(editor);
             _rteditObject.gameObject.SetActive(false);
+        }
+        public override EosObjectBase CreateCloneObjectForEditor(ExposeToEosEditor editorobject)
+        {
+            editorobject.gameObject.SetActive(false);
+            return base.CreateCloneObjectForEditor(editorobject);
+        }
+        public override void SetExposeToEditor(ExposeToEosEditor editorobject)
+        {
+            _transform.Transform = editorobject.transform;
+        }
+    }
+    public partial class TerrainService
+    {
+        public override void SetExposeToEditor(ExposeToEosEditor editorobject)
+        {
+            _transform.Transform = editorobject.transform;
         }
     }
 }

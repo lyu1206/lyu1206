@@ -21,6 +21,10 @@ namespace Eos.Service
         {
             Name = "Workspace";
             _workspace = ObjectFactory.CreateInstance<EosTransform>();
+        }
+        public override void OnCreate()
+        {
+            base.OnCreate();
             _workspace.Create(Name);
         }
     }

@@ -43,7 +43,8 @@ namespace Eos.Objects.UI
             base.OnCreate();
             if (!ActiveInHierachy)
                 return;
-            var textpro = _textmesh = _transform.AddComponent<TextMeshPro>();
+            _textmesh = _transform.GetComponent<TextMeshPro>();
+            var textpro = _textmesh = _textmesh??_transform.AddComponent<TextMeshPro>();
             textpro.text = "Hello";
             textpro.alignment = TextAlignmentOptions.Center;
             textpro.fontSize = 50;

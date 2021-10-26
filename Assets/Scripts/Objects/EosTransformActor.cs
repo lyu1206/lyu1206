@@ -7,13 +7,33 @@ namespace Eos.Objects
     [MessagePackObject]
     public class EosTransform
     {
-        [Key(1)]private Vector3 _localposition;
-        [Key(2)]private Vector3 _localrotation;
-        [Key(3)] private Vector3 _localscale;
+        [Key(1)]public Vector3 _localposition;
+        [Key(2)]public Vector3 _localrotation;
+        [Key(3)]public Vector3 _localscale = Vector3.one;
 
         private GameObject _unityobject;
         protected Transform _transform;
-        [IgnoreMember] public Transform Transform { get => _transform; set => _transform = value; }
+        [IgnoreMember] public bool HasChild => _transform != null && _transform.childCount > 0;
+        public Transform GetChild(int index)
+        {
+            if (_transform == null)
+                return null;
+            if (index >= _transform.childCount)
+                return null;
+            return _transform.GetChild(index);
+        }
+        [IgnoreMember] public Transform Transform
+        { 
+            get => _transform;
+            set
+            {
+                _transform = value;
+                _transform.localPosition = _localposition;
+                _transform.localRotation = Quaternion.Euler(_localrotation);
+                _transform.localScale = _localscale;
+                _unityobject = _transform.gameObject;
+            }
+        }
         [IgnoreMember]public string Name
         {
             set
@@ -29,9 +49,9 @@ namespace Eos.Objects
                 return _transform;
             _unityobject = _unityobject??ObjectFactory.CreateUnityInstance(name).gameObject;
             _transform = _unityobject.transform;
-            _transform.localPosition = Vector3.zero;
-            _transform.localRotation = Quaternion.identity;
-            _transform.localScale = Vector3.one;
+            _transform.localPosition = _localposition;
+            _transform.localRotation = Quaternion.Euler(_localrotation);
+            _transform.localScale = _localscale;
             return _transform;
         }
         [IgnoreMember]
@@ -92,11 +112,17 @@ namespace Eos.Objects
         }
         public T AddComponent<T>() where T : Component
         {
-            var comp = _unityobject.AddComponent<T>();
+            T comp = _unityobject.AddComponent<T>();
             _transform = _unityobject.transform;
             return comp;
         }
-
+        public T GetComponent<T>() where T : Component
+        {
+            if (_unityobject == null)
+                return null;
+            var component = _unityobject.GetComponent<T>();
+            return component;
+        }
         public void CopyTo(EosTransform target)
         {
             target.Create(_transform.name);
@@ -108,9 +134,9 @@ namespace Eos.Objects
     }
     public partial class EosTransformActor : EosObjectBase , ITransform
     {
-        protected EosTransform _transform;
+        [Key(20)]public EosTransform _transform;
         private EventHandler<float> _components;
-        [Key(20)] public virtual EosTransform Transform => _transform;
+        [IgnoreMember]public virtual EosTransform Transform => _transform;
         [Key(21)]public int Layer;
         [IgnoreMember]public int LayerMask => 1 << Layer;
         [IgnoreMember]
@@ -125,7 +151,7 @@ namespace Eos.Objects
                 _transform.Name = value;
             } 
         }
-        [Key(22)]
+        [IgnoreMember]
         [Inspector("Basic", "LocalPosition")]
         public virtual Vector3 LocalPosition
         {
@@ -138,7 +164,7 @@ namespace Eos.Objects
                 _transform.LocalPosition = value;
             }
         }
-        [Key(23)]
+        [IgnoreMember]
         [Inspector("Basic", "LocalRotation")]
         public virtual Vector3 LocalRotation
         {
@@ -154,17 +180,18 @@ namespace Eos.Objects
         public EosTransformActor()
         {
             _transform = ObjectFactory.CreateInstance<EosTransform>();
-            _transform.Create(Name);
+            //            _transform.Create(Name);
         }
         public override void OnCreate()
         {
             base.OnCreate();
-//            _transform.Create(Name);
+            _transform.Create(Name);
         }
         public override void OnCopyTo(EosObjectBase target)
         {
             if (!(target is EosTransformActor targetactor))
                 return;
+//            targetactor._transform = ObjectFactory.CreateInstance<EosTransform>();
             Transform.CopyTo(targetactor.Transform);
             targetactor.Layer = Layer;
             base.OnCopyTo(target);

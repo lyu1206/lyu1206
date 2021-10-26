@@ -5,7 +5,7 @@ using UnityEngine;
 using MessagePack;
 namespace Eos.Objects
 {
-    public class EosCollider : EosObjectBase , ITransform
+    public partial class EosCollider : EosObjectBase , ITransform
     {
         private EosTransform _transform;
         private ColliderType _colliderType;
@@ -135,7 +135,7 @@ namespace Eos.Objects
         private void OnTriggerEnter(Collider other)
         {
             var income = other.GetComponent<eosColliderAdaptor>();
-            if (income == null || income._colider.DetectType == DetectType.Other)
+            if (income == null || income._colider==null || income._colider.DetectType == DetectType.Other)
                 return;
             if (_colider.FindInParent<EosModel>() == income._colider.FindInParent<EosModel>())
                 return;

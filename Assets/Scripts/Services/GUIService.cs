@@ -15,23 +15,44 @@ namespace Eos.Service
     {
         private EosTransform  _guiroot;
         private Canvas _canvas;
+        private Transform _root;
+        [IgnoreMember] public Canvas Canvas => _canvas;
         [IgnoreMember]public EosTransform Transform => _guiroot;
         public GUIService()
         {
             _guiroot = ObjectFactory.CreateInstance<EosTransform>();
-            var root = _guiroot.Create("GUIRoot").gameObject;
+        }
+        public override void OnCreate()
+        {
+            base.OnCreate();
+            _guiroot.Create("GUIRoot");
+        }
+        private void CreateCanvas()
+        {
+            _canvas = _guiroot.GetComponent<Canvas>();
+            if (_canvas != null)
+                return;
             _canvas = _guiroot.AddComponent<Canvas>();
-            _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             _guiroot.AddComponent<CanvasScaler>();
             _guiroot.AddComponent<GraphicRaycaster>();
+
+            _root = _guiroot.Transform;
+
             if (EventSystem.current == null)
             {
                 var eventsystem = ObjectFactory.CreateUnityInstance("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule)).gameObject;
-                eventsystem.transform.parent = root.transform;
+                eventsystem.transform.parent = _root.transform;
             }
-//            _guiroot.Transform = root.transform;
+            //            _guiroot.Transform = root.transform;
         }
-        public static Canvas Canvas;
+        protected override void OnActivate(bool active)
+        {
+            base.OnActivate(active);
+            if (_canvas != null)
+                return;
+            CreateCanvas();
+            _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        }
         public UGUIEvents RegistUIEvent(Transform eventobject,object reciever)
         {
             

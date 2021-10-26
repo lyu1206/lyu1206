@@ -180,6 +180,7 @@ namespace Eos.Objects
             if (child is EosCollider collider)
             {
                 Collders.Add(collider);
+                _rigidbody = Transform.GetComponent<Rigidbody>();
                 if (_rigidbody == null)
                 {
                     _rigidbody = Transform.AddComponent<Rigidbody>();

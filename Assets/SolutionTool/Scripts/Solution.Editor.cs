@@ -6,6 +6,8 @@ using UnityEngine;
 namespace Eos.Service
 {
     using AI;
+    using Battlehub.RTCommon;
+    using Eos.Objects;
     using Eos.Objects.Editor;
     public partial class Solution
     {
@@ -32,6 +34,12 @@ namespace Eos.Service
             solution.AddChild(_workspace.CreatedEditorImpl());
             solution.AddChild(_terrainservice.CreatedEditorImpl());
             solution.AddChild(_guiservice.CreatedEditorImpl());
+            return solution;
+        }
+        public override EosObjectBase CreateCloneObjectForEditor(ExposeToEosEditor editorobject)
+        {
+            var solution = new Solution();
+            solution.ObjectID = ObjectID;
             return solution;
         }
     }

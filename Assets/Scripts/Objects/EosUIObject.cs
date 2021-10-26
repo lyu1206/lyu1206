@@ -7,7 +7,7 @@ namespace Eos.Objects
 {
     using Ore;
     [System.Serializable]
-    public class EosUIObject : EosTransformActor
+    public partial class EosUIObject : EosTransformActor
     {
         [IgnoreMember]public OreBase _uisource;
         [RequireMold("UIMold")]
@@ -16,6 +16,8 @@ namespace Eos.Objects
         public OreReference UIOre { get; set; }
         protected override void OnActivate(bool active)
         {
+            if (Transform.HasChild)
+                return;
             var ui = UIOre.GetOre();
             _uisource = ui.GetComponent<OreBase>();
             if (_uisource == null)

@@ -27,13 +27,40 @@ namespace Battlehub.RTEditor
         {
             IOC.Resolve<IWindowManager>().CreateDialogWindow("OpenSolution", "Open Solution", OnOpenOk);
             _editor = IOC.Resolve<IRTE>();
+            _editor.PlaymodeStateChanging += OnPlaymodeStateChange;
             _editor.PlaymodeStateChanged += OnPlaymodeStateChanged;
+        }
+        private void OnPlaymodeStateChange()
+        {
+            Debug.Log($"Player state changed:{_editor.IsPlaying}");
+            //EosPlayer.EosPlayer.Instance.SetSolution(_solution as Solution);
+            //EosPlayer.EosPlayer.Instance.Play();
         }
         private void OnPlaymodeStateChanged()
         {
-            Debug.Log($"Player state changed:{_editor.IsPlaying}");
-            EosPlayer.EosPlayer.Instance.SetSolution(_solution as Solution);
-            EosPlayer.EosPlayer.Instance.Play();
+            var eosplayer = EosPlayer.EosPlayer.Instance;
+            if (_editor.IsPlaying)
+            {
+                eosplayer.PreviewSetup();
+                var objmng = EosPlayer.EosPlayer.Instance.ObjectManager;
+                var previewsolution = _solution.CreateCloneObjectForEditor(null) as Solution;
+                objmng.RegistObject(previewsolution);
+                var objects = _editor.Object.Get(false);
+                foreach (var it in objects)
+                {
+                    if (!(it is ExposeToEosEditor eobj))
+                        continue;
+                    var eosobject = eosplayer.GetObjectFromEditObject(eobj.OwnerID);
+                    var editeosobject = eosobject.CreateCloneObjectForEditor(eobj);
+//                    editeosobject.OnCreate();
+                }
+                eosplayer.SetSolution(previewsolution);
+                eosplayer.Play();
+            }
+            else
+            {
+                EosPlayer.EosPlayer.Instance.StopPreview();
+            }
         }
         public void SaveAsSolution()
         {

@@ -23,22 +23,35 @@ namespace Eos.Objects
                 return null;
             }
         }
-        uint objectkey = 1;
+        static private uint objectkey = 1;
         public void RegistObject(EosObjectBase obj)
         {
             if (_objectlist.ContainsKey(obj.ObjectID))
                 return;
             // if (obj is ITransform unityobj )
             //     _unitylist.Add(unityobj.Transform.gameObject.GetHashCode(),obj);
-            obj.ObjectID = objectkey;
-            _objectlist.Add(objectkey,obj);
-            objectkey++;
+            if (obj.ObjectID != 0)
+                _objectlist.Add(obj.ObjectID, obj);
+            else
+            {
+                obj.ObjectID = objectkey;
+                _objectlist.Add(objectkey, obj);
+                objectkey++;
+            }
         }
         public void UnRegistObject(EosObjectBase obj)
         {
             _objectlist.Remove(obj.ObjectID);
             UnRegistUpdateObject(obj);
             OnUnRegistObject?.Invoke(this, obj);
+        }
+        public void Reset()
+        {
+            _objectlist = new Dictionary<uint, EosObjectBase>();
+            _unitylist = new Dictionary<int, EosObjectBase>();
+            _updateobjectlist = new List<EosObjectBase>();
+            _latedeleteupdateobjectlist = new List<EosObjectBase>();
+            _lateaddupdateobjectlist = new List<EosObjectBase>();
         }
         public EosObjectBase GetFromUnityObject(GameObject unityobj)
         {
@@ -76,7 +89,7 @@ namespace EosPlayer
     using Eos.Objects;
     using Eos.Script;
 
-    public class EosPlayer : MonoBehaviour
+    public partial class EosPlayer : MonoBehaviour
     {
         private Solution _solution;
         private ObjectManager _objectmanager = new ObjectManager();

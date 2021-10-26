@@ -18,7 +18,9 @@ namespace Eos.Objects
         {
             if (!ActiveInHierachy)
                 return;
-            BuildLight();
+            _lightcontroller = _transform.Transform.GetComponentInChildren<LightController>();
+            if (_lightcontroller==null)
+                BuildLight();
         }
         private void BuildLight()
         {

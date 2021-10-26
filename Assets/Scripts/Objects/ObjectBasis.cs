@@ -10,17 +10,11 @@ namespace Eos.Objects
     using MessagePack;
 
     [System.Serializable]
-    public partial class EosModel : EosObjectBase , ITransform
+    public partial class EosModel : EosTransformActor
     {
-        private EosTransform _transform;
-        [IgnoreMember]public EosTransform Transform =>_transform;
         [IgnoreMember] public EosTransformActor PrimaryActor;
         public EosModel()
         {
-#if UNITY_EDITOR
-            _transform = ObjectFactory.CreateInstance<EosTransform>();
-            _transform.Create(Name);
-#endif
         }
         protected override void OnActivate(bool active)
         {
@@ -146,7 +140,7 @@ namespace Eos.Objects
         }
         public virtual void Activate(bool active,bool recursivechild = true)
         {
-            OnActivate(active);
+            OnActivate(ActiveInHierachy);
             if (recursivechild)
             {
                 foreach (var child in _children)

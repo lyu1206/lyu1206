@@ -7,13 +7,29 @@ using UnityEditor.IMGUI.Controls;
 
 namespace Eos.Service
 {
+    using Objects;
     using Battlehub.RTCommon;
+    using Battlehub.RTEditor;
     public partial class GUIService
     {
-        public override Transform EditorTrasnform => _guiroot.Transform;
+        public override EosTransform EditorTrasnform => _guiroot;
         public override void RTEOnCreated(Battlehub.RTCommon.IRTE editor)
         {
-            _guiroot.AddComponent<ExposeToEditor>();
+            base.RTEOnCreated(editor);
+            CreateCanvas();
+            var camera =  UnityEngine.Object.FindObjectOfType<GameViewCamera>();
+            _canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            _canvas.planeDistance = 1;
+            _canvas.worldCamera = camera.GetComponent<Camera>();
+        }
+        public override void SetExposeToEditor(ExposeToEosEditor editorobject)
+        {
+            _guiroot.Transform = editorobject.transform;
+            var camera = UnityEngine.Object.FindObjectOfType<GameViewCamera>();
+            CreateCanvas();
+            _canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            //_canvas.planeDistance = 1;
+            //_canvas.worldCamera = cam;
         }
     }
 }
@@ -90,37 +106,61 @@ namespace Eos.Objects
                 child?.CreatedOnEditor();
         }
         protected ExposeToEditor _rteditObject;
+        protected EosTransform _rtTransform;
         [MessagePack.IgnoreMember]
         public ExposeToEditor RTEditObject => _rteditObject;
         [MessagePack.IgnoreMember]
-        public virtual Transform EditorTrasnform
+        public virtual EosTransform EditorTrasnform
         {
             get
             {
                 if (this is ITransform trans)
                 {
-                    return trans.Transform.Transform;
+                    return trans.Transform;
                 }
-                else if (Parent == null)
+                else if (this is Eos.Service.Solution)
                     return null;
-                else if (_rteditObject != null)
-                    return _rteditObject.transform;
+                else if (_rtTransform != null)
+                    return _rtTransform;
+                _rtTransform = ObjectFactory.CreateInstance<EosTransform>();
                 var go = new GameObject(Name);
-                return go.transform;
+                _rtTransform.Transform = go.transform;
+                return _rtTransform;
             }
+        }
+        public virtual void SetExposeToEditor(ExposeToEosEditor editorobject)
+        {
+            if (this is Eos.Service.Solution)
+                return;
+            _rtTransform = ObjectFactory.CreateInstance<EosTransform>();
+            _rtTransform.Transform = editorobject.transform;
+            _rteditObject = editorobject;
+        }
+        public virtual EosObjectBase CreateCloneObjectForEditor(ExposeToEosEditor editorobject)
+        {
+            var copy = ObjectFactory.CreateInstance(this.GetType());
+            copy.Name = Name;
+            copy.ObjectID = ObjectID;
+            copy.SetExposeToEditor(editorobject);
+            editorobject.Owner = copy;
+            OnCopyTo(copy);
+            Ref.ObjectManager.RegistObject(copy);
+            var parent = Ref.ObjectManager[_parent.ObjectID];
+            parent?.AddChild(copy);
+            return copy;
         }
         public virtual void RTEOnCreated(IRTE editor)
         {
             var trans = EditorTrasnform;
-            var rteditorobject = trans.gameObject.AddComponent<ExposeToEosEditor>();
+            var rteditorobject = EditorTrasnform.AddComponent<ExposeToEosEditor>();
             rteditorobject.Owner = this;
             _rteditObject = rteditorobject;
             //var inspect = trans.gameObject.AddComponent<EosObjectInspector>();
             //if (this is EosTransformActor)
             //    editor.RegisterCreatedObjects(new[] { _rteditObject.gameObject }, true);
-            if (Parent != null)
+            if (Parent != null && Parent.EditorTrasnform!=null)
             {
-                _rteditObject.transform.SetParent(Parent.EditorTrasnform);
+                _rteditObject.transform.SetParent(Parent.EditorTrasnform.Transform);
             }
             if (this is EosService)
                 _rteditObject.CanTransform = false;
@@ -134,6 +174,13 @@ namespace Eos.Objects
             _transform.LocalPosition = Vector3.zero;
             _transform.Transform.localRotation = Quaternion.identity;
             _transform.LocalScale = Vector3.one;
+        }
+    }
+    public partial class EosCollider
+    {
+        public override void SetExposeToEditor(ExposeToEosEditor editorobject)
+        {
+            _transform.Transform = editorobject.transform;
         }
     }
     public partial class EosLight

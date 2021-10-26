@@ -37,6 +37,7 @@ namespace Eos.Objects
                 attackrange.ColliderType = ColliderType.Sphere;
                 attackrange.DetectType = DetectType.Other;
                 attackrange.IsTrigger = true;
+                attackrange.OnCreate();
                 _attackrange = attackrange;
                 _attackrange.Enable = true;
                 //Humanoidroot.AddChild(attackrange);
@@ -56,6 +57,7 @@ namespace Eos.Objects
             notifyrange.ColliderType = ColliderType.Sphere;
             notifyrange.DetectType = DetectType.Other;
             notifyrange.IsTrigger = true;
+            notifyrange.OnCreate();
             _humanoidroot.AddChild(notifyrange);
             var collider = notifyrange.Collider as eosSphereCollider;
             collider.Radius = radius;
