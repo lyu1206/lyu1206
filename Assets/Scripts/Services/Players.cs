@@ -63,17 +63,13 @@ namespace Eos.Service
         }
     }
     [NoCreated]
-    public class Players : EosService , ITransform
+    public class Players : EosService
     {
-        private EosTransform _transform;
-        public EosTransform Transform => _transform;
         private Player _localplayer;
         public Player LocalPlayer => _localplayer;
         public Players()
         {
             Name = "Players";
-            _transform = ObjectFactory.CreateInstance<EosTransform>();
-            _transform.Create(Name);
         }
         private Player CreatePlayer(ulong sid)
         {
