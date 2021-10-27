@@ -10,14 +10,28 @@ namespace Eos.Service
 
     [NoCreated]
     [MessagePackObject]
-    public abstract class EosService : EosObjectBase
+    public abstract partial class EosService : EosObjectBase, ITransform
     {
+        public EosService()
+        {
+            _transform = ObjectFactory.CreateInstance<EosTransform>();
+        }
+        protected EosTransform _transform;
+        [IgnoreMember]public virtual EosTransform Transform => _transform;
+        public override void OnDestroy()
+        {
+            _transform?.Destroy();
+        }
+        public override void OnCreate()
+        {
+            _transform.Create(Name);
+        }
 
     }
     [System.Serializable]
     [NoCreated]
     [MessagePackObject]
-    public partial class Solution : EosService 
+    public partial class Solution : EosObjectBase
     {
         private Workspace _workspace;
         private TerrainService _terrainservice;

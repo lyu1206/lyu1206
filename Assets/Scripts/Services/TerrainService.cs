@@ -9,19 +9,11 @@ namespace Eos.Service
     using Eos.Objects;
     [NoCreated]
     [System.Serializable]
-    public partial class TerrainService : EosService , ITransform
+    public partial class TerrainService : EosService
     {
-        private EosTransform _transform;
-        [IgnoreMember] public EosTransform Transform=>_transform;
         public TerrainService()
         {
             Name = "TerrainService";
-            _transform = ObjectFactory.CreateInstance<EosTransform>();
-        }
-        public override void OnCreate()
-        {
-            base.OnCreate();
-            _transform.Create(Name);
         }
         [IgnoreMember] public PVMOre _pvmOre;
         protected override void OnActivate(bool active)

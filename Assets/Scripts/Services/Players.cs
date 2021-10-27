@@ -96,5 +96,9 @@ namespace Eos.Service
         {
             OnConnectPlayer(1);
         }
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
     }
 }

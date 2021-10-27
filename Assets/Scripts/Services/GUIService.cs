@@ -11,32 +11,25 @@ namespace Eos.Service
     using EosPlayer;
     [Serializable]
     [NoCreated]
-    public partial class GUIService : EosService , ITransform
+    public partial class GUIService : EosService
     {
-        private EosTransform  _guiroot;
         private Canvas _canvas;
         private Transform _root;
         [IgnoreMember] public Canvas Canvas => _canvas;
-        [IgnoreMember]public EosTransform Transform => _guiroot;
         public GUIService()
         {
-            _guiroot = ObjectFactory.CreateInstance<EosTransform>();
-        }
-        public override void OnCreate()
-        {
-            base.OnCreate();
-            _guiroot.Create("GUIRoot");
+            Name = "GUIRoot";
         }
         private void CreateCanvas()
         {
-            _canvas = _guiroot.GetComponent<Canvas>();
+            _canvas = _transform.GetComponent<Canvas>();
             if (_canvas != null)
                 return;
-            _canvas = _guiroot.AddComponent<Canvas>();
-            _guiroot.AddComponent<CanvasScaler>();
-            _guiroot.AddComponent<GraphicRaycaster>();
+            _canvas = _transform.AddComponent<Canvas>();
+            _transform.AddComponent<CanvasScaler>();
+            _transform.AddComponent<GraphicRaycaster>();
 
-            _root = _guiroot.Transform;
+            _root = _transform.Transform;
 
             if (EventSystem.current == null)
             {
@@ -63,10 +56,6 @@ namespace Eos.Service
         {
             if (uievent != null)
                 GameObject.Destroy(uievent);
-        }
-        public override void OnDestroy()
-        {
-            _guiroot?.Destroy();
         }
     }
 }

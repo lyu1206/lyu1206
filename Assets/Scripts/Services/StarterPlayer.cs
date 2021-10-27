@@ -9,19 +9,8 @@ namespace Eos.Service
 
     [NoCreated]
     [MessagePackObject]
-    public partial class TypeService : EosService, ITransform
+    public partial class TypeService : EosService
     {
-        protected EosTransform _transform;
-        [IgnoreMember] public EosTransform Transform => _transform;
-        public TypeService()
-        {
-            _transform = ObjectFactory.CreateInstance<EosTransform>();
-        }
-
-        public override void OnCreate()
-        {
-            _transform.Create(Name);
-        }
         public override void Activate(bool active, bool recursivechild = true)
         {
             if (!Ref.IsPlaying)

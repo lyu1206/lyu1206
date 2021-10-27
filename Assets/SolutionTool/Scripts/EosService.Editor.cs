@@ -7,6 +7,10 @@ namespace Eos.Service
 {
 
     using Objects;
+    public partial class EosService
+    {
+        public override EosTransform EditorTrasnform => _transform;
+    }
     public partial class Workspace 
     {
         public override  EosTransform EditorTrasnform => _workspace;

@@ -12,7 +12,7 @@ namespace Eos.Service
     using Battlehub.RTEditor;
     public partial class GUIService
     {
-        public override EosTransform EditorTrasnform => _guiroot;
+        public override EosTransform EditorTrasnform => _transform;
         public override void RTEOnCreated(Battlehub.RTCommon.IRTE editor)
         {
             base.RTEOnCreated(editor);
@@ -24,7 +24,7 @@ namespace Eos.Service
         }
         public override void SetExposeToEditor(ExposeToEosEditor editorobject)
         {
-            _guiroot.Transform = editorobject.transform;
+            _transform.Transform = editorobject.transform;
             var camera = UnityEngine.Object.FindObjectOfType<GameViewCamera>();
             CreateCanvas();
             _canvas.renderMode = RenderMode.ScreenSpaceCamera;
