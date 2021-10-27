@@ -2,9 +2,12 @@ using System;
 using UnityEngine;
 namespace Eos.Objects
 {
+    using Service;
     using MessagePack;
     [Serializable]
     [MessagePackObject]
+    [EosObject]
+    [DescendantOf(typeof(Workspace))]
     public partial class EosCamera : EosTransformActor
     {
         private EosTransformActor _target;

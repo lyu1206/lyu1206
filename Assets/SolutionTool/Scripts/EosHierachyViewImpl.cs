@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using TMPro;
@@ -12,6 +13,55 @@ namespace Battlehub.RTEditor
     using Eos.Objects;
     using RTCommon;
     using UIControls.MenuControl;
+    public class AttributeCaches
+    {
+        //이건 당장 쓸것이 아니다.다만 미래에 쓸수도 있을지 몰라 예제삼아 넣어 본다.
+        private static Type[] _eosobjecttypes;
+        public static void Initialize()
+        {
+            var type = typeof(EosObjectBase);
+            var types = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .Where(x => x.IsClass && type.IsAssignableFrom(x))
+                .Where(x =>
+                {
+                    var gg = x;
+                    return x.GetCustomAttributes(false).Where(t => t is EosObjectAttribute).ToArray().Length > 0;
+                });
+            _eosobjecttypes = types.ToArray();
+        }
+        public static string[] GetAvailableTypeNames(EosObjectBase obj)
+        {
+            Type targettype = obj.GetType();
+            var parent = obj.Parent;
+            var parentadaptchild = parent.GetType().GetCustomAttributes(false).Where(x => x.GetType() == typeof(NoChild)).Count();
+            if (parentadaptchild != 0)
+                return null;
+            var availabletype = new List<Type>();
+            var ssssss = _eosobjecttypes.Select(t => t).ToArray();
+            var objtype = obj.GetType();
+            Console.WriteLine(ssssss.Length);
+            var list = _eosobjecttypes.Select(t => t).Where(it =>
+            {
+                var creationattributes = it.GetCustomAttributes(false).Where(d => d is CreationAttribute);
+                var creationattributescount = creationattributes.Count();
+                if (creationattributescount == 0)
+                    return true;
+
+                var tt = creationattributes
+                .Where(at => 
+                {
+                    var attribute = at as CreationAttribute;
+                    return attribute.CanCreate(obj);
+                }).ToArray();
+                if (tt.Length > 0)
+                    return true;
+                return false;
+            }).Select(x => x.Name);
+            var result = list.ToArray();
+            return result;
+        }
+    }
     public class EosHierachyViewImpl : HierarchyViewImpl
     {
         private EosVirtualizingTreeViewItem _hoveritem;
@@ -27,6 +77,7 @@ namespace Battlehub.RTEditor
             VirtualizingItemContainer.PointerExit += OnPointerExit;
             EosVirtualizingTreeViewItem.HierachyButton += HierachyItemButton;
             EosWorkspace.SolutionChanged += SolutionChanged;
+            AttributeCaches.Initialize();
         }
         void SolutionChanged(Eos.Objects.EosObjectBase solution)
         {
@@ -80,6 +131,7 @@ namespace Battlehub.RTEditor
                 return;
             var newobject = ObjectFactory.CreateInstance($"Eos.Objects.{arg}");
             newobject.Name = arg;
+            newobject.OnCreate();
             _currentSelect.AddChildEditorImpl(newobject);
             _objecttoExpose[newobject.EditorTrasnform.GetHashCode()] = newobject;
             newobject.RTEOnCreated(Editor);
@@ -95,13 +147,17 @@ namespace Battlehub.RTEditor
 
         protected override void OnContextMenu(List<MenuItemInfo> menuItems)
         {
-            MenuItemInfo duplicate = new MenuItemInfo { Path = "Add Object" };
-            duplicate.Action = new MenuItemEvent();
-            duplicate.Command = typeof(EosTransformActor).Name;
-            duplicate.Action.AddListener(AddObjectContextMenuCmd);
-            duplicate.Validate = new MenuItemValidationEvent();
-            duplicate.Validate.AddListener(AddObjectValidateContextMenuCmd);
-            menuItems.Add(duplicate);
+            var types = AttributeCaches.GetAvailableTypeNames(_currentSelect);
+            foreach (var type in types)
+            {
+                MenuItemInfo duplicate = new MenuItemInfo { Path = type };
+                duplicate.Action = new MenuItemEvent();
+                duplicate.Command = type;
+                duplicate.Action.AddListener(AddObjectContextMenuCmd);
+                duplicate.Validate = new MenuItemValidationEvent();
+                duplicate.Validate.AddListener(AddObjectValidateContextMenuCmd);
+                menuItems.Add(duplicate);
+            }
 
             //MenuItemInfo delete = new MenuItemInfo { Path = "Delete"};
             //delete.Action = new MenuItemEvent();
@@ -143,7 +199,10 @@ namespace Battlehub.RTEditor
         {
             base.OnSelectionChanged(sender, e);
 
-            _currentSelect = GetObjectWithTreeviewItem(e.NewItem);
+            var selectitem = e.NewItem as ExposeToEosEditor;
+            if (selectitem == null)
+                return;
+            _currentSelect = selectitem.Owner;
             _currentSelectItem = TreeView.GetItemContainer(e.NewItem) as EosVirtualizingTreeViewItem;
         }
         protected override void OnItemBeginEdit(object sender, VirtualizingTreeViewItemDataBindingArgs e)

@@ -104,7 +104,7 @@ namespace Eos.Objects
         }
         public void SetParent(EosTransform parent)
         {
-            Transform.SetParent(parent.Transform,true);
+            Transform?.SetParent(parent.Transform,true);
         }
         public void Destroy()
         {

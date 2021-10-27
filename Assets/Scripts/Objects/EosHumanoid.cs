@@ -7,6 +7,7 @@ namespace Eos.Objects
     using Service.AI;
     using MessagePack;
 
+    [EosObject]
     [MessagePackObject]
     public partial class EosHumanoid : EosTransformActor// EosObjectBase ,ITransform
     {

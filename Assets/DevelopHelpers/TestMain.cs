@@ -65,10 +65,21 @@ public class TestMain : MonoBehaviour
     IEnumerator Start()
     {
 
+        var parent = new Workspace();
+        var child = new Eos.Objects.EosPawnActor();
+        //parent.AddChild(child);
+        var parent1= new GUIService();
+        parent1.AddChild(child);
+
+        Battlehub.RTEditor.AttributeCaches.Initialize();
+        var types = Battlehub.RTEditor.AttributeCaches.GetAvailableTypeNames(child);
+
         EosObjectBase solution = ObjectFactory.CreateEosObject<Solution>();solution.Name = "Solution";
 
         void Save()
         {
+            return;
+
             var msgpackData = MessagePack.MessagePackSerializer.Serialize(solution);
             var path = $"{Application.streamingAssetsPath}/Solutions/map001.solution";
             System.IO.File.WriteAllBytes(path, msgpackData);

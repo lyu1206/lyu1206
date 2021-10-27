@@ -5,6 +5,7 @@ namespace Eos.Objects
     using Ore;
     using Script;
     [System.Serializable]
+    [EosObject]
     public class EosScript : EosObjectBase
     {
         [IgnoreMember]public string scriptname;

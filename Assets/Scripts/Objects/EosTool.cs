@@ -7,6 +7,7 @@ namespace Eos.Objects
 {
     using Ore;
     [System.Serializable]
+    [EosObject]
     public class EosTool : EosObjectBase
     {
         private bool _isattached;

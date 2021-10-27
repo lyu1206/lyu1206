@@ -5,6 +5,7 @@ using UnityEngine;
 using MessagePack;
 namespace Eos.Objects
 {
+    [EosObject]
     public partial class EosCollider : EosObjectBase , ITransform
     {
         private EosTransform _transform;

@@ -10,6 +10,7 @@ namespace Eos.Objects
     using MessagePack;
 
     [System.Serializable]
+    [EosObject]
     public partial class EosModel : EosTransformActor
     {
         [IgnoreMember] public EosTransformActor PrimaryActor;
@@ -250,6 +251,17 @@ namespace Eos.Objects
         }
         public virtual void OnAncestryChanged()
         {
+        }
+        public bool IsDescendantOf(Type type)
+        {
+            var parent = this;
+            while(parent!=null)
+            {
+                if (parent.GetType() == type)
+                    return true;
+                parent = parent.Parent;
+            }
+            return false;
         }
         public EosObjectBase Clone(EosObjectBase parent)
         {

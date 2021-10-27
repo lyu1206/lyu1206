@@ -9,6 +9,8 @@ namespace Eos.Objects
     using Ore;
     using Service;
     [System.Serializable]
+    [EosObject]
+    [DescendantOf(typeof(TerrainService))]
     public partial class EosTerrain : EosObjectBase
     {
         [RequireMold("TerrainMold")]

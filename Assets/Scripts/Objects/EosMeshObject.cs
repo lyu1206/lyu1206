@@ -6,6 +6,7 @@ using MessagePack;
 namespace Eos.Objects
 {
     using Ore;
+    [EosObject]
     [System.Serializable]
     public partial class EosMeshObject : EosTransformActor
     {

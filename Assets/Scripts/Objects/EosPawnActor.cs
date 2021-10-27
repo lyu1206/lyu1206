@@ -118,6 +118,8 @@ namespace Eos.Objects
             _owner.OnAnimationStopped?.Invoke(_owner, _curanimation);
         }
     }
+    [EosObject]
+    [DescendantOf(typeof(Eos.Service.Workspace))]
     public partial class EosPawnActor : EosTransformActor
     {
         [IgnoreMember]public BodyOre Body { get; set; }// will be deleted..

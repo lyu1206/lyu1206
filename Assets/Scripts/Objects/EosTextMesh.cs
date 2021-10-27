@@ -8,6 +8,7 @@ namespace Eos.Objects.UI
     using TMPro;
     using Service;
     [MessagePackObject]
+    [EosObject]
     public class EosTextMesh : EosTransformActor
     {
         [Key(221)]

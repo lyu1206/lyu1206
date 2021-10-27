@@ -5,8 +5,11 @@ using MessagePack;
 
 namespace Eos.Objects
 {
+    using Service;
     using Ore;
     [System.Serializable]
+    [EosObject]
+    [DescendantOf(typeof(GUIService))]
     public partial class EosUIObject : EosTransformActor
     {
         [IgnoreMember]public OreBase _uisource;

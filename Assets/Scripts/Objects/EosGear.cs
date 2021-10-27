@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Eos.Objects
 {
+    [EosObject]
     public class EosGear : EosObjectBase
     {
         public GameObject Part;

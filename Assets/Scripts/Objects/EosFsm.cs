@@ -8,6 +8,7 @@ namespace Eos.Objects
 {
     using Bolt;
     using Ore;
+    [EosObject]
     public class EosFsm : EosObjectBase
     {
         [IgnoreMember]public OreBase FSM;
