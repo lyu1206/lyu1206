@@ -108,7 +108,9 @@ namespace Eos.Objects
         }
         public void Destroy()
         {
-            GameObject.Destroy(_transform.gameObject);
+            if (_unityobject == null)
+                return;
+            GameObject.Destroy(_unityobject);
         }
         public T AddComponent<T>() where T : Component
         {

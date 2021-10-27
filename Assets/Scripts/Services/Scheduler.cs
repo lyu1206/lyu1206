@@ -114,6 +114,12 @@ namespace Eos.Service
         {
             return InnterScheduler(func, interval, repeat,null);
         }
+        public void Clear()
+        {
+            _willscheduletimers.Clear();
+            _timers.Clear();
+            _umscheduletimers.Clear();
+        }
         public void Update(float delta)
         {
             foreach(var wtimer in _willscheduletimers)

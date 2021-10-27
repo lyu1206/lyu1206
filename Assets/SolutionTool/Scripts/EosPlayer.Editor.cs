@@ -17,6 +17,7 @@ namespace EosPlayer
         }
         public void StopPreview()
         {
+            Stop();
             _objectmanager.Reset();
             _objectmanager = _editobjectmanager;
         }

@@ -80,6 +80,8 @@ namespace Eos.Objects
                 _latedeleteupdateobjectlist.ForEach(obj => _updateobjectlist.Remove(obj));
             foreach (var it in _updateobjectlist)
                 it.Update(delta);
+            _lateaddupdateobjectlist.Clear();
+            _latedeleteupdateobjectlist.Clear();
         }
     }
 }
@@ -134,6 +136,15 @@ namespace EosPlayer
         public void Stop()
         {
             _isplaying = false;
+            try
+            {
+                _instance?.Solution?.Destroy();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            Scheduler.Clear();
         }
         public static void ShutDown()
         {

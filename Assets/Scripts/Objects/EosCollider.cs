@@ -89,6 +89,8 @@ namespace Eos.Objects
         }
         private void AttachCollider()
         {
+            if (!ActiveInHierachy || !Ref.IsPlaying)
+                return;
             if (_collider!=null && _collider.Collider != null)
                 return;
             if (!(_parent is EosTransformActor actor))
