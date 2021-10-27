@@ -27,12 +27,12 @@ namespace Eos.Objects
             _terrainobj.transform.SetParent(ts.Transform.Transform, true);
             var pvm = _terrainobj.GetComponent<PVMOre>();
             var terrain = pvm.Instantiate(ts.Transform.Transform);
-            Camera.allCameras[0].transform.localPosition = terrain.transform.localPosition;
         }
         public override void CreatedOnEditor()
         {
             base.CreatedOnEditor();
             PropertyChanged(Parent);
+            //            Camera.allCameras[0].transform.localPosition = terrain.transform.localPosition;
         }
     }
 }

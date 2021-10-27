@@ -90,7 +90,7 @@ namespace Battlehub.RTEditor
                 //            var desolution = MessagePackSerializer.Deserialize<EosObjectBase>(msgpackData, MessagePackSerializerOptions.Standard);
                 SolutionChanged?.Invoke(desolution);
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
 
             }
