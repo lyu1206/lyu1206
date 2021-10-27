@@ -16,11 +16,14 @@ namespace Eos.Service
         public override void RTEOnCreated(Battlehub.RTCommon.IRTE editor)
         {
             base.RTEOnCreated(editor);
+
             CreateCanvas();
-            var camera =  UnityEngine.Object.FindObjectOfType<GameViewCamera>();
+
+            var cam =  UnityEngine.Object.FindObjectOfType<GameViewCamera>();
+            var camera = cam.GetComponent<Camera>();
             _canvas.renderMode = RenderMode.ScreenSpaceCamera;
-            _canvas.planeDistance = 1;
-            _canvas.worldCamera = camera.GetComponent<Camera>();
+            _canvas.planeDistance = camera.nearClipPlane + 0.05f;
+            _canvas.worldCamera = camera;
         }
         public override void SetExposeToEditor(ExposeToEosEditor editorobject)
         {
