@@ -8,6 +8,8 @@ using UnityEngine;
 //using Eos.Objects;
 using Eos.Objects.UI;
 
+using NLua;
+
 public class TestMain : MonoBehaviour
 {
     [SerializeField]
@@ -62,9 +64,16 @@ public class TestMain : MonoBehaviour
 
         return npcmodel;
     }
+    public void Log(string log)
+    {
+        Debug.Log(log);
+    }
     IEnumerator Start()
     {
-
+        var lua = new Lua();
+        lua.RegisterFunction("print", this,this.GetType().GetMethod("Log"));
+        var result = lua.DoString("print('aaaaaaaa')");
+ 
         var parent = new Workspace();
         var child = new Eos.Objects.EosPawnActor();
         //parent.AddChild(child);
