@@ -10,14 +10,13 @@ namespace Eos.Service
     public partial class EosService
     {
         public override EosTransform EditorTrasnform => _transform;
+        public override void SetExposeToEditor(ExposeToEosEditor editorobject)
+        {
+            _transform.Transform = editorobject.transform;
+        }
     }
     public partial class Workspace 
     {
-        public override  EosTransform EditorTrasnform => _workspace;
-        public override void SetExposeToEditor(ExposeToEosEditor editorobject)
-        {
-            _workspace.Transform = editorobject.transform;
-        }
         //public override void RTEOnCreated(IRTE editor)
         //{
         //    //base.RTEOnCreated(editor);
@@ -35,17 +34,6 @@ namespace Eos.Service
         {
             editorobject.gameObject.SetActive(false);
             return base.CreateCloneObjectForEditor(editorobject);
-        }
-        public override void SetExposeToEditor(ExposeToEosEditor editorobject)
-        {
-            _transform.Transform = editorobject.transform;
-        }
-    }
-    public partial class TerrainService
-    {
-        public override void SetExposeToEditor(ExposeToEosEditor editorobject)
-        {
-            _transform.Transform = editorobject.transform;
         }
     }
 }

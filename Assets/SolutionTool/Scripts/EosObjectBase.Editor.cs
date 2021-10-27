@@ -24,7 +24,7 @@ namespace Eos.Service
         }
         public override void SetExposeToEditor(ExposeToEosEditor editorobject)
         {
-            _transform.Transform = editorobject.transform;
+            base.SetExposeToEditor(editorobject);
             var camera = UnityEngine.Object.FindObjectOfType<GameViewCamera>();
             CreateCanvas();
             _canvas.renderMode = RenderMode.ScreenSpaceCamera;

@@ -13,19 +13,11 @@ namespace Eos.Service
     using Eos.Objects;
     [System.Serializable]
     [NoCreated]
-    public partial class Workspace : EosService , ITransform
+    public partial class Workspace : EosService
     {
-        private EosTransform _workspace;
-        [IgnoreMember]public  EosTransform Transform => _workspace;
         public Workspace()
         {
             Name = "Workspace";
-            _workspace = ObjectFactory.CreateInstance<EosTransform>();
-        }
-        public override void OnCreate()
-        {
-            base.OnCreate();
-            _workspace.Create(Name);
         }
     }
 }
