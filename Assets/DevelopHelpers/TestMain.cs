@@ -71,12 +71,12 @@ public class TestMain : MonoBehaviour
     IEnumerator Start()
     {
         //var lua = new Lua();
-        //lua.RegisterFunction("print", this,this.GetType().GetMethod("Log"));
+        //lua.RegisterFunction("print", this, this.GetType().GetMethod("Log"));
         //var result = lua.DoString("print('aaaaaaaa')");
 
-        var luaplayer = new EosLuaPlayer.EosLuaPlayer();
-        luaplayer.Init();
-        luaplayer.Update();
+        //var luaplayer = new EosLuaPlayer.EosLuaPlayer();
+        //luaplayer.Init();
+        //luaplayer.Update();
 
 
         var parent = new Workspace();

@@ -130,6 +130,11 @@ namespace EosPlayer
         {
             ObjectManager.Update(Time.deltaTime);
             Scheduler.Update(Time.deltaTime);
+            LuaPlayer.Update();
+        }
+        private void LateUpdate()
+        {
+            
         }
         public void Play()
         {

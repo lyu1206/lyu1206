@@ -48,4 +48,10 @@ public static class ArrayExtention
 			rhs(val);
 		}
 	}
+	public static T[] Sort<T>(this T[] array,Comparison<T> comparison)
+    {
+		var list = new List<T>(array);
+		list.Sort(comparison);
+		return list.ToArray();
+    }
 }
