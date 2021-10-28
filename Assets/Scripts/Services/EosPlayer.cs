@@ -87,6 +87,7 @@ namespace Eos.Objects
 }
 namespace EosPlayer
 {
+    using EosLuaPlayer;
     using Eos.Service;
     using Eos.Objects;
     using Eos.Script;
@@ -97,6 +98,7 @@ namespace EosPlayer
         private ObjectManager _objectmanager = new ObjectManager();
         private ScriptPlayer _scriptPlayer = new ScriptPlayer();
         private Scheduler _scheduler = new Scheduler();
+        private EosLuaPlayer _luaplayer = new EosLuaPlayer();
         private bool _isplaying;
         private static EosPlayer _instance;
         public ObjectManager ObjectManager =>_objectmanager;
@@ -104,6 +106,7 @@ namespace EosPlayer
         public CoroutineManager Coroutine = null;
         public ScriptPlayer ScriptPlayer => _scriptPlayer;
         public Scheduler Scheduler => _scheduler;
+        public EosLuaPlayer LuaPlayer => _luaplayer;
         public bool IsPlaying => _isplaying;
 
         public static EosPlayer Instance
@@ -131,6 +134,7 @@ namespace EosPlayer
         public void Play()
         {
             _isplaying = true;
+            _luaplayer.Init();
             _instance.Solution?.StartGame();
         }
         public void Stop()
