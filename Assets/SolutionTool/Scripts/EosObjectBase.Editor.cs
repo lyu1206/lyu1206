@@ -88,6 +88,10 @@ namespace Eos.Objects
         {
 
         }
+        public virtual void DoubleClicked()
+        {
+
+        }
         public EosEditorObject CreateForEditor(EosEditorObject parent)
         {
             var ret = EosEditorObject.Create(this);

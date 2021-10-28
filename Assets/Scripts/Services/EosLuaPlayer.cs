@@ -25,15 +25,72 @@ namespace EosLuaPlayer
         private const string str_loadmodule = "loadmodule";
         public Lua LuaMain { get; private set; } = null;
         private LuaFunction _updater = null;
+        private LuaFunction _registroutine = null;
+        private LuaFunction _unregistroutine = null;
+        private LuaFunction _pauseroutine = null;
+        private LuaFunction _resumeroutine = null;
         private LuaFunction _loadmodule = null;
+
         public void Init()
         {
             LuaMain = new Lua();
             PrimaryLuaFunction.BindFunction(LuaMain);
             LoadBuiltInLuas();
 
+
             _updater = LuaMain["player.Update"] as LuaFunction;
-            _updater.Call();
+            _registroutine = LuaMain["player.RegistRoutine"] as LuaFunction;
+            _unregistroutine = LuaMain["player.UnRegistRoutine"] as LuaFunction;
+            _pauseroutine = LuaMain["player.PauseRoutine"] as LuaFunction;
+            _resumeroutine = LuaMain["player.ResumeRoutine"] as LuaFunction;
+
+            var testpawn = new Eos.Objects.EosScript{ Name = "Pawn" };
+            testpawn.LuaScript =
+                @"
+                    local this = _this_object
+                    print(tostring(this))
+                    local i = 0
+                    local time = 0
+                    while i<40 do
+                        i = i + 1
+                        print('count:',i,' ',time,' obj - ',tostring(this),' objname:',this.Name)
+                        time = time + Time.deltaTime
+                        coroutine.yield()
+                    end
+                ";
+            testpawn.Activate(true);
+
+
+            var testscript = new Eos.Objects.EosScript { Name = "Script" };
+            testscript.LuaScript =
+                @"
+                    local i = 0
+                    local this = _this_object
+                    while i<60 do
+                        i = i + 1
+                        print('second count:',i,' obj - ',tostring(this),' objname:',this.Name)
+                        coroutine.yield()
+                    end
+                ";
+            testscript.Activate(true);
+        }
+        public int RegistRoutine(Eos.Objects.EosObjectBase owner,string code)
+        {
+            string chunk = $"{owner.Name}-{owner.ObjectID}";
+            var ret = _registroutine.Call(owner, code, chunk);
+            return 0;
+        }
+        public void UnRegistRoutine(int index)
+        {
+            _unregistroutine.Call(index);
+        }
+        public void PauseRoutine(int index)
+        {
+            _pauseroutine.Call(index);
+        }
+        public void ResumeRoutine(int index)
+        {
+            _resumeroutine.Call(index);
         }
         public void Update()
         {

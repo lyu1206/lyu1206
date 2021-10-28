@@ -115,6 +115,12 @@ namespace Battlehub.RTEditor
                 e.CanEdit = false;
             }
         }
+        protected override void OnItemDoubleClicked(object sender, ItemArgs e)
+        {
+            base.OnItemDoubleClicked(sender, e);
+            ExposeToEosEditor exposeToEditor = (ExposeToEosEditor)e.Items[0];
+            exposeToEditor.Owner.DoubleClicked();
+        }
         private void HierachyItemButton(VirtualizingItemContainer sender)
         {
             Debug.Log("Show popup");

@@ -19,6 +19,8 @@ namespace Eos.Ore
         }
         public Object GetOreObject()
         {
+            if (string.IsNullOrEmpty(Mold))
+                return null;
             var mold = Assets.Mold.GetMold(Mold);
             if (mold == null)
                 return null;

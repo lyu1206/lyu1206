@@ -125,6 +125,7 @@ namespace EosPlayer
         void Awake()
         {
             IngameScriptContainer.Initialize();
+            enabled = false;
         }
         void Update()
         {
@@ -138,13 +139,17 @@ namespace EosPlayer
         }
         public void Play()
         {
+
             _isplaying = true;
             _luaplayer.Init();
             _instance.Solution?.StartGame();
+            enabled = true;
+
         }
         public void Stop()
         {
             _isplaying = false;
+            enabled = false;
             try
             {
                 _instance?.Solution?.Destroy();
