@@ -10,6 +10,8 @@ namespace Battlehub.RTEditor
     using RTCommon;
     using MessagePack;
     using UIControls.Dialogs;
+    using UIControls;
+
     public class EosWorkspace : MonoBehaviour
     {
         private IRTE _editor;
@@ -22,13 +24,29 @@ namespace Battlehub.RTEditor
         private void Awake()
         {
             IOC.Register<EosWorkspace>(this);
+            VirtualizingItemContainer.DoubleClick += ItemDoubleClicked;
         }
+
+        private void ItemDoubleClicked(VirtualizingItemContainer sender, UnityEngine.EventSystems.PointerEventData eventData)
+        {
+            if (!(sender.Item is ExposeToEosEditor item))
+                return;
+            if (item.Owner is EosScript script)
+            {
+                Debug.Log(script.Name);
+            }
+        }
+
         public void OpenSolution()
         {
             IOC.Resolve<IWindowManager>().CreateDialogWindow("OpenSolution", "Open Solution", OnOpenOk);
             _editor = IOC.Resolve<IRTE>();
             _editor.PlaymodeStateChanging += OnPlaymodeStateChange;
             _editor.PlaymodeStateChanged += OnPlaymodeStateChanged;
+        }
+        public void OpenCodeEditor()
+        {
+
         }
         private void OnPlaymodeStateChange()
         {
