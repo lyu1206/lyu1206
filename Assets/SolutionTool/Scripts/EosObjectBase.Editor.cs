@@ -62,11 +62,31 @@ namespace Eos.Objects
 {
     using Editor;
     using Service;
+    using MessagePack;
     using Battlehub.RTEditor;
     using Battlehub.RTCommon;
     using Battlehub.RTHandles;
+    [MessagePackObject]
+    public class ObjectMeataData
+    {
+        [Key(1)]
+        public string Guid;
+    }
     public partial class EosObjectBase
     {
+        private ObjectMeataData _metadata;
+        [IgnoreMember]public ObjectMeataData MeataData //따로 저장하기때문에 포함되서는 안됨
+        {
+            set
+            {
+                _metadata = value;
+            }
+            get
+            {
+                _metadata = _metadata??new ObjectMeataData { Guid = System.Guid.NewGuid().ToString() };
+                return _metadata;
+            }
+        }
         public virtual EosEditorObject CreatedEditorImpl()
         {
             return EosEditorObject.Create(this);
@@ -85,10 +105,6 @@ namespace Eos.Objects
             _children.Clear();
         }
         public virtual void CreatedEditor(EosEditorObject obj)
-        {
-
-        }
-        public virtual void DoubleClicked()
         {
 
         }

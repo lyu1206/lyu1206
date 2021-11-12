@@ -188,6 +188,16 @@ namespace Eos.Objects
             foreach(var child in _children)
                 child.AncestryChanged();
         }
+        public void IterChilds<T>(Action<T> action, bool isrecursive = false) where T : EosObjectBase
+        {
+            _children.ForEach(it =>
+            {
+                if (it is T obj)
+                    action(obj);
+                if (isrecursive && it != null)
+                    it.IterChilds(action, isrecursive);
+            });
+        }
         public void IterChilds(Action<EosObjectBase> action,bool isrecursive = false)
         {
             _children.ForEach(it =>

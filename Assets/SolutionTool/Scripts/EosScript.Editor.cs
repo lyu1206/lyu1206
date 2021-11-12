@@ -1,30 +1,28 @@
 using System.IO;
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Battlehub.RTCommon;
 
 namespace Eos.Objects
 {
+    using Battlehub.RTEditor;
     public partial class EosScript
     {
-        public override void DoubleClicked()
+        public override void RTEOnCreated(IRTE editor)
         {
-            base.DoubleClicked();
-            var temppath = System.IO.Path.Combine(Application.persistentDataPath, $"{this.Name}.lua");
-
-
-            File.WriteAllText(temppath, LuaScript);
-            void LoadYourPhysicsProgram()
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                //startInfo.FileName = "PHYSICSPROGRAM.EXE";
-                //startInfo.FileName = $"C:/Program Files (x86)/Notepad++/notepad++.exe";
-                startInfo.FileName = $"C:/Users/kmioc/AppData/Local/Programs/Microsoft VS Code/Code.exe";
-                startInfo.Arguments = $"-r {temppath}";
-                Process.Start(startInfo);
-            }
-            LoadYourPhysicsProgram();
-}
+            base.RTEOnCreated(editor);
+            var ws = IOC.Resolve<EosWorkspace>();
+            var path = Path.Combine(ws.GetScriptPath(this),$"{Name}.lua");
+        }
+        public void ReadyForEdit()
+        {
+            Debug.Log($"script : {this.Name}");
+            var ws = IOC.Resolve<EosWorkspace>();
+            var path = Path.Combine(ws.GetScriptPath(this), $"{Name}.lua");
+            if (!File.Exists(path))
+                File.WriteAllText(path, LuaScript);
+            ScriptEditor.OpenScript(path);
+        }
     }
 }
