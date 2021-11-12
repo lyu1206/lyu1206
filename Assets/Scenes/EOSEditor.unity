@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735cf9ccb71d829448d5c01c39365f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_editorPrefab: {fileID: 4601838793567419455}
+  m_editorPrefab: {fileID: 0}
   m_splashPrefab: {fileID: 9000805389497110581, guid: 1ef9962af6848144994f367bae644b8e,
     type: 3}
 --- !u!114 &90159593
@@ -2711,7 +2711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4601838793567419443}
-  - component: {fileID: 4601838793567419455}
+  - component: {fileID: 4601838793567419444}
   - component: {fileID: 7882128289651839388}
   - component: {fileID: 4601838793567419450}
   - component: {fileID: 4601838793567419448}
@@ -2753,6 +2753,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4601838793567419444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601838793567419442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d411b4012201b4f889bc2eb79c6801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_eventSystem: {fileID: 0}
+  m_cameraLayerSettings:
+    ResourcePreviewLayer: 20
+    RuntimeGraphicsLayer: 21
+    MaxGraphicsLayers: 4
+    AllScenesLayer: 17
+    ExtraLayer2: 19
+    ExtraLayer: 18
+    UIBackgroundLayer: 16
+  m_createHierarchyRoot: 0
+  m_useBuiltinUndo: 1
+  m_enableVRIfAvailable: 1
+  m_isOpened: 1
+  IsOpenedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  IsClosedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_progressIndicator: {fileID: 4601838793804863891}
+  m_extraSettings:
+    OpenDefaultProject: 0
+    DefaultProjectName: 
+    CreateCamera: 1
+    CreateLight: 1
 --- !u!114 &4601838793567419448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2998,43 +3035,6 @@ MonoBehaviour:
   m_leftBar: {fileID: 4334188710046089198}
   m_rightBar: {fileID: 6383991527389597157}
   m_activeWorkspace: {fileID: 0}
---- !u!114 &4601838793567419455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4601838793567419442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21371d036bda9424ca706afd5d239902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_eventSystem: {fileID: 0}
-  m_cameraLayerSettings:
-    ResourcePreviewLayer: 20
-    RuntimeGraphicsLayer: 21
-    MaxGraphicsLayers: 4
-    AllScenesLayer: 17
-    ExtraLayer2: 19
-    ExtraLayer: 18
-    UIBackgroundLayer: 16
-  m_createHierarchyRoot: 0
-  m_useBuiltinUndo: 1
-  m_enableVRIfAvailable: 1
-  m_isOpened: 1
-  IsOpenedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  IsClosedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_progressIndicator: {fileID: 4601838793804863891}
-  m_extraSettings:
-    OpenDefaultProject: 1
-    DefaultProjectName: 
-    CreateCamera: 1
-    CreateLight: 1
 --- !u!4 &4601838793596993810
 Transform:
   m_ObjectHideFlags: 0
@@ -6083,7 +6083,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: SetDefaultLayout
           m_Mode: 1
@@ -6107,7 +6107,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 5
@@ -6131,7 +6131,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 5
@@ -6155,7 +6155,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 5
@@ -6179,7 +6179,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 5
@@ -6203,7 +6203,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 5
@@ -6227,7 +6227,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 5
@@ -6251,7 +6251,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 5
@@ -6295,7 +6295,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6310,7 +6310,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6331,7 +6331,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6346,7 +6346,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6367,7 +6367,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6382,7 +6382,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6403,7 +6403,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6418,7 +6418,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6439,7 +6439,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6454,7 +6454,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6475,7 +6475,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6490,7 +6490,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6511,7 +6511,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6526,7 +6526,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6547,7 +6547,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6562,7 +6562,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6583,7 +6583,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6598,7 +6598,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6619,7 +6619,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6634,7 +6634,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6655,7 +6655,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6670,7 +6670,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6691,7 +6691,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObject
           m_Mode: 0
@@ -6706,7 +6706,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdGameObjectValidate
           m_Mode: 0
@@ -6747,7 +6747,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: NewScene
           m_Mode: 6
@@ -6795,7 +6795,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: SaveScene
           m_Mode: 1
@@ -6843,7 +6843,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 0
@@ -6867,7 +6867,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 0
@@ -6882,7 +6882,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdCreateWindowValidate
           m_Mode: 0
@@ -6903,7 +6903,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 0
@@ -6927,7 +6927,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: Close
           m_Mode: 1
@@ -6971,7 +6971,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEdit
           m_Mode: 0
@@ -6986,7 +6986,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEditValidate
           m_Mode: 0
@@ -7007,7 +7007,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEdit
           m_Mode: 0
@@ -7022,7 +7022,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEditValidate
           m_Mode: 0
@@ -7043,7 +7043,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEdit
           m_Mode: 0
@@ -7058,7 +7058,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEditValidate
           m_Mode: 0
@@ -7079,7 +7079,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEdit
           m_Mode: 0
@@ -7094,7 +7094,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEditValidate
           m_Mode: 0
@@ -7115,7 +7115,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEdit
           m_Mode: 0
@@ -7130,7 +7130,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEditValidate
           m_Mode: 0
@@ -7151,7 +7151,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEdit
           m_Mode: 0
@@ -7166,7 +7166,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEditValidate
           m_Mode: 0
@@ -7187,7 +7187,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEdit
           m_Mode: 0
@@ -7202,7 +7202,7 @@ MonoBehaviour:
     Validate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CmdEditValidate
           m_Mode: 0
@@ -7243,7 +7243,7 @@ MonoBehaviour:
     Action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4601838793567419455}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: CreateOrActivateWindow
           m_Mode: 0
