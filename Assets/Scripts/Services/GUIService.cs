@@ -26,7 +26,9 @@ namespace Eos.Service
             if (_canvas != null)
                 return;
             _canvas = _transform.AddComponent<Canvas>();
-            _transform.AddComponent<CanvasScaler>();
+            var scaler = _transform.AddComponent<CanvasScaler>();
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(720, 1280);
             _transform.AddComponent<GraphicRaycaster>();
 
             _root = _transform.Transform;
