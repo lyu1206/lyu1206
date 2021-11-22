@@ -159,6 +159,16 @@ namespace Battlehub.RTEditor
         {
 
         }
+        public void NewSolution()
+        {
+            IOC.Resolve<IWindowManager>().CreateDialogWindow("OpenSolution", "Newn Solution", OnNewSolutionOk);
+            var opendialog = IOC.Resolve<IOpenFileDialog>();
+            opendialog.Extensions = new string[] { ".solution" };
+        }
+        private void OnNewSolutionOk(Dialog dialog_, DialogCancelArgs arg)
+        {
+
+        }
         private void OnPlaymodeStateChange()
         {
             //Debug.Log($"Player state changed:{_editor.IsPlaying}");
