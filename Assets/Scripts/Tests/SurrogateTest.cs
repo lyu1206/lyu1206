@@ -73,6 +73,11 @@ public class SurrogateTest : Project
         Type objType = obj.GetType();
         Type persistentType = m_typeMap.ToPersistentType(objType);
         List<UnityObject> notMapped = new List<UnityObject>();
+        if (persistentType.GetGenericTypeDefinition() == typeof(PersistentGameObject<>))
+        {
+            persistentType = typeof(PersistentRuntimePrefab<long>);
+        }
+
         if (obj is GameObject)
         {
             GetUnmappedObjects((GameObject)obj, notMapped);
@@ -81,23 +86,10 @@ public class SurrogateTest : Project
         var persistentObject = (PersistentObject<long>)Activator.CreateInstance(persistentType);
         persistentObject.ReadFrom(obj);
 
+        IResourcePreviewUtility resourcePreview = this.gameObject.AddComponent<ResourcePreviewUtility>(); IOC.Resolve<IResourcePreviewUtility>();
+        //IResourcePreviewUtility resourcePreview = IOC.Resolve<IResourcePreviewUtility>();
+        var previewdata = resourcePreview.CreatePreviewData((GameObject)obj);
 
-        GenerateIdentifiers(notMapped.Count, (error, ids) =>
-        {
-            if (error.HasError)
-            {
-                //if (callback != null)
-                //{
-                //    callback(error, null);
-                //}
-
-                //ao.Error = error;
-                //ao.Result = null;
-                //ao.IsCompleted = true;
-                //done();
-                return;
-            }
-        });
     }
     // Update is called once per frame
     void Update()
