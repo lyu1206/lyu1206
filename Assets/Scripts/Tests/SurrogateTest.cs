@@ -65,14 +65,20 @@ public class SurrogateTest : Project
             }
         }
     }
+    private const string PreviewExt = ".rtview";
+    private const string MetaExt = ".rtmeta";
 
     void Start()
     {
+        IOC.Register<ISerializer>(new ProtobufSerializer());
+
+        var assetItem = new AssetItem();
         m_assetDB = IOC.Resolve<IAssetDB<long>>();
         object obj = _prefab;
         Type objType = obj.GetType();
         Type persistentType = m_typeMap.ToPersistentType(objType);
         List<UnityObject> notMapped = new List<UnityObject>();
+
         if (persistentType.GetGenericTypeDefinition() == typeof(PersistentGameObject<>))
         {
             persistentType = typeof(PersistentRuntimePrefab<long>);
@@ -83,17 +89,87 @@ public class SurrogateTest : Project
             GetUnmappedObjects((GameObject)obj, notMapped);
             //            _getUnmappedObjects((GameObject)obj, notMapped);
         }
-        var persistentObject = (PersistentObject<long>)Activator.CreateInstance(persistentType);
+        foreach (var it in notMapped)
+        {
+            m_assetDB.RegisterDynamicResource((long)ToPersistentID(it), it);
+        }
+
+        var persistentObject = (PersistentRuntimePrefab<long>)Activator.CreateInstance(persistentType);
         persistentObject.ReadFrom(obj);
+        var context = new GetDepsFromContext();
+        persistentObject.GetDepsFrom(_prefab, context);
+        var dependancies = new List<PersistentObject<long>>();
+        foreach (var dep in  context.Dependencies)
+        {
+            var persisttype = m_typeMap.ToPersistentType(dep.GetType());
+            var componentData = (PersistentObject<long>)Activator.CreateInstance(persisttype);
+            componentData.ReadFrom(dep);
+            dependancies.Add(componentData);
+        }
+
+        SetID(assetItem, m_assetDB.ToID((UnityObject)obj));
+        assetItem.Name = ((UnityObject)obj).name;
+        assetItem.Ext = GetExt(obj);
+        assetItem.TypeGuid = m_typeMap.ToGuid(obj.GetType());
 
         IResourcePreviewUtility resourcePreview = this.gameObject.AddComponent<ResourcePreviewUtility>(); IOC.Resolve<IResourcePreviewUtility>();
         //IResourcePreviewUtility resourcePreview = IOC.Resolve<IResourcePreviewUtility>();
         var previewdata = resourcePreview.CreatePreviewData((GameObject)obj);
+        assetItem.Preview = new Preview { PreviewData = previewdata };
+        SetPersistentID(assetItem.Preview, ToPersistentID(assetItem));
 
+        ISerializer serializer = IOC.Resolve<ISerializer>();
+
+        var librarypath = Application.streamingAssetsPath;
+        var path = librarypath;
+        var previewPath = path + "/" + assetItem.NameExt + PreviewExt;
+
+        File.Delete(previewPath);
+        using (FileStream fs = File.Create(previewPath))
+        {
+            serializer.Serialize(assetItem.Preview, fs);
+        }
+
+        using (FileStream fs = File.Create(path + "/" + assetItem.NameExt))
+        {
+            serializer.Serialize(persistentObject, fs);
+            assetItem.CustomDataOffset = fs.Position;
+        }
+        File.Delete(path + "/" + assetItem.NameExt + MetaExt);
+        using (FileStream fs = File.Create(path + "/" + assetItem.NameExt + MetaExt))
+        {
+            serializer.Serialize(assetItem, fs);
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ISerializer serializer = IOC.Resolve<ISerializer>();
+            var librarypath = Application.streamingAssetsPath;
+            var assetext = GetExt(typeof(GameObject));
+            var path = librarypath;
+            var assetPath = path + "/" + "Cube" + assetext;
+            var previewPath = path + "/" + "Cube" + assetext + PreviewExt;
+            PersistentRuntimePrefab<long> asset = null;
+            using (FileStream fs = File.OpenRead(assetPath))
+            {
+                var idToObj = new Dictionary<long, UnityObject>(); 
+                Transform m_dynamicPrefabsRoot = null;
+                List<GameObject> createdGameObjects = new List<GameObject>();
+                asset = serializer.Deserialize<PersistentRuntimePrefab<long>>(fs);
+                asset.CreateGameObjectWithComponents(m_typeMap, asset.Descriptors[0], idToObj, m_dynamicPrefabsRoot, createdGameObjects);
+
+                m_assetDB = IOC.Resolve<IAssetDB<long>>();
+                m_assetDB.RegisterDynamicResources(idToObj);
+                for (int j = 0; j < createdGameObjects.Count; ++j)
+                {
+                    GameObject createdGO = createdGameObjects[j];
+//                    createdGO.hideFlags = HideFlags.HideAndDontSave;
+                }
+                asset.WriteTo(createdGameObjects[0]);
+            }
+        }
     }
 }
