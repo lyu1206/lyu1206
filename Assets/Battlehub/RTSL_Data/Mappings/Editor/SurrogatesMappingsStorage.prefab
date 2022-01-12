@@ -10435,7 +10435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 14
@@ -23044,7 +23044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 6
@@ -24537,7 +24537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Version: 2.26
-  IsSelected: 1
+  IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 4
   PersistentSubclassTag: 0
@@ -38396,7 +38396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 6
@@ -39499,7 +39499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 4
@@ -45609,7 +45609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 1
@@ -51570,7 +51570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 3
@@ -51676,7 +51676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 1
@@ -52843,7 +52843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Version: 2.26
   IsSelected: 0
-  IsLocked: 1
+  IsLocked: 0
   PersistentPropertyTag: 1
   PersistentSubclassTag: 0
   MappedAssemblyName: Bolt.Core.Runtime
@@ -55919,7 +55919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Version: 2.26
-  IsSelected: 0
+  IsSelected: 1
   IsLocked: 0
   PersistentPropertyTag: 15
   PersistentSubclassTag: 0
@@ -60922,7 +60922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 2

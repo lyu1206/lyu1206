@@ -159,6 +159,7 @@ namespace Battlehub.RTSL
             typeMap.Register(typeof(UnityEngine.HumanDescription), typeof(UnityEngine.Battlehub.SL2.PersistentHumanDescription<>), new System.Guid("4bb12ee8-47ce-405a-a741-ea3b90885b4b"), new System.Guid("e99365bd-041a-48a2-8844-8117b17bba2d"));
             typeMap.Register(typeof(UnityEngine.HumanLimit), typeof(UnityEngine.Battlehub.SL2.PersistentHumanLimit<>), new System.Guid("7b020a77-6a2a-4918-85bf-34c7c18f42c2"), new System.Guid("19f7a6b2-28bd-4ec2-99cb-728a9117c4af"));
             typeMap.Register(typeof(UnityEngine.SkeletonBone), typeof(UnityEngine.Battlehub.SL2.PersistentSkeletonBone<>), new System.Guid("725b3922-baad-470a-b3b6-4bf8b0fc0214"), new System.Guid("d8d749ff-462b-4966-90b2-3adb261c5788"));
+            typeMap.Register(typeof(Eos.Objects.EosHumanoid), typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<>), new System.Guid("01763ddc-82e5-4054-98e7-30bf78034c7c"), new System.Guid("3bbbd222-afca-421e-ac1a-188134d5ffb4"));
             typeMap.Register(typeof(ProBuilderIntegration.PBAutoUnwrapSettings), typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<>), new System.Guid("3dafd06a-06d6-41c1-bdfb-425a7e593e51"), new System.Guid("7d0931fa-835e-4540-9437-65f7d7aee975"));
             typeMap.Register(typeof(ProBuilderIntegration.PBFace), typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBFace<>), new System.Guid("352c8ecd-a131-47af-b05d-3579388b5dd4"), new System.Guid("909e71db-af22-4453-b68d-1fd6bc5b547a"));
             

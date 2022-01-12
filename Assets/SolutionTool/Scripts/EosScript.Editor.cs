@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Battlehub.RTCommon;
+using Battlehub.RTEditor;
 
 namespace Eos.Objects
 {
-    using Battlehub.RTEditor;
     public partial class EosScript
     {
         public override void RTEOnCreated(IRTE editor)

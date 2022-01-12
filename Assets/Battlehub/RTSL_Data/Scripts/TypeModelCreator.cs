@@ -304,6 +304,8 @@ namespace Battlehub.RTSL
             model.Add(typeof(UnityEngine.HumanLimit), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentHumanLimit<long>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentSkeletonBone<long>), true);
             model.Add(typeof(UnityEngine.SkeletonBone), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentSkeletonBone<long>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<long>), true);
+            model.Add(typeof(Eos.Objects.EosHumanoid), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<long>));
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<long>), true);
             model.Add(typeof(ProBuilderIntegration.PBAutoUnwrapSettings), false).SetSurrogate(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<long>));
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBFace<long>), true);
@@ -593,6 +595,8 @@ namespace Battlehub.RTSL
             model.Add(typeof(UnityEngine.HumanLimit), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentHumanLimit<Guid>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentSkeletonBone<Guid>), true);
             model.Add(typeof(UnityEngine.SkeletonBone), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentSkeletonBone<Guid>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosHumanoid), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<Guid>));
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<Guid>), true);
             model.Add(typeof(ProBuilderIntegration.PBAutoUnwrapSettings), false).SetSurrogate(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<Guid>));
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBFace<Guid>), true);
@@ -618,5 +622,6 @@ namespace System.Collections.Generic.Battlehub.SL2 {}
 namespace Battlehub.ProBuilderIntegration.Battlehub.SL2 {}
 namespace Battlehub.RTTerrain.Battlehub.SL2 {}
 namespace UnityEngine.Events.Battlehub.SL2 {}
+namespace Eos.Objects.Battlehub.SL2 {}
 
 

@@ -4,10 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MessagePack;
+using Battlehub.RTCommon;
 
 namespace Eos.Objects
 {
-    using Battlehub.RTCommon;
     using Eos.Objects.Editor;
     using Ore;
     using Service;

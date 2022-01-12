@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.IMGUI.Controls;
+using Battlehub.RTEditor;
+using Battlehub.RTCommon;
+using Battlehub.RTHandles;
 
 namespace Eos.Service
 {
@@ -63,9 +66,6 @@ namespace Eos.Objects
     using Editor;
     using Service;
     using MessagePack;
-    using Battlehub.RTEditor;
-    using Battlehub.RTCommon;
-    using Battlehub.RTHandles;
     [MessagePackObject]
     public class ObjectMeataData
     {
