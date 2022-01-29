@@ -147,31 +147,33 @@ namespace Eos.Objects
         protected override void OnActivate(bool active)
         {
             base.OnActivate(active);
-            var bodyore = BodyOre.GetOre();
-            if (bodyore != null)
-                Body = bodyore.GetComponent<BodyOre>();
-            var body = Body.GetBody();
-            _skeleton = new EosSkeleton();
-            _animator = body.GetComponent<Animator>();
-            _controller = new AnimationController(this, _animator);
-            var anievent = body.AddComponent<AnimationAdapter>();
-            anievent.SetActor(this);
-            body.transform.SetParent(Transform.Transform);
-            body.transform.localPosition = Vector3.zero;
-            body.transform.localRotation = Quaternion.identity;
+//            if (BodyOre == null)
+//                return;
+//            var bodyore = BodyOre.GetOre();
+//            if (bodyore != null)
+//                Body = bodyore.GetComponent<BodyOre>();
+//            var body = Body.GetBody();
+//            _skeleton = new EosSkeleton();
+//            _animator = body.GetComponent<Animator>();
+//            _controller = new AnimationController(this, _animator);
+//            var anievent = body.AddComponent<AnimationAdapter>();
+//            anievent.SetActor(this);
+//            body.transform.SetParent(Transform.Transform);
+//            body.transform.localPosition = Vector3.zero;
+//            body.transform.localRotation = Quaternion.identity;
 
-            _skeleton.SetupSkeleton(Transform.Transform, body.transform);
+//            _skeleton.SetupSkeleton(Transform.Transform, body.transform);
 
-            var initialparts = Body.GetInitialParts();
-//            var gears = FindChilds<EosGear>();
-            foreach(var part in initialparts)
-            {
-                //                if (gears.Count > 0 && gears.Exists(it => it.Part == part))
-                //                    continue;
-                var gear = ObjectFactory.CreateInstance<EosGear>();// new EosGear();
-                gear.Part = part;
-                AddChild(gear);
-            }
+//            var initialparts = Body.GetInitialParts();
+////            var gears = FindChilds<EosGear>();
+//            foreach(var part in initialparts)
+//            {
+//                //                if (gears.Count > 0 && gears.Exists(it => it.Part == part))
+//                //                    continue;
+//                var gear = ObjectFactory.CreateInstance<EosGear>();// new EosGear();
+//                gear.Part = part;
+//                AddChild(gear);
+//            }
         }
         public void PlayNode(string name,bool rewind = false)
         {
@@ -188,6 +190,15 @@ namespace Eos.Objects
                     _rigidbody = Transform.AddComponent<Rigidbody>();
                     _rigidbody.isKinematic = true;
                 }
+            }
+            if (child is EosBone bone)
+            {
+                _skeleton = bone.Skeleton;
+                var skel = bone.BoneRoot;
+                _animator = skel.GetComponent<Animator>();
+                _controller = new AnimationController(this, _animator);
+                var anievent = skel.gameObject.AddComponent<AnimationAdapter>();
+                anievent.SetActor(this);
             }
         }
         public override void OnChildRemoved(EosObjectBase child)

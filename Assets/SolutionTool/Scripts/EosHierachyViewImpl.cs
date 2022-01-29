@@ -137,8 +137,8 @@ namespace Battlehub.RTEditor
                 return;
             var newobject = ObjectFactory.CreateInstance($"Eos.Objects.{arg}");
             newobject.Name = arg;
-            newobject.OnCreate();
             _currentSelect.AddChildEditorImpl(newobject);
+            newobject.OnCreate();
             _objecttoExpose[newobject.EditorTrasnform.GetHashCode()] = newobject;
             newobject.RTEOnCreated(Editor);
             _hoveritem.isHover = false;

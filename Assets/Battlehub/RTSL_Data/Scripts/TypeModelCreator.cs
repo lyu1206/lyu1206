@@ -304,6 +304,8 @@ namespace Battlehub.RTSL
             model.Add(typeof(UnityEngine.HumanLimit), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentHumanLimit<long>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentSkeletonBone<long>), true);
             model.Add(typeof(UnityEngine.SkeletonBone), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentSkeletonBone<long>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosCollider<long>), true);
+            model.Add(typeof(Eos.Objects.EosCollider), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosCollider<long>));
             model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<long>), true);
             model.Add(typeof(Eos.Objects.EosHumanoid), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<long>));
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<long>), true);
@@ -595,6 +597,8 @@ namespace Battlehub.RTSL
             model.Add(typeof(UnityEngine.HumanLimit), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentHumanLimit<Guid>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentSkeletonBone<Guid>), true);
             model.Add(typeof(UnityEngine.SkeletonBone), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentSkeletonBone<Guid>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosCollider<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosCollider), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosCollider<Guid>));
             model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<Guid>), true);
             model.Add(typeof(Eos.Objects.EosHumanoid), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<Guid>));
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<Guid>), true);

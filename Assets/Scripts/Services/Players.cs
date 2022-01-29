@@ -46,6 +46,8 @@ namespace Eos.Service
             base.OnActivate(active);
             var maincamera = EosCamera.Main;
             var model = FindChild<EosModel>();
+            if (model == null)
+                return;
             var humanoidroot = model.FindChild<EosTransformActor>(EosHumanoid.humanoidroot);
             maincamera.Target = humanoidroot;
             Ref.Solution.AIService.SetAccessPlate(model.FindChild<EosHumanoid>());
@@ -53,6 +55,10 @@ namespace Eos.Service
         protected override void OnStartPlay()
         {
             var model = FindChild<EosModel>();
+            if (model == null)
+                return;
+            if (Ref.Solution.Terrain == null)
+                return;
             var spainplayer = Ref.Solution.Terrain.FindNode("obj_SpawnIn");
             var humanoid = _humanoid = model.FindChild<EosHumanoid>();
             humanoid.SetPosition(spainplayer.position);
@@ -82,7 +88,7 @@ namespace Eos.Service
             var player = CreatePlayer(sid);
             _localplayer = player;
             AddChild(player);
-            Ref.Solution.StarterPlayer.IterChilds((child) =>
+            Ref.Solution.StarterPlayer?.IterChilds((child) =>
             {
                 child.Clone(player);
             });

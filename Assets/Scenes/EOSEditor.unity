@@ -2774,7 +2774,7 @@ MonoBehaviour:
       m_Calls: []
   m_progressIndicator: {fileID: 4601838793804863891}
   m_extraSettings:
-    OpenDefaultProject: 0
+    OpenDefaultProject: 1
     DefaultProjectName: 
     CreateCamera: 1
     CreateLight: 1

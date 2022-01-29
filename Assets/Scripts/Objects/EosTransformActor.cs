@@ -179,6 +179,19 @@ namespace Eos.Objects
                 _transform.LocalRotation = value;
             }
         }
+        [IgnoreMember]
+        [Inspector("Basic", "LocalScale")]
+        public virtual Vector3 LocalScale
+        {
+            get
+            {
+                return _transform.LocalScale;
+            }
+            set
+            {
+                _transform.LocalScale = value;
+            }
+        }
         public EosTransformActor()
         {
             _transform = ObjectFactory.CreateInstance<EosTransform>();

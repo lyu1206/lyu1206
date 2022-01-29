@@ -161,7 +161,7 @@ namespace Battlehub.RTEditor
         }
         public void NewSolution()
         {
-            IOC.Resolve<IWindowManager>().CreateDialogWindow("OpenSolution", "Newn Solution", OnNewSolutionOk);
+            IOC.Resolve<IWindowManager>().CreateDialogWindow("NewSolution", "Newn Solution", OnNewSolutionOk);
             var opendialog = IOC.Resolve<IOpenFileDialog>();
             opendialog.Extensions = new string[] { ".solution" };
         }
