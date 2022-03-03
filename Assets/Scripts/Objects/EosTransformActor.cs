@@ -102,9 +102,9 @@ namespace Eos.Objects
                 return _localscale;
             }
         }
-        public void SetParent(EosTransform parent)
+        public void SetParent(EosTransform parent,bool stayworld = true)
         {
-            Transform?.SetParent(parent.Transform,true);
+            Transform?.SetParent(parent.Transform, stayworld);
         }
         public void Destroy()
         {

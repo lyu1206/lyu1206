@@ -437,6 +437,8 @@ namespace Battlehub.RTSL
             for (int i = 0; i < m_types.Length; ++i)
             {
                 Type type = m_types[i];
+                if (type.DeclaringType != null)
+                    continue;
 
                 bool matchNs = string.IsNullOrEmpty(CodeGen.Namespace(type)) && string.IsNullOrEmpty(m_namespaceFilterText) || !string.IsNullOrEmpty(CodeGen.Namespace(type)) && CodeGen.Namespace(type).ToLower().Contains(m_namespaceFilterText.ToLower());
 
@@ -1850,6 +1852,8 @@ namespace Battlehub.RTSL
         };
 
         private Type[] m_uoTypes;
+        private Type[] m_eoTypes;
+        private PersistentClassMapperGUI m_eoMapperGUI;
         private PersistentClassMapperGUI m_uoMapperGUI;
         private PersistentClassMapperGUI m_surrogatesMapperGUI;
         private CodeGen m_codeGen = new CodeGen();
@@ -1888,6 +1892,40 @@ namespace Battlehub.RTSL
                 m_resize = false;
             }
         }
+        float m_resizerPosition2;
+        bool m_resize2 = false;
+
+        private void Resizer2(Color color, int thickness = 2, int padding = 10)
+        {
+            Rect r = Separator(color, thickness, padding);
+            EditorGUIUtility.AddCursorRect(r, MouseCursor.ResizeVertical);
+
+            if (Event.current.type == EventType.MouseDown && r.Contains(Event.current.mousePosition))
+            {
+                m_resize2 = true;
+            }
+
+            if (m_resize2 && Event.current.type == EventType.MouseDrag)
+            {
+                float newPosition = Event.current.mousePosition.y - (padding + thickness);
+
+                if (newPosition > position.height - 180)
+                {
+                    m_resizerPosition2 = position.height - 180;
+                }
+                else
+                {
+                    m_resizerPosition2 = newPosition;
+                }
+
+                Repaint();
+            }
+
+            if (Event.current.type == EventType.MouseUp)
+            {
+                m_resize2 = false;
+            }
+        }
 
         private static Rect Separator(Color color, int thickness = 2, int padding = 10)
         {
@@ -1903,10 +1941,15 @@ namespace Battlehub.RTSL
         private void OnEnable()
         {
             m_resizerPosition = SessionState.GetFloat(PersistentClassMapperGUI.k_SessionStatePrefix + "ResizerPosition", position.height / 2);
+            m_resizerPosition2 = SessionState.GetFloat(PersistentClassMapperGUI.k_SessionStatePrefix + "ResizerPosition2", position.height / 2);
         }
 
         private void OnDisable()
         {
+            if (m_eoMapperGUI != null)
+            {
+                m_eoMapperGUI.OnDisable();
+            }
             if (m_uoMapperGUI != null)
             {
                 m_uoMapperGUI.OnDisable();
@@ -1918,6 +1961,7 @@ namespace Battlehub.RTSL
             }
 
             SessionState.SetFloat(PersistentClassMapperGUI.k_SessionStatePrefix + "ResizerPosition", m_resizerPosition);
+            SessionState.SetFloat(PersistentClassMapperGUI.k_SessionStatePrefix + "ResizerPosition2", m_resizerPosition2);
         }
 
         private void OnGUI()
@@ -1932,6 +1976,13 @@ namespace Battlehub.RTSL
             EditorGUILayout.EndVertical();
 
             Resizer(Color.gray);
+
+            EditorGUILayout.BeginVertical(GUILayout.Height(m_resizerPosition2- m_resizerPosition));
+            m_eoMapperGUI.OnGUI();
+            EditorGUILayout.EndVertical();
+
+            Resizer2(Color.gray);
+//            Separator(Color.gray, 2, 10);
 
             EditorGUILayout.BeginVertical();
             m_surrogatesMapperGUI.OnGUI();
@@ -1962,6 +2013,7 @@ namespace Battlehub.RTSL
             PersistentClassMapperWindow window = CreateInstance<PersistentClassMapperWindow>();
             window.Initialize(false);
             window.m_uoMapperGUI.SaveMappings();
+            window.m_eoMapperGUI.SaveMappings();
             window.m_surrogatesMapperGUI.SaveMappings();
             DestroyImmediate(window);
         }
@@ -1982,10 +2034,21 @@ namespace Battlehub.RTSL
             Dictionary<string, HashSet<Type>> declaredIn = null;
             Dictionary<Type, PersistentTemplateInfo> templates = null;
             FilePathStorage filePathStorage = null;
-            if (m_uoMapperGUI == null || m_surrogatesMapperGUI == null)
+            if (m_uoMapperGUI == null || m_surrogatesMapperGUI == null || m_eoMapperGUI == null)
             {
-                GetUOAssembliesAndTypes(out assemblies, out m_uoTypes);
+                Type[] alltypes = null;
+                GetUOAssembliesAndTypes(out assemblies, out alltypes);
+                m_uoTypes = alltypes.Where(x => !x.FullName.Contains("Eos")).ToArray();
                 uoTypes = m_uoTypes.Union(new[] { typeof(RuntimePrefab), typeof(RuntimeScene) }).ToArray();
+                m_eoTypes = alltypes.Where(x => x.FullName.Contains("Eos")).ToArray();
+
+                foreach(var t in m_eoTypes)
+                {
+                    Debug.Log($"eostype : {t.FullName}");
+                }
+
+                var tests = uoTypes.Where(x => x.FullName.Contains("Eos")).ToArray();
+
                 GetSurrogateAssembliesAndTypes(m_uoTypes, out declaredIn, out types);
                 Type[] allTypes = uoTypes.Union(types).ToArray();
 
@@ -2004,6 +2067,14 @@ namespace Battlehub.RTSL
                 m_uoMapperGUI.TypeUnlocked += OnUOTypeUnlocked;
             }
 
+            if (m_eoMapperGUI == null)
+            {
+                m_eoMapperGUI = CreateEosObjectMapperGUI(m_eoTypes, declaredIn , templates, filePathStorage, userAction);
+                m_eoMapperGUI.TypeLocked += OnUOTypeLocked;
+                m_eoMapperGUI.TypeUnlocked += OnUOTypeUnlocked;
+            }
+
+
             if (m_surrogatesMapperGUI == null)
             {
                 m_surrogatesMapperGUI = CreateSurrogatesMapperGUI(types, declaredIn, templates, filePathStorage, userAction);
@@ -2012,11 +2083,16 @@ namespace Battlehub.RTSL
             }
 
             bool uoInitialized = m_uoMapperGUI.InitializeAndLoadMappings();
+            bool eoInitialized = m_eoMapperGUI.InitializeAndLoadMappings();
             bool surrInitialized = m_surrogatesMapperGUI.InitializeAndLoadMappings();
 
             if (uoInitialized)
             {
                 m_uoMapperGUI.LockTypes();
+            }
+            if (eoInitialized)
+            {
+                m_eoMapperGUI.LockTypes();
             }
             if (surrInitialized)
             {
@@ -2037,6 +2113,21 @@ namespace Battlehub.RTSL
                  new[] { "All" }.Union(declaredIn.Where(t => t.Value.Count > 0).Select(t => t.Key)).ToArray(),
                  "Declaring Type:",
                  true,
+                 (type, groupName) => declaredIn.Any(kvp => kvp.Key.Contains(groupName) && kvp.Value.Contains(type)), userAction);
+        }
+        private PersistentClassMapperGUI CreateEosObjectMapperGUI(Type[] types, Dictionary<string, HashSet<Type>> declaredIn, Dictionary<Type, PersistentTemplateInfo> templates, FilePathStorage filePathStorage, bool userAction)
+        {
+            return new PersistentClassMapperGUI(/*GetInstanceID() + 1*/1,
+                 m_codeGen,
+                 RTSLPath.EosObjectMappingsStoragePath,
+                 RTSLPath.EosObjectMappingsTemplatePath.ToArray(),
+                 filePathStorage,
+                 typeof(object),
+                 types,
+                 templates,
+                 new[] { "All" },//.Union(declaredIn.Where(t => t.Value.Count > 0).Select(t => t.Key)).ToArray(),
+                 "Declaring Type:",
+                 false,
                  (type, groupName) => declaredIn.Any(kvp => kvp.Key.Contains(groupName) && kvp.Value.Contains(type)), userAction);
         }
 
@@ -2143,6 +2234,7 @@ namespace Battlehub.RTSL
             }
 
             m_uoMapperGUI.SaveMappings();
+            m_eoMapperGUI.SaveMappings();
             m_surrogatesMapperGUI.SaveMappings();
             CreatePersistentClasses();
         }
@@ -2180,7 +2272,6 @@ namespace Battlehub.RTSL
 
             types = m_mostImportantUOTypes.Union(allUOTypes.OrderBy(t => CodeGen.TypeName(t))).ToArray();
         }
-
         public static void GetSurrogateAssembliesAndTypes(Type[] uoTypes, out Dictionary<string, HashSet<Type>> declaredIn, out Type[] types)
         {
             CodeGen.GetSurrogateAssembliesAndTypes(uoTypes, out declaredIn, out types);

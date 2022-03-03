@@ -86,5 +86,9 @@ namespace Eos.Objects
         {
             return _camera.transform.TransformDirection(vec);
         }
+        public void LookAt(EosTransformActor target)
+        {
+            Transform.Transform.LookAt(target.Transform.Transform.position);
+        }
     }
 }

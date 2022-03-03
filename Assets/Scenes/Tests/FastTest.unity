@@ -153,6 +153,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bone: {fileID: 866654735394159489, guid: b32410e669e94a5408dfa5bb7661ba81, type: 3}
+  _gears:
+  - {fileID: 1110551676053882067, guid: 5e1894a387bcc8842b9aa8a984ea0df0, type: 3}
+  - {fileID: 2103325133763936151, guid: 808aa7fc1951fef47851c5f98f21e59e, type: 3}
+  - {fileID: 996612370348521718, guid: ea0dec67a3aebd44d8fc7b7867935865, type: 3}
+  - {fileID: 1359971472580708812, guid: c8241c5b49d292247833c48d9fb7b60a, type: 3}
+  - {fileID: 1082837548731855806, guid: 564d977bd0a062a4dbfc3044526ef159, type: 3}
+  - {fileID: 8992279440308856524, guid: af5bae99cb777864d8f7641e6677ad64, type: 3}
+  - {fileID: 2363210578602802306, guid: 776edffa02ced7e4680b44bbb4124a6b, type: 3}
+  - {fileID: 4646097424610493687, guid: 434efeb5c0a5a834f83d736a03564dd8, type: 3}
+  - {fileID: 6892806975697736358, guid: 941ae618a5231874abc4210fa3614176, type: 3}
 --- !u!4 &727482563
 Transform:
   m_ObjectHideFlags: 0

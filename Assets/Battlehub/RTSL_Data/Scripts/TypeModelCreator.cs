@@ -185,6 +185,9 @@ namespace Battlehub.RTSL
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBMesh<long>), true);
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBPolyShape<long>), true);
             model.Add(typeof(RTTerrain.Battlehub.SL2.PersistentTerrainBrushSource<long>), true);
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentColliderType<long>), true);
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosBone<long>), true);
+            model.Add(typeof(Eos.Objects.EosBone), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosBone<long>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentVector2<long>), true);
             model.Add(typeof(UnityEngine.Vector2), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentVector2<long>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentVector3<long>), true);
@@ -308,10 +311,31 @@ namespace Battlehub.RTSL
             model.Add(typeof(Eos.Objects.EosCollider), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosCollider<long>));
             model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<long>), true);
             model.Add(typeof(Eos.Objects.EosHumanoid), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<long>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosPawnActor<long>), true);
+            model.Add(typeof(Eos.Objects.EosPawnActor), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosPawnActor<long>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosTransform<long>), true);
+            model.Add(typeof(Eos.Objects.EosTransform), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosTransform<long>));
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<long>), true);
             model.Add(typeof(ProBuilderIntegration.PBAutoUnwrapSettings), false).SetSurrogate(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<long>));
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBFace<long>), true);
             model.Add(typeof(ProBuilderIntegration.PBFace), false).SetSurrogate(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBFace<long>));
+            model.Add(typeof(Eos.Service.Battlehub.SL2.PersistentSolution<long>), true);
+            model.Add(typeof(Eos.Service.Solution), false).SetSurrogate(typeof(Eos.Service.Battlehub.SL2.PersistentSolution<long>));
+            model.Add(typeof(Eos.Service.Battlehub.SL2.PersistentWorkspace<long>), true);
+            model.Add(typeof(Eos.Service.Workspace), false).SetSurrogate(typeof(Eos.Service.Battlehub.SL2.PersistentWorkspace<long>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentColliderType<long>), true);
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosBone<long>), true);
+            model.Add(typeof(Eos.Objects.EosBone), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosBone<long>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosCamera<long>), true);
+            model.Add(typeof(Eos.Objects.EosCamera), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosCamera<long>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosGear<long>), true);
+            model.Add(typeof(Eos.Objects.EosGear), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosGear<long>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosLight<long>), true);
+            model.Add(typeof(Eos.Objects.EosLight), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosLight<long>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosScript<long>), true);
+            model.Add(typeof(Eos.Objects.EosScript), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosScript<long>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosShape<long>), true);
+            model.Add(typeof(Eos.Objects.EosShape), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosShape<long>));
             
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentObject<Guid>), true)
                 .AddSubType(1025, typeof(UnityEngine.Battlehub.SL2.PersistentGameObject<Guid>))
@@ -478,6 +502,9 @@ namespace Battlehub.RTSL
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBMesh<Guid>), true);
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBPolyShape<Guid>), true);
             model.Add(typeof(RTTerrain.Battlehub.SL2.PersistentTerrainBrushSource<Guid>), true);
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentColliderType<Guid>), true);
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosBone<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosBone), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosBone<Guid>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentVector2<Guid>), true);
             model.Add(typeof(UnityEngine.Vector2), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentVector2<Guid>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentVector3<Guid>), true);
@@ -601,10 +628,31 @@ namespace Battlehub.RTSL
             model.Add(typeof(Eos.Objects.EosCollider), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosCollider<Guid>));
             model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<Guid>), true);
             model.Add(typeof(Eos.Objects.EosHumanoid), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosHumanoid<Guid>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosPawnActor<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosPawnActor), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosPawnActor<Guid>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosTransform<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosTransform), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosTransform<Guid>));
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<Guid>), true);
             model.Add(typeof(ProBuilderIntegration.PBAutoUnwrapSettings), false).SetSurrogate(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBAutoUnwrapSettings<Guid>));
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBFace<Guid>), true);
             model.Add(typeof(ProBuilderIntegration.PBFace), false).SetSurrogate(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBFace<Guid>));
+            model.Add(typeof(Eos.Service.Battlehub.SL2.PersistentSolution<Guid>), true);
+            model.Add(typeof(Eos.Service.Solution), false).SetSurrogate(typeof(Eos.Service.Battlehub.SL2.PersistentSolution<Guid>));
+            model.Add(typeof(Eos.Service.Battlehub.SL2.PersistentWorkspace<Guid>), true);
+            model.Add(typeof(Eos.Service.Workspace), false).SetSurrogate(typeof(Eos.Service.Battlehub.SL2.PersistentWorkspace<Guid>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentColliderType<Guid>), true);
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosBone<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosBone), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosBone<Guid>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosCamera<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosCamera), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosCamera<Guid>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosGear<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosGear), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosGear<Guid>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosLight<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosLight), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosLight<Guid>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosScript<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosScript), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosScript<Guid>));
+            model.Add(typeof(Eos.Objects.Battlehub.SL2.PersistentEosShape<Guid>), true);
+            model.Add(typeof(Eos.Objects.EosShape), false).SetSurrogate(typeof(Eos.Objects.Battlehub.SL2.PersistentEosShape<Guid>));
             
             RegisterUserDefinedTypes(model);
         }
@@ -625,7 +673,8 @@ namespace Battlehub.RTBuilder.Battlehub.SL2 {}
 namespace System.Collections.Generic.Battlehub.SL2 {}
 namespace Battlehub.ProBuilderIntegration.Battlehub.SL2 {}
 namespace Battlehub.RTTerrain.Battlehub.SL2 {}
-namespace UnityEngine.Events.Battlehub.SL2 {}
 namespace Eos.Objects.Battlehub.SL2 {}
+namespace UnityEngine.Events.Battlehub.SL2 {}
+namespace Eos.Service.Battlehub.SL2 {}
 
 

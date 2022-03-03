@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Battlehub.RTCommon;
 
 namespace Eos.Service
 {
     using AI;
-    using Battlehub.RTCommon;
     using Eos.Objects;
     using Eos.Objects.Editor;
     using MessagePack;

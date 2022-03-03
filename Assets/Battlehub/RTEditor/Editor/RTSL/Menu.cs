@@ -237,7 +237,7 @@ namespace Battlehub.RTSL
             }
         }
 
-        //[MenuItem("Tools/Runtime SaveLoad/Persistent Classes/Create")]
+        [MenuItem("Tools/Runtime SaveLoad/Persistent Classes/Create")]
         private static void CreatePersistentClasses()
         {
             PersistentClassMapperWindow.CreateOrPatchMappings();
@@ -288,7 +288,7 @@ namespace Battlehub.RTSL
             }
         }
 
-        //[MenuItem("Tools/Runtime SaveLoad/Persistent Classes/Build Type Model")]
+        [MenuItem("Tools/Runtime SaveLoad/Persistent Classes/Build Type Model")]
         private static void BuildTypeModel()
         {
             //Removal of RTSLTypeModel.dll created by previous version of RTE

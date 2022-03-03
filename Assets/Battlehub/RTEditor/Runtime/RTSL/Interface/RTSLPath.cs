@@ -47,6 +47,7 @@ namespace Battlehub.RTSL
         public static string FilePathStoragePath { get { return UserPrefabsPath + @"/FilePathStorage.prefab"; } }
         public static string ClassMappingsStoragePath { get { return UserPrefabsPath + @"/ClassMappingsStorage.prefab"; } }
         public static string SurrogatesMappingsStoragePath { get { return UserPrefabsPath + @"/SurrogatesMappingsStorage.prefab"; } }
+        public static string EosObjectMappingsStoragePath { get { return UserPrefabsPath + @"/EosMappingMappingsStorage.prefab"; } }
         public static IList<string> ClassMappingsTemplatePath = new List<string>
         {
             EditorPrefabsPath + @"/ClassMappingsTemplate.prefab"
@@ -54,6 +55,10 @@ namespace Battlehub.RTSL
         public static readonly IList<string> SurrogatesMappingsTemplatePath = new List<string>
         {            
             EditorPrefabsPath + @"/SurrogatesMappingsTemplate.prefab"
+        };
+        public static readonly IList<string> EosObjectMappingsTemplatePath = new List<string>
+        {
+            EditorPrefabsPath + @"/EosObjectMappingsTemplate.prefab"
         };
 
         public const string ScriptsAutoFolder = "Scripts";

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Battlehub.RTCommon;
 
-using Battlehub.RTCommon;
 using Battlehub.RTCommon.EditorTreeView;
 using Battlehub.RTSL.Interface;
 using UnityEngine.Battlehub.SL2;

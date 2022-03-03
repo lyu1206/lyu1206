@@ -11,12 +11,10 @@ using Battlehub.RTHandles;
 namespace Eos.Service
 {
     using Objects;
-    using Battlehub.RTCommon;
-    using Battlehub.RTEditor;
     public partial class GUIService
     {
         public override EosTransform EditorTrasnform => _transform;
-        public override void RTEOnCreated(Battlehub.RTCommon.IRTE editor)
+        public override void RTEOnCreated(IRTE editor)
         {
             base.RTEOnCreated(editor);
 
