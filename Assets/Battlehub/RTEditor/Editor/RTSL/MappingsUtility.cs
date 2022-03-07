@@ -25,6 +25,11 @@ namespace Battlehub.RTSL.Internal
             PersistentClassMappingsStorage storage;
             return GetClassMappings(out storage);
         }
+        public static PersistentClassMapping[] GetEosClassMappings()
+        {
+            PersistentClassMappingsStorage storage;
+            return GetEosClassMappings(out storage);
+        }
 
         public static PersistentClassMapping[] GetSurrogateMappings()
         {
@@ -35,6 +40,10 @@ namespace Battlehub.RTSL.Internal
         public static PersistentClassMapping[] GetClassMappings(out PersistentClassMappingsStorage storage)
         {
             return GetMappings(RTSLPath.ClassMappingsStoragePath, RTSLPath.ClassMappingsTemplatePath.ToArray(), out storage);
+        }
+        public static PersistentClassMapping[] GetEosClassMappings(out PersistentClassMappingsStorage storage)
+        {
+            return GetMappings(RTSLPath.EosObjectMappingsStoragePath, RTSLPath.EosObjectMappingsTemplatePath.ToArray(), out storage);
         }
 
         public static PersistentClassMapping[] GetSurrogateMappings(out PersistentClassMappingsStorage storage)

@@ -2021,9 +2021,10 @@ namespace Battlehub.RTSL
         public static void CreatePersistentClasses()
         {
             PersistentClassMapping[] uoMappings = MappingsUtility.GetClassMappings();
+            PersistentClassMapping[] eoMappings = MappingsUtility.GetEosClassMappings();
             PersistentClassMapping[] surrogateMappings = MappingsUtility.GetSurrogateMappings();
             Dictionary<Type, PersistentTemplateInfo> templates = GetPersistentTemplates(GetAllTypes());
-            CreatePersistentClasses(uoMappings, templates, surrogateMappings, templates);
+            CreatePersistentClasses(uoMappings, templates,eoMappings,templates, surrogateMappings, templates);
         }
 
         private void Initialize(bool userAction)
@@ -2299,7 +2300,7 @@ namespace Battlehub.RTSL
             types = m_mostImportantSurrogateTypes.Union(allTypes.OrderBy(t => t.Name)).ToArray();
         }
 
-        private static void CreatePersistentClasses(PersistentClassMapping[] uoMappings, Dictionary<Type, PersistentTemplateInfo> uoTemplates, PersistentClassMapping[] surrogateMappings, Dictionary<Type, PersistentTemplateInfo> surrogateTemplates)
+        private static void CreatePersistentClasses(PersistentClassMapping[] uoMappings, Dictionary<Type, PersistentTemplateInfo> uoTemplates, PersistentClassMapping[] eoMappings, Dictionary<Type, PersistentTemplateInfo> eoTemplates, PersistentClassMapping[] surrogateMappings, Dictionary<Type, PersistentTemplateInfo> surrogateTemplates)
         {
             Dictionary<string, string> persistentFileTypeToPath = new Dictionary<string, string>();
             string scriptsAutoPath = Path.GetFullPath(RTSLPath.UserRoot);
@@ -2382,6 +2383,37 @@ namespace Battlehub.RTSL
                         }
                     }
                     CreateCSFiles(persistentClassesPath, myPersistentClassesPath, codeGen, mapping, uoTemplates, typeToScript);
+
+                }
+            }
+
+            for (int i = 0; i < eoMappings.Length; ++i)
+            {
+                PersistentClassMapping mapping = eoMappings[i];
+                if (mapping != null)
+                {
+                    if (!mapping.IsOn)
+                    {
+                        continue;
+                    }
+
+                    if (hideMustHaveTypes.Contains(mapping.MappedFullTypeName))
+                    {
+                        continue;
+                    }
+
+                    if (mapping.CreateCustomImplementation)
+                    {
+                        if (HasCustomImplementation(codeGen, mapping))
+                        {
+                            persistentFileTypeToPath.Add(mapping.PersistentFullTypeName, null);
+                        }
+                        else
+                        {
+                            persistentFileTypeToPath.Add(mapping.PersistentFullTypeName, GetCSFilePath(myPersistentClassesPath, mapping, typeToScript));
+                        }
+                    }
+                    CreateCSFiles(persistentClassesPath, myPersistentClassesPath, codeGen, mapping, eoTemplates, typeToScript);
 
                 }
             }

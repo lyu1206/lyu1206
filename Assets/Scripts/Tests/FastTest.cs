@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Battlehub.RTSL;
 using Battlehub.RTCommon;
@@ -17,10 +18,12 @@ namespace Eos.Test
         private GameObject _bone;
         [SerializeField]
         private GameObject[] _gears;
+
+        protected ITypeMap m_typeMap;
+
         private void Awake()
         {
-            TypeMap<long> typeMap = new TypeMap<long>();
-            IOC.Register<ITypeMap>(typeMap);
+            IOC.Register<ITypeMap>(m_typeMap = new TypeMap<long>());
         }
         // Start is called before the first frame update
         void Start()
@@ -67,6 +70,13 @@ namespace Eos.Test
 
             var typemap = IOC.Resolve<ITypeMap>();
             var ptype = typemap.ToPersistentType(solution.GetType());
+
+
+
+            IOC.Register<ISerializer>(new ProtobufSerializer());
+            Type objType = solution.GetType();
+            Type persistentType = m_typeMap.ToPersistentType(objType);
+
         }
 
         // Update is called once per frame
