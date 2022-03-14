@@ -1926,8 +1926,8 @@ namespace Battlehub.RTSL
                     }
                 }
             }
-
-            types = allTypesHS.ToArray();
+            types = allTypesHS.Where(x => !x.FullName.Contains("Eos")).ToArray();
+//            types = allTypesHS.ToArray();
         }
 
         public static string Namespace(Type type)

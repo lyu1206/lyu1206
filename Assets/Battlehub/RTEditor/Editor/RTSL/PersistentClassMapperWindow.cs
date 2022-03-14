@@ -2452,7 +2452,7 @@ namespace Battlehub.RTSL
             string typeModelCreatorCode = codeGen.CreateTypeModelCreator(uoMappings.Union(surrogateMappings).ToArray());
             File.WriteAllText(scriptsAutoPath + "/TypeModelCreator.cs", typeModelCreatorCode);
 
-            string typeMapCode = codeGen.CreateTypeMapCreator(uoMappings.Union(surrogateMappings).ToArray());
+            string typeMapCode = codeGen.CreateTypeMapCreator(uoMappings.Union(eoMappings).Union(surrogateMappings).ToArray());
             File.WriteAllText(scriptsAutoPath + "/TypeMapCreator.cs", typeMapCode);
 
             AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);

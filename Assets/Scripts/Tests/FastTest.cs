@@ -12,6 +12,7 @@ namespace Eos.Test
     using EosPlayer;
     using Objects;
     using Service;
+    using Eos.Service.Battlehub.SL2;
     public class FastTest : MonoBehaviour
     {
         [SerializeField]
@@ -76,6 +77,9 @@ namespace Eos.Test
             IOC.Register<ISerializer>(new ProtobufSerializer());
             Type objType = solution.GetType();
             Type persistentType = m_typeMap.ToPersistentType(objType);
+            var serializer = IOC.Resolve<ISerializer>();
+            var persistentObject = (PersistentSolution<long>)Activator.CreateInstance(persistentType);
+            persistentObject.ReadFrom(solution);
 
         }
 
