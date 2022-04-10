@@ -42,6 +42,7 @@ namespace Battlehub.RTSL
             typeof(RuntimeScene),
             typeof(UnityEventBase),
             typeof(UnityEvent),
+            typeof(RuntimeSolution)
          //   typeof(RuntimeSerializableObject),
         };
 
@@ -1852,7 +1853,6 @@ namespace Battlehub.RTSL
         };
 
         private Type[] m_uoTypes;
-        private Type[] m_eoTypes;
         private PersistentClassMapperGUI m_uoMapperGUI;
         private PersistentClassMapperGUI m_surrogatesMapperGUI;
         private CodeGen m_codeGen = new CodeGen();
@@ -1993,16 +1993,8 @@ namespace Battlehub.RTSL
             {
                 Type[] alltypes = null;
                 GetUOAssembliesAndTypes(out assemblies, out alltypes);
-                m_uoTypes = alltypes.Where(x => !x.FullName.Contains("Eos")).ToArray();
-                uoTypes = m_uoTypes.Union(new[] { typeof(RuntimePrefab), typeof(RuntimeScene) }).ToArray();
-                m_eoTypes = alltypes.Where(x => x.FullName.Contains("Eos")).ToArray();
-
-                foreach(var t in m_eoTypes)
-                {
-                    Debug.Log($"eostype : {t.FullName}");
-                }
-
-                var tests = uoTypes.Where(x => x.FullName.Contains("Eos")).ToArray();
+                m_uoTypes = alltypes.ToArray();
+                uoTypes = m_uoTypes.Union(new[] { typeof(RuntimePrefab), typeof(RuntimeScene),typeof(RuntimeSolution) }).ToArray();
 
                 GetSurrogateAssembliesAndTypes(m_uoTypes, out declaredIn, out types);
                 Type[] allTypes = uoTypes.Union(types).ToArray();
@@ -2171,7 +2163,7 @@ namespace Battlehub.RTSL
             Dictionary<string, HashSet<Type>> declaredIn;
             Type[] types;
             GetUOAssembliesAndTypes(out assemblies, out uoTypes);
-            uoTypes = uoTypes.Union(new[] { typeof(RuntimePrefab), typeof(RuntimeScene) }).ToArray();
+            uoTypes = uoTypes.Union(new[] { typeof(RuntimePrefab), typeof(RuntimeScene),typeof(RuntimeSolution) }).ToArray();
             GetSurrogateAssembliesAndTypes(uoTypes, out declaredIn, out types);
             return uoTypes.Union(types).ToArray();
         }

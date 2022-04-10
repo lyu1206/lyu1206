@@ -131,6 +131,7 @@ namespace Battlehub.RTSL.Battlehub.SL2
 
                     prefabParts.Add(component);
 
+
                     PersistentObject<TID> componentData = (PersistentObject<TID>)Activator.CreateInstance(persistentComponentType);
                     componentData.GetDepsFrom(component, context);
                 }

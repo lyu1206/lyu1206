@@ -2342,6 +2342,84 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &393969084416551465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2763975680815423136}
+  - component: {fileID: 8564586731787700625}
+  m_Layer: 0
+  m_Name: Eos.Service.AI.AIService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2763975680815423136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393969084416551465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 379
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8564586731787700625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393969084416551465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 1
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service.AI
+  MappedTypeName: AIService
+  MappedTypeGUID: fee20ba3-db9f-4f6f-a390-c00e97c1c49c
+  PersistentNamespace: Eos.Service.AI.Battlehub.SL2
+  PersistentTypeName: PersistentAIService
+  PersistentTypeGUID: 5e56e8fc-f1fb-4d87-95b7-073673196f51
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: Dictionary`2[[System.UInt32, mscorlib],[Eos.Service.AI.AIEngageObject,
+      Assembly-CSharp]]
+    PersistentName: _enageobjects
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: Dictionary`2[[System.UInt32, mscorlib],[Eos.Service.AI.AIEngageObject,
+      Assembly-CSharp]]
+    MappedName: _enageobjects
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
 --- !u!1 &394698972886455358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2901,6 +2979,127 @@ MonoBehaviour:
     UseSurrogate2: 0
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &453091068985868515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3934263815567309775}
+  - component: {fileID: 3500134227109887585}
+  m_Layer: 0
+  m_Name: Eos.Service.AI.AccessPlate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3934263815567309775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453091068985868515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 378
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3500134227109887585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453091068985868515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 4
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service.AI
+  MappedTypeName: AccessPlate
+  MappedTypeGUID: d8295470-984a-4f22-86d0-69691654aa1e
+  PersistentNamespace: Eos.Service.AI.Battlehub.SL2
+  PersistentTypeName: PersistentAccessPlate
+  PersistentTypeGUID: 309db2fd-9b54-4fc8-bd9e-841d683f9383
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosHumanoid
+    PersistentName: _humanoid
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosHumanoid
+    MappedName: _humanoid
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosTransform
+    PersistentName: _transform
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosTransform
+    MappedName: _transform
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: List`1[[Eos.Service.AI.AIEngageObject, Assembly-CSharp]]
+    PersistentName: _requestobject
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: List`1[[Eos.Service.AI.AIEngageObject, Assembly-CSharp]]
+    MappedName: _requestobject
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: List`1[[Eos.Service.AI.AccessPlate+AccesPlate, Assembly-CSharp]]
+    PersistentName: _platelist
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: List`1[[Eos.Service.AI.AccessPlate+AccesPlate, Assembly-CSharp]]
+    MappedName: _platelist
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
     HasPropertyInTemplate: 0
 --- !u!1 &479850117692183881
 GameObject:
@@ -3505,7 +3704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Version: 2.26
-  IsSelected: 0
+  IsSelected: 1
   IsLocked: 0
   PersistentPropertyTag: 1
   PersistentSubclassTag: 0
@@ -5723,6 +5922,82 @@ MonoBehaviour:
     UseSurrogate2: 1
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &738821252439207659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 296865796349065712}
+  - component: {fileID: 9008726554015471343}
+  m_Layer: 0
+  m_Name: KeraLua.LuaState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &296865796349065712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738821252439207659}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 392
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9008726554015471343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738821252439207659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 1
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: KeraLua
+  MappedTypeName: LuaState
+  MappedTypeGUID: f84e4596-cded-4074-b6d5-c51886094e0c
+  PersistentNamespace: KeraLua.Battlehub.SL2
+  PersistentTypeName: PersistentLuaState
+  PersistentTypeGUID: 166729d9-d28b-4b00-bf72-97674a602483
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: IntPtr
+    PersistentName: state
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: IntPtr
+    MappedName: state
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
     HasPropertyInTemplate: 0
 --- !u!1 &740354864102239283
 GameObject:
@@ -8188,6 +8463,130 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &917882584747382999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8852435657387434022}
+  - component: {fileID: 7532594992506253018}
+  m_Layer: 0
+  m_Name: Eos.Service.Scheduler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8852435657387434022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917882584747382999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 398
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7532594992506253018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917882584747382999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 4
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: Scheduler
+  MappedTypeGUID: 84e652e3-f933-4bd2-a11f-9ff13cfd2e5a
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentScheduler
+  PersistentTypeGUID: b7a46b2e-bfa6-444f-8145-3ceca99aa99e
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: _keyindex
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: _keyindex
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: Dictionary`2[[System.Int32, mscorlib],[Eos.Service.Timer,
+      Assembly-CSharp]]
+    PersistentName: _willscheduletimers
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: Dictionary`2[[System.Int32, mscorlib],[Eos.Service.Timer, Assembly-CSharp]]
+    MappedName: _willscheduletimers
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: Dictionary`2[[System.Int32, mscorlib],[Eos.Service.Timer,
+      Assembly-CSharp]]
+    PersistentName: _timers
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: Dictionary`2[[System.Int32, mscorlib],[Eos.Service.Timer, Assembly-CSharp]]
+    MappedName: _timers
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: Dictionary`2[[System.Int32, mscorlib],[Eos.Service.Timer,
+      Assembly-CSharp]]
+    PersistentName: _umscheduletimers
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: Dictionary`2[[System.Int32, mscorlib],[Eos.Service.Timer, Assembly-CSharp]]
+    MappedName: _umscheduletimers
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
 --- !u!1 &942572654671875030
 GameObject:
   m_ObjectHideFlags: 0
@@ -9273,6 +9672,127 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &1062293764374666190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3069337148890332509}
+  - component: {fileID: 716159510086701532}
+  m_Layer: 0
+  m_Name: Battlehub.RTEditor.EosRuntimeEditor+Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3069337148890332509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062293764374666190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 400
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &716159510086701532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062293764374666190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 4
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Battlehub.RTEditor
+  MappedTypeName: EosRuntimeEditor+Settings
+  MappedTypeGUID: e03216ad-87f1-4bfa-af09-243fca2f7e03
+  PersistentNamespace: Battlehub.RTEditor.Battlehub.SL2
+  PersistentTypeName: PersistentEosRuntimeEditor+Settings
+  PersistentTypeGUID: 7f862ed9-c8e9-42c1-8940-4bcaff3bc61a
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: OpenDefaultProject
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: OpenDefaultProject
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: String
+    PersistentName: DefaultProjectName
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: String
+    MappedName: DefaultProjectName
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: CreateCamera
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: CreateCamera
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: CreateLight
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: CreateLight
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
 --- !u!1 &1072954595557250620
 GameObject:
   m_ObjectHideFlags: 0
@@ -10027,7 +10547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Version: 2.26
-  IsSelected: 0
+  IsSelected: 1
   IsLocked: 0
   PersistentPropertyTag: 9
   PersistentSubclassTag: 0
@@ -10689,6 +11209,97 @@ MonoBehaviour:
     MappedNamespace: UnityEngine
     MappedTypeName: Vector2
     MappedName: range
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &1331872572105571724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4884913348612763357}
+  - component: {fileID: 7678473154404591142}
+  m_Layer: 0
+  m_Name: Eos.Service.SolutionMetaData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4884913348612763357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331872572105571724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 402
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7678473154404591142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331872572105571724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 2
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: SolutionMetaData
+  MappedTypeGUID: 1ec05fb9-2ecf-4a0c-bdf5-78829e366bc9
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentSolutionMetaData
+  PersistentTypeGUID: 6690eadc-d281-47d8-a006-6c446b1c2a70
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: List`1[[Eos.Objects.ObjectMeataData, Assembly-CSharp]]
+    PersistentName: metadatas
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: List`1[[Eos.Objects.ObjectMeataData, Assembly-CSharp]]
+    MappedName: metadatas
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: ObjectMeataData
+    PersistentName: metadata
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: ObjectMeataData
+    MappedName: metadata
     UseSurrogate: 1
     UseSurrogate2: 1
     HasDependenciesOrIsDependencyItself: 0
@@ -12296,6 +12907,292 @@ MonoBehaviour:
     UseSurrogate2: 0
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 1
+    HasPropertyInTemplate: 0
+--- !u!1 &1720681904886089032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3601944333893387412}
+  - component: {fileID: 3833837920355046253}
+  m_Layer: 0
+  m_Name: Eos.Objects.EosHumanoid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3601944333893387412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720681904886089032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 382
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3833837920355046253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720681904886089032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 15
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Objects
+  MappedTypeName: EosHumanoid
+  MappedTypeGUID: c1c00ec9-3bd5-4708-9394-43aae219372a
+  PersistentNamespace: Eos.Objects.Battlehub.SL2
+  PersistentTypeName: PersistentEosHumanoid
+  PersistentTypeGUID: 2e4b0a29-0ba0-4c21-a42c-31f6d8d24679
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: Level
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: Level
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Single
+    PersistentName: _radius
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Single
+    MappedName: _radius
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosFsm
+    PersistentName: _fsm
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosFsm
+    MappedName: _fsm
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosCollider
+    PersistentName: _attackrange
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosCollider
+    MappedName: _attackrange
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 5
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosCollider
+    PersistentName: _tracerange
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosCollider
+    MappedName: _tracerange
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 6
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Single
+    PersistentName: _angularspeed
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Single
+    MappedName: _angularspeed
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 7
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Single
+    PersistentName: _speed
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Single
+    MappedName: _speed
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 8
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Single
+    PersistentName: _accelation
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Single
+    MappedName: _accelation
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 9
+    PersistentNamespace: UnityEngine.AI.Battlehub.SL2
+    PersistentTypeName: NavMeshAgent
+    PersistentName: _navagent
+    MappedAssemblyName: UnityEngine.AIModule
+    MappedNamespace: UnityEngine.AI
+    MappedTypeName: NavMeshAgent
+    MappedName: _navagent
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 10
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosPawnActor
+    PersistentName: _humanoidroot
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosPawnActor
+    MappedName: _humanoidroot
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 11
+    PersistentNamespace: Eos.Service.AI.Battlehub.SL2
+    PersistentTypeName: AccessPlate
+    PersistentName: _accesplate
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service.AI
+    MappedTypeName: AccessPlate
+    MappedName: _accesplate
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 12
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosHumanoid
+    PersistentName: TraceTarget
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosHumanoid
+    MappedName: TraceTarget
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 13
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Single
+    PersistentName: Angularspeed
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Single
+    MappedName: Angularspeed
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 14
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Single
+    PersistentName: Speed
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Single
+    MappedName: Speed
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 15
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Single
+    PersistentName: Accelation
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Single
+    MappedName: Accelation
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
     HasPropertyInTemplate: 0
 --- !u!1 &1730069603116373900
 GameObject:
@@ -16418,6 +17315,308 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 1
     HasPropertyInTemplate: 0
+--- !u!1 &2229856135396552823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7514854017475683632}
+  - component: {fileID: 6097922842477978799}
+  m_Layer: 0
+  m_Name: Eos.Objects.EosCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7514854017475683632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2229856135396552823}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 380
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6097922842477978799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2229856135396552823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 11
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Objects
+  MappedTypeName: EosCollider
+  MappedTypeGUID: 5007432e-9adc-4d33-af7c-fce65a3fc026
+  PersistentNamespace: Eos.Objects.Battlehub.SL2
+  PersistentTypeName: PersistentEosCollider
+  PersistentTypeGUID: 6a59aa81-c2c9-4b87-8a62-4f5f88232f8c
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosTransform
+    PersistentName: _transform
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosTransform
+    MappedName: _transform
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: ColliderType
+    PersistentName: _colliderType
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: ColliderType
+    MappedName: _colliderType
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: eosCollider
+    PersistentName: _collider
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: eosCollider
+    MappedName: _collider
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: eosColliderAdaptor
+    PersistentName: _collideradapter
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: eosColliderAdaptor
+    MappedName: _collideradapter
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 5
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: _istrigger
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: _istrigger
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 6
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: _enable
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: _enable
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 7
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: DetectType
+    PersistentName: DetectType
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: DetectType
+    MappedName: DetectType
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 8
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: ColliderType
+    PersistentName: ColliderType
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: ColliderType
+    MappedName: ColliderType
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 9
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: Enable
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: Enable
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 10
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: IsTrigger
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: IsTrigger
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 11
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: eosCollider
+    PersistentName: Collider
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: eosCollider
+    MappedName: Collider
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &2256956655063151295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2830488004123620154}
+  - component: {fileID: 6306597344899867482}
+  m_Layer: 0
+  m_Name: Eos.Service.Players
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2830488004123620154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256956655063151295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 397
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6306597344899867482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256956655063151295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 1
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: Players
+  MappedTypeGUID: eff3cd2e-8d78-4c33-9663-975d50c1c324
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentPlayers
+  PersistentTypeGUID: ad9506bb-7bcd-4843-b993-e7dcebb4012b
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: Player
+    PersistentName: _localplayer
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: Player
+    MappedName: _localplayer
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
 --- !u!1 &2327339290646805134
 GameObject:
   m_ObjectHideFlags: 0
@@ -16461,7 +17660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 12
@@ -16659,6 +17858,277 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &2328460970134986315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3539117341570372258}
+  - component: {fileID: 4044105015726747355}
+  m_Layer: 0
+  m_Name: KeraLua.LuaDebug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3539117341570372258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2328460970134986315}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 391
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4044105015726747355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2328460970134986315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 14
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: KeraLua
+  MappedTypeName: LuaDebug
+  MappedTypeGUID: 8c1118a4-a891-428a-b6ef-b18f60f6b65b
+  PersistentNamespace: KeraLua.Battlehub.SL2
+  PersistentTypeName: PersistentLuaDebug
+  PersistentTypeGUID: 76fa5751-b9db-46f2-9da3-16b04872b7e0
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: eventCode
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: eventCode
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: currentline
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: currentline
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: linedefined
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: linedefined
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: lastlinedefined
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: lastlinedefined
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 5
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: String
+    PersistentName: short_src
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: String
+    MappedName: short_src
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 6
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: IntPtr
+    PersistentName: pname
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: IntPtr
+    MappedName: pname
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 7
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: IntPtr
+    PersistentName: pnamewhat
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: IntPtr
+    MappedName: pnamewhat
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 8
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: IntPtr
+    PersistentName: pwhat
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: IntPtr
+    MappedName: pwhat
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 9
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: IntPtr
+    PersistentName: psource
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: IntPtr
+    MappedName: psource
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 10
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Byte
+    PersistentName: nups
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Byte
+    MappedName: nups
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 11
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Byte
+    PersistentName: nparams
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Byte
+    MappedName: nparams
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 12
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Char
+    PersistentName: isvararg
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Char
+    MappedName: isvararg
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 13
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Char
+    PersistentName: istailcall
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Char
+    MappedName: istailcall
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 14
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: IntPtr
+    PersistentName: i_ci
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: IntPtr
+    MappedName: i_ci
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
 --- !u!1 &2328759052768734773
 GameObject:
   m_ObjectHideFlags: 0
@@ -16703,7 +18173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Version: 2.26
-  IsSelected: 0
+  IsSelected: 1
   IsLocked: 0
   PersistentPropertyTag: 0
   PersistentSubclassTag: 0
@@ -22448,7 +23918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 1
@@ -28513,7 +29983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Version: 2.26
   IsSelected: 0
-  IsLocked: 1
+  IsLocked: 0
   PersistentPropertyTag: 10
   PersistentSubclassTag: 0
   MappedAssemblyName: Battlehub.RTEditor
@@ -31072,6 +32542,127 @@ MonoBehaviour:
   UseTemplate: 1
   Subclasses: []
   PropertyMappings: []
+--- !u!1 &4595526986575525276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2132677414115125929}
+  - component: {fileID: 262002377828542203}
+  m_Layer: 0
+  m_Name: Eos.Service.Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2132677414115125929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595526986575525276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 396
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262002377828542203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595526986575525276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 4
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: Player
+  MappedTypeGUID: eacdf72d-c88c-4b49-aa20-847780a4a6f8
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentPlayer
+  PersistentTypeGUID: 5cb11baa-2dfe-46f7-aa92-1e148b940d41
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: UInt64
+    PersistentName: SID
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: UInt64
+    MappedName: SID
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosHumanoid
+    PersistentName: _humanoid
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosHumanoid
+    MappedName: _humanoid
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosTransform
+    PersistentName: _transform
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosTransform
+    MappedName: _transform
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 4
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: String
+    PersistentName: Name
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: String
+    MappedName: Name
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
 --- !u!1 &4606466833201326673
 GameObject:
   m_ObjectHideFlags: 0
@@ -31448,6 +33039,97 @@ MonoBehaviour:
     UseSurrogate2: 1
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 1
+    HasPropertyInTemplate: 0
+--- !u!1 &4697659959818940020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1044484701041358066}
+  - component: {fileID: 8078178753714999935}
+  m_Layer: 0
+  m_Name: Eos.Ore.OreReference
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1044484701041358066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4697659959818940020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 395
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8078178753714999935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4697659959818940020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 2
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Ore
+  MappedTypeName: OreReference
+  MappedTypeGUID: 36caf523-89fc-4032-a910-0fa776cb7f6f
+  PersistentNamespace: Eos.Ore.Battlehub.SL2
+  PersistentTypeName: PersistentOreReference
+  PersistentTypeGUID: 3cf68c50-462a-4dd4-bc8e-839277085e32
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: OreID
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: OreID
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: String
+    PersistentName: Mold
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: String
+    MappedName: Mold
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
     HasPropertyInTemplate: 0
 --- !u!1 &4732690975062074847
 GameObject:
@@ -33580,6 +35262,67 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &5143720000075838049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8456702438220578580}
+  - component: {fileID: 3978239444332848015}
+  m_Layer: 0
+  m_Name: Eos.Service.StarterPack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8456702438220578580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143720000075838049}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 403
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3978239444332848015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143720000075838049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 0
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: StarterPack
+  MappedTypeGUID: 19c91609-ae86-4c43-9c16-88f98cf3d402
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentStarterPack
+  PersistentTypeGUID: 740acc84-5301-4fb1-a648-c9fd704ba09a
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings: []
 --- !u!1 &5146685196592234604
 GameObject:
   m_ObjectHideFlags: 0
@@ -35557,6 +37300,157 @@ MonoBehaviour:
     UseSurrogate2: 1
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &5401694602333026682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3673671979374225388}
+  - component: {fileID: 8648584579353720841}
+  m_Layer: 0
+  m_Name: NLua.Lua
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3673671979374225388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401694602333026682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 390
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8648584579353720841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401694602333026682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 6
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: NLua
+  MappedTypeName: Lua
+  MappedTypeGUID: 19841aac-d3fe-4808-9d16-e6c5718ccf36
+  PersistentNamespace: NLua.Battlehub.SL2
+  PersistentTypeName: PersistentLua
+  PersistentTypeGUID: b7892efd-2a7b-4b88-8a08-3453a71030a9
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: List`1[[System.String, mscorlib]]
+    PersistentName: globals
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: List`1[[System.String, mscorlib]]
+    MappedName: globals
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: globalsSorted
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: globalsSorted
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: KeraLua.Battlehub.SL2
+    PersistentTypeName: LuaState
+    PersistentName: luaState
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: KeraLua
+    MappedTypeName: LuaState
+    MappedName: luaState
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: NLua.Battlehub.SL2
+    PersistentTypeName: ObjectTranslator
+    PersistentName: translator
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: NLua
+    MappedTypeName: ObjectTranslator
+    MappedName: translator
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 5
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: _StatePassed
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: _StatePassed
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 6
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: executing
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: executing
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
     HasPropertyInTemplate: 0
 --- !u!1 &5406095942645550159
 GameObject:
@@ -39782,6 +41676,67 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &6014022452762100689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2446807877130816199}
+  - component: {fileID: 998467475343416257}
+  m_Layer: 0
+  m_Name: Eos.Service.Workspace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2446807877130816199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014022452762100689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 406
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &998467475343416257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014022452762100689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 0
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: Workspace
+  MappedTypeGUID: b730c814-0908-49f4-b3f1-a71a8be57f79
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentWorkspace
+  PersistentTypeGUID: d14894fa-ca5c-45ce-a560-3a73b8f06707
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings: []
 --- !u!1 &6031524609911602074
 GameObject:
   m_ObjectHideFlags: 0
@@ -41879,6 +43834,35 @@ Transform:
   - {fileID: 6004441852111388678}
   - {fileID: 6350824069434410686}
   - {fileID: 8805752644291796639}
+  - {fileID: 3934263815567309775}
+  - {fileID: 2763975680815423136}
+  - {fileID: 7514854017475683632}
+  - {fileID: 1996170892953508764}
+  - {fileID: 3601944333893387412}
+  - {fileID: 6096811114526125229}
+  - {fileID: 6457051468964489622}
+  - {fileID: 7625273864489908509}
+  - {fileID: 6794277730489173827}
+  - {fileID: 727418590233741587}
+  - {fileID: 476530219258511002}
+  - {fileID: 4137378758658523498}
+  - {fileID: 3673671979374225388}
+  - {fileID: 3539117341570372258}
+  - {fileID: 296865796349065712}
+  - {fileID: 1093901476431376764}
+  - {fileID: 2528094501151889397}
+  - {fileID: 1044484701041358066}
+  - {fileID: 2132677414115125929}
+  - {fileID: 2830488004123620154}
+  - {fileID: 8852435657387434022}
+  - {fileID: 6320533976285001339}
+  - {fileID: 3069337148890332509}
+  - {fileID: 89593474451459968}
+  - {fileID: 4884913348612763357}
+  - {fileID: 8456702438220578580}
+  - {fileID: 676256970217960153}
+  - {fileID: 4726724858772825839}
+  - {fileID: 2446807877130816199}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -41896,6 +43880,98 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Version: 2.26
   PatchCounter: 4
+--- !u!1 &6202488726562960662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6320533976285001339}
+  - component: {fileID: 2615702479379597521}
+  m_Layer: 0
+  m_Name: Eos.Service.ScriptPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6320533976285001339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202488726562960662}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 399
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2615702479379597521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202488726562960662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 2
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: ScriptPlayer
+  MappedTypeGUID: 035178c8-a6a8-4a5a-b8e6-f562bfa5c671
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentScriptPlayer
+  PersistentTypeGUID: d5c4aacb-4a9b-4296-9ac7-a410eb4417c7
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: List`1[[Eos.Script.IScript, Assembly-CSharp]]
+    PersistentName: _runningscriptlist
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: List`1[[Eos.Script.IScript, Assembly-CSharp]]
+    MappedName: _runningscriptlist
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: Dictionary`2[[System.Int32, mscorlib],[Eos.Script.IScript,
+      Assembly-CSharp]]
+    PersistentName: _runningscripts
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: Dictionary`2[[System.Int32, mscorlib],[Eos.Script.IScript, Assembly-CSharp]]
+    MappedName: _runningscripts
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
 --- !u!1 &6227164543816406987
 GameObject:
   m_ObjectHideFlags: 0
@@ -42968,6 +45044,338 @@ MonoBehaviour:
     UseSurrogate2: 0
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &6378100537950183613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 89593474451459968}
+  - component: {fileID: 1629735469641141216}
+  m_Layer: 0
+  m_Name: Eos.Service.Solution
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &89593474451459968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378100537950183613}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 401
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1629735469641141216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378100537950183613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 12
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: Solution
+  MappedTypeGUID: 7aec42d7-1073-4686-ab19-5bcbb581abfa
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentSolution
+  PersistentTypeGUID: 17c98fbd-f0b0-46f1-9bf0-f605de7334d6
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: Workspace
+    PersistentName: _workspace
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: Workspace
+    MappedName: _workspace
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: TerrainService
+    PersistentName: _terrainservice
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: TerrainService
+    MappedName: _terrainservice
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: Players
+    PersistentName: _players
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: Players
+    MappedName: _players
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: GUIService
+    PersistentName: _guiservice
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: GUIService
+    MappedName: _guiservice
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 5
+    PersistentNamespace: Eos.Service.AI.Battlehub.SL2
+    PersistentTypeName: AIService
+    PersistentName: _aiservice
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service.AI
+    MappedTypeName: AIService
+    MappedName: _aiservice
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 6
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: StarterPlayer
+    PersistentName: _starterplayer
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: StarterPlayer
+    MappedName: _starterplayer
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 7
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: StarterPack
+    PersistentName: _starterpack
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: StarterPack
+    MappedName: _starterpack
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 8
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: SolutionMetaData
+    PersistentName: _solutionmetadata
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: SolutionMetaData
+    MappedName: _solutionmetadata
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 9
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: Workspace
+    PersistentName: Workspace
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: Workspace
+    MappedName: Workspace
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 10
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: TerrainService
+    PersistentName: Terrain
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: TerrainService
+    MappedName: Terrain
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 11
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: GUIService
+    PersistentName: GUIService
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: GUIService
+    MappedName: GUIService
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 12
+    PersistentNamespace: Eos.Service.Battlehub.SL2
+    PersistentTypeName: SolutionMetaData
+    PersistentName: SolutionMetaData
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Service
+    MappedTypeName: SolutionMetaData
+    MappedName: SolutionMetaData
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &6382095934386817982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 727418590233741587}
+  - component: {fileID: 5165940062134887150}
+  m_Layer: 0
+  m_Name: Eos.Service.GUIService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &727418590233741587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6382095934386817982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 387
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5165940062134887150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6382095934386817982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 2
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: GUIService
+  MappedTypeGUID: 7ae53bab-4a25-431e-81fb-1aa32fd0916d
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentGUIService
+  PersistentTypeGUID: 25f02be3-4c2f-4c27-b376-048b3d236f8c
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: Canvas
+    PersistentName: _canvas
+    MappedAssemblyName: UnityEngine.UIModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: Canvas
+    MappedName: _canvas
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: Transform
+    PersistentName: _root
+    MappedAssemblyName: UnityEngine.CoreModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: Transform
+    MappedName: _root
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
     HasPropertyInTemplate: 0
 --- !u!1 &6389619400842397463
 GameObject:
@@ -44693,7 +47101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Version: 
+  Version: 2.26
   IsSelected: 0
   IsLocked: 0
   PersistentPropertyTag: 9
@@ -44844,6 +47252,82 @@ MonoBehaviour:
     UseSurrogate: 1
     UseSurrogate2: 1
     HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &6541914377359544845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4726724858772825839}
+  - component: {fileID: 2924313254726670668}
+  m_Layer: 0
+  m_Name: Eos.Service.TerrainService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4726724858772825839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541914377359544845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 405
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2924313254726670668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541914377359544845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 1
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: TerrainService
+  MappedTypeGUID: 5d07a5d9-7bc1-436d-97ee-327e5e89772f
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentTerrainService
+  PersistentTypeGUID: 55b2793b-29c8-4c7f-a5c6-e8f09d181336
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: Eos.Ore.Battlehub.SL2
+    PersistentTypeName: PVMOre
+    PersistentName: _pvmOre
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Ore
+    MappedTypeName: PVMOre
+    MappedName: _pvmOre
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
     IsNonPublic: 0
     HasPropertyInTemplate: 0
 --- !u!1 &6604093405305449199
@@ -48271,6 +50755,127 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &7012094350934865231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7625273864489908509}
+  - component: {fileID: 8762282994962282244}
+  m_Layer: 0
+  m_Name: Eos.Objects.EosSkeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7625273864489908509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7012094350934865231}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 385
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8762282994962282244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7012094350934865231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 4
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Objects
+  MappedTypeName: EosSkeleton
+  MappedTypeGUID: b2b71dcf-e8ae-4ab4-9d7c-85ba9c501979
+  PersistentNamespace: Eos.Objects.Battlehub.SL2
+  PersistentTypeName: PersistentEosSkeleton
+  PersistentTypeGUID: 7328c430-1a42-4060-aff4-6f06508b0da6
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: Transform[]
+    PersistentName: _bones
+    MappedAssemblyName: UnityEngine.CoreModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: Transform[]
+    MappedName: _bones
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Collections.Battlehub.SL2
+    PersistentTypeName: Hashtable
+    PersistentName: _bonesByHash
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections
+    MappedTypeName: Hashtable
+    MappedName: _bonesByHash
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: List`1[[UnityEngine.Matrix4x4, UnityEngine.CoreModule]]
+    PersistentName: _bindposes
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: List`1[[UnityEngine.Matrix4x4, UnityEngine.CoreModule]]
+    MappedName: _bindposes
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: Transform
+    PersistentName: _root
+    MappedAssemblyName: UnityEngine.CoreModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: Transform
+    MappedName: _root
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
 --- !u!1 &7032556814596184228
 GameObject:
   m_ObjectHideFlags: 0
@@ -48921,6 +51526,157 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &7085751207476251944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6794277730489173827}
+  - component: {fileID: 7535694654724487659}
+  m_Layer: 0
+  m_Name: Eos.Objects.EosTransformActor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6794277730489173827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085751207476251944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 386
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7535694654724487659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085751207476251944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 6
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Objects
+  MappedTypeName: EosTransformActor
+  MappedTypeGUID: dac4d8c4-f1bf-400e-80fd-9bf4560f3689
+  PersistentNamespace: Eos.Objects.Battlehub.SL2
+  PersistentTypeName: PersistentEosTransformActor
+  PersistentTypeGUID: ebe57b9d-70dc-4b50-a82b-2f4aa30d0479
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosTransform
+    PersistentName: _transform
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosTransform
+    MappedName: _transform
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: Layer
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: Layer
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 3
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: String
+    PersistentName: Name
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: String
+    MappedName: Name
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 4
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: Vector3
+    PersistentName: LocalPosition
+    MappedAssemblyName: UnityEngine.CoreModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: Vector3
+    MappedName: LocalPosition
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 5
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: Vector3
+    PersistentName: LocalRotation
+    MappedAssemblyName: UnityEngine.CoreModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: Vector3
+    MappedName: LocalRotation
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 6
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: Vector3
+    PersistentName: LocalScale
+    MappedAssemblyName: UnityEngine.CoreModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: Vector3
+    MappedName: LocalScale
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
 --- !u!1 &7090743629045491184
 GameObject:
   m_ObjectHideFlags: 0
@@ -49218,6 +51974,112 @@ MonoBehaviour:
     MappedNamespace: System
     MappedTypeName: String
     MappedName: Path
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &7114038255110248058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4137378758658523498}
+  - component: {fileID: 6359077164009272966}
+  m_Layer: 0
+  m_Name: Battlehub.RTEditor.InspectorComponent+InspectorSet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4137378758658523498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114038255110248058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 389
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6359077164009272966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114038255110248058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 3
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Battlehub.RTEditor
+  MappedTypeName: InspectorComponent+InspectorSet
+  MappedTypeGUID: 2a61de5d-f99b-4b3d-922e-18be4bfe9539
+  PersistentNamespace: Battlehub.RTEditor.Battlehub.SL2
+  PersistentTypeName: PersistentInspectorComponent+InspectorSet
+  PersistentTypeGUID: 8f86648b-e11a-44fc-8dcf-86b9bf9eb315
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: Battlehub.SL2
+    PersistentTypeName: InspectorAttribute
+    PersistentName: Info
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: 
+    MappedTypeName: InspectorAttribute
+    MappedName: Info
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Reflection.Battlehub.SL2
+    PersistentTypeName: PropertyInfo
+    PersistentName: PropertyInfo
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Reflection
+    MappedTypeName: PropertyInfo
+    MappedName: PropertyInfo
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: Battlehub.RTEditor.Battlehub.SL2
+    PersistentTypeName: InspectorComponent
+    PersistentName: Component
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Battlehub.RTEditor
+    MappedTypeName: InspectorComponent
+    MappedName: Component
     UseSurrogate: 0
     UseSurrogate2: 0
     HasDependenciesOrIsDependencyItself: 0
@@ -49887,6 +52749,97 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 1
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &7185978347151022661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1093901476431376764}
+  - component: {fileID: 8586599876313808970}
+  m_Layer: 0
+  m_Name: Eos.Assets.Mold+MoldItem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1093901476431376764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7185978347151022661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 393
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8586599876313808970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7185978347151022661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 2
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Assets
+  MappedTypeName: Mold+MoldItem
+  MappedTypeGUID: cb26fce2-fc39-418a-9511-b6768d8a47d1
+  PersistentNamespace: Eos.Assets.Battlehub.SL2
+  PersistentTypeName: PersistentMold+MoldItem
+  PersistentTypeGUID: 4e0f0f6c-eaff-450b-b8dc-b0dd0f518d3f
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: _id
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: _id
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: Object
+    PersistentName: _item
+    MappedAssemblyName: UnityEngine.CoreModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: Object
+    MappedName: _item
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
 --- !u!1 &7245670153287224328
 GameObject:
   m_ObjectHideFlags: 0
@@ -50352,6 +53305,127 @@ MonoBehaviour:
     MappedName: maxMotorTorque
     UseSurrogate: 0
     UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &7290779852538512277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1996170892953508764}
+  - component: {fileID: 5485848555107199624}
+  m_Layer: 0
+  m_Name: Eos.Objects.EosFsm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1996170892953508764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7290779852538512277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 381
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5485848555107199624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7290779852538512277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 4
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Objects
+  MappedTypeName: EosFsm
+  MappedTypeGUID: a57dacab-7afd-4d5f-9710-d988a350256f
+  PersistentNamespace: Eos.Objects.Battlehub.SL2
+  PersistentTypeName: PersistentEosFsm
+  PersistentTypeGUID: 433ce1ab-4b80-4907-a9a5-e962715ba813
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: Eos.Ore.Battlehub.SL2
+    PersistentTypeName: OreBase
+    PersistentName: FSM
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Ore
+    MappedTypeName: OreBase
+    MappedName: FSM
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: Bolt.Battlehub.SL2
+    PersistentTypeName: VariableDeclarations
+    PersistentName: _values
+    MappedAssemblyName: Bolt.Core.Runtime
+    MappedNamespace: Bolt
+    MappedTypeName: VariableDeclarations
+    MappedName: _values
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: GameObject
+    PersistentName: _boltobject
+    MappedAssemblyName: UnityEngine.CoreModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: GameObject
+    MappedName: _boltobject
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 4
+    PersistentNamespace: Eos.Ore.Battlehub.SL2
+    PersistentTypeName: OreReference
+    PersistentName: FSMOre
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Ore
+    MappedTypeName: OreReference
+    MappedName: FSMOre
+    UseSurrogate: 1
+    UseSurrogate2: 1
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
@@ -57348,6 +60422,232 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &8514205710538144380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 476530219258511002}
+  - component: {fileID: 1871619777677112476}
+  m_Layer: 0
+  m_Name: System.Collections.Hashtable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &476530219258511002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8514205710538144380}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 388
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1871619777677112476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8514205710538144380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 11
+  PersistentSubclassTag: 0
+  MappedAssemblyName: mscorlib
+  MappedNamespace: System.Collections
+  MappedTypeName: Hashtable
+  MappedTypeGUID: 5a5cf109-81d9-4373-94b3-4488a51f536d
+  PersistentNamespace: System.Collections.Battlehub.SL2
+  PersistentTypeName: PersistentHashtable
+  PersistentTypeGUID: ef05a0a5-ec20-4890-b14d-4d90613180d2
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Collections.Battlehub.SL2
+    PersistentTypeName: Hashtable+bucket[]
+    PersistentName: buckets
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections
+    MappedTypeName: Hashtable+bucket[]
+    MappedName: buckets
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: count
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: count
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: occupancy
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: occupancy
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: loadsize
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: loadsize
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 5
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Single
+    PersistentName: loadFactor
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Single
+    MappedName: loadFactor
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 6
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Int32
+    PersistentName: version
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Int32
+    MappedName: version
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 7
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Boolean
+    PersistentName: isWriterInProgress
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Boolean
+    MappedName: isWriterInProgress
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 8
+    PersistentNamespace: System.Collections.Battlehub.SL2
+    PersistentTypeName: ICollection
+    PersistentName: keys
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections
+    MappedTypeName: ICollection
+    MappedName: keys
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 9
+    PersistentNamespace: System.Collections.Battlehub.SL2
+    PersistentTypeName: ICollection
+    PersistentName: values
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections
+    MappedTypeName: ICollection
+    MappedName: values
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 10
+    PersistentNamespace: System.Collections.Battlehub.SL2
+    PersistentTypeName: IEqualityComparer
+    PersistentName: _keycomparer
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections
+    MappedTypeName: IEqualityComparer
+    MappedName: _keycomparer
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 11
+    PersistentNamespace: System.Battlehub.SL2
+    PersistentTypeName: Object
+    PersistentName: _syncRoot
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System
+    MappedTypeName: Object
+    MappedName: _syncRoot
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
 --- !u!1 &8539314058972560557
 GameObject:
   m_ObjectHideFlags: 0
@@ -57907,7 +61207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Version: 2.26
-  IsSelected: 0
+  IsSelected: 1
   IsLocked: 0
   PersistentPropertyTag: 10
   PersistentSubclassTag: 0
@@ -58948,6 +62248,67 @@ MonoBehaviour:
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
     HasPropertyInTemplate: 0
+--- !u!1 &8849788890476834250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 676256970217960153}
+  - component: {fileID: 6500323780527067960}
+  m_Layer: 0
+  m_Name: Eos.Service.StarterPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &676256970217960153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8849788890476834250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 404
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6500323780527067960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8849788890476834250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 0
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Service
+  MappedTypeName: StarterPlayer
+  MappedTypeGUID: 4702aaad-1b3b-43f7-bc0d-f40a3cee9001
+  PersistentNamespace: Eos.Service.Battlehub.SL2
+  PersistentTypeName: PersistentStarterPlayer
+  PersistentTypeGUID: dfe6cf27-f6e9-40ee-b118-68fe79ba4467
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings: []
 --- !u!1 &8915541695797393155
 GameObject:
   m_ObjectHideFlags: 0
@@ -59098,7 +62459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Version: 2.26
-  IsSelected: 0
+  IsSelected: 1
   IsLocked: 0
   PersistentPropertyTag: 10
   PersistentSubclassTag: 0
@@ -59793,7 +63154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Version: 2.26
   IsSelected: 0
-  IsLocked: 0
+  IsLocked: 1
   PersistentPropertyTag: 18
   PersistentSubclassTag: 0
   MappedAssemblyName: UnityEngine.AnimationModule
@@ -60078,6 +63439,297 @@ MonoBehaviour:
     UseSurrogate2: 0
     HasDependenciesOrIsDependencyItself: 0
     IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &9062987650534609365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2528094501151889397}
+  - component: {fileID: 2870664324151466088}
+  m_Layer: 0
+  m_Name: Eos.Objects.ObjectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2528094501151889397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062987650534609365}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 394
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2870664324151466088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062987650534609365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 5
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Objects
+  MappedTypeName: ObjectManager
+  MappedTypeGUID: 611e56a2-59b3-4bfe-96be-25d22f5142ee
+  PersistentNamespace: Eos.Objects.Battlehub.SL2
+  PersistentTypeName: PersistentObjectManager
+  PersistentTypeGUID: 574bbc5f-fe8d-4fba-83f6-b9c2afd4c66f
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: Dictionary`2[[System.UInt32, mscorlib],[Eos.Objects.EosObjectBase,
+      Assembly-CSharp]]
+    PersistentName: _objectlist
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: Dictionary`2[[System.UInt32, mscorlib],[Eos.Objects.EosObjectBase,
+      Assembly-CSharp]]
+    MappedName: _objectlist
+    UseSurrogate: 0
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: Dictionary`2[[System.Int32, mscorlib],[Eos.Objects.EosObjectBase,
+      Assembly-CSharp]]
+    PersistentName: _unitylist
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: Dictionary`2[[System.Int32, mscorlib],[Eos.Objects.EosObjectBase,
+      Assembly-CSharp]]
+    MappedName: _unitylist
+    UseSurrogate: 0
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: List`1[[Eos.Objects.EosObjectBase, Assembly-CSharp]]
+    PersistentName: _updateobjectlist
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: List`1[[Eos.Objects.EosObjectBase, Assembly-CSharp]]
+    MappedName: _updateobjectlist
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: List`1[[Eos.Objects.EosObjectBase, Assembly-CSharp]]
+    PersistentName: _latedeleteupdateobjectlist
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: List`1[[Eos.Objects.EosObjectBase, Assembly-CSharp]]
+    MappedName: _latedeleteupdateobjectlist
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 5
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: List`1[[Eos.Objects.EosObjectBase, Assembly-CSharp]]
+    PersistentName: _lateaddupdateobjectlist
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: List`1[[Eos.Objects.EosObjectBase, Assembly-CSharp]]
+    MappedName: _lateaddupdateobjectlist
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+--- !u!1 &9073968080903968809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6096811114526125229}
+  - component: {fileID: 1382037339424324415}
+  m_Layer: 0
+  m_Name: EosLuaPlayer.EosLuaPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6096811114526125229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9073968080903968809}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 383
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1382037339424324415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9073968080903968809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 6
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: EosLuaPlayer
+  MappedTypeName: EosLuaPlayer
+  MappedTypeGUID: a1d401c8-59b3-426c-81c4-4e96f36c1fd2
+  PersistentNamespace: EosLuaPlayer.Battlehub.SL2
+  PersistentTypeName: PersistentEosLuaPlayer
+  PersistentTypeGUID: 823653c4-11ba-4496-92c1-30cb41194753
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: NLua.Battlehub.SL2
+    PersistentTypeName: LuaFunction
+    PersistentName: _updater
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: NLua
+    MappedTypeName: LuaFunction
+    MappedName: _updater
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: NLua.Battlehub.SL2
+    PersistentTypeName: LuaFunction
+    PersistentName: _registroutine
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: NLua
+    MappedTypeName: LuaFunction
+    MappedName: _registroutine
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: NLua.Battlehub.SL2
+    PersistentTypeName: LuaFunction
+    PersistentName: _unregistroutine
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: NLua
+    MappedTypeName: LuaFunction
+    MappedName: _unregistroutine
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: NLua.Battlehub.SL2
+    PersistentTypeName: LuaFunction
+    PersistentName: _pauseroutine
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: NLua
+    MappedTypeName: LuaFunction
+    MappedName: _pauseroutine
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 5
+    PersistentNamespace: NLua.Battlehub.SL2
+    PersistentTypeName: LuaFunction
+    PersistentName: _resumeroutine
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: NLua
+    MappedTypeName: LuaFunction
+    MappedName: _resumeroutine
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 6
+    PersistentNamespace: NLua.Battlehub.SL2
+    PersistentTypeName: LuaFunction
+    PersistentName: _loadmodule
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: NLua
+    MappedTypeName: LuaFunction
+    MappedName: _loadmodule
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
     HasPropertyInTemplate: 0
 --- !u!1 &9075749767660609422
 GameObject:
@@ -61416,6 +65068,202 @@ MonoBehaviour:
     MappedNamespace: System.Collections.Generic
     MappedTypeName: List`1[[Battlehub.RTSL.AssetFolderInfo, Battlehub.RTEditor]]
     MappedName: Folders
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+--- !u!1 &9211088811123018219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6457051468964489622}
+  - component: {fileID: 9070344702923560821}
+  m_Layer: 0
+  m_Name: Eos.Objects.EosPawnActor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6457051468964489622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211088811123018219}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3179251862110774644}
+  m_RootOrder: 384
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9070344702923560821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211088811123018219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0530efbda98e7b4f8991b85a6e01467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Version: 2.26
+  IsSelected: 0
+  IsLocked: 0
+  PersistentPropertyTag: 9
+  PersistentSubclassTag: 0
+  MappedAssemblyName: Assembly-CSharp
+  MappedNamespace: Eos.Objects
+  MappedTypeName: EosPawnActor
+  MappedTypeGUID: f8a6e293-2127-43df-9a59-3c994ba0ce08
+  PersistentNamespace: Eos.Objects.Battlehub.SL2
+  PersistentTypeName: PersistentEosPawnActor
+  PersistentTypeGUID: c811cd3a-1b71-46f8-bdb9-0edc5ba3ac5f
+  PersistentBaseNamespace: Battlehub.RTSL
+  PersistentBaseTypeName: PersistentSurrogate`1
+  CreateCustomImplementation: 0
+  UseTemplate: 1
+  Subclasses: []
+  PropertyMappings:
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 1
+    PersistentNamespace: System.Collections.Generic.Battlehub.SL2
+    PersistentTypeName: List`1[[Eos.Objects.EosCollider, Assembly-CSharp]]
+    PersistentName: Collders
+    MappedAssemblyName: mscorlib
+    MappedNamespace: System.Collections.Generic
+    MappedTypeName: List`1[[Eos.Objects.EosCollider, Assembly-CSharp]]
+    MappedName: Collders
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 2
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: EosSkeleton
+    PersistentName: _skeleton
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: EosSkeleton
+    MappedName: _skeleton
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 3
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: Animator
+    PersistentName: _animator
+    MappedAssemblyName: UnityEngine.AnimationModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: Animator
+    MappedName: _animator
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 4
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: Rigidbody
+    PersistentName: _rigidbody
+    MappedAssemblyName: UnityEngine.PhysicsModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: Rigidbody
+    MappedName: _rigidbody
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 5
+    PersistentNamespace: Eos.Objects.Battlehub.SL2
+    PersistentTypeName: AnimationController
+    PersistentName: _controller
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Objects
+    MappedTypeName: AnimationController
+    MappedName: _controller
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 6
+    PersistentNamespace: UnityEngine.Battlehub.SL2
+    PersistentTypeName: GameObject
+    PersistentName: _bodyobj
+    MappedAssemblyName: UnityEngine.CoreModule
+    MappedNamespace: UnityEngine
+    MappedTypeName: GameObject
+    MappedName: _bodyobj
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 0
+    PersistentTag: 7
+    PersistentNamespace: Eos.Ore.Battlehub.SL2
+    PersistentTypeName: OreReference
+    PersistentName: _oldterrainOre
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Ore
+    MappedTypeName: OreReference
+    MappedName: _oldterrainOre
+    UseSurrogate: 1
+    UseSurrogate2: 1
+    HasDependenciesOrIsDependencyItself: 0
+    IsNonPublic: 1
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 8
+    PersistentNamespace: Eos.Ore.Battlehub.SL2
+    PersistentTypeName: BodyOre
+    PersistentName: Body
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Ore
+    MappedTypeName: BodyOre
+    MappedName: Body
+    UseSurrogate: 0
+    UseSurrogate2: 0
+    HasDependenciesOrIsDependencyItself: 1
+    IsNonPublic: 0
+    HasPropertyInTemplate: 0
+  - IsEnabled: 0
+    IsProperty: 1
+    PersistentTag: 9
+    PersistentNamespace: Eos.Ore.Battlehub.SL2
+    PersistentTypeName: OreReference
+    PersistentName: BodyOre
+    MappedAssemblyName: Assembly-CSharp
+    MappedNamespace: Eos.Ore
+    MappedTypeName: OreReference
+    MappedName: BodyOre
     UseSurrogate: 1
     UseSurrogate2: 1
     HasDependenciesOrIsDependencyItself: 0
