@@ -152,6 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2eeac50da57d34ba55285682482052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_dynamicPrefabsRoot: {fileID: 0}
+  m_staticAssetLibraries: {fileID: 0}
+  m_sceneDepsLibrary: 
+  m_builtInLibrary: 
   _bone: {fileID: 866654735394159489, guid: b32410e669e94a5408dfa5bb7661ba81, type: 3}
   _gears:
   - {fileID: 1110551676053882067, guid: 5e1894a387bcc8842b9aa8a984ea0df0, type: 3}
