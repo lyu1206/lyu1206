@@ -79,6 +79,17 @@ namespace UnityEngine.Battlehub.SL2
             {
                 AddDep(uo.avatar, context);
             }
+            var controller = uo.runtimeAnimatorController;
+            if (controller == null)
+                return;
+            var clips = controller.animationClips;
+            var curves = UnityEditor.AnimationUtility.GetCurveBindings(clips[0]);
+            foreach (var curv in curves)
+            {
+                var cv = UnityEditor.AnimationUtility.GetEditorCurve(clips[0], curv);
+                var c = new AnimationCurve();
+                c.keys = new Keyframe[10];
+            }
         }
     }
 }
