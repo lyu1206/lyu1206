@@ -39,7 +39,8 @@ namespace Battlehub.RTSL
                 .AddSubType(1050, typeof(UnityEngine.Audio.Battlehub.SL2.PersistentAudioMixer<long>))
                 .AddSubType(1051, typeof(UnityEngine.Audio.Battlehub.SL2.PersistentAudioMixerGroup<long>))
                 .AddSubType(1052, typeof(RTSL.Battlehub.SL2.PersistentRuntimeSolution<long>))
-                .AddSubType(1053, typeof(UnityEngine.Battlehub.SL2.PersistentAnimationClip<long>));
+                .AddSubType(1053, typeof(UnityEngine.Battlehub.SL2.PersistentAnimationClip<long>))
+                .AddSubType(1057, typeof(UnityEngine.Battlehub.SL2.PersistentNodeChannel<long>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentGameObject<long>), true);
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentRenderer<long>), true)
                 .AddSubType(1025, typeof(UnityEngine.Battlehub.SL2.PersistentMeshRenderer<long>))
@@ -187,6 +188,7 @@ namespace Battlehub.RTSL
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBPolyShape<long>), true);
             model.Add(typeof(RTTerrain.Battlehub.SL2.PersistentTerrainBrushSource<long>), true);
             model.Add(typeof(RTSL.Battlehub.SL2.PersistentRuntimeSolution<long>), true);
+            model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentNodeChannel<long>), true);
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentVector2<long>), true);
             model.Add(typeof(UnityEngine.Vector2), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentVector2<long>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentVector3<long>), true);
@@ -308,8 +310,6 @@ namespace Battlehub.RTSL
             model.Add(typeof(UnityEngine.AnimationEvent), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentAnimationEvent<long>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentAnimationState<long>), true);
             model.Add(typeof(UnityEngine.AnimationState), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentAnimationState<long>));
-            model.Add(typeof(UnityEditorInternal.Battlehub.SL2.PersistentAnimatorControllerLayer<long>), true);
-            model.Add(typeof(UnityEditor.Animations.AnimatorControllerLayer), false).SetSurrogate(typeof(UnityEditorInternal.Battlehub.SL2.PersistentAnimatorControllerLayer<long>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentAnimatorControllerParameter<long>), true);
             model.Add(typeof(UnityEngine.AnimatorControllerParameter), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentAnimatorControllerParameter<long>));
             model.Add(typeof(UnityEngine.Animations.Battlehub.SL2.PersistentAnimatorControllerPlayable<long>), true);
@@ -340,7 +340,8 @@ namespace Battlehub.RTSL
                 .AddSubType(1050, typeof(UnityEngine.Audio.Battlehub.SL2.PersistentAudioMixer<Guid>))
                 .AddSubType(1051, typeof(UnityEngine.Audio.Battlehub.SL2.PersistentAudioMixerGroup<Guid>))
                 .AddSubType(1052, typeof(RTSL.Battlehub.SL2.PersistentRuntimeSolution<Guid>))
-                .AddSubType(1053, typeof(UnityEngine.Battlehub.SL2.PersistentAnimationClip<Guid>));
+                .AddSubType(1053, typeof(UnityEngine.Battlehub.SL2.PersistentAnimationClip<Guid>))
+                .AddSubType(1057, typeof(UnityEngine.Battlehub.SL2.PersistentNodeChannel<Guid>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentGameObject<Guid>), true);
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentRenderer<Guid>), true)
                 .AddSubType(1025, typeof(UnityEngine.Battlehub.SL2.PersistentMeshRenderer<Guid>))
@@ -488,6 +489,7 @@ namespace Battlehub.RTSL
             model.Add(typeof(ProBuilderIntegration.Battlehub.SL2.PersistentPBPolyShape<Guid>), true);
             model.Add(typeof(RTTerrain.Battlehub.SL2.PersistentTerrainBrushSource<Guid>), true);
             model.Add(typeof(RTSL.Battlehub.SL2.PersistentRuntimeSolution<Guid>), true);
+            model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentNodeChannel<Guid>), true);
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentVector2<Guid>), true);
             model.Add(typeof(UnityEngine.Vector2), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentVector2<Guid>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentVector3<Guid>), true);
@@ -609,8 +611,6 @@ namespace Battlehub.RTSL
             model.Add(typeof(UnityEngine.AnimationEvent), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentAnimationEvent<Guid>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentAnimationState<Guid>), true);
             model.Add(typeof(UnityEngine.AnimationState), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentAnimationState<Guid>));
-            model.Add(typeof(UnityEditorInternal.Battlehub.SL2.PersistentAnimatorControllerLayer<Guid>), true);
-            model.Add(typeof(UnityEditor.Animations.AnimatorControllerLayer), false).SetSurrogate(typeof(UnityEditorInternal.Battlehub.SL2.PersistentAnimatorControllerLayer<Guid>));
             model.Add(typeof(UnityEngine.Battlehub.SL2.PersistentAnimatorControllerParameter<Guid>), true);
             model.Add(typeof(UnityEngine.AnimatorControllerParameter), false).SetSurrogate(typeof(UnityEngine.Battlehub.SL2.PersistentAnimatorControllerParameter<Guid>));
             model.Add(typeof(UnityEngine.Animations.Battlehub.SL2.PersistentAnimatorControllerPlayable<Guid>), true);
@@ -642,7 +642,6 @@ namespace System.Collections.Generic.Battlehub.SL2 {}
 namespace Battlehub.ProBuilderIntegration.Battlehub.SL2 {}
 namespace Battlehub.RTTerrain.Battlehub.SL2 {}
 namespace UnityEngine.Events.Battlehub.SL2 {}
-namespace UnityEditorInternal.Battlehub.SL2 {}
 namespace UnityEngine.Animations.Battlehub.SL2 {}
 
 

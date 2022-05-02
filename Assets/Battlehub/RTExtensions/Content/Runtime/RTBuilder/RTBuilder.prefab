@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4488577733346686937}
   - component: {fileID: -3776853122488901289}
   m_Layer: 0
-  m_Name: ProBuilderInit
+  m_Name: RTBuilder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

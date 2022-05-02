@@ -544,7 +544,7 @@ PrefabInstance:
     - target: {fileID: 3316179381635285955, guid: f43d236fa1937fc44829764302e692ed,
         type: 3}
       propertyPath: m_textAlignment
-      value: 257
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 3316179381635285955, guid: f43d236fa1937fc44829764302e692ed,
         type: 3}
@@ -714,7 +714,7 @@ PrefabInstance:
     - target: {fileID: 5568657113070715690, guid: f43d236fa1937fc44829764302e692ed,
         type: 3}
       propertyPath: m_textAlignment
-      value: 257
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 5568657113070715690, guid: f43d236fa1937fc44829764302e692ed,
         type: 3}

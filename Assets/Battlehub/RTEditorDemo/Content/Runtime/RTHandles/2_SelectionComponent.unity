@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -795,6 +795,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &970972772
@@ -1008,6 +1009,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1290713565
 Canvas:
   m_ObjectHideFlags: 0
@@ -1057,7 +1059,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 2
+  serializedVersion: 3
   m_GIWorkflowMode: 0
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 1
@@ -1079,7 +1081,7 @@ LightingSettings:
   m_MixedBakeMode: 2
   m_LightmapsBakeMode: 1
   m_FilterMode: 1
-  m_LightmapParameters: {fileID: 0}
+  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
   m_ExportTrainingData: 0
   m_TrainingDataDestination: TrainingData
   m_RealtimeResolution: 2
@@ -1096,7 +1098,7 @@ LightingSettings:
   m_PVREnvironmentReferencePointCount: 2048
   m_LightProbeSampleCountMultiplier: 4
   m_PVRBounces: 2
-  m_PVRRussianRouletteStartBounce: 2
+  m_PVRMinBounces: 1
   m_PVREnvironmentMIS: 0
   m_PVRFilteringMode: 2
   m_PVRDenoiserTypeDirect: 0
@@ -1214,12 +1216,6 @@ MonoBehaviour:
   m_grid: {fileID: 0}
   m_pivot: {fileID: 0}
   m_secondaryPivot: {fileID: 0}
-  m_isPositionHandleEnabled: 1
-  m_isRotationHandleEnabled: 1
-  m_isScaleHandleEnabled: 1
-  m_isRectToolEnabled: 1
-  m_isBoxSelectionEnabled: 1
-  m_isSelectionVisible: 1
   m_canSelect: 1
   m_canSelectAll: 1
   m_canSelectExposedOnly: 1
@@ -1266,6 +1262,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2290264491671209939, guid: 4a9fd029cb189ca43abd4a0945cbbff3,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290264491671209939, guid: 4a9fd029cb189ca43abd4a0945cbbff3,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1281,6 +1282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2290264491671209939, guid: 4a9fd029cb189ca43abd4a0945cbbff3,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290264491671209939, guid: 4a9fd029cb189ca43abd4a0945cbbff3,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1293,16 +1299,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2290264491671209939, guid: 4a9fd029cb189ca43abd4a0945cbbff3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2290264491671209939, guid: 4a9fd029cb189ca43abd4a0945cbbff3,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2290264491671209939, guid: 4a9fd029cb189ca43abd4a0945cbbff3,
         type: 3}

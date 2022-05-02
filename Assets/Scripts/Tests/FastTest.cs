@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Battlehub.RTSL;
 using Battlehub.RTCommon;
@@ -11,7 +12,16 @@ using UnityObject = UnityEngine.Object;
 using Battlehub.Utils;
 using ProtoBuf.Meta;
 using System.Linq;
+using ProtoBuf;
+using UnityEngine.Networking;
 
+namespace Battlehub.RTSL
+{
+    public class RemoteAssetDB : AssetDB
+    {
+
+    }
+}
 namespace Eos.Test
 {
     using EosPlayer;
@@ -24,14 +34,16 @@ namespace Eos.Test
         [SerializeField]
         private GameObject[] _gears;
 
+        [SerializeField]
+        private RuntimeAnimatorController _controller;
+
         private static FastTest _instance;
         public static FastTest Instance => _instance;
 
         private ITypeMap m_typeMap;
         private IAssetDB<long> m_assetDB;
-        private Dictionary<long, AssetItem> _resourcesmeta;
-        private Dictionary<long, AssetItem> _rawresourcesmeta;
-        private Dictionary<long, AssetItem> _rawresources;
+        private Dictionary<long, RemoteAssetItem> _resourcesmeta;
+        private Dictionary<long, RemoteAssetItem> _rawresources;
 
         public override void Awake_Internal()
         {
@@ -55,10 +67,34 @@ namespace Eos.Test
 
             m_assetDB = IOC.Resolve<IAssetDB<long>>();
         }
-        private Tuple<AssetItem,PersistentObject<long>, Dictionary<long,PersistentObject<long>>> PTest(GameObject obj)
+        public UnityObject Convert(UnityObject obj)
+        {
+            var animator = obj as Animator;
+            var convertgm = new GameObject();
+            var to = convertgm.AddComponent<Animation>();
+            var aninames = new List<string>();
+
+            if (animator.runtimeAnimatorController != null)
+            {
+                animator.runtimeAnimatorController.animationClips.ForEach
+                    (
+                        it =>
+                        {
+                            it.legacy = true;
+                            to.AddClip(it, it.name);
+                            aninames.Add(it.name);
+                        }
+                    );
+            }
+            DestroyImmediate(obj);
+            //Destroy(to);
+            GameObject.DestroyImmediate(convertgm);
+            return to;
+        }
+        private Tuple<RemoteAssetItem,PersistentObject<long>, Dictionary<long,PersistentObject<long>>> PTest(GameObject obj)
         {
             var notMapped = new List<UnityObject>();
-            var assetItem = new AssetItem();
+            var assetItem = new RemoteAssetItem();
             assetItem.ItemID = m_assetDB.ToID(obj);
             assetItem.Name = ((UnityObject)obj).name;
             assetItem.Ext = GetExt(obj);
@@ -76,8 +112,9 @@ namespace Eos.Test
 
             GetUnmappedObjects(obj, notMapped);
 
-            foreach (var it in notMapped)
+            for (int i=0;i<notMapped.Count;i++)
             {
+                var it = notMapped[i];
                 m_assetDB.RegisterDynamicResource((long)ToPersistentID(it), it);
             }
 
@@ -99,7 +136,13 @@ namespace Eos.Test
             var dpids = new List<long>();
             foreach (var dep in context.Dependencies)
             {
-                var persisttype = m_typeMap.ToPersistentType(dep.GetType());
+                Type persisttype = null;
+                if (dep.GetType() == typeof(UnityEditor.Animations.AnimatorController))
+                {
+                    persisttype = typeof(PersistentRuntimeAnimatorController<long>);
+                }
+                else
+                    persisttype = m_typeMap.ToPersistentType(dep.GetType());
                 if (persisttype == null)
                 {
                     Debug.LogError($"_____no persistent type:{dep.GetType()}");
@@ -125,22 +168,24 @@ namespace Eos.Test
                 }
             }
             assetItem.Dependencies = dpids.ToArray();
-            return new Tuple<AssetItem, PersistentObject<long>, Dictionary<long, PersistentObject<long>>>(assetItem,persistentObject,dependancies);
+            return new Tuple<RemoteAssetItem, PersistentObject<long>, Dictionary<long, PersistentObject<long>>>(assetItem,persistentObject,dependancies);
         }
         private const string PreviewExt = ".rtview";
         private const string MetaExt = ".rtmeta";
-        void WriteAssetItem(Tuple<AssetItem, PersistentObject<long>, Dictionary<long, PersistentObject<long>>> asset)
+        void WriteAssetItem(Tuple<RemoteAssetItem, PersistentObject<long>, Dictionary<long, PersistentObject<long>>> asset)
         {
             var serializer = IOC.Resolve<ISerializer>();
             var assetitem = asset.Item1;
             var pobj = asset.Item2;
+            var metafilepath = Application.streamingAssetsPath + "/";
             var librarypath = Application.streamingAssetsPath;
             var previewpath = librarypath + "/" + assetitem.NameExt + PreviewExt;
+            assetitem.path = librarypath + "/";
             using (FileStream fs = File.Create(previewpath))
             {
                 serializer.Serialize(assetitem.Preview, fs);
             }
-            using (FileStream fs = File.Create(librarypath + "/" + assetitem.NameExt))
+            using (FileStream fs = File.Create(assetitem.path + assetitem.NameExt))
             {
                 using (var br = new BinaryWriter(fs))
                 {
@@ -151,14 +196,21 @@ namespace Eos.Test
                 }
             }
             var factory = IOC.Resolve<IUnityObjectFactory>();
-            var dpassetpath = Application.streamingAssetsPath + "/RawResource/";
             foreach (var dpitem in asset.Item3)
             {
-                if (!m_assetDB.IsMapped(dpitem.Key))
+//                if (!m_assetDB.IsMapped(dpitem.Key))
                 {
-                    var dpassetitem = new AssetItem();
+                    string dpassetpath;
+                    var context = new GetDepsContext<long>();
+                    dpitem.Value.GetDeps(context);
+                    if (context.Dependencies.Count>0)
+                        dpassetpath = Application.streamingAssetsPath + "/";
+                    else
+                        dpassetpath = Application.streamingAssetsPath + "/RawResource/";
+                    var dpassetitem = new RemoteAssetItem();
                     dpassetitem.ItemID = dpitem.Key;
                     dpassetitem.Name = dpitem.Value.name;
+                    dpassetitem.path = dpassetpath;
                     var unitydpobjtype = m_typeMap.ToUnityType(dpitem.Value.GetType());
                     if (unitydpobjtype != null)
                     {
@@ -172,7 +224,7 @@ namespace Eos.Test
                             }
                         }
                     }
-                    using (FileStream fs = File.Create(dpassetpath + dpassetitem.NameExt+MetaExt))
+                    using (FileStream fs = File.Create(metafilepath + dpassetitem.NameExt+MetaExt))
                     {
                         serializer.Serialize(dpassetitem, fs);
                     }
@@ -182,23 +234,23 @@ namespace Eos.Test
                     }
                 }
             }
-            File.Delete(librarypath + "/" + assetitem.NameExt + MetaExt);
-            using (FileStream fs = File.Create(librarypath + "/" + assetitem.NameExt + MetaExt))
+            File.Delete(metafilepath + assetitem.NameExt + MetaExt);
+            using (FileStream fs = File.Create(metafilepath + assetitem.NameExt + MetaExt))
             {
                 serializer.Serialize(assetitem, fs);
             }
         }
-        private Dictionary<long, PersistentObject<long>> _resourcepersistents = new Dictionary<long, PersistentObject<long>>();
+        private Stack<Tuple<long, PersistentObject<long>>> _resourcepersistents = new Stack<Tuple<long, PersistentObject<long>>>();
         private void LoadAssetWithMetaData(long metakey)
         {
             var librarypath = Application.streamingAssetsPath;
             var serializer = IOC.Resolve<ISerializer>();
             var typeMap = IOC.Resolve<ITypeMap>();
             var factory = IOC.Resolve<IUnityObjectFactory>();
-            if (_rawresourcesmeta.ContainsKey(metakey) && !m_assetDB.IsMapped(metakey))
+            if (_resourcesmeta.ContainsKey(metakey) && !m_assetDB.IsMapped(metakey))
             {
-                var meta = _rawresourcesmeta[metakey];
-                var assetobjectpath = librarypath + "/RawResource/" + meta.NameExt;
+                var meta = _resourcesmeta[metakey];
+                var assetobjectpath = meta.path + meta.NameExt;
                 var resource = Load<PersistentObject<long>>(serializer, assetobjectpath);
                 var unitydpobjtype = typeMap.ToUnityType(resource.GetType());
                 if (unitydpobjtype != null)
@@ -209,7 +261,7 @@ namespace Eos.Test
                         if (assetInstance != null)
                         {
                             m_assetDB.RegisterSceneObject(metakey, assetInstance);
-                            _resourcepersistents.Add(metakey, resource);
+                            _resourcepersistents.Push(new Tuple<long, PersistentObject<long>>(metakey,resource));
                             //assetInstances[i] = assetInstance;
                             //idToUnityObj.Add(AssetIds[i], assetInstance);
                         }
@@ -293,46 +345,65 @@ namespace Eos.Test
         {
             if (!_resourcesmeta.ContainsKey(uid))
                 return null;
+            foreach (var it in _resourcepersistents)
+            {
+                Debug.Log($"{it.Item2.name} loaded.");
+                var unityobject = m_assetDB.FromID<UnityObject>(it.Item1);
+                it.Item2.WriteTo(unityobject);
+            }
             var rr = _resourcesmeta[uid];
             var uo = ReadAssetItem(rr.NameExt);
-
-            foreach (var it in _resourcepersistents)
-            {
-                Debug.Log($"{it.Value.name} loaded.");
-                var unityobject = m_assetDB.FromID<UnityObject>(it.Key);
-                it.Value.WriteTo(unityobject);
-            }
             return uo;
         }
-        public UnityObject GetAsset(long uid)
+        private void GetDependancies(long id,Stack<long> dep)
         {
-            if (!_rawresourcesmeta.ContainsKey(uid))
-                return null;
-            var rr = _rawresourcesmeta[uid];
-            var uo = ReadAssetItem(rr.NameExt);
-
-            foreach (var it in _resourcepersistents)
+            var meta = _resourcesmeta[id];
+            dep.Push(id);
+            if (meta.Dependencies == null)
+                return;
+            foreach (var it in meta.Dependencies)
+                GetDependancies(it, dep);
+        }
+        private async void AssetLoadTest(Stack<long> deps)
+        {
+            var serializer = IOC.Resolve<ISerializer>();
+            foreach (var assetid in deps)
             {
-                Debug.Log($"{it.Value.name} loaded.");
-                var unityobject = m_assetDB.FromID<UnityObject>(it.Key);
-                it.Value.WriteTo(unityobject);
-            }
+                var rr = _resourcesmeta[assetid];
+                var req = UnityWebRequest.Get(rr.Path + rr.NameExt);
+                await req.SendWebRequest();
+                if (req.isDone)
+                {
+                    var data = req.downloadHandler.data;
+                    var type = m_typeMap.ToType(rr.TypeGuid);
+                    var item = serializer.Deserialize<PersistentObject<long>>(data);
 
-            return uo;
+                }
+            }
         }
         // Start is called before the first frame update
         void Start()
         {
-            _rawresourcesmeta = GetRawResourceMeta("/RawResource/");
             _resourcesmeta = GetRawResourceMeta("");
+            var ttttt = _controller.GetType();
 
+            //foreach(var it in _resourcesmeta)
+            //{
+            //    LoadAssetWithMetaData(it.Key);
+            //}
+            var deps = new Stack<long>();
+            GetDependancies(8589957390, deps);
+            AssetLoadTest(deps);
+
+            //var cr = GetAsset(8589957384);
+            //var controller = GetResource(8589957384);
             //            Init();
 
             //var asset = PTest(_bone);
             //WriteAssetItem(asset);
 
 
-            ReadyFiles();
+            //ReadyFiles();
             //ReadFiles();
 
 
@@ -342,9 +413,9 @@ namespace Eos.Test
 
             foreach(var it in _resourcepersistents)
             {
-                Debug.Log($"{it.Value.name} loaded.");
-                var unityobject = m_assetDB.FromID<UnityObject>(it.Key);
-                it.Value.WriteTo(unityobject);
+                Debug.Log($"{it.Item2.name} loaded.");
+                var unityobject = m_assetDB.FromID<UnityObject>(it.Item1);
+                it.Item2.WriteTo(unityobject);
             }
 
             var solution = ObjectFactory.CreateEosObject<Solution>(); solution.Name = "Solution";
@@ -367,7 +438,7 @@ namespace Eos.Test
             workspace.AddChild(objroot);
 
             var avatar = ObjectFactory.CreateEosObject<EosPawnActor>();avatar.Name = "Avatar";
-            var bone = ObjectFactory.CreateEosObject<EosBone>();bone.Bone = _bone;bone.Name = "bone";bone.BoneGUID = 8589957722;
+            var bone = ObjectFactory.CreateEosObject<EosBone>();bone.Bone = _bone;bone.Name = "bone";bone.BoneGUID = 8589957380;
             avatar.AddChild(bone);
                
             objroot.AddChild(avatar);
@@ -410,22 +481,22 @@ namespace Eos.Test
             m_assetDB.UnregisterDynamicResources();
             m_assetDB.UnregisterSceneObjects();
         }
-        private Dictionary<long, AssetItem> GetRawResourceMeta(string folder)
+        private Dictionary<long, RemoteAssetItem> GetRawResourceMeta(string folder)
         {
-            var result = new Dictionary<long, AssetItem>();
+            var result = new Dictionary<long, RemoteAssetItem>();
             var serializer = IOC.Resolve<ISerializer>();
             var rawresourcepath = Application.streamingAssetsPath + folder;
             var storage = IOC.Resolve<IStorage<long>>();
-            string[] files = Directory.GetFiles(rawresourcepath, "*" + MetaExt);
+            string[] files = Directory.GetFiles(rawresourcepath, "*" + MetaExt,SearchOption.AllDirectories);
             for (int i = 0; i < files.Length; ++i)
             {
                 string file = files[i];
-                if (!File.Exists(file.Replace(MetaExt, string.Empty)))
-                {
-                    continue;
-                }
+                //if (!File.Exists(file.Replace(MetaExt, string.Empty)))
+                //{
+                //    continue;
+                //}
 
-                AssetItem assetItem = LoadItem<AssetItem>(serializer, file);
+                var assetItem = LoadItem<RemoteAssetItem>(serializer, file);
                 Debug.Log($"{assetItem.ItemID} - {assetItem.NameExt}");
                 result.Add(assetItem.ItemID, assetItem);
             }
@@ -502,6 +573,50 @@ namespace Eos.Test
                 //AssetDatabase.CreateAsset(dep, uniqueAssetPath);
             }
         }
+        ////////////////////////// ---------------------------- async Resource Managing --------------------------- ///////////////////////////
+        ///
+        public async Task<UnityObject> GetAsset(long uid)
+        {
+            if (!_resourcesmeta.ContainsKey(uid))
+                return null;
+            var rr = _resourcesmeta[uid];
+            var req = UnityWebRequest.Get(rr.Path + rr.NameExt);
+            await req.SendWebRequest();
+            if (req.isDone)
+            {
+                var serializer = IOC.Resolve<ISerializer>();
+                PersistentRuntimePrefab<long> obj = null;
+                var idtoobj = new Dictionary<long, UnityObject>();
+                List<GameObject> createdGameObjects = new List<GameObject>();
+                using (BinaryReader br = new BinaryReader(new MemoryStream(req.downloadHandler.data)))
+                {
+                    var datasize = br.ReadInt32();
+                    var data = br.ReadBytes(datasize);
+                    obj = serializer.Deserialize<PersistentRuntimePrefab<long>>(data);
+                    obj.CreateGameObjectWithComponents(m_typeMap, obj.Descriptors[0], idtoobj, null, createdGameObjects);
+                    m_assetDB.RegisterDynamicResources(idtoobj);
+                    foreach (var it in obj.Dependencies)
+                    {
+                        if (idtoobj.ContainsKey(it))
+                            m_assetDB.RegisterSceneObject(it, idtoobj[it]);
+                        else
+                        {
+                            await GetAsset(it);
+                        }
+                    }
+                }
 
+            }
+            var uo = ReadAssetItem(rr.NameExt);
+
+            foreach (var it in _resourcepersistents)
+            {
+                Debug.Log($"{it.Item2.name} loaded.");
+                var unityobject = m_assetDB.FromID<UnityObject>(it.Item1);
+                it.Item2.WriteTo(unityobject);
+            }
+
+            return uo;
+        }
     }
 }

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using MessagePack;
 
@@ -34,9 +33,9 @@ namespace Eos.Objects
             base.OnActivate(active);
             if (!(_parent is EosTransformActor))
                 return;
-            SetupBone();
+            OnReady();
         }
-        private void SetupBone()
+        private async Task SetupBone()
         {
             if (!(_parent is EosTransformActor parentrans))
                 return;
@@ -45,13 +44,17 @@ namespace Eos.Objects
             //if (BoneGUID != 0)
             //{
             //    var uo = Eos.Test.FastTest.Instance.GetResource(BoneGUID);
-            //    _bone = Object.Instantiate(uo, parentrans.Transform.Transform, false) as GameObject;
+            //    _bone = (uo!=null)?Object.Instantiate(uo, parentrans.Transform.Transform, false) as GameObject:new GameObject(Name);
             //}
             //else
             {
                 _bone = GameObject.Instantiate(Bone.gameObject, parentrans.Transform.Transform, false);
             }
             _skeleton.SetupSkeleton(parentrans.Transform.Transform, _bone.transform);           
+        }
+        private async void OnReady()
+        {
+            await SetupBone();
         }
     }
 }

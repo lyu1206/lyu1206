@@ -11,6 +11,12 @@ namespace UnityEngine.Battlehub.SL2
     [ProtoContract]
     public partial class PersistentKeyframe<TID> : PersistentSurrogate<TID>
     {
+        [ProtoMember(264)]
+        public float m_Time;
+
+        [ProtoMember(265)]
+        public float m_Value;
+
         [ProtoMember(258)]
         public float inTangent;
 
@@ -30,6 +36,8 @@ namespace UnityEngine.Battlehub.SL2
         {
             base.ReadFromImpl(obj);
             Keyframe uo = (Keyframe)obj;
+            m_Time = GetPrivate<Keyframe,float>(uo, "m_Time");
+            m_Value = GetPrivate<Keyframe,float>(uo, "m_Value");
             inTangent = uo.inTangent;
             outTangent = uo.outTangent;
             inWeight = uo.inWeight;
@@ -41,6 +49,8 @@ namespace UnityEngine.Battlehub.SL2
         {
             obj = base.WriteToImpl(obj);
             Keyframe uo = (Keyframe)obj;
+            SetPrivate(uo, "m_Time", m_Time);
+            SetPrivate(uo, "m_Value", m_Value);
             uo.inTangent = inTangent;
             uo.outTangent = outTangent;
             uo.inWeight = inWeight;

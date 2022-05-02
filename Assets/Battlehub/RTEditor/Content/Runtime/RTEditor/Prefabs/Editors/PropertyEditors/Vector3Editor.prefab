@@ -620,6 +620,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 675307001163350374, guid: d9792cc2f1ad09443b2d3c14a8020285,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 675307001163350374, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 675307001163350374, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
       objectReference: {fileID: 0}
@@ -750,6 +760,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8866702016599460665, guid: d9792cc2f1ad09443b2d3c14a8020285,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866702016599460665, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866702016599460665, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
       objectReference: {fileID: 0}
@@ -802,6 +822,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Y
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
         type: 3}
@@ -986,6 +1016,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 675307001163350374, guid: d9792cc2f1ad09443b2d3c14a8020285,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 675307001163350374, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 675307001163350374, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
       objectReference: {fileID: 0}
@@ -1116,6 +1156,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8866702016599460665, guid: d9792cc2f1ad09443b2d3c14a8020285,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866702016599460665, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866702016599460665, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
       objectReference: {fileID: 0}
@@ -1168,6 +1218,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Memever
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 6053288948378312996, guid: 40696930dbd30444fa8eec7f34d8235e,
         type: 3}
@@ -1310,6 +1370,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Z
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
         type: 3}
@@ -1481,6 +1551,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: X
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 4604031728785943196, guid: 40696930dbd30444fa8eec7f34d8235e,
         type: 3}
@@ -1665,6 +1745,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 675307001163350374, guid: d9792cc2f1ad09443b2d3c14a8020285,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 675307001163350374, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 675307001163350374, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
       objectReference: {fileID: 0}
@@ -1792,6 +1882,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866702016599460665, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866702016599460665, guid: d9792cc2f1ad09443b2d3c14a8020285,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 8866702016599460665, guid: d9792cc2f1ad09443b2d3c14a8020285,
         type: 3}

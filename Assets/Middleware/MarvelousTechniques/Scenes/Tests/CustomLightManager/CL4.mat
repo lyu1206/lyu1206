@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: CL4
   m_Shader: {fileID: 4800000, guid: b56cec28a45b742d199438c3d9873f5f, type: 3}
   m_ShaderKeywords: LIGHTMAP
@@ -105,3 +106,4 @@ Material:
     - _RimColor: {r: 0.23053633, g: 0.60294116, b: 0.3101539, a: 1}
     - _RimPower: {r: 0, g: 0, b: 0, a: 0}
     - _TopColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BuildTextureStacks: []

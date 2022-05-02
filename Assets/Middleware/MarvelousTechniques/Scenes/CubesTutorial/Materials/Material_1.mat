@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Material_1
   m_Shader: {fileID: 4800000, guid: 86b870659b96d40e9a8169f26a591851, type: 3}
   m_ShaderKeywords: LIGHTMAP USE_LIGHTMAP _EMISSION
@@ -92,3 +93,4 @@ Material:
     - _LightmapColor: {r: 0.986207, g: 0, b: 1, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 0}
     - _RimColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

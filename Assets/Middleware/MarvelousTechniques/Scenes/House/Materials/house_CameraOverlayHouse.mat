@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: house_CameraOverlayHouse
   m_Shader: {fileID: 4800000, guid: 34e860e8e00504c6da6930e6fe94775b, type: 3}
   m_ShaderKeywords: 
@@ -30,3 +31,4 @@ Material:
     - _BottomColor: {r: 0.7941176, g: 0.5926888, b: 0.43793252, a: 0}
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _TopColor: {r: 0.83168936, g: 0.83823526, b: 0.36364618, a: 1}
+  m_BuildTextureStacks: []

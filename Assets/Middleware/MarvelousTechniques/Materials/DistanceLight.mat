@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: DistanceLight
   m_Shader: {fileID: 4800000, guid: cd52eba53a033466aa05fb8bda6e7290, type: 3}
   m_ShaderKeywords: LIGHTMAP USE_SHADOW
@@ -93,3 +94,4 @@ Material:
     - _LightTint: {r: 1, g: 1, b: 1, a: 0}
     - _LightmapColor: {r: 0.21289149, g: 0.22794116, b: 0.19274436, a: 0}
     - _MainColor: {r: 1, g: 0.73, b: 0.117, a: 0}
+  m_BuildTextureStacks: []

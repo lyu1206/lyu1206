@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Material_fog
   m_Shader: {fileID: 4800000, guid: e9e093e639ab34f05bb1e9c0ecee6d38, type: 3}
   m_ShaderKeywords: LIGHTMAP
@@ -101,3 +102,4 @@ Material:
     - _RightColor: {r: 0.67952216, g: 0.78676474, b: 0.66527903, a: 0}
     - _RimColor: {r: 0, g: 0, b: 0, a: 0}
     - _TopColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BuildTextureStacks: []

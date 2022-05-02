@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7642608460755356600}
   - component: {fileID: 2268241784843733535}
   m_Layer: 0
-  m_Name: TerrainHandle
+  m_Name: TerrainGridHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,6 +58,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -69,6 +71,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -81,6 +84,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &3384390603939432176
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -110,13 +114,9 @@ MonoBehaviour:
   Selected:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Battlehub.RTCommon.ExposeToEditorUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Unselected:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Battlehub.RTCommon.ExposeToEditorUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   BoundsObject: {fileID: 0}
   BoundsType: 0
   CustomBounds:
@@ -129,8 +129,10 @@ MonoBehaviour:
   CanRename: 1
   CanCreatePrefab: 1
   ShowSelectionGizmo: 0
+  CanSelect: 1
   CanSnap: 1
   AddColliders: 1
+  m_markAsDestroyed: 0
 --- !u!114 &7642608460755356600
 MonoBehaviour:
   m_ObjectHideFlags: 0

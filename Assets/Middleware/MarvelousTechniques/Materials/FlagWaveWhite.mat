@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: FlagWaveWhite
   m_Shader: {fileID: 4800000, guid: f51c9a0b4375f4b41812db2a09781d64, type: 3}
   m_ShaderKeywords: 
@@ -28,3 +29,4 @@ Material:
     - _WaveLength: 0.19
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

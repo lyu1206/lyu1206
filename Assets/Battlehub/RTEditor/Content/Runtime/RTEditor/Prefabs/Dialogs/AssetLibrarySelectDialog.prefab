@@ -3045,12 +3045,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
+        type: 3}
       propertyPath: m_isTextTruncated
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
         type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
+        type: 3}
       propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
@@ -3210,8 +3225,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
+        type: 3}
       propertyPath: m_textInfo.wordCount
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1003250788332044206, guid: 531aab43aab19364f8d25da82db890be,
         type: 3}

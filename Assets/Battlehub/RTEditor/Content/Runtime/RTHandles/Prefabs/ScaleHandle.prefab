@@ -44,21 +44,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_window: {fileID: 0}
+  BeforeDrag:
+    m_PersistentCalls:
+      m_Calls: []
+  Drag:
+    m_PersistentCalls:
+      m_Calls: []
+  Drop:
+    m_PersistentCalls:
+      m_Calls: []
   HightlightOnHover: 1
+  EnableUndo: 1
   HitTester: {fileID: 0}
   Appearance: {fileID: 0}
   Model: {fileID: 4363, guid: d3fd87b8a132d624f846fd97fbb89c85, type: 3}
   m_targets: []
-  BeforeDrag:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Battlehub.RTHandles.BaseHandleUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  Drop:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Battlehub.RTHandles.BaseHandleUnityEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  AbsouluteGrid: 0
+  AbsoluteGrid: 0
   GridSize: 0.1
   MinScale: {x: -3.4028235e+38, y: -3.4028235e+38, z: -3.4028235e+38}

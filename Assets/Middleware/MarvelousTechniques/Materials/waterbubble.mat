@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: waterbubble
   m_Shader: {fileID: 4800000, guid: ea051e5901ae24aaab22f6324d7debfa, type: 3}
   m_ShaderKeywords: 
@@ -29,3 +30,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmisColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
     - _TintColor: {r: 0.6958262, g: 0.888771, b: 0.9558824, a: 0.050980393}
+  m_BuildTextureStacks: []

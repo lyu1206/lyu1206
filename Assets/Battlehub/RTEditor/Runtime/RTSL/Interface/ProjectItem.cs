@@ -329,6 +329,7 @@ namespace Battlehub.RTSL.Interface
     }
 
     [ProtoContract]
+    [ProtoInclude(200, typeof(RemoteAssetItem))]
     public class AssetItem : ProjectItem
     {
         public event EventHandler PreviewDataChanged;
@@ -369,6 +370,13 @@ namespace Battlehub.RTSL.Interface
         {
             get { return false; }
         }
+    }
+    [ProtoContract]
+    public class RemoteAssetItem : AssetItem
+    {
+        [ProtoMember(1)]
+        public string path;
+        public string Path => $"file://{path}";
     }
 }
 

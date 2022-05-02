@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: distance_light_3
   m_Shader: {fileID: 4800000, guid: cd52eba53a033466aa05fb8bda6e7290, type: 3}
   m_ShaderKeywords: DIST_LIGHT_ADDITIVE LIGHTMAP
@@ -93,3 +94,4 @@ Material:
     - _LightTint: {r: 0.5661765, g: 0.4935382, b: 0.33720806, a: 0}
     - _LightmapColor: {r: 0.44117647, g: 0.41254026, b: 0.37629756, a: 0}
     - _MainColor: {r: 0.75, g: 0.75, b: 0.75, a: 0}
+  m_BuildTextureStacks: []

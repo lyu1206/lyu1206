@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: LavaSplash
   m_Shader: {fileID: 4800000, guid: f73a227fa77b74c58a6da128c47bdfbd, type: 3}
   m_ShaderKeywords: 
@@ -26,3 +27,4 @@ Material:
     - _Power: 0.696
     m_Colors:
     - _Color: {r: 0.44667095, g: 0.86764705, b: 0.20415224, a: 1}
+  m_BuildTextureStacks: []

@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: ZQuadMat
   m_Shader: {fileID: 4800000, guid: 8c8c8ca58b811784c8d91dbd9d4ab938, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
@@ -78,3 +79,4 @@ Material:
     m_Colors:
     - _Color: {r: 0.21568628, g: 0.4509804, b: 0.95686275, a: 0.5019608}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

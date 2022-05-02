@@ -44,16 +44,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_window: {fileID: 0}
+  BeforeDrag:
+    m_PersistentCalls:
+      m_Calls: []
+  Drag:
+    m_PersistentCalls:
+      m_Calls: []
+  Drop:
+    m_PersistentCalls:
+      m_Calls: []
   HightlightOnHover: 1
   EnableUndo: 1
   HitTester: {fileID: 0}
   Appearance: {fileID: 0}
   Model: {fileID: 114767379241590584, guid: adb919ab9b79d7f4baf715f244ee94c7, type: 3}
   m_targets: []
-  BeforeDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  Drop:
-    m_PersistentCalls:
-      m_Calls: []
   GridSize: 1

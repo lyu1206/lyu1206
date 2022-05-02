@@ -393,6 +393,10 @@ namespace Battlehub.RTSL
             {
                 return ".rtmesh";
             }
+            if (type == typeof(RuntimeAnimatorController))
+            {
+                return ".rtcontroller";
+            }
             if (type == typeof(Shader))
             {
                 return ".rtshader";

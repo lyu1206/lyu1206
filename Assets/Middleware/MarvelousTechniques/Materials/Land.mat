@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Land
   m_Shader: {fileID: 4800000, guid: 8e1bdfc809e384f0ea56f59ec32eb660, type: 3}
   m_ShaderKeywords: 
@@ -92,3 +93,4 @@ Material:
     - _RightColor: {r: 0.61764705, g: 0.55901444, b: 0.08628894, a: 0}
     - _RimColor: {r: 0, g: 0, b: 0, a: 0}
     - _TopColor: {r: 1, g: 0.9105477, b: 0.53676474, a: 0}
+  m_BuildTextureStacks: []

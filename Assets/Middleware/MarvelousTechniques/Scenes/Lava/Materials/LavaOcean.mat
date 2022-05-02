@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: LavaOcean
   m_Shader: {fileID: 4800000, guid: 0938bb59fd371473eb0af7990ec8fe53, type: 3}
   m_ShaderKeywords: 
@@ -67,3 +68,4 @@ Material:
     - _frontColor: {r: 1, g: 0.73, b: 0.117, a: 0}
     - _rightColor: {r: 0, g: 0, b: 0, a: 0}
     - _topColor: {r: 0.05, g: 0.275, b: 0.275, a: 0}
+  m_BuildTextureStacks: []

@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: cave_foggy_2
   m_Shader: {fileID: 4800000, guid: e9e093e639ab34f05bb1e9c0ecee6d38, type: 3}
   m_ShaderKeywords: USE_FOG_DISTANCE USE_FOG_DISTANSE
@@ -97,3 +98,4 @@ Material:
     - _LightTint: {r: 1, g: 1, b: 1, a: 0}
     - _LightmapColor: {r: 0, g: 0.8014706, b: 0.03869175, a: 0}
     - _MainColor: {r: 0.21323532, g: 0.21323532, b: 0.21323532, a: 0}
+  m_BuildTextureStacks: []

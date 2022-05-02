@@ -1642,8 +1642,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
+        type: 3}
       propertyPath: m_isTextTruncated
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
         type: 3}
@@ -1659,6 +1669,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.wordCount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
         type: 3}
@@ -1849,8 +1864,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
+        type: 3}
       propertyPath: m_isTextTruncated
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
         type: 3}
@@ -1866,6 +1891,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.wordCount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3354502808491346413, guid: 3a7bd2f40d69a264d94b083414c7d677,
         type: 3}

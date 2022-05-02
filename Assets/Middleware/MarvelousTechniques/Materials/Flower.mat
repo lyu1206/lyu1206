@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Flower
   m_Shader: {fileID: 4800000, guid: 53ea1b22d69bb472f8180bdc090977a8, type: 3}
   m_ShaderKeywords: 
@@ -43,3 +44,4 @@ Material:
     - _frontColor: {r: 1, g: 0.85294116, b: 0.870041, a: 0}
     - _rightColor: {r: 0.8161765, g: 0.14403114, b: 0.22266644, a: 0}
     - _topColor: {r: 1, g: 0.8088235, b: 0.8311896, a: 0}
+  m_BuildTextureStacks: []

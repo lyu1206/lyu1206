@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b5daab3bc7cc704aa2ef683305e90ce, type: 3}
-  m_Name: UIMold
+  m_Name: LightMold
   m_EditorClassIdentifier: 
   _sources:
   - {fileID: 3236362930498522869, guid: 8c83c1a63add9524b940d8cfd40d5a2b, type: 3}

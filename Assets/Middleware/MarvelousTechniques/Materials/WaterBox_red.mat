@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: WaterBox_red
   m_Shader: {fileID: 4800000, guid: 527cc91a1babb41bbb5ab5a940c3da89, type: 3}
   m_ShaderKeywords: 
@@ -46,3 +47,4 @@ Material:
     - _frontColor: {r: 0, g: 0.31861064, b: 0.44852942, a: 0}
     - _rightColor: {r: 0.37954152, g: 0.7210416, b: 0.8602941, a: 0}
     - _topColor: {r: 0.4468534, g: 0.62563014, b: 0.6985294, a: 0}
+  m_BuildTextureStacks: []

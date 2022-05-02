@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Waterfall_blue
   m_Shader: {fileID: 4800000, guid: ce2d0b2cb01524513932fcf57a229c88, type: 3}
   m_ShaderKeywords: 
@@ -45,3 +46,4 @@ Material:
     - _frontColor: {r: 0.35499567, g: 0.7205882, b: 0.7205882, a: 0}
     - _rightColor: {r: 1, g: 1, b: 1, a: 0}
     - _topColor: {r: 0.55060554, g: 0.91334563, b: 0.9852941, a: 0}
+  m_BuildTextureStacks: []

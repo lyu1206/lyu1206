@@ -91,7 +91,6 @@ namespace Battlehub.RTSL.Battlehub.SL2
                 context.Dependencies.Remove(prefabParts[i]);
             }
         }
-
         protected virtual void GetDependenciesFrom(GameObject go, List<object> prefabParts, GetDepsFromContext context)
         {
             if (go.GetComponent<RTSLIgnore>())

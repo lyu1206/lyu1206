@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: building_body_door_narrow
   m_Shader: {fileID: 4800000, guid: 42a744b811ee94b9a9619d9b4836b7fc, type: 3}
   m_ShaderKeywords: USE_SHADOW
@@ -87,3 +88,4 @@ Material:
     - _LightTint: {r: 0.816, g: 0.774, b: 0.774, a: 0}
     - _LightmapColor: {r: 0.5661765, g: 0.2747621, b: 0.2928499, a: 0}
     - _MainColor: {r: 0.8897059, g: 0.74082, b: 0.4971886, a: 0}
+  m_BuildTextureStacks: []

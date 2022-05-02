@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Vignette
   m_Shader: {fileID: 4800000, guid: 85b86f81f2bb4421f86cde250ba43a71, type: 3}
   m_ShaderKeywords: 
@@ -27,3 +28,4 @@ Material:
     - _VignetteMax: 0.292
     m_Colors:
     - _Color: {r: 0.03676468, g: 0.03323736, b: 0.013516427, a: 1}
+  m_BuildTextureStacks: []
