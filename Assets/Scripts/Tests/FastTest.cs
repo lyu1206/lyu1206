@@ -187,13 +187,7 @@ namespace Eos.Test
             }
             using (FileStream fs = File.Create(assetitem.path + assetitem.NameExt))
             {
-                using (var br = new BinaryWriter(fs))
-                {
-                    var data = serializer.Serialize(pobj);
-                    br.Write(data.Length);
-                    br.Write(data);
-                    assetitem.CustomDataOffset = br.BaseStream.Position;
-                }
+                serializer.Serialize(pobj,fs);
             }
             var factory = IOC.Resolve<IUnityObjectFactory>();
             foreach (var dpitem in asset.Item3)
@@ -293,23 +287,35 @@ namespace Eos.Test
             List<GameObject> createdGameObjects = new List<GameObject>();
             using (FileStream fs = File.OpenRead(assetobjectpath))
             {
-                using (BinaryReader br = new BinaryReader(fs))
+                obj = serializer.Deserialize<PersistentRuntimePrefab<long>>(fs);
+                obj.CreateGameObjectWithComponents(m_typeMap, obj.Descriptors[0], idtoobj, null, createdGameObjects);
+                m_assetDB.RegisterDynamicResources(idtoobj);
+                foreach (var it in obj.Dependencies)
                 {
-                    var datasize = br.ReadInt32();
-                    var data = br.ReadBytes(datasize);
-                    obj = serializer.Deserialize<PersistentRuntimePrefab<long>>(data);
-                    obj.CreateGameObjectWithComponents(m_typeMap, obj.Descriptors[0], idtoobj, null, createdGameObjects);
-                    m_assetDB.RegisterDynamicResources(idtoobj);
-                    foreach (var it in obj.Dependencies)
+                    if (idtoobj.ContainsKey(it))
+                        m_assetDB.RegisterSceneObject(it, idtoobj[it]);
+                    else
                     {
-                        if (idtoobj.ContainsKey(it))
-                            m_assetDB.RegisterSceneObject(it, idtoobj[it]);
-                        else
-                        {
-                            LoadAssetWithMetaData(it);
-                        }
+                        LoadAssetWithMetaData(it);
                     }
                 }
+                //using (BinaryReader br = new BinaryReader(fs))
+                //{
+                //    var datasize = br.ReadInt32();
+                //    var data = br.ReadBytes(datasize);
+                //    obj = serializer.Deserialize<PersistentRuntimePrefab<long>>(data);
+                //    obj.CreateGameObjectWithComponents(m_typeMap, obj.Descriptors[0], idtoobj, null, createdGameObjects);
+                //    m_assetDB.RegisterDynamicResources(idtoobj);
+                //    foreach (var it in obj.Dependencies)
+                //    {
+                //        if (idtoobj.ContainsKey(it))
+                //            m_assetDB.RegisterSceneObject(it, idtoobj[it]);
+                //        else
+                //        {
+                //            LoadAssetWithMetaData(it);
+                //        }
+                //    }
+                //}
             }
             obj.WriteTo(createdGameObjects[0]);
             return createdGameObjects[0];
@@ -355,7 +361,7 @@ namespace Eos.Test
             var uo = ReadAssetItem(rr.NameExt);
             return uo;
         }
-        private void GetDependancies(long id,Stack<long> dep)
+        public void GetDependancies(long id,Stack<long> dep)
         {
             var meta = _resourcesmeta[id];
             dep.Push(id);
@@ -364,7 +370,7 @@ namespace Eos.Test
             foreach (var it in meta.Dependencies)
                 GetDependancies(it, dep);
         }
-        private async void AssetLoadTest(Stack<long> deps)
+        public async Task AssetLoadTest(Stack<long> deps)
         {
             var serializer = IOC.Resolve<ISerializer>();
             foreach (var assetid in deps)
@@ -378,6 +384,35 @@ namespace Eos.Test
                     var type = m_typeMap.ToType(rr.TypeGuid);
                     var item = serializer.Deserialize<PersistentObject<long>>(data);
 
+                    if (type == typeof(GameObject))
+                    {
+                        var idtoobj = new Dictionary<long, UnityObject>();
+                        var prefab = item as PersistentRuntimePrefab<long>;
+                        List<GameObject> createdGameObjects = new List<GameObject>();
+                        prefab.CreateGameObjectWithComponents(m_typeMap, prefab.Descriptors[0], idtoobj, null, createdGameObjects);
+                        foreach(var idobj in idtoobj)
+                        {
+                            m_assetDB.RegisterDynamicResource(idobj.Key, idobj.Value);
+                        }
+                        prefab.WriteTo(createdGameObjects[0]);
+                    }
+                    else
+                    {
+                        var factory = IOC.Resolve<IUnityObjectFactory>();
+                        var unitydpobjtype = m_typeMap.ToUnityType(item.GetType());
+                        if (unitydpobjtype != null)
+                        {
+                            if (factory.CanCreateInstance(unitydpobjtype, item))
+                            {
+                                UnityObject assetInstance = factory.CreateInstance(unitydpobjtype, item);
+                                if (assetInstance != null)
+                                {
+                                    m_assetDB.RegisterSceneObject(assetid, assetInstance);
+                                    item.WriteTo(assetInstance);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -391,6 +426,7 @@ namespace Eos.Test
             //{
             //    LoadAssetWithMetaData(it.Key);
             //}
+
             var deps = new Stack<long>();
             GetDependancies(8589957390, deps);
             AssetLoadTest(deps);
@@ -410,8 +446,9 @@ namespace Eos.Test
             var tt = ReadAssetItem("Bag01.rtprefab");
             tt = ReadAssetItem("glasses03.rtprefab");
             tt = ReadAssetItem("Hair03.rtprefab");
+//            tt = ReadAssetItem("CharacterBone01.rtprefab");
 
-            foreach(var it in _resourcepersistents)
+            foreach (var it in _resourcepersistents)
             {
                 Debug.Log($"{it.Item2.name} loaded.");
                 var unityobject = m_assetDB.FromID<UnityObject>(it.Item1);
@@ -438,7 +475,7 @@ namespace Eos.Test
             workspace.AddChild(objroot);
 
             var avatar = ObjectFactory.CreateEosObject<EosPawnActor>();avatar.Name = "Avatar";
-            var bone = ObjectFactory.CreateEosObject<EosBone>();bone.Bone = _bone;bone.Name = "bone";bone.BoneGUID = 8589957380;
+            var bone = ObjectFactory.CreateEosObject<EosBone>();bone.Bone = _bone;bone.Name = "bone";//bone.BoneGUID = 8589957390;
             avatar.AddChild(bone);
                
             objroot.AddChild(avatar);

@@ -29,12 +29,14 @@ namespace UnityEngine.Battlehub.SL2
 
         public override object WriteTo(object obj)
         {
-            var uo = obj as AnimatorOverrideController;
+            var uo = obj as Animation;
             var anims = new List<KeyValuePair<AnimationClip, AnimationClip>>();
             foreach (var ani in animationclips)
             {
                 var clip = FromID<AnimationClip>(ani);
-                uo[clip.name] = clip;
+                //if (string.IsNullOrEmpty(clip.name))
+                //    continue;
+                uo.AddClip(clip, clip.name);
                 anims.Add(new KeyValuePair<AnimationClip, AnimationClip>(clip, clip));
             }
             //            uo.ApplyOverrides(anims);
