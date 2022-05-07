@@ -7,13 +7,13 @@
 }
 namespace UnityEngine
 {
-    public class NodeChannel : UnityEngine.Object
+    public class NodeChannel : Object
     {
         public string path;
         public string propertyname;
         public UnityEngine.Keyframe[] keys;
     }
-    public class NodeAnimationClip : UnityEngine.Object
+    public class NodeAnimationClip : Object
     {
         public NodeChannel[] nodeChannels;
     }

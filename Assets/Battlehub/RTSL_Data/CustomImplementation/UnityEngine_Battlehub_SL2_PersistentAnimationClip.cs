@@ -43,15 +43,14 @@ namespace UnityEngine.Battlehub.SL2
 
         public override object WriteTo(object obj)
         {
-            //var clip = obj as AnimationClip;
-            //base.WriteTo(obj);
-            //foreach (var curve in animationChannels)
-            //{
-            //    var anicurve = new AnimationCurve();
-            //    var nodechannel = new NodeChannel();
-            //    curve.ReadFrom(nodechannel);
-            //    clip.SetCurve(curve.path, typeof(Transform), curve.propertyname, new AnimationCurve { keys = nodechannel.keys });
-            //}
+            var clip = obj as AnimationClip;
+            base.WriteTo(obj);
+            foreach (var curve in animationChannels)
+            {
+                var anicurve = new AnimationCurve();
+                var keys_ = Assign(curve.keys, v_ => (Keyframe)v_);
+                clip.SetCurve(curve.path, typeof(Transform), curve.propertyname, new AnimationCurve { keys = keys_ });
+            }
             return obj;
         }
 

@@ -46,6 +46,9 @@ namespace Eos.Objects
         {
             var pawn = _parent as EosPawnActor;
             await TaskExtension.WaitUntil(pawn, (p) => p.Skeleton != null);
+
+            await Task.Delay(Random.Range(1, 10)*1000);
+
             var orgmesh = Part.GetComponentInChildren<SkinnedMeshRenderer>();
             if (orgmesh != null)
             {
