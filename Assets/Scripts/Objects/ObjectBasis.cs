@@ -133,7 +133,7 @@ namespace Eos.Objects
             if (!obj._ready)
             {
                 await TaskExtension.WaitUntil(obj, (o) => o._ready);
-                Debug.Log($"_____________________________Child added:{Name} -> {obj.Name}");
+//                Debug.Log($"_____________________________Child added:{Name} -> {obj.Name}");
             }
             obj.AncestryChanged();
             OnChildAdded(obj);
