@@ -395,6 +395,7 @@ namespace Eos.Test
                             m_assetDB.RegisterDynamicResource(idobj.Key, idobj.Value);
                         }
                         prefab.WriteTo(createdGameObjects[0]);
+                        m_assetDB.RegisterSceneObject(assetid, createdGameObjects[0]);
                     }
                     else
                     {
@@ -427,9 +428,9 @@ namespace Eos.Test
             //    LoadAssetWithMetaData(it.Key);
             //}
 
-            var deps = new Stack<long>();
-            GetDependancies(8589957390, deps);
-            AssetLoadTest(deps);
+            //var deps = new Stack<long>();
+            //GetDependancies(8589957390, deps);
+            //AssetLoadTest(deps);
 
             //var cr = GetAsset(8589957384);
             //var controller = GetResource(8589957384);
@@ -475,18 +476,20 @@ namespace Eos.Test
             workspace.AddChild(objroot);
 
             var avatar = ObjectFactory.CreateEosObject<EosPawnActor>();avatar.Name = "Avatar";
-            var bone = ObjectFactory.CreateEosObject<EosBone>();bone.Bone = _bone;bone.Name = "bone";//bone.BoneGUID = 8589957390;
+            var bone = ObjectFactory.CreateEosObject<EosBone>();bone.Bone = _bone;bone.Name = "bone";bone.BoneGUID = 8589957390;
             avatar.AddChild(bone);
                
             objroot.AddChild(avatar);
             avatar.LocalPosition = new Vector3(0, 3, 0);
             avatar.LocalScale = Vector3.one;
+
             foreach (var gearsrc in _gears)
             {
                 var gear = ObjectFactory.CreateEosObject<EosGear>();
                 gear.Part = gearsrc;
                 avatar.AddChild(gear);
             }
+
             camera.LocalPosition = new Vector3(0, 10, 10);
             camera.LookAt(avatar);
 

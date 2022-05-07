@@ -23,12 +23,12 @@ namespace Eos.Objects
 
         public override void OnCreate()
         {
-            _skeleton = new EosSkeleton();
+            _ready = false;
         }
         public override void OnAncestryChanged()
         {
             base.OnAncestryChanged();
-            SetupBone();
+//            SetupBone();
         }
         protected override void OnActivate(bool active)
         {
@@ -49,21 +49,31 @@ namespace Eos.Objects
                 var deps = new Stack<long>();
                 rsrv.GetDependancies(BoneGUID, deps);
                 await rsrv.AssetLoadTest(deps);
+
+                //await Task.Delay(5000);
+
                 var assetdb = IOC.Resolve <IAssetDB<long>>();
                 _bone =  assetdb.FromID<UnityEngine.Object>(BoneGUID) as GameObject;
-
+                _bone.transform.SetParent(parentrans.Transform.Transform,false);
                 //var uo = Test.FastTest.Instance.GetResource(BoneGUID);
                 //_bone = (uo != null) ? Object.Instantiate(uo, parentrans.Transform.Transform, false) as GameObject : new GameObject(Name);
+
+                var ani = _bone.GetComponent<Animation>();
+                ani.Play("Stand");
             }
             else
             {
                 _bone = GameObject.Instantiate(Bone.gameObject, parentrans.Transform.Transform, false);
             }
+            _skeleton = new EosSkeleton();
             _skeleton.SetupSkeleton(parentrans.Transform.Transform, _bone.transform);           
         }
         private async void OnReady()
         {
             await SetupBone();
+            OnReadyEvent?.Invoke(this, null);
+            OnReadyEvent = null;
+            _ready = true;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 
 namespace Eos.Objects
@@ -77,9 +78,11 @@ namespace Eos.Objects
         public EosObjectBase()
         {
         }
+        public EventHandler OnReadyEvent;
         [IgnoreMember]public uint ObjectID;
         private string _name;
         protected bool _active = true;
+        protected bool _ready = true;
         [Key(1)] public List<EosObjectBase> _children  = new List<EosObjectBase>();
         [IgnoreMember] public int ChildCount => _children.Count;
         [IgnoreMember] public List<EosObjectBase> Children => _children;
@@ -118,15 +121,21 @@ namespace Eos.Objects
                 value.AddChild(this);
             }
         }
-        public void AddChild(EosObjectBase obj)
+
+        public async void AddChild(EosObjectBase obj)
         {
             if (obj.ObjectID==0)
                 Ref.ObjectManager.RegistObject(obj);
             if (obj._parent !=null)
                 obj._parent.RemoveChild(obj);
             obj._parent = this;
-            obj.AncestryChanged();
             _children.Add(obj);
+            if (!obj._ready)
+            {
+                await TaskExtension.WaitUntil(obj, (o) => o._ready);
+                Debug.Log($"_____________________________Child added:{Name} -> {obj.Name}");
+            }
+            obj.AncestryChanged();
             OnChildAdded(obj);
         }
         public virtual void OnCopyTo(EosObjectBase target)

@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+
 
 namespace Eos.Objects
 {
@@ -14,6 +14,11 @@ namespace Eos.Objects
                 return;
             targetgear.Part = Part;
             base.OnCopyTo(target);
+        }
+        public override void OnCreate()
+        {
+            base.OnCreate();
+            _ready = false;
         }
         public static void Gear(GameObject gearpart,Transform parenttrans,EosSkeleton skeleton)
         {
@@ -35,6 +40,12 @@ namespace Eos.Objects
         {
             if (!(_parent is EosPawnActor pawn))
                 return;
+            OnReady();
+        }
+        private async Task SetupGear()
+        {
+            var pawn = _parent as EosPawnActor;
+            await TaskExtension.WaitUntil(pawn, (p) => p.Skeleton != null);
             var orgmesh = Part.GetComponentInChildren<SkinnedMeshRenderer>();
             if (orgmesh != null)
             {
@@ -46,11 +57,19 @@ namespace Eos.Objects
                 part.transform.localPosition = orgmesh.transform.localPosition;
                 part.transform.localRotation = orgmesh.transform.localRotation;
                 part.transform.localScale = orgmesh.transform.localScale;
-                pawn.Skeleton.SkinedMeshSetup(orgmesh,skinmeshrender);
+                pawn.Skeleton.SkinedMeshSetup(orgmesh, skinmeshrender);
             }
         }
         public override void OnAncestryChanged()
         {
         }
+        private async void OnReady()
+        {
+            await SetupGear();
+            OnReadyEvent?.Invoke(this, null);
+            OnReadyEvent = null;
+            _ready = true;
+        }
+
     }
 }

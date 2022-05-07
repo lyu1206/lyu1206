@@ -193,12 +193,15 @@ namespace Eos.Objects
             }
             if (child is EosBone bone)
             {
-                _skeleton = bone.Skeleton;
-                var skel = bone.BoneRoot;
-                _animator = skel.GetComponent<Animator>();
-                _controller = new AnimationController(this, _animator);
-                var anievent = skel.gameObject.AddComponent<AnimationAdapter>();
-                anievent.SetActor(this);
+                //bone.OnReadyEvent += (sender, arga) =>
+                  {
+                      _skeleton = bone.Skeleton;
+                      var skel = bone.BoneRoot;
+                      _animator = skel.GetComponent<Animator>();
+                      _controller = new AnimationController(this, _animator);
+                      var anievent = skel.gameObject.AddComponent<AnimationAdapter>();
+                      anievent.SetActor(this);
+                  };
             }
         }
         public override void OnChildRemoved(EosObjectBase child)

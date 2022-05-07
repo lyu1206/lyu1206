@@ -58,7 +58,7 @@ namespace EosLuaPlayer
                         coroutine.yield()
                     end
                 ";
-            testpawn.Activate(true);
+//            testpawn.Activate(true);
 
 
             var testscript = new Eos.Objects.EosScript { Name = "Script" };
@@ -72,7 +72,7 @@ namespace EosLuaPlayer
                         coroutine.yield()
                     end
                 ";
-            testscript.Activate(true);
+  //          testscript.Activate(true);
         }
         public int RegistRoutine(Eos.Objects.EosObjectBase owner,string code)
         {
