@@ -1,5 +1,9 @@
+using UnityEngine;
+
 namespace Battlehub.RTSL
 {
-    public class RuntimeSolution : UnityEngine.Object
-    { }
+    public class RuntimeSolution : ScriptableObject
+    {
+        public object Solution;
+    }
 }

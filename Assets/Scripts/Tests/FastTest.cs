@@ -486,7 +486,10 @@ namespace Eos.Test
             foreach (var gearsrc in _gears)
             {
                 var gear = ObjectFactory.CreateEosObject<EosGear>();
+                var gearmeta = _resourcesmeta.Where(t => t.Value.NameExt == gearsrc.name + ".rtprefab").Select(t => t.Value);
+                var gearmetalist = gearmeta.ToList();
                 gear.Part = gearsrc;
+                gear.GearGUID = gearmetalist[0].ItemID;
                 avatar.AddChild(gear);
             }
 
@@ -505,10 +508,17 @@ namespace Eos.Test
 
             Type objType = solution.GetType();
             Type persistentType = m_typeMap.ToPersistentType( typeof(RuntimeSolution));
+            var rtsolution = ScriptableObject.CreateInstance<RuntimeSolution>();
+            rtsolution.Solution = solution;
             var serializer = IOC.Resolve<ISerializer>();
-            var persistentObject = (PersistentRuntimeSolution<long>)Activator.CreateInstance(persistentType);
-//            persistentObject.ReadFrom(solution);
+            var persistentObject = Activator.CreateInstance(persistentType) as PersistentObject<long>;
+            persistentObject.ReadFrom(rtsolution);
 
+            var solutionpath = Application.streamingAssetsPath + "/";
+            using (FileStream fs = File.Create(solutionpath + "FastTest.solution"))
+            {
+                serializer.Serialize(persistentObject, fs);
+            }
         }
 
         // Update is called once per frame

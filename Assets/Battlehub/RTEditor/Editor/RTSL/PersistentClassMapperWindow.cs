@@ -42,7 +42,7 @@ namespace Battlehub.RTSL
             typeof(RuntimeScene),
             typeof(UnityEventBase),
             typeof(UnityEvent),
-            typeof(RuntimeSolution)
+         //   typeof(RuntimeSolution),
          //   typeof(RuntimeSerializableObject),
         };
 

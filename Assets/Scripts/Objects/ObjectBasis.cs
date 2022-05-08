@@ -73,12 +73,12 @@ namespace Eos.Objects
     [Union(19, typeof(EosTextMesh))]
     [Union(20, typeof(EosCollider))]
     [Union(21, typeof(EosBone))]
-    public partial class EosObjectBase : ReferPlayer, IMessagePackSerializationCallbackReceiver
+    public abstract partial class EosObjectBase : ReferPlayer, IMessagePackSerializationCallbackReceiver
     {
         public EosObjectBase()
         {
         }
-        public EventHandler OnReadyEvent;
+        [IgnoreMember]public EventHandler OnReadyEvent;
         [IgnoreMember]public uint ObjectID;
         private string _name;
         protected bool _active = true;

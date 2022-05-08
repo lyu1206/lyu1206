@@ -68,11 +68,15 @@ namespace Eos.Objects
             var rsrv = Test.FastTest.Instance;
             var deps = new Stack<long>();
             rsrv.GetDependancies(GearGUID, deps);
+
             await rsrv.AssetLoadTest(deps);
+
             var assetdb = IOC.Resolve<IAssetDB<long>>();
 
-            var part = assetdb.FromID<UnityEngine.Object>(GearGUID) as GameObject;
-            var orgmesh = part.GetComponentInChildren<SkinnedMeshRenderer>();
+            var orgpart = assetdb.FromID<UnityEngine.Object>(GearGUID) as GameObject;
+            orgpart.SetActive(false);
+            var orgmesh = orgpart.GetComponentInChildren<SkinnedMeshRenderer>();
+            var part = ObjectFactory.CreateUnityInstance(orgmesh.name).gameObject;// GameObject.Instantiate(orgmesh.gameObject);
             var skinmeshrender = part.AddComponent<SkinnedMeshRenderer>();
             //                Debug.Log($"skinnedmesh:{Part.name}");
             part.transform.SetParent(pawn.Transform.Transform);

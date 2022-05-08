@@ -16,10 +16,10 @@ namespace Eos.Objects
         public long BoneGUID;
         private EosSkeleton _skeleton;
         private GameObject _bone;
-        public GameObject Bone;
+        [IgnoreMember]public GameObject Bone;
 
-        public EosSkeleton Skeleton => _skeleton;
-        public Transform BoneRoot => _bone.transform;
+        [IgnoreMember] public EosSkeleton Skeleton => _skeleton;
+        [IgnoreMember] public Transform BoneRoot => _bone.transform;
 
         public override void OnCreate()
         {

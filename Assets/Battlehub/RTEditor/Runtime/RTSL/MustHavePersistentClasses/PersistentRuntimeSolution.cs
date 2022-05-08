@@ -9,12 +9,13 @@ using UnityEngine.Battlehub.SL2;
 using UnityObject = UnityEngine.Object;
 using UnityEngine;
 using System.IO;
+
 namespace Battlehub.RTSL.Battlehub.SL2
 {
     [ProtoContract]
     public class PersistentRuntimeSolution<TID> : PersistentObject<TID>, ICustomSerialization
     {
-        public bool AllowStandardSerialization => throw new NotImplementedException();
+        public bool AllowStandardSerialization => true;
 
         public void Deserialize(Stream stream, BinaryReader reader)
         {
