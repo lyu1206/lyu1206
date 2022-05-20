@@ -12,9 +12,10 @@ namespace Eos.Objects
     public partial class EosHumanoid : EosTransformActor// EosObjectBase ,ITransform
     {
         [IgnoreMember]public int Level = 1;
+        private IMoveAgent _moveagent;
 
         private float _angularspeed = 1000;
-        private float _speed = 35;
+        private float _speed = 4;
         private float _accelation = 1000;
         [Key(31)]
         public float Angularspeed 
@@ -23,8 +24,8 @@ namespace Eos.Objects
             set
             {
                 _angularspeed = value;
-                if (_navagent!=null)
-                    _navagent.angularSpeed = value;
+                if (_moveagent!=null)
+                    _moveagent.Angularspeed = value;
             }
         }
         [Key(32)]
@@ -34,8 +35,8 @@ namespace Eos.Objects
             set
             {
                 _speed = value;
-                if (_navagent!=null)
-                    _navagent.speed = value;
+                if (_moveagent != null)
+                    _moveagent.Speed = value;
             }
         }
         [Key(33)]
@@ -45,23 +46,26 @@ namespace Eos.Objects
             set
             {
                 _accelation = value;
-                if (_navagent!=null)
-                    _navagent.acceleration = value;
+                if (_moveagent != null)
+                    _moveagent.Accelation = value;
             }
         }
-        [IgnoreMember]public float StopDistance { set => _navagent.stoppingDistance = value; }
         [IgnoreMember]public Vector3 MoveDirection
         {
             set
             {
-                if (_navagent != null)
+                if (_moveagent!=null)
                 {
-                    UpdateHumanoidPosition();
-                    _transform.Transform.forward = value;
-                    OnMoveStateChanged?.Invoke(this,true);
-                    _navagent.isStopped = false;
-                    _navagent.SetDestination(_navagent.transform.localPosition + value*_radius*2);
+                    _moveagent.MoveDirection(this, value);
                 }
+                //if (_navagent != null)
+                //{
+                //    UpdateHumanoidPosition();
+                //    _transform.Transform.forward = value;
+                //    OnMoveStateChanged?.Invoke(this,true);
+                //    _navagent.isStopped = false;
+                //    _navagent.SetDestination(_navagent.transform.localPosition + value*_radius*2);
+                //}
             }
         }
         public void UpdateHumanoidPosition()
@@ -69,6 +73,16 @@ namespace Eos.Objects
             _transform.LocalPosition = _humanoidroot.LocalPosition;
             _transform.Transform.forward = _humanoidroot.Transform.Transform.forward;
         }
+
+        [IgnoreMember]
+        public bool Jump
+        {
+            set
+            {
+                _jumpevent?.Invoke(this,EventArgs.Empty);
+            }
+        }
+             
         [IgnoreMember] public bool IsStop => (!_navagent.pathPending && _navagent.remainingDistance == 0);
         [IgnoreMember] public const string humanoidroot = "HumanoidRoot";
         [Key(332)]public float _radius;
@@ -87,6 +101,7 @@ namespace Eos.Objects
             targethumanoid._angularspeed = _angularspeed;
             targethumanoid._speed = _speed;
             targethumanoid._accelation = _accelation;
+            targethumanoid._moveagent = _moveagent;
             base.OnCopyTo(target);
         }
 
@@ -96,6 +111,11 @@ namespace Eos.Objects
             var root = _parent.FindChild<EosPawnActor>(humanoidroot);
             if (root==null)
                 return;
+
+            _moveagent = new PhysicsAgent();
+            InitMoveAgentBehaviros();
+
+
             var rootobject = root.Transform.Transform.gameObject;
             _humanoidroot = root;
 

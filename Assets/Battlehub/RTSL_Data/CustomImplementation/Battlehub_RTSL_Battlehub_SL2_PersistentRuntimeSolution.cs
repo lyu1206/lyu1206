@@ -19,6 +19,7 @@ namespace Battlehub.RTSL.Battlehub.SL2
 
         public override object WriteTo(object obj)
         {
+            Solution = MessagePack.MessagePackSerializer.Deserialize<Eos.Service.Solution>(_solutiondata);
             return base.WriteTo(obj);
         }
 

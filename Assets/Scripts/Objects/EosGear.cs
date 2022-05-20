@@ -12,7 +12,7 @@ namespace Eos.Objects
     {
         [Key(21)]
         public long GearGUID;
-        public GameObject Part;
+        [IgnoreMember]public GameObject Part;
         public override void OnCopyTo(EosObjectBase target)
         {
             if (!(target is EosGear targetgear))

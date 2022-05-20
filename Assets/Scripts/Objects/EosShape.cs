@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using MessagePack;
 
 namespace Eos.Objects
 {
@@ -9,7 +9,7 @@ namespace Eos.Objects
 
     public class EosShape : EosTransformActor
     {
-        public PrimitiveType Type = PrimitiveType.Capsule;
+        [Key(201)]public PrimitiveType Type = PrimitiveType.Capsule;
         public EosShape()
         {
 

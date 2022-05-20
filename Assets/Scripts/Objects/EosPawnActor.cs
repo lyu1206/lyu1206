@@ -86,31 +86,31 @@ namespace Eos.Objects
     }
     public class AnimationController
     {
-        private Animator _animator;
+        private Animation _animation;
         private EosPawnActor _owner;
         private string _curanimation;
         private bool _isloop;
         private int _checkerID = -1;
-        public AnimationController(EosPawnActor owner, Animator animator)
+        public AnimationController(EosPawnActor owner, Animation animator)
         {
             _owner = owner;
-            _animator = animator;
+            _animation = animator;
         }
         public void PlayNode(string name,bool rewind = false)
         {
             _curanimation = name;
-            _animator.CrossFade(name, 0.1f, 0);
-            var state = _animator.GetNextAnimatorStateInfo(0);
-            if (_checkerID != -1)
-                _owner.Ref.Coroutine.OnStopCoroutine(_checkerID);
-            var clips = _animator.GetCurrentAnimatorClipInfo(0);
-            if (clips.Length==0)
-            {
-//                Debug.Break();
-                return;
-            }
-            _owner.Ref.Coroutine.OnCoroutineStart(CheckAniEnd(_animator.GetCurrentAnimatorClipInfo(0)[0].clip.length));
-            _checkerID = _owner.Ref.Coroutine.NowID;
+            _animation.CrossFade(name, 0.1f, 0);
+//            var state = _animatipm.GetNextAnimatorStateInfo(0);
+//            if (_checkerID != -1)
+//                _owner.Ref.Coroutine.OnStopCoroutine(_checkerID);
+//            var clips = _animatipm.GetCurrentAnimatorClipInfo(0);
+//            if (clips.Length==0)
+//            {
+////                Debug.Break();
+//                return;
+//            }
+//            _owner.Ref.Coroutine.OnCoroutineStart(CheckAniEnd(_animatipm.GetCurrentAnimatorClipInfo(0)[0].clip.length));
+//            _checkerID = _owner.Ref.Coroutine.NowID;
         }
         private IEnumerator CheckAniEnd(float length)
         {
@@ -128,7 +128,7 @@ namespace Eos.Objects
         [Key(331)] public OreReference BodyOre { get; set; } = new OreReference();
         [IgnoreMember] public EosSkeleton Skeleton => _skeleton;
         private EosSkeleton _skeleton;
-        private Animator _animator;
+        private Animation _animator;
         private Rigidbody _rigidbody;
         private AnimationController _controller;
         [IgnoreMember] public Rigidbody Rigidbody => _rigidbody;
@@ -188,7 +188,11 @@ namespace Eos.Objects
                 if (_rigidbody == null)
                 {
                     _rigidbody = Transform.AddComponent<Rigidbody>();
-                    _rigidbody.isKinematic = true;
+//                    _rigidbody.isKinematic = true;
+                    _rigidbody.useGravity = true;
+                    _rigidbody.drag = 0;
+                    _rigidbody.angularDrag = 0;
+                    _rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                 }
             }
             if (child is EosBone bone)
@@ -197,7 +201,7 @@ namespace Eos.Objects
                   {
                       _skeleton = bone.Skeleton;
                       var skel = bone.BoneRoot;
-                      _animator = skel.GetComponent<Animator>();
+                      _animator = skel.GetComponent<Animation>();
                       _controller = new AnimationController(this, _animator);
                       var anievent = skel.gameObject.AddComponent<AnimationAdapter>();
                       anievent.SetActor(this);

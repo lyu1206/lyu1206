@@ -97,7 +97,7 @@ namespace Eos.Objects
             if (!(_parent is EosTransformActor actor))
                 return;
             _collider?.Destroy();
-            _collider.Attach(this);
+            _collider.Attach(actor);
             _collider.Layer = actor.Layer;
             _collider.IsTrigger = _istrigger;
             _collider.Collider.enabled = _enable;
@@ -127,7 +127,7 @@ namespace Eos.Objects
         public EosTransformActor Actor => _actor;
         public static eosColliderAdaptor RegistCollisionEvent(EosTransformActor actor,EosCollider collider)
         {
-            var collidertrans = collider as ITransform;
+            var collidertrans = actor  as ITransform;
             var adapter = collidertrans.Transform.Transform.gameObject.GetComponent<eosColliderAdaptor>();
             if (adapter==null)
                 adapter = collidertrans.Transform.Transform.gameObject.AddComponent<eosColliderAdaptor>();
@@ -147,16 +147,19 @@ namespace Eos.Objects
         private void OnTriggerExit(Collider other)
         {
             var income = other.GetComponent<eosColliderAdaptor>();
+            if (income==null)
+                return;
             _colider.OnTriggerExit?.Invoke(income._actor, other);
         }
         private void OnCollisionEnter(Collision collision)
         {
-            var income = collision.transform.GetComponent<eosColliderAdaptor>();
-            _colider.OnCollisionEnter?.Invoke(income._actor, collision);
+            _colider.OnCollisionEnter?.Invoke(_actor, collision);
         }
         private void OnCollisionExit(Collision collision)
         {
             var income = collision.transform.GetComponent<eosColliderAdaptor>();
+            if (income==null)
+                return;
             _colider.OnCollisionExit?.Invoke(income._actor, collision);
         }
     }

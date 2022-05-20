@@ -26,7 +26,7 @@ namespace Eos.Objects
             var bodyore = BodyOre.GetOre().GetComponent<BodyOre>();
             var body = bodyore.GetBody();
             _skeleton = new EosSkeleton();
-            _animator = body.GetComponent<Animator>();
+            _animator = body.GetComponent<Animation>();
             _controller = new AnimationController(this, _animator);
             body.transform.SetParent(Transform.Transform);
             body.transform.localPosition = Vector3.zero;

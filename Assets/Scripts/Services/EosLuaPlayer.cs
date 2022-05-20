@@ -72,7 +72,7 @@ namespace EosLuaPlayer
                         coroutine.yield()
                     end
                 ";
-  //          testscript.Activate(true);
+//            testscript.Activate(true);
         }
         public int RegistRoutine(Eos.Objects.EosObjectBase owner,string code)
         {
@@ -82,7 +82,7 @@ namespace EosLuaPlayer
         }
         public void UnRegistRoutine(int index)
         {
-            _unregistroutine.Call(index);
+            _unregistroutine?.Call(index);
         }
         public void PauseRoutine(int index)
         {

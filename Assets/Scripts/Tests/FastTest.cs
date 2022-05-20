@@ -268,7 +268,7 @@ namespace Eos.Test
 
                 var depscontext = new GetDepsContext<long>();
                 resource.GetDeps(depscontext);
-                // ø©±‚º≠ m_asetDBø° ø√∂Û∞£ UnityObjectø°¥Ÿ∞° Write«“ºˆ ¿÷µµ∑œ ∏ÆΩ∫∆ÆµÓø° ≥ æÓº≠ Ω«¡¶∑Œ ∏∏µÈæÓ ≥ªæﬂµ»¥Ÿ §∑§ª?
+                // Ïó¨Í∏∞ÏÑú m_asetDBÏóê Ïò¨ÎùºÍ∞Ñ UnityObjectÏóêÎã§Í∞Ä WriteÌï†Ïàò ÏûàÎèÑÎ°ù Î¶¨Ïä§Ìä∏Îì±Ïóê ÎÑàÏñ¥ÏÑú Ïã§Ï†úÎ°ú ÎßåÎì§Ïñ¥ ÎÇ¥ÏïºÎêúÎã§ „Öá„Öã?
                 if (depscontext.Dependencies.Count == 0)
                     return;
                 foreach (var it in depscontext.Dependencies)
@@ -417,11 +417,27 @@ namespace Eos.Test
                 }
             }
         }
+        private void LoadAndSolutionTest()
+        {
+            var rts = OpenSolutionTest();
+
+            var cam = rts.FindDeepChild<EosCamera>();
+            var avt = rts.FindDeepChild<EosPawnActor>();
+            cam.LocalPosition = new Vector3(0, 10, 10);
+            cam.LookAt(avt);
+
+
+            EosPlayer.Instance.SetSolution(rts as Solution);
+            EosPlayer.Instance.Play();
+        }
         // Start is called before the first frame update
         void Start()
         {
             _resourcesmeta = GetRawResourceMeta("");
-            var ttttt = _controller.GetType();
+
+            //LoadAndSolutionTest();
+            //return;
+
 
             //foreach(var it in _resourcesmeta)
             //{
@@ -444,17 +460,17 @@ namespace Eos.Test
             //ReadFiles();
 
 
-            var tt = ReadAssetItem("Bag01.rtprefab");
-            tt = ReadAssetItem("glasses03.rtprefab");
-            tt = ReadAssetItem("Hair03.rtprefab");
-//            tt = ReadAssetItem("CharacterBone01.rtprefab");
+            //var tt = ReadAssetItem("Bag01.rtprefab");
+            //tt = ReadAssetItem("glasses03.rtprefab");
+            //tt = ReadAssetItem("Hair03.rtprefab");
+            //            tt = ReadAssetItem("CharacterBone01.rtprefab");
 
-            foreach (var it in _resourcepersistents)
-            {
-                Debug.Log($"{it.Item2.name} loaded.");
-                var unityobject = m_assetDB.FromID<UnityObject>(it.Item1);
-                it.Item2.WriteTo(unityobject);
-            }
+            //foreach (var it in _resourcepersistents)
+            //{
+            //    Debug.Log($"{it.Item2.name} loaded.");
+            //    var unityobject = m_assetDB.FromID<UnityObject>(it.Item1);
+            //    it.Item2.WriteTo(unityobject);
+            //}
 
             var solution = ObjectFactory.CreateEosObject<Solution>(); solution.Name = "Solution";
             var workspace = ObjectFactory.CreateEosObject<Workspace>(); workspace.Name = "Workspace";
@@ -475,10 +491,16 @@ namespace Eos.Test
             objroot.LocalScale = Vector3.one * 0.1f;
             workspace.AddChild(objroot);
 
-            var avatar = ObjectFactory.CreateEosObject<EosPawnActor>();avatar.Name = "Avatar";
+            var humanoid = ObjectFactory.CreateEosObject<EosHumanoid>();humanoid.Name = "Player";
+            objroot.AddChild(humanoid);
+
+            var avatar = ObjectFactory.CreateEosObject<EosPawnActor>();avatar.Name = EosHumanoid.humanoidroot;
             var bone = ObjectFactory.CreateEosObject<EosBone>();bone.Bone = _bone;bone.Name = "bone";bone.BoneGUID = 8589957390;
             avatar.AddChild(bone);
-               
+            var collider = ObjectFactory.CreateEosObject<EosCollider>();collider.Name = "Collider";
+            collider.ColliderType = ColliderType.Capsule;
+            avatar.AddChild(collider);
+
             objroot.AddChild(avatar);
             avatar.LocalPosition = new Vector3(0, 3, 0);
             avatar.LocalScale = Vector3.one;
@@ -497,8 +519,24 @@ namespace Eos.Test
             camera.LookAt(avatar);
 
 
-            EosPlayer.Instance.SetSolution(solution as Solution);
-            EosPlayer.Instance.Play();
+            var testscript = new EosScript { Name = "Script" };
+            testscript.LuaScript =
+                @"
+                    local i = 0
+                    local this = _this_object
+                    local avatar = this.Parent;
+                    print('Script Owner:',avatar.Name,' position:',avatar.LocalPosition)
+                    local position = avatar.LocalPosition
+                    position.x = 3;
+                    avatar.LocalPosition = position
+                    while i<60 do
+                        i = i + 1
+                        print('second count:',i,' obj - ',tostring(this),' objname:',this.Name)
+                        coroutine.yield()
+                    end
+                ";
+            avatar.AddChild(testscript);
+
 
 
             var typemap = IOC.Resolve<ITypeMap>();
@@ -514,17 +552,47 @@ namespace Eos.Test
             var persistentObject = Activator.CreateInstance(persistentType) as PersistentObject<long>;
             persistentObject.ReadFrom(rtsolution);
 
+            #region Save Workspace to Solution
+            //var solutionpath = Application.streamingAssetsPath + "/";
+            //using (FileStream fs = File.Create(solutionpath + "FastTest.solution"))
+            //{
+            //    serializer.Serialize(persistentObject, fs);
+            //}
+            #endregion
+
+            EosPlayer.Instance.SetSolution(solution as Solution);
+            EosPlayer.Instance.Play();
+
+        }
+        Solution OpenSolutionTest()
+        {
             var solutionpath = Application.streamingAssetsPath + "/";
-            using (FileStream fs = File.Create(solutionpath + "FastTest.solution"))
+            var serializer = IOC.Resolve<ISerializer>();
+            using (FileStream fs = File.Open(solutionpath + "FastTest.solution",FileMode.Open))
             {
-                serializer.Serialize(persistentObject, fs);
+                var solution = serializer.Deserialize<PersistentRuntimeSolution<long>>(fs);
+                var rtsolution = ScriptableObject.CreateInstance<RuntimeSolution>();
+                solution.WriteTo(null);
+                return solution.Solution;
             }
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            var direction = Vector3.zero;
+            var h = EosPlayer.Instance.Solution.Workspace.FindDeepChild<EosHumanoid>();
+            if (Input.GetKey(KeyCode.W))
+                direction += -Vector3.forward; ;
+            if (Input.GetKey(KeyCode.S))
+                direction += Vector3.forward;
+            if (Input.GetKey(KeyCode.A))
+                direction += Vector3.left; ;
+            if (Input.GetKey(KeyCode.D))
+                direction += Vector3.right;
+            if (Input.GetKeyDown(KeyCode.Space))
+                h.Jump = true;
+            h.MoveDirection = direction;
         }
         private void OnDestroy()
         {
@@ -547,7 +615,7 @@ namespace Eos.Test
                 //}
 
                 var assetItem = LoadItem<RemoteAssetItem>(serializer, file);
-                Debug.Log($"{assetItem.ItemID} - {assetItem.NameExt}");
+//                Debug.Log($"{assetItem.ItemID} - {assetItem.NameExt}");
                 result.Add(assetItem.ItemID, assetItem);
             }
             return result;

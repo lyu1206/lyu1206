@@ -73,6 +73,8 @@ namespace Eos.Objects
     [Union(19, typeof(EosTextMesh))]
     [Union(20, typeof(EosCollider))]
     [Union(21, typeof(EosBone))]
+    [Union(22, typeof(EosGear))]
+    [Union(23, typeof(EosShape))]
     public abstract partial class EosObjectBase : ReferPlayer, IMessagePackSerializationCallbackReceiver
     {
         public EosObjectBase()

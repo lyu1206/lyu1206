@@ -105,6 +105,9 @@ namespace Eos.Objects
         public void SetParent(EosTransform parent,bool stayworld = true)
         {
             Transform?.SetParent(parent.Transform, stayworld);
+            Transform.localPosition = _localposition;
+            Transform.localRotation = Quaternion.Euler(_localrotation);
+            Transform.localScale = _localscale;
         }
         public void Destroy()
         {
