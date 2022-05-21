@@ -487,11 +487,11 @@ namespace Eos.Test
             //var avatar = ObjectFactory.CreateEosObject<EosShape>(PrimitiveType.Capsule); floor.Name = "Avatar";
             //avatar.LocalPosition = new Vector3(0, 1, 0);
             //floor.AddChild(avatar);
-            var objroot = ObjectFactory.CreateEosObject<EosTransformActor>();objroot.Name = "Root";
+            var objroot = ObjectFactory.CreateEosObject<EosTransformActor>();objroot.Name = "PlayerRoot";
             objroot.LocalScale = Vector3.one * 0.1f;
             workspace.AddChild(objroot);
 
-            var humanoid = ObjectFactory.CreateEosObject<EosHumanoid>();humanoid.Name = "Player";
+            var humanoid = ObjectFactory.CreateEosObject<EosHumanoid>();humanoid.Name = "Humanoid";
             objroot.AddChild(humanoid);
 
             var avatar = ObjectFactory.CreateEosObject<EosPawnActor>();avatar.Name = EosHumanoid.humanoidroot;
@@ -583,15 +583,17 @@ namespace Eos.Test
             var direction = Vector3.zero;
             var h = EosPlayer.Instance.Solution.Workspace.FindDeepChild<EosHumanoid>();
             if (Input.GetKey(KeyCode.W))
-                direction += -Vector3.forward; ;
+                direction += Vector3.forward; ;
             if (Input.GetKey(KeyCode.S))
-                direction += Vector3.forward;
+                direction += Vector3.back;
             if (Input.GetKey(KeyCode.A))
                 direction += Vector3.left; ;
             if (Input.GetKey(KeyCode.D))
                 direction += Vector3.right;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
                 h.Jump = true;
+            direction = EosCamera.Main.CameraspaceDirection(direction);
+            direction.y = 0;
             h.MoveDirection = direction;
         }
         private void OnDestroy()

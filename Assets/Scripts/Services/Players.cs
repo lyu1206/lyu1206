@@ -45,12 +45,15 @@ namespace Eos.Service
         {
             base.OnActivate(active);
             var maincamera = EosCamera.Main;
-            var model = FindChild<EosModel>();
-            if (model == null)
-                return;
-            var humanoidroot = model.FindChild<EosTransformActor>(EosHumanoid.humanoidroot);
-            maincamera.Target = humanoidroot;
-            Ref.Solution.AIService.SetAccessPlate(model.FindChild<EosHumanoid>());
+            var playerroot = Ref.Solution.Workspace.FindDeepChild<EosTransformActor>("PlayerRoot");
+            var humanoid = playerroot.FindChild<EosHumanoid>();
+            maincamera.Target = humanoid.Humanoidroot;
+            // var model = FindChild<EosModel>();
+            // if (model == null)
+            //     return;
+            // var humanoidroot = model.FindChild<EosTransformActor>(EosHumanoid.humanoidroot);
+            // maincamera.Target = humanoidroot;
+            // Ref.Solution.AIService.SetAccessPlate(model.FindChild<EosHumanoid>());
         }
         protected override void OnStartPlay()
         {

@@ -282,7 +282,7 @@ namespace Eos.Objects
                     var root = entity._humanoidroot;
                     var rigidbody = root.Rigidbody;
                     var velocity = rigidbody.velocity;
-                    velocity.y = 4;
+                    velocity.y = 5;
                     rigidbody.velocity = velocity;
                     root.Collders.ForEach(it => it.OnCollisionEnter += TestLanding);
                 }

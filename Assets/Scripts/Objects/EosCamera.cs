@@ -60,7 +60,7 @@ namespace Eos.Objects
         }
         private void update(object sender,float delta)
         {
-            var targetpos = _target.LocalPosition + new Vector3(-100, 100, 0);
+            var targetpos = _target.WorldPosition + new Vector3(0, 10, -10);
             LocalPosition = targetpos;
             _transform.Transform.LookAt(_target.Transform.Transform, Vector3.up);
         }

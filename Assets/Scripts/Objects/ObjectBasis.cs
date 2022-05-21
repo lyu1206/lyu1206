@@ -232,6 +232,19 @@ namespace Eos.Objects
             }
             return null;
         }
+        public T FindDeepChild<T>(string name) where T : EosObjectBase
+        {
+            var find = FindChild<T>(name);
+            if (find != null)
+                return find;
+            foreach (var child in _children)
+            {
+                find = child.FindDeepChild<T>(name);
+                if (find != null)
+                    return find;
+            }
+            return null;
+        }
         public T FindChild<T>() where T : EosObjectBase
         {
             foreach(var child in _children)

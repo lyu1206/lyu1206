@@ -54,6 +54,17 @@ namespace Eos.Objects
             _transform.localScale = _localscale;
             return _transform;
         }
+
+        [IgnoreMember]
+        public Vector3 WorldPosition
+        {
+            get
+            {
+                if (_transform != null)
+                    return _transform.position;
+                return Vector3.zero;
+            }
+        }
         [IgnoreMember]
         public Vector3 LocalPosition
         {
@@ -155,6 +166,13 @@ namespace Eos.Objects
                     return;
                 _transform.Name = value;
             } 
+        }
+
+        [IgnoreMember]
+        public virtual Vector3 WorldPosition
+        {
+            get { return _transform.WorldPosition; }
+                
         }
         [IgnoreMember]
         [Inspector("Basic", "LocalPosition")]
