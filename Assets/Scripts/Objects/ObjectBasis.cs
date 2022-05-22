@@ -156,8 +156,10 @@ namespace Eos.Objects
             OnActivate(ActiveInHierachy);
             if (recursivechild)
             {
-                foreach (var child in _children)
-                    child.Activate(active, recursivechild);
+                for (int i=0;i<_children.Count;i++)
+                    _children[i].Activate(active, recursivechild);
+                // foreach (var child in _children)
+                //     child.Activate(active, recursivechild);
             }
         }
         public void Destroy(bool silence = true)

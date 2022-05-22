@@ -115,13 +115,12 @@ namespace Eos.Objects
             _moveagent = new PhysicsAgent();
             InitMoveAgentBehaviros();
 
-
             var rootobject = root.Transform.Transform.gameObject;
             _humanoidroot = root;
 
             _radius = (_humanoidroot.FindChild<EosCollider>().Collider as eosCapsuleCollider).Radius;
 
-            _navagent = rootobject.AddComponent<NavMeshAgent>();
+//            _navagent = rootobject.AddComponent<NavMeshAgent>();
 //            _navagent.radius = _radius;
 
 
@@ -129,6 +128,18 @@ namespace Eos.Objects
             Speed = _speed;
             Accelation = _accelation;
         }
+
+        public override void StartPlay()
+        {
+            base.StartPlay();
+            var zerofriction = new PhysicMaterial();
+            zerofriction.dynamicFriction = zerofriction.staticFriction = 0;
+            zerofriction.frictionCombine = PhysicMaterialCombine.Multiply;
+            _humanoidroot.Collders[0].Collider.Collider.material = zerofriction;
+            
+            ActiveBehavior(MoveAgentState.Idle);
+        }
+
         public void SetPosition(Vector3 to)
         {
             UpdateHumanoidPosition();

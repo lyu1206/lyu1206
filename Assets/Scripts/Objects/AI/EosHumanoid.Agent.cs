@@ -20,6 +20,8 @@ namespace Eos.Objects
         private Dictionary<int,string> _behaviorAnimations = new Dictionary<int, string>();
 
         private Vector3 _movedirection;
+        private int _moveframedelay = 0;
+        private IMoveAgentBehavior CurrentState => _activeBehaviors[_activeBehaviors.Count - 1];
 
         private void InitMoveAgentBehaviros()
         {
@@ -33,7 +35,7 @@ namespace Eos.Objects
             SetBehaviorAnimation(MoveAgentState.Idle,"Stand");
             SetBehaviorAnimation(MoveAgentState.Move,"Run");
             SetBehaviorAnimation(MoveAgentState.Jump,"Run");
-            SetBehaviorAnimation(MoveAgentState.Fall,"Run");
+            SetBehaviorAnimation(MoveAgentState.Fall,"Fall");
             SetBehaviorAnimation(MoveAgentState.Die,"Die");
         }
 
@@ -62,6 +64,7 @@ namespace Eos.Objects
 
         private void StartBehavior(IMoveAgentBehavior behavior)
         {
+            Debug.Log($"State changed:{behavior.State}");
             behavior.OnStart(this);
             PlayBehaviorAnimation(behavior.State);
         }
@@ -69,12 +72,24 @@ namespace Eos.Objects
         {
             if (_activeBehaviors.Contains(behavior))
                 return;
-            StartBehavior(behavior);
-            if (_activeBehaviors.Count==0)
+            if (_activeBehaviors.Count == 0)
+            {
                 _activeBehaviors.Add(behavior);
+                StartBehavior(behavior);
+            }
             else
             {
                 bool added = false;
+                for (int i = 0; i < _activeBehaviors.Count; i++)
+                {
+                    var it = _activeBehaviors[i];
+                    if (!it.AllowMultiState)
+                    {
+                        it.OnEnd(this);
+                        _activeBehaviors.RemoveAt(i);
+                        i--;
+                    }
+                }
                 for (int i=0;i<_activeBehaviors.Count;i++)
                 {
                     var it = _activeBehaviors[i];
@@ -85,8 +100,12 @@ namespace Eos.Objects
                         break;
                     }
                 }
-                if (!added)
+
+                if (!added)// when add highest priority behaivor 
+                {
                     _activeBehaviors.Add(behavior);
+                    StartBehavior(behavior);
+                }
             }
         }
         private void InActiveBehavior(IMoveAgentBehavior behavior)
@@ -108,13 +127,19 @@ namespace Eos.Objects
                         highpriority = it.Priority;
                     }
                 }
-                if (nextbehavior != null && currentbehavior!=nextbehavior)
+                if (nextbehavior != null && currentbehavior.Priority!=nextbehavior.Priority)
                     StartBehavior(nextbehavior);
             }
         }
         private void RegistMoveDirectionChangedEvent(EventHandler<Vector3> handle)
         {
             _movedirectionchanged += handle;
+        }
+
+        private bool TestFallingDown()
+        {
+            return _humanoidroot.Collders[0].Collider.RayCast();
+//            return _humanoidroot.Rigidbody.velocity.y < -0.01f;
         }
         public enum MoveAgentState
         {
@@ -136,6 +161,7 @@ namespace Eos.Objects
         public interface IMoveAgentBehavior
         {
             int Priority { get; }
+            bool AllowMultiState { get; }
             MoveAgentState State { get; }
             void OnAwake(EosHumanoid entity);
             void OnStart(EosHumanoid entity);
@@ -193,23 +219,39 @@ namespace Eos.Objects
             {
                 public int Priority => 0;
 
+                public bool AllowMultiState => false;
                 public MoveAgentState State => MoveAgentState.Idle;
 
                 public void OnAwake(EosHumanoid entity) { }
-                public void OnEnd(EosHumanoid entity) { }
-
                 public void OnStart(EosHumanoid entity) 
                 {
                     var velocity = entity._humanoidroot.Rigidbody.velocity;
-                    velocity.x = velocity.z = 0;
+                    velocity = Vector3.zero;
                     entity._humanoidroot.Rigidbody.velocity = velocity;
+                    entity._moveframedelay = 1;
                 }
+                public void OnEnd(EosHumanoid entity) { }
 
-                public void OnUpdate(EosHumanoid entity, float delta) { }
+
+                public void OnUpdate(EosHumanoid entity, float delta)
+                {
+                    if (entity._moveframedelay != 0)
+                    {
+                        entity._moveframedelay = 0;
+                        return;
+                    }
+                    var falling = entity.TestFallingDown();
+                    if (falling)
+                    {
+                        entity.ActiveBehavior(MoveAgentState.Fall);
+                    }
+                }
             }
+
             public class Move : IMoveAgentBehavior
             {
                 public int Priority => 1;
+                public bool AllowMultiState => true;
 
                 public MoveAgentState State => MoveAgentState.Move;
 
@@ -227,6 +269,10 @@ namespace Eos.Objects
                         humanoid.ActiveBehavior(this);
                 }
 
+                public void OnStart(EosHumanoid entity)
+                {
+                    entity._moveframedelay = 1;
+                }
                 public void OnEnd(EosHumanoid entity)
                 {
                     var velocity = entity._humanoidroot.Rigidbody.velocity;
@@ -234,9 +280,6 @@ namespace Eos.Objects
                     entity._humanoidroot.Rigidbody.velocity = velocity;
                 }
 
-                public void OnStart(EosHumanoid entity)
-                {
-                }
 
                 public void OnUpdate(EosHumanoid entity, float delta)
                 {
@@ -251,12 +294,27 @@ namespace Eos.Objects
                         var toRotation = Quaternion.LookRotation(entity._movedirection, Vector3.up);
                         entity._humanoidroot._transform.Transform.rotation = Quaternion.RotateTowards(entity._humanoidroot.Transform.Transform.rotation ,toRotation,1024*delta);
                     }
+
+                    if (entity._moveframedelay != 0)
+                    {
+                        entity._moveframedelay = 0;
+                        return;
+                    }
+                    if (entity.CurrentState !=this)
+                        return;
+                    
+                    var falling = entity.TestFallingDown();
+                    if (falling)
+                    {
+                        entity.ActiveBehavior(MoveAgentState.Fall);
+                    }
                 }
             }
             public class Jump : IMoveAgentBehavior
             {
                 public int Priority => 2;
 
+                public bool AllowMultiState => true;
                 public MoveAgentState State => MoveAgentState.Jump;
 
                 public void OnAwake(EosHumanoid entity)
@@ -271,20 +329,20 @@ namespace Eos.Objects
                     humanoid.ActiveBehavior(this);
                 }
 
+                public void OnStart(EosHumanoid entity)
+                {
+                    Debug.Log("Jump Start");
+                    var root = entity._humanoidroot;
+                    var rigidbody = root.Rigidbody;
+                    var velocity = rigidbody.velocity;
+                    velocity.y = 5f;
+                    rigidbody.velocity = velocity;
+                    root.Collders.ForEach(it => it.OnCollisionEnter += TestLanding);
+                }
                 public void OnEnd(EosHumanoid entity)
                 {
                     var root = entity._humanoidroot;
                     root.Collders.ForEach(it => it.OnCollisionEnter -= TestLanding);
-                }
-
-                public void OnStart(EosHumanoid entity)
-                {
-                    var root = entity._humanoidroot;
-                    var rigidbody = root.Rigidbody;
-                    var velocity = rigidbody.velocity;
-                    velocity.y = 5;
-                    rigidbody.velocity = velocity;
-                    root.Collders.ForEach(it => it.OnCollisionEnter += TestLanding);
                 }
 
                 private void TestLanding(object sender, Collision collision)
@@ -303,18 +361,37 @@ namespace Eos.Objects
             {
                 public int Priority => 2;
 
+                public bool AllowMultiState => true;
                 public MoveAgentState State => MoveAgentState.Fall;
 
                 public void OnAwake(EosHumanoid entity) { }
-                public void OnEnd(EosHumanoid entity) { }
 
-                public void OnStart(EosHumanoid entity) { }
-
+                public void OnStart(EosHumanoid entity)
+                {
+                    var root = entity._humanoidroot;
+                    root.Collders.ForEach(it => it.OnCollisionEnter += TestLanding);
+                }
+                public void OnEnd(EosHumanoid entity)
+                {
+                    var root = entity._humanoidroot;
+                    root.Collders.ForEach(it => it.OnCollisionEnter -= TestLanding);
+                }
                 public void OnUpdate(EosHumanoid entity, float delta) { }
+                private void TestLanding(object sender, Collision collision)
+                {
+                    if (!(sender is EosObjectBase onwer))
+                        return;
+                    var humanoid = onwer.Parent.FindChild<EosHumanoid>();
+                    if (humanoid==null)
+                        return;
+                    humanoid.InActiveBehavior(this);                    
+//                    Debug.Log("///////////// Landing ..");
+                }
             }
             public class Die : IMoveAgentBehavior
             {
                 public int Priority => 0;
+                public bool AllowMultiState => false;
 
                 public MoveAgentState State => MoveAgentState.Die;
 

@@ -2,67 +2,8 @@ fileFormatVersion: 2
 guid: 6ec28e6d0d6db004e9bb9007b4deea0e
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: Bip001
-  - first:
-      1: 100002
-    second: Bip001 Head
-  - first:
-      1: 100004
-    second: Bip001 Pelvis
-  - first:
-      1: 100006
-    second: Bip001 Spine
-  - first:
-      1: 100008
-    second: //RootNode
-  - first:
-      1: 100010
-    second: glasses04
-  - first:
-      4: 400000
-    second: Bip001
-  - first:
-      4: 400002
-    second: Bip001 Head
-  - first:
-      4: 400004
-    second: Bip001 Pelvis
-  - first:
-      4: 400006
-    second: Bip001 Spine
-  - first:
-      4: 400008
-    second: //RootNode
-  - first:
-      4: 400010
-    second: glasses04
-  - first:
-      21: 2100000
-    second: palette
-  - first:
-      23: 2300000
-    second: glasses04
-  - first:
-      33: 3300000
-    second: glasses04
-  - first:
-      43: 4300000
-    second: glasses04
-  - first:
-      95: 9500000
-    second: //RootNode
-  - first:
-      137: 13700000
-    second: glasses04
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material #0d
-    second: {fileID: 2100000, guid: dffe3d90fde42ee4e8f3a7f2d509574b, type: 2}
+  internalIDToNameTable: []
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,7 +31,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -100,9 +41,9 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
-    fileIdsGeneration: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -132,7 +73,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
@@ -153,8 +94,8 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
-  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

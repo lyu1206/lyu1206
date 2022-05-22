@@ -1,6 +1,9 @@
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using Bolt;
+using Eos.Objects;
 using UnityEngine;
 using NLua;
 
@@ -12,12 +15,27 @@ namespace EosLuaPlayer
         {
             var type = typeof(PrimaryLuaFunction);
             state.RegisterFunction("print", type.GetMethod("Print", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public));
+            state.RegisterFunction("InstanceNew", type.GetMethod("CreateEosInstance", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public));
         }
         public static void Print(params object[] args)
         {
             var b = new StringBuilder();
-            args.ForEach(it => b.Append(it.ToString()));
+            args.ForEach(it =>
+            {
+
+                if (it != null)
+                    b.Append(it.ToString());
+                else
+                    b.Append("null");
+            });
             UnityEngine.Debug.Log(b.ToString());
+        }
+        public static EosObjectBase CreateEosInstance(string typename)
+        {
+            var type = Type.GetType($"Eos.Objects.{typename}");
+            var instance =ObjectFactory.CreateInstance(type);
+            instance.OnCreate();
+            return instance;
         }
     }
     public class EosLuaPlayer : Eos.Objects.ReferPlayer
@@ -43,6 +61,8 @@ namespace EosLuaPlayer
             _unregistroutine = LuaMain["player.UnRegistRoutine"] as LuaFunction;
             _pauseroutine = LuaMain["player.PauseRoutine"] as LuaFunction;
             _resumeroutine = LuaMain["player.ResumeRoutine"] as LuaFunction;
+
+            LuaMain["Services"] = Ref.Solution;
 
             var testpawn = new Eos.Objects.EosScript{ Name = "Pawn" };
             testpawn.LuaScript =

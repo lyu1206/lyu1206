@@ -1,3 +1,4 @@
+using System;
 using MessagePack;
 
 namespace Eos.Objects
@@ -68,7 +69,15 @@ namespace Eos.Objects
         }
         private void DoLuaScript()
         {
-            _scriptID = Ref.LuaPlayer.RegistRoutine(this, LuaScript);
+            try
+            {
+                _scriptID = Ref.LuaPlayer.RegistRoutine(this, LuaScript);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
         private void PauseResumeScript(bool pause)
         {

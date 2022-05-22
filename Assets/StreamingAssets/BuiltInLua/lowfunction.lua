@@ -6,3 +6,12 @@ function loadmodule(code,name,chunkname)
 		print(error)
 	end
 end
+
+Enum = {}
+Enum.PrimitiveType = {Sphere= 0,Cube = 3}
+
+
+Instance = {}
+function Instance.new(name)
+	return InstanceNew(name)
+end

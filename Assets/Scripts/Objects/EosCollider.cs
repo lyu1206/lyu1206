@@ -6,9 +6,8 @@ using MessagePack;
 namespace Eos.Objects
 {
     [EosObject]
-    public partial class EosCollider : EosObjectBase , ITransform
+    public partial class EosCollider : EosObjectBase
     {
-        private EosTransform _transform;
         private ColliderType _colliderType;
         private eosCollider _collider;
         private eosColliderAdaptor _collideradapter;
@@ -16,15 +15,10 @@ namespace Eos.Objects
         private bool _enable = true;
         [Inspector("Basic", "DetectType")]
         [Key(101)]public DetectType DetectType { get; set; } = DetectType.All;
-        [IgnoreMember]public EosTransform Transform => _transform;
         [IgnoreMember] public EventHandler<Collision> OnCollisionEnter;
         [IgnoreMember] public EventHandler<Collision> OnCollisionExit;
         [IgnoreMember] public EventHandler<Collider> OnTriggerEnter;
         [IgnoreMember] public EventHandler<Collider> OnTriggerExit;
-        public EosCollider()
-        {
-            _transform = ObjectFactory.CreateInstance<EosTransform>();
-        }
         [Key(102)]
         [Inspector("Basic", "ColliderType")]
         public ColliderType ColliderType
@@ -64,11 +58,6 @@ namespace Eos.Objects
             get=> _collider;
             set => _collider = value;
         }
-        public override void OnCreate()
-        {
-            base.OnCreate();
-            _transform.Create(Name);
-        }
         public override void OnCopyTo(EosObjectBase target)
         {
             if (!(target is EosCollider targetcollider))
@@ -85,7 +74,6 @@ namespace Eos.Objects
         }
         public override void OnAncestryChanged()
         {
-            _transform.SetParent((Parent as ITransform).Transform);
             AttachCollider();
         }
         private void AttachCollider()
@@ -190,6 +178,8 @@ namespace Eos.Objects
             get => _istrigger;
         }
 
+        public virtual bool RayCast(){return false;}
+
         public abstract void Attach(ITransform actor);
         [Key(304)]
         public int Layer
@@ -265,6 +255,26 @@ namespace Eos.Objects
             target._height = _height;
             base.CopyTo(targetcollider);
         }
+
+        public override bool RayCast()
+        {
+            var radius = _radius * _collider.transform.lossyScale.x;
+            var hits = Physics.SphereCastAll(this._collider.transform.position+Vector3.up * radius, radius, Vector3.down);
+            var mindistance = float.MaxValue;
+            for (int i = 0; i < hits.Length; i++)
+            {
+                var hit = hits[i];
+                if (hit.distance < mindistance)
+                {
+                    if (hit.collider == _collider)
+                        continue;
+                    mindistance = hit.distance;
+                }
+            }
+
+            return mindistance > 0.5f;
+        }
+
         [Key(401)]
         public float Radius
         {

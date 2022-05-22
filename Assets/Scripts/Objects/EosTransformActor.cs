@@ -64,6 +64,11 @@ namespace Eos.Objects
                     return _transform.position;
                 return Vector3.zero;
             }
+            set
+            {
+                if (_transform)
+                    _transform.position = value;
+            }
         }
         [IgnoreMember]
         public Vector3 LocalPosition
@@ -172,6 +177,7 @@ namespace Eos.Objects
         public virtual Vector3 WorldPosition
         {
             get { return _transform.WorldPosition; }
+            set { _transform.WorldPosition = value; }
                 
         }
         [IgnoreMember]
@@ -212,6 +218,19 @@ namespace Eos.Objects
             {
                 _transform.LocalScale = value;
             }
+        }
+
+        public void SetLocalScale(float x, float y, float z)
+        {
+            LocalScale = new Vector3(x,y,z);
+        }
+        public void SetLocalPosition(float x, float y, float z)
+        {
+            LocalPosition = new Vector3(x,y,z);
+        }
+        public void SetWorldPosition(float x, float y, float z)
+        {
+            WorldPosition = new Vector3(x,y,z);
         }
         public EosTransformActor()
         {

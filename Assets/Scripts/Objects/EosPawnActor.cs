@@ -144,6 +144,11 @@ namespace Eos.Objects
             base.OnCopyTo(target);
         }
 
+        public bool RayCast()
+        {
+            return false;
+        }
+
         protected override void OnActivate(bool active)
         {
             base.OnActivate(active);
@@ -177,7 +182,7 @@ namespace Eos.Objects
         }
         public void PlayNode(string name,bool rewind = false)
         {
-            _controller.PlayNode(name,rewind);
+            _controller?.PlayNode(name,rewind);
         }
         public override void OnChildAdded(EosObjectBase child)
         {
@@ -192,7 +197,7 @@ namespace Eos.Objects
                     _rigidbody.useGravity = true;
                     _rigidbody.drag = 0;
                     _rigidbody.angularDrag = 0;
-                    _rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                    _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
                 }
             }
             if (child is EosBone bone)

@@ -73,7 +73,7 @@ namespace Eos.Objects
     public partial class EosObjectBase
     {
         private ObjectMeataData _metadata;
-        [IgnoreMember]public ObjectMeataData MeataData //µû·Î ÀúÀåÇÏ±â¶§¹®¿¡ Æ÷ÇÔµÇ¼­´Â ¾ÈµÊ
+        [IgnoreMember]public ObjectMeataData MeataData //ë”°ë¡œ ì €ì¥í•˜ê¸°ë•Œë¬¸ì— í¬í•¨ë˜ì„œëŠ” ì•ˆë¨
         {
             set
             {
@@ -199,6 +199,12 @@ namespace Eos.Objects
     }
     public partial class EosCollider
     {
+        private EosTransform _transform; 
+        public EosCollider()
+        {
+            _transform = ObjectFactory.CreateInstance<EosTransform>();
+        }
+
         public override void SetExposeToEditor(ExposeToEosEditor editorobject)
         {
             _transform.Transform = editorobject.transform;

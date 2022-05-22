@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Threading.Tasks;
 using UnityEngine;
 using Battlehub.RTSL;
@@ -456,7 +457,7 @@ namespace Eos.Test
             //WriteAssetItem(asset);
 
 
-            //ReadyFiles();
+            ReadyFiles();
             //ReadFiles();
 
 
@@ -484,6 +485,7 @@ namespace Eos.Test
             var floor = ObjectFactory.CreateEosObject<EosShape>(PrimitiveType.Cube);floor.Name = "Floor";
             floor.LocalScale = new Vector3(50, 0.5f, 50);
             workspace.AddChild(floor);
+            
             //var avatar = ObjectFactory.CreateEosObject<EosShape>(PrimitiveType.Capsule); floor.Name = "Avatar";
             //avatar.LocalPosition = new Vector3(0, 1, 0);
             //floor.AddChild(avatar);
@@ -495,14 +497,15 @@ namespace Eos.Test
             objroot.AddChild(humanoid);
 
             var avatar = ObjectFactory.CreateEosObject<EosPawnActor>();avatar.Name = EosHumanoid.humanoidroot;
-            var bone = ObjectFactory.CreateEosObject<EosBone>();bone.Bone = _bone;bone.Name = "bone";bone.BoneGUID = 8589957390;
+            var bone = ObjectFactory.CreateEosObject<EosBone>();bone.Bone = _bone;bone.Name = "bone";bone.BoneGUID = 8589957420;
             avatar.AddChild(bone);
             var collider = ObjectFactory.CreateEosObject<EosCollider>();collider.Name = "Collider";
             collider.ColliderType = ColliderType.Capsule;
+            collider.Collider.Center = new Vector3(0,14,0);
             avatar.AddChild(collider);
 
             objroot.AddChild(avatar);
-            avatar.LocalPosition = new Vector3(0, 3, 0);
+            avatar.LocalPosition = new Vector3(0, 13, 0);
             avatar.LocalScale = Vector3.one;
 
             foreach (var gearsrc in _gears)
@@ -526,14 +529,57 @@ namespace Eos.Test
                     local this = _this_object
                     local avatar = this.Parent;
                     print('Script Owner:',avatar.Name,' position:',avatar.LocalPosition)
-                    local position = avatar.LocalPosition
-                    position.x = 3;
-                    avatar.LocalPosition = position
+                    avatar:SetWorldPosition(0,13,0)
+                        local plate = Instance.new('EosShape')
+                        plate.Name = 'CheckBox'
+                        plate.PType = Enum.PrimitiveType.Cube
+                        plate:SetLocalScale(2,2,2)
+                        plate:SetLocalPosition(2,1,0)
+                        plate.Parent = Services.Workspace
+                    local plateonStage = 
+                    {
+                        {sx = 6,sz = 6,x = 0,y = 6,z =0 },
+                        {sx = 4,sz = 4,x = 0,y = 6,z = 7 },
+                        {sx = 4,sz = 4,x = 0,y = 6,z = 7 + 7},
+                        {sx = 4,sz = 4,x = 0,y = 6,z = 7 + 7 + 7},
+                        {sx = 4,sz = 4,x = 0,y = 6,z = 7 + 7 + 7 + 7},
+                        {sx = 6,sz = 6,x = 0,y = 6,z = 7 + 7 + 7 + 7 + 7},
+
+                        {sx = 3.5,sz = 3.5 ,x = -7 ,y = 6,z = 7 + 7 + 7 + 7 + 7},
+                        {sx = 3.5,sz = 3.5 ,x = -7-7 ,y = 6,z = 7 + 7 + 7 + 7 + 7},
+                        {sx = 3.5,sz = 3.5 ,x = -7-7-7 ,y = 6,z = 7 + 7 + 7 + 7 + 7},
+                        {sx = 3.5,sz = 3.5 ,x = -7-7-7-7 ,y = 6,z = 7 + 7 + 7 + 7 + 7},
+                        {sx = 6,sz = 6,x = -7-7-7-7-7 ,y = 6,z = 7 + 7 + 7 + 7 + 7},
+
+                        {sx = 3.5,sz = 3.5,x = -7-7-7-7-7 ,y = 6,z = 7 + 7 + 7 + 7 },
+                        {sx = 3.5,sz = 3.5,x = -7-7-7-7-7 ,y = 6,z = 7 + 7 + 7  },
+                        {sx = 3.5,sz = 3.5,x = -7-7-7-7-7 ,y = 6,z = 7 + 7  },
+                        {sx = 3.5,sz = 3.5,x = -7-7-7-7-7 ,y = 6,z = 7 },
+                        {sx = 6,sz = 6,x = -7-7-7-7-7 ,y = 6,z = 0 },
+
+                        {sx = 3.8,sz = 3.8,x = -7-7-7-7 ,y = 6,z = 0 },
+                        {sx = 3.8,sz = 3.8,x = -7-7-7 ,y = 6,z = 0 },
+                        {sx = 3.8,sz = 3.8,x = -7-7 ,y = 6,z = 0 },
+                        {sx = 3.8,sz = 3.8,x = -7 ,y = 6,z = 0 },
+
+                    }
+--[[
+                    for k,v in pairs(plateonStage) do
+                        local plate = Instance.new('EosShape')
+                        plate.Name = 'Board'
+                        plate.PType = Enum.PrimitiveType.Cube
+                        plate:SetLocalScale(v.sx,1,v.sz)
+                        plate:SetLocalPosition(v.x,v.y,v.z)
+                        plate.Parent = Services.Workspace
+                    end
+--]]
+--[[
                     while i<60 do
                         i = i + 1
                         print('second count:',i,' obj - ',tostring(this),' objname:',this.Name)
                         coroutine.yield()
                     end
+--]]
                 ";
             avatar.AddChild(testscript);
 
