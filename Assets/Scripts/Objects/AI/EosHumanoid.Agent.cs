@@ -240,6 +240,8 @@ namespace Eos.Objects
                         entity._moveframedelay = 0;
                         return;
                     }
+                    if (entity.CurrentState !=this)
+                        return;
                     var falling = entity.TestFallingDown();
                     if (falling)
                     {
